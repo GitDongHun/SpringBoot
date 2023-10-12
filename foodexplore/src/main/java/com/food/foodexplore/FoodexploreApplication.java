@@ -11,6 +11,7 @@ public class FoodexploreApplication {
 		System.out.println("주안 commit");
 		System.out.println("민지 commit");
 		System.out.println("현빈 commit");
+		System.out.println("동훈 commit");
 	}
 
 }
