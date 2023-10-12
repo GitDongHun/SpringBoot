@@ -10,6 +10,7 @@ public class FoodexploreApplication {
 		SpringApplication.run(FoodexploreApplication.class, args);
 		System.out.println("주안 commit");
 		System.out.println("민지 commit");
+		System.out.println("현빈 commit");
 	}
 
 }
