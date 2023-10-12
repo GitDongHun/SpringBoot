@@ -8,6 +8,7 @@ public class FoodexploreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FoodexploreApplication.class, args);
+		System.out.println("주안 commit");
 	}
 
 }
