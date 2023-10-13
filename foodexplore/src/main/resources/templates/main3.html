@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>main3.html</h1>
+<h2>1. 이전</h2>
+<div>
+    아이디:<span th:text="${login.userid}"></span>
+    비번: <span th:text="${login.passwd}"></span>
+</div>
+
+<h2>2. 객체속성</h2>
+<div th:object="${login}">
+    아이디:<span th:text="*{userid}"></span>
+    비번: <span th:text="*{passwd}"></span>
+</div>
+
+
+</body>
+</html>

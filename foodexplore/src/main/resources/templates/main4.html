@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+   .xxx{
+      color:red;
+   }
+   .yyy{
+      color:blue;
+   }
+</style>
+</head>
+<body>
+<h1>main4.html</h1>
+<h2>조건문</h2>
+<div th:if="${login.userid == 'aaa'}" >
+   조건이 참일때 보임.
+</div>
+<div th:if="${login2.userid == null }" >
+   조건이 참일때 보임. (null)
+</div>
+
+<h2>3항연산자</h2>
+<div th:text="${login.userid=='aaa'}?'참':'거짓'" >
+</div>
+<div th:class="${login.userid=='aaa'}?'xxx':'yyy'" >
+   아이디 사용 가능
+</div>
+
+<h2>switch</h2>
+ switch(변수){
+    case 값1: 문장;
+    case 값2: 문장;
+    default: 문장
+ }
+<div th:switch="${login.userid}" >
+   <p th:case="'aaa'">aaa 입니다.</p>
+   <p th:case="'bbb'">bbb 입니다.</p>
+   <p th:case="*">default 입니다.</p>   
+</div>
+
+<h2>반복문1</h2>
+<ul th:each="xxx: ${loginList}">
+   <li th:text="${xxx.userid}"></li>
+</ul>
+
+<h2>반복문2- index값도 얻기</h2>
+<ul th:each="xxx, varStatus: ${loginList}">
+   <li th:text="${varStatus.count + 100} +',' +${varStatus.index} + ${xxx.userid}"></li>
+</ul>
+
+
+
+
+</body>
+</html>
