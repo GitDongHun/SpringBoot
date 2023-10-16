@@ -1,0 +1,76 @@
+-- 사용자 테이블
+CREATE TABLE Member (
+    user_email VARCHAR2(50) primary key,
+    nickname VARCHAR2(50) not null,
+    pw VARCHAR2(50) not null,
+    user_name VARCHAR2(50) not null,
+   user_post VARCHAR2(50) not null,
+   user_addr1 VARCHAR2(100) not null,
+   user_addr2 VARCHAR2(100),
+   user_phone VARCHAR2(20) not null
+);
+
+-- 식당 테이블
+CREATE TABLE Restaurant (
+    rst_id VARCHAR2(50) primary key,
+    rst_name VARCHAR2(50) not null,
+    rst_addr1 VARCHAR2(100) not null,
+    rst_addr2 VARCHAR2(100) not null,
+    rst_phone VARCHAR2(20) not null,
+    rst_likes NUMBER(38,0),
+    rst_star NUMBER(38,1),
+    rst_x NUMBER(38,38),
+    rst_y NUMBER(38,38),
+    rst_cate VARCHAR2(50) not null,
+    cate_id VARCHAR2(50) not null,
+    CONSTRAINT restaurant_cate_id_fk FOREIGN KEY (cate_id) REFERENCES Category(cate_id)
+);
+
+-- 리뷰 테이블
+CREATE TABLE Review (
+    rev_no NUMBER(38,0) not null,
+    user_email VARCHAR2(50) not null,
+    rst_id VARCHAR2(50) not null,
+    rev_star NUMBER(38,0),
+    rev_comment VARCHAR2(1000),
+    rev_date DATE,
+    CONSTRAINT review_rev_no_pk PRIMARY KEY (rev_no),
+    CONSTRAINT review_user_email_fk FOREIGN KEY (user_email) REFERENCES member(user_email),
+    CONSTRAINT review_rst_id_fk FOREIGN KEY (rst_id) REFERENCES restaurant(rst_id)
+);
+
+-- 즐겨찾기 테이블
+CREATE TABLE Likes (
+    user_email VARCHAR2(50) not null,
+    rst_id VARCHAR2(50) not null,
+    CONSTRAINT likes_pk PRIMARY KEY (user_email, rst_id),
+    CONSTRAINT likes_user_email_fk FOREIGN KEY (user_email) REFERENCES member(user_email),
+    CONSTRAINT likes_rst_id_fk FOREIGN KEY (rst_id) REFERENCES Restaurant(rst_id)
+);
+
+-- 음식 카테고리 테이블
+CREATE TABLE Category (
+    cate_id VARCHAR2(50) not null,
+    cate_name VARCHAR2(50) not null,
+    CONSTRAINT category_cate_id_pk PRIMARY KEY (cate_id)
+);
+
+-- 메뉴 테이블
+CREATE TABLE Menu (
+    rst_id VARCHAR2(50) not null,
+    rst_menu VARCHAR2(50) not null,
+    rst_price VARCHAR2(20) not null,
+    CONSTRAINT menu_pk PRIMARY KEY (rst_id, rst_menu),
+    CONSTRAINT menu_rst_id_fk FOREIGN KEY (rst_id) REFERENCES Restaurant(rst_id)
+);
+
+-- 리뷰 이미지 업로드 테이블
+CREATE TABLE Upload (
+    uuid VARCHAR2(300) NOT NULL,
+    upload_path VARCHAR2(500) NOT NULL,
+    file_name VARCHAR2(200) NOT NULL,
+    file_type CHAR(1),
+    rev_no NUMBER(38,0) NOT NULL,
+    CONSTRAINT upload_uuid_pk PRIMARY KEY (uuid),
+    CONSTRAINT upload_rev_no_fk FOREIGN KEY (rev_no) REFERENCES Review(rev_no)
+);
