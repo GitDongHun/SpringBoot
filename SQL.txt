@@ -1,3 +1,4 @@
+--2023-10-16(월) ERD 첫 작성
 -- 사용자 테이블
 CREATE TABLE Member (
     user_email VARCHAR2(50) primary key,
@@ -74,3 +75,18 @@ CREATE TABLE Upload (
     CONSTRAINT upload_uuid_pk PRIMARY KEY (uuid),
     CONSTRAINT upload_rev_no_fk FOREIGN KEY (rev_no) REFERENCES Review(rev_no)
 );
+
+
+
+
+--2023-10-17(화) ERD 피드백 반영 후 추가된 SQL문
+--1)category 테이블을 지우기위한 fk 제거
+ALTER TABLE restaurant DROP COLUMN cate_id;
+
+--2)likes, star 갯수는 백엔드로
+ALTER TABLE restaurant DROP COLUMN RST_LIKES;
+ALTER TABLE restaurant DROP COLUMN RST_STAR;
+
+--3)category 테이블 지우기
+DROP TABLE category;
+
