@@ -10,8 +10,8 @@ body{
     width: 50%;
 }
 #searchinput {
-    flex: 1; /* input ¿ä¼Ò°¡ ³ª¸ÓÁö °ø°£À» Ã¤¿ï ¼ö ÀÖµµ·Ï flex ¼Ó¼ºÀ» ¼³Á¤ÇÕ´Ï´Ù. */
-    padding: 13px; /* ¿øÇÏ´Â ÆĞµùÀ» Ãß°¡ÇÕ´Ï´Ù. */
+    flex: 1; /* input ï¿½ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ flex ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
+    padding: 13px; /* ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ğµï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½. */
     background-color: #eaeaea;
     border-radius: 20px;
     border: none;
@@ -28,8 +28,8 @@ body{
     height: 35px;
 }
 #searchbtn img {
-    max-width: 80%; /* ÀÌ¹ÌÁöÀÇ ÃÖ´ë ³Êºñ¸¦ ºÎ¸ğ ¿ä¼ÒÀÎ ¹öÆ°ÀÇ ³Êºñ¿¡ ¸Â°Ô ¼³Á¤ÇÕ´Ï´Ù. */
-    max-height: 80%; /* ÀÌ¹ÌÁöÀÇ ÃÖ´ë ³ôÀÌ¸¦ ºÎ¸ğ ¿ä¼ÒÀÎ ¹öÆ°ÀÇ ³ôÀÌ¿¡ ¸Â°Ô ¼³Á¤ÇÕ´Ï´Ù. */
+    max-width: 80%; /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Êºï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Êºï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
+    max-height: 80%; /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
     margin-bottom: 3px;
 }
 .msection a{
@@ -41,11 +41,12 @@ body{
     margin-right: 5px;
 }
 .contentbox {
-    position: relative;
-
+    position: fixed;
+    text-align: center;
     width: 100%;
     height: 100%;
   }
+
 #backgroundbanner{
     position: absolute;
 
@@ -55,7 +56,7 @@ body{
     z-index: -1;
 }
 .bodycontent{
-    position: relative; /* bodycontentÀÇ À§Ä¡¸¦ »ó´ëÀûÀ¸·Î ¼³Á¤ÇÕ´Ï´Ù. */
+    position: relative; /* bodycontentï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
     width: 80%;
     margin: auto;
     background-color: white;
@@ -63,3 +64,66 @@ body{
     top: 40px;
     min-height: 500px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);}
+
+h2 {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.sidebar {
+    float: left;
+    width: 200px;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a.current-page {
+    font-weight: bold;
+}
+
+.search-bar {
+    text-align: center;
+    margin-top: 50px;
+    margin-right: 790px;
+}
+
+.search-bar input {
+    padding: 10px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #FFAF01;
+    color: white;
+    border: none;
+}
+
+.data-table {
+    width: 70%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; /* ê° ì»¬ëŸ¼ì„ ê°€ìš´ë°ë¡œ ì •ë ¬ */
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+}
