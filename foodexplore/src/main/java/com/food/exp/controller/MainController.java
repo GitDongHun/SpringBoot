@@ -11,7 +11,11 @@ public class MainController {
 			System.out.println("MainController 실행");
 			return "main";
 		}
-
+		
+		@GetMapping("/template")
+		public String template_thymeleaf(){
+			return "sample_template/template_thymeleaf";
+		}
 
 
 }
