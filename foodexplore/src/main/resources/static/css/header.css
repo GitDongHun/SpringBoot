@@ -55,8 +55,7 @@ body{
     width: 100%;
     z-index: -1;
 }
-<<<<<<< HEAD
-=======
+
 .bodycontent{
     position: relative; 
     width: 80%;
@@ -65,68 +64,5 @@ body{
     z-index: 1;
     top: 40px;
     min-height: 500px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);}
-
-h2 {
-    font-size: 36px;
-    margin-top: 20px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-
-.sidebar {
-    float: left;
-    width: 200px;
-    height: 100%;
-    background-color: white;
-    padding: 20px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar ul li a.current-page {
-    font-weight: bold;
-}
-
-.search-bar {
-    text-align: center;
-    margin-top: 50px;
-    margin-right: 790px;
-}
-
-.search-bar input {
-    padding: 10px;
-    margin-right: 10px;
-    width: 200px;
-}
-
-.search-bar button {
-    padding: 10px 20px;
-    background-color: #FFAF01;
-    color: white;
-    border: none;
-}
-
-.data-table {
-    width: 70%;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-}
-
-.data-table th, .data-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center; /* 각 컬럼을 가운데로 정렬 */
-}
-
-.data-table th {
-    background-color: #f2f2f2;
-}
->>>>>>> 3305acdf7a334efead8e8202cb287ae8af4a22a2
