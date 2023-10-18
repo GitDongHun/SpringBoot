@@ -8,6 +8,7 @@ public class MainController {
 
 		@GetMapping("main")
 		public String main() {
+			System.out.println("MainController 실행");
 			return "main";
 		}
 
