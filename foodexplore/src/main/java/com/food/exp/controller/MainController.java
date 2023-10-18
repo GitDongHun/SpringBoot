@@ -10,7 +10,11 @@ public class MainController {
 		public String main() {
 			return "main";
 		}
-
+		
+		@GetMapping("/template")
+		public String template_thymeleaf(){
+			return "sample_template/template_thymeleaf";
+		}
 
 
 }
