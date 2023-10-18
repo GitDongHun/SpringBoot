@@ -7,20 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MainController {
+public class RevController {
 
 	@Autowired
 	ServletContext application;
 	
-		@GetMapping("/main")
-		public String main() {
-			System.out.println("MainController 실행");
-			return "main";
-		}
-		
-		@GetMapping("/template")
-		public String template_thymeleaf(){
-			return "sample_template/template_thymeleaf";
-		}
+	@GetMapping("/rev")
+	public String rev() {
+		return "/rev/rev";
+	}
 
 }

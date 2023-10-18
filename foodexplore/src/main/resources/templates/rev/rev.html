@@ -20,8 +20,26 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
     </head>
+
+    
+    <script>
+        // HTML 문서가 로드된 후 실행할 함수
+        document.addEventListener("DOMContentLoaded", function() {
+            // 전체 선택을 위한 체크박스 요소
+            const selectAllCheckbox = document.getElementById("select-all-checkbox");
+            // 모든 체크박스 요소 가져오기
+            const checkboxes = document.querySelectorAll("input[type='checkbox']");
+    
+            // 전체 선택 체크박스를 클릭했을 때 동작할 함수
+            selectAllCheckbox.addEventListener("change", function() {
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            });
+        });
+    </script>
+
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
@@ -46,7 +64,35 @@
         <div class="contentbox">
             <div id="backgroundbanner"></div>
             <div class="bodycontent">
-                ddd
+                <h2>리뷰 관리</h2>
+                <div class="sidebar">
+                    <ul>
+                        <li><a href="#">마이페이지</a></li>
+                        <li><a href="#">회원정보수정</a></li>
+                        <li><a href="#">나의 즐겨찾기</a></li>
+                        <li><a href="#">리뷰 관리</a></li>
+                    </ul>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="식당명, 작성일, 제목 검색">
+                    <button type="button">검색</button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="select-all-checkbox"></th>
+                            <th>식당명</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="row-checkbox"></td>
+                            <td>asd</td>
+                            <td>asd</td>
+                            <td>2023-10-18</td>
+                        </tr>
             </div>
         </div>
         <!-- Bootstrap core JS-->
