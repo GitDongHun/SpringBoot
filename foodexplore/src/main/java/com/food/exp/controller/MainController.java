@@ -17,9 +17,17 @@ public class MainController {
 			return "main";
 		}
 		
+<<<<<<< HEAD
 		@GetMapping("/rev")
 		public String rev() {
 			return "/rev/rev";
 		}
+=======
+		@GetMapping("/template")
+		public String template_thymeleaf(){
+			return "sample_template/template_thymeleaf";
+		}
+
+>>>>>>> 97ded5ba63e7852c60387cbce2d389fa3dd3433f
 
 }
