@@ -8,7 +8,7 @@ public class MainController {
 
 		@GetMapping("main")
 		public String main() {
-			return "MainController";
+			return "main";
 		}
 
 
