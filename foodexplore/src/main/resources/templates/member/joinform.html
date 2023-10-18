@@ -22,32 +22,46 @@
               <form id="memberJoinForm" th:action="@{/member/join}" method="POST">
                 <table>
                   <tr>
-                    <th>아이디*</th>
-                    <td>데이터 1</td>
+                    <th style="padding-top: 15px;">아이디*</th>
+                    <td style="padding-top: 10px;">
+                      <input type="text" id="user_email" name="user_email" placeholder="이메일 형식으로 입력해주세요." title="아이디입력">
+                    </td>
                   </tr>
                   <tr>
                     <th>비밀번호*</th>
-                    <td>데이터 2</td>
+                    <td>
+                      <input type="text" id="pw" name="pw" placeholder="영문 대소문자/숫자/특수문자, 8~16자">
+                    </td>                  
                   </tr>
                   <tr>
                     <th>비밀번호 확인*</th>
-                    <td>데이터 3</td>
+                    <td>
+                      <input type="text" id="pwcheck" name="pwcheck" placeholder="비밀번호를 다시 입력해주세요." title="아이디입력">
+                    </td>                  
                   </tr>
                   <tr>
                     <th>닉네임*</th>
-                    <td>데이터 2</td>
+                    <td>
+                      <input type="text" id="nickname" name="nickname" placeholder="닉네임" title="아이디입력">
+                    </td>                  
                   </tr>
                   <tr>
                     <th>이름*</th>
-                    <td>데이터 2</td>
+                    <td>
+                      <input type="text" id="user_name" name="user_name" placeholder="이름" title="아이디입력">
+                    </td>                  
                   </tr>
                   <tr>
                     <th>주소*</th>
-                    <td>데이터 2</td>
+                    <td>
+                      <input type="text" id="user_post" name="user_post" placeholder="이메일 형식으로 입력하세요." title="아이디입력">
+                    </td>                  
                   </tr>
-                  <tr>
-                    <th>핸드폰 번호*</th>
-                    <td>데이터 2</td>
+                  <tr style="border-bottom: none;">
+                    <th style="padding-bottom: 15px;">휴대폰 번호*</th>
+                    <td style="padding-bottom: 10px;">
+                      <input type="text" id="user_phone" name="user_phone" placeholder="휴대폰 번호">
+                    </td>                  
                   </tr>
                 </table>
                 
