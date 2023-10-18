@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -7,8 +6,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Landing Page - Start Bootstrap Theme</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+        <!-- 사이트 접속 icon -->
+        <link rel="icon" type="image/x-icon" th:href="@{/images/foodexplorer_icon.png}" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Google fonts-->
@@ -21,31 +20,56 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-=======
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>웹 프로젝트</title>
-    <link rel="stylesheet" href="styles.css"> <!-- 스타일 시트 링크 -->
-</head>
-<body>
-    <header>
-        <img src="/static/foodexplore.png"> <!-- 로고 이미지 -->
-    </header>
-    <!-- 나머지 콘텐츠 -->
-</body>
-</html>
-=======
-<html lang="ko" dir="ltr" class="chrome windows fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
->>>>>>> 750b8474c3888480a8a1e7f81c1553096b97abd0
 
+    	<style>
+        /* 스타일을 정의합니다. */
+        @font-face {
+			font-family: 'Cafe24Ssurround';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		}
+		
+        #backgroundbanner{
+            position: absolute;
+            background-color: #FFAF01;
+            height: 500px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .background-inner-banner {
+            width: 100%;
+            height: 300px; /* 배너의 높이를 조절합니다. */
+            display: flex;
+            justify-content: center;
+            padding-top: 90px;
+            align-items: flex-start;
+        }
+        
+        .myButton {
+			background-color:#fff7cc;
+			border-radius:10px;
+			display:inline-block;
+			cursor:pointer;
+			color:#000000;
+			
+			font-family:'Cafe24Ssurround';
+			font-size:17px;
+			font-weight:bold;
+			padding:14px 29px;
+			text-decoration:none;
+		}
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    	</style>
     </head>
+    
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
@@ -66,246 +90,40 @@
                 </div>
             </div>
         </nav>
+        
+        <div class="contentbox">
+            <div id="backgroundbanner">
+            <div class="background-inner-banner">
+				<div class="image-container">
+					<div class="current" style="margin-right: 60px">
+						<img th:src="@{/images/current_location_icon.png}"
+								style="width: 100px; height: 100px; margin-bottom: 20px;"><br>
+						<a href="#" class="myButton">현재 위치로 찾기</a>
+					</div>
+					<div class="different">
+						<img th:src="@{/images/different_location_icon.png}"
+								style="width: 100px; height: 100px; margin-bottom: 20px;"><br>
+						<a href="#" class="myButton">다른 위치로 찾기</a>
+					</div>
+									
+					
+					
+				</div>
+				</div>
+			</div>
+			
+<!--          <div class="bodycontent" style="padding: 30px 50px; width: 820px;">
+              <h2 class="titletext" >회원 가입</h2>
+              
 
-  <style>
-    .contentbox {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-
-    .backgroundbanner {
-      /* 자식들을 감싸고 있는 부모 */
-      display: block;
-      margin: 0 -5px;
-    }
-  </style>
-
-  <style>
-    /* 스타일을 정의합니다. */
-    .image-container {
-      display: flex;
-      /* 이미지를 가로로 나열하도록 설정 */
-    }
-
-    .image {
-      width: 200px;
-      /* 이미지의 가로 크기를 조절합니다. */
-      height: 200px;
-      /* 이미지의 세로 크기를 조절합니다. */
-      margin: 10px;
-      /* 이미지 간의 간격을 설정합니다. */
-    }
-  </style>
-  </head>
-
-  <body>
-    <div class="image-container">
-      <div class="image">
-        <img src="image1.jpg" alt="이미지 1">
-      </div>
-      <div class="image">
-        <img src="image2.jpg" alt="이미지 2">
-      </div>
-    </div>
-
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-  </body>
-
-<<<<<<< HEAD
+            </div>	-->
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
 </html>
-=======
-    <!-- ===============================================-->
-    <!--    Main Content-->
-    <!-- ===============================================-->
-    <main class="main" id="top">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll" style="background-image: none; transition: none 0s ease 0s; background-color: rgba(255, 255, 255, 0);">
-        <div class="container"><a class="navbar-brand d-inline-flex" href="index.html"><img class="d-inline-block" src="../static/images/food_logo.png" alt="logo"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
-          <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
-            
-            <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0">
-              <div class="input-group-icon pe-2"><svg class="svg-inline--fa fa-search fa-w-16 input-box-icon text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <i class="fas fa-search input-box-icon text-primary"></i> Font Awesome fontawesome.com -->
-                <input class="form-control border-0 input-box bg-100" type="search" placeholder="지역, 음식 또는 식당명 검색" aria-label="Search">
-              </div>
-              <button class="btn btn-white shadow-warning text-warning" type="submit"> <svg class="svg-inline--fa fa-user fa-w-14 me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg><!-- <i class="fas fa-user me-2"></i> Font Awesome fontawesome.com -->로그인</button>
-              <button class="btn btn-white shadow-warning text-warning" type="submit"> <svg class="svg-inline--fa fa-user fa-w-14 me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg><!-- <i class="fas fa-user me-2"></i> Font Awesome fontawesome.com -->회원가입</button>
-            </form>
-          </div>
-        </div>
-      </nav>
-      <section class="py-5 overflow-hidden bg-primary" id="home">
-        <div class="container">
-          <div class="row flex-center">
-            
-            <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      
-      
-      
-      
-      
-
-
-
-
-      <!-- ============================================-->
-      
-      
-      
-      
-
-
-
-
-      
-      
-      
-      
-      
-
-
-      
-
-
-      <!-- ============================================-->
-      
-      
-      
-      
-
-
-      
-
-
-      
-      
-      
-      
-      
-
-
-
-
-      
-      
-      
-      
-      
-
-
-
-
-      <!-- ============================================-->
-      <!-- <section> begin ============================-->
-      <section class="pt-5">
-
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-span mb-3 shadow-lg">
-                <div class="card-body py-0">
-                  <div class="row justify-content-center">
-                    <div class="col-md-5 col-xl-7 col-xxl-8 g-0 order-0 order-md-1"><img class="img-fluid w-100 fit-cover h-100 rounded-top rounded-md-end rounded-md-top-0" src="../../static/assets/img/gallery/pizza.png" alt="..."></div>
-                    <div class="col-md-7 col-xl-5 col-xxl-4 p-4 p-lg-5">
-                      <h1 class="card-title mt-xl-5 mb-4">Wanna eat hot &amp; <span class="text-primary">spicy Pizza?</span></h1>
-                      <p class="fs-1">Pair up with a friend and enjoy the hot and crispy pizza pops. Try it with the best deals.</p>
-                      <div class="d-grid bottom-0"><a class="btn btn-lg btn-primary mt-xl-6" href="#!">PROCEED TO ORDER<svg class="svg-inline--fa fa-chevron-right fa-w-10 ms-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg><!-- <i class="fas fa-chevron-right ms-2"></i> Font Awesome fontawesome.com --></a></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- end of .container-->
-
-      </section>
-      <!-- <section> close ============================-->
-      <!-- ============================================-->
-
-
-      
-
-
-      <!-- ============================================-->
-      
-      
-      
-      
-
-
-    </main>
-    <!-- ===============================================-->
-    <!--    End of Main Content-->
-    <!-- ===============================================-->
-
-
-
-
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
-    <script src="../../static/vendors/@popperjs/popper.min.js"></script>
-    <script src="../../static/vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../../static/vendors/is/is.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="../../static/vendors/fontawesome/all.min.js"></script>
-    <script src="../../static/assets/js/theme.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
-  <!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-
-
-</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
->>>>>>> bbdf54529b24586e7d2b3cc65fd3b2d2e3c15f54
->>>>>>> 750b8474c3888480a8a1e7f81c1553096b97abd0
