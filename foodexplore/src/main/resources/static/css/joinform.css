@@ -11,6 +11,7 @@ table {
 
   tr {
     display: flex;
+    border-bottom: 1px solid #d6d6d6;
   }
   th {
     width: 145px;
@@ -20,7 +21,16 @@ table {
   }
 
   td {
-    padding: 10px 15px;
+    padding: 6px 15px;
     flex: 1;
+  }
+
+  td input {
+    width: 60%;
+    display: block;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 6px 10px;
   }
   
