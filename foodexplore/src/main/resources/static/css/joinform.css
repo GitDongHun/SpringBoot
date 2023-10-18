@@ -1,0 +1,25 @@
+.titletext{
+    margin-bottom: 20px;
+}
+
+table {
+    display: flex;
+    flex-direction: column; /* 열 기준으로 정렬 */
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+  }
+
+  tr {
+    display: flex;
+  }
+  th {
+    width: 145px;
+    padding: 10px 15px 10px 20px;
+    background-color:#fff1d7;
+  }
+
+  td {
+    padding: 10px 15px;
+    flex: 1;
+  }
+  
