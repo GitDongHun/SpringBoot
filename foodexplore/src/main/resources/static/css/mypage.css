@@ -10,30 +10,33 @@
 }
 .content {
     flex: 1; /* 남은 공간을 채우도록 설정 */
-    padding: 20px;
+    padding: 30px;
 }
-/* 사이드바 스타일 */
-.sidebar ul {
+.sidebar ul {	/* 사이드바 스타일 */
     list-style: none;
     padding: 0;
 }
 .sidebar li {
-    padding: 10px;
+	display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 140px;
 }
 .sidebar a {
+    display: block;
+    font-size: 16px;
+    padding: 10px;
     color: black;
     text-decoration: none;
-    display: block;
-    padding: 10px;
-    font-size: 16px;
 }
-/* 마우스 호버 효과 */
-.sidebar a:hover {
+.sidebar a:hover {		/* 마우스 호버 효과 */
     color: #EF6900;
 }
 .sidebar a[href="#mypage"] {
     font-size: 20px;
-    width: 130px;
+    width: 140px;
     height: 50px;
     border-radius: 50px;
     text-align: center;
@@ -41,31 +44,31 @@
     color: white;
 }
 
-/* 안녕하세요 */
-.box {
-    width: 450px;
+/* 안녕하세요 박스 */
+.hello-box {
+    width: 100%;
     height: 130px;
     background-color: #FFF7CC;
     border-radius: 10px;
     padding: 10px; /* padding을 조정 */
-    margin-left: 10px;
     position: relative;
     display: flex; /* Flexbox 레이아웃 사용 */
     align-items: center; /* 수직 가운데 정렬 */
 }
-.box-text {
+.hello-boxtext {
     flex: 1; /* 텍스트가 높이를 기반으로 수평으로 확장 */
-    font-size: 30px;
+    font-size: 32px;
     text-align: center;
     margin-left: 100px; /* 로고와의 간격을 설정 */
 }
-.box-logo {
+.hello-boxlogo {
     width: 100px;
     height: auto;
 }
 
 /* 회원정보 */
 .memberInfo{
+	width: 600px;
 	font-size:18px;
 	line-height:17px;
 	display:inline-block;
@@ -73,7 +76,7 @@
 	padding:20px 0;
 	letter-spacing:0;
 	float:left;
-	margin-right: 40px
+	margin-right: 50px
 }
 .memberInfo-body{
 	margin-left: 10px
@@ -81,7 +84,7 @@
 .row{
 	width: 400px;
 }
-.title {
+.memberInfo-title {
 	text-align: left;
 	font-size: 15px;
 	margin-bottom: 10px;
@@ -108,12 +111,47 @@
 	float:right;
 }
 
-/* 나의 즐겨찾기 */
-.my-like{
+/* 나의 즐겨찾기&리뷰관리 */
+.like-review{
+	width: 600px;
+	float: right;
+}
+.mylist-box{
+	width: 500px;
 	padding:20px 0;
 	float:left;
 }
-
-
+.title-util{
+	height: 50px;
+	margin-top: 50px;
+	
+}
+.title-name {
+	color: #EF6900;
+	font-size: 30px;
+    display: inline-block;
+    margin-right: 10px; /* 제목과 링크 사이의 간격 조절 */
+    float: left;
+}
+.more {
+    display: inline-block;
+    vertical-align: middle; /* 수직 가운데 정렬 */
+    float: right;
+}
+.mylike-list{
+	width: 500px;
+	height: 100px;
+	border-top: 1px solid #CACACA;
+	border-bottom: 1px solid #CACACA;
+	float: left;
+	margin-bottom: 50px;
+}
+.myrev-list{
+	width: 500px;
+	height: 100px;
+	border-top: 1px solid #CACACA;
+	border-bottom: 1px solid #CACACA;
+	float: left;
+}
 
 
