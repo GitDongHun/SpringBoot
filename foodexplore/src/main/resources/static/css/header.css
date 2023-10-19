@@ -41,15 +41,14 @@ body{
     margin-right: 5px;
 }
 .contentbox {
-    position: fixed;
     text-align: center;
     width: 100%;
-    height: 100%;
+    height: 100vh; 
+    background-color: #EFEEEC;
   }
 
 #backgroundbanner{
     position: absolute;
-
     background-color: #FFAF01;
     height: 300px;
     width: 100%;
