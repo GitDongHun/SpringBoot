@@ -1,5 +1,6 @@
 body{
     font-family: 'Noto Sans KR', sans-serif;
+    background-color: #EFEEEC;
 }
 .searchbar {
     display: flex;
@@ -33,12 +34,13 @@ body{
     margin-bottom: 3px;
 }
 .msection a{
-    font-size: 14px;
+	margin-right:40px;
+    font-size: 15px;
     text-decoration-line: none;
     color: black;
 }
 #loginlink{
-    margin-right: 5px;
+    margin-right: 20px;
 }
 .contentbox {
     text-align: center;
@@ -50,6 +52,7 @@ body{
     position: absolute;
     background-color: #FFAF01;
     height: 300px;
+    min-width: 1600px;
     width: 100%;
     z-index: -1;
 }
