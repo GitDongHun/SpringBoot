@@ -64,4 +64,5 @@ body{
     top: 40px;
     min-height: 500px; /* 내용이 높이를 넘어가면 스크롤이 나타날 수 있도록 설정 */
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    display: flex;
 }

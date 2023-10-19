@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- 공통적으로 들어가는 부분 가져오는 코드 -->
+<head th:insert="~{include/head.html}">
+
+<!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
+<title>Landing Page - Start Bootstrap Theme</title>
+
+<link th:href="@{/css/mypage.css}" rel="stylesheet" />
+
+</head>
+<body>
+	<!-- Navigation-->
+	<nav th:insert="~{include/nav.html}"></nav>
+
+
+	<div class="contentbox">
+		<div id="backgroundbanner"></div>
+		<div class="bodycontent" style="padding: 30px 50px; width: 820px;">
+
+			<!-- 사이드바 -->
+			<div class="sidebar">
+				<ul>
+					<li><a href="#mypage">마이페이지</a></li>
+					<li><a href="#editProfile">회원정보 수정</a></li>
+					<li><a href="myLikes">나의 즐겨찾기</a></li>
+					<li><a href="#reviews">리뷰관리</a></li>
+				</ul>
+			</div>
+			<!-- 사이드바 end -->
+			<div class="content">
+				<!-- 페이지 내용을 이곳에 추가하세요 -->
+
+				<!-- 회원 정보 (memberInfo) -->
+				<div class="memberInfo">
+					<!-- 안녕하세요 -->
+					<div class="box">
+						<img class="box-logo"
+							src="../../static/images/foodexplore_icon.png">
+						<h2 id="box-text">안녕하세요. ***님</h2>
+					</div>
+					<!-- 안녕하세요 // -->
+					<div class="content design memberInfo-body">
+						<div class="row">
+							<label for="nick" class="title">닉네임</label> <input type="text"
+								id="nick" class="design shape">
+						</div>
+						<div class="row">
+							<label for="userEmail" class="title">아이디</label> <input
+								type="text" id="userEmail" class="design shape" readonly>
+						</div>
+						<div class="row name">
+							<label for="userName" class="title">이름</label> <input type="text"
+								id="usereName" class="design shape" readonly>
+						</div>
+						<div class="row phone">
+							<label for="phone" class="title">핸드폰번호</label> <input type="text"
+								id="phone" class="design shape" readonly>
+						</div>
+						<div class="row post">
+							<label for="post" class="title">우편번호</label> <input type="text"
+								id="post" class="design shape" readonly>
+						</div>
+						<div class="row address">
+							<label for="address" class="title">주소</label> <input type="text"
+								id="address1" class="design shape" readonly> <input
+								type="text" id="address2" class="design shape" readonly>
+						</div>
+						<button class="editProfile-btn" onclick="">회원 정보 수정</button>
+					</div>
+				</div>
+				<!-- 회원 정보 (memberInfo) // -->
+
+
+				<!-- 나의 즐겨찾기 -->
+				<div class="my-like">
+					<div class="tit-util">
+						<h2 class="tit">나의 즐겨찾기</h2>
+						<a href="" class="more" title="더보기"> 더보기 > 
+						<i class="iconset ico-arr-right-gray"></i>
+						</a>
+					</div>
+					<div class="my-like-history">
+						<ul>
+							<li>
+								<div>음식점 정보</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- body 위에 삽입되는 공통 부분 추가하는 코드 -->
+	<div th:insert="~{include/footer.html}"></div>
+</body>
+</html>
