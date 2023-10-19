@@ -41,7 +41,8 @@
 			top: 0;
 			left: 0;
 			bottom: 0;
-			width: 30%;
+			width: 300px;
+			height: 80px;
 			margin: 10px 0 30px 10px;
 			padding: 5px;
 			overflow-y: auto;
@@ -202,6 +203,12 @@
 			cursor: default;
 			color: #777;
 		}
+
+
+
+		.bodycontent {
+			height:100% !important; 
+		}
 	</style>
 
 </head>
@@ -215,7 +222,7 @@
 		<div class="bodycontent">
 
 			<!-- kakao Map API UI -->
-			<br>지도시작임
+			<br>지도 검색 서비스
 			<div class="map_wrap">
 				<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
@@ -224,14 +231,21 @@
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
 								키워드 : <input type="text" value="국밥" id="keyword" size="15">
-								<button type="submit">검색하기</button>
+								<br>
+								<button type="submit">전국검색</button>
+								<button type="button" onclick="searchPlaceMine()">내위치로검색</button>
 							</form>
-							<ul id="placesList"></ul>
-							<div id="pagination"></div>
+							
 						</div>
+						
 					</div>
 					<hr>
+
+					
 				</div>
+				<ul id="placesList"></ul>
+					<div id="pagination"></div>
+			
 			</div>
 
 
@@ -260,28 +274,28 @@
 				// 내위치
 				var myLocationMarker;
 				// 내위치표시
-				kakao.maps.load(function () {
-					if (navigator.geolocation) {
-						navigator.geolocation.getCurrentPosition(function (position) {
-							var my_lat = position.coords.latitude;
-							var my_lng = position.coords.longitude;
-							var myLocation = new kakao.maps.LatLng(my_lat, my_lng);
+				kakao.maps.load(myLocationMapView());
+				
+				function myLocationMapView(){
+						if (navigator.geolocation) {
+							navigator.geolocation.getCurrentPosition(function (position) {
+								var my_lat = position.coords.latitude;
+								var my_lng = position.coords.longitude;
+								var myLocation = new kakao.maps.LatLng(my_lat, my_lng);
 
-							// 현재 위치 마커 생성
-							myLocationMarker = new kakao.maps.Marker({
-								map: map,
-								position: myLocation,
-								title: '현재 위치'
+								// 현재 위치 마커 생성
+								myLocationMarker = new kakao.maps.Marker({
+									map: map,
+									position: myLocation,
+									title: '현재 위치'
+								});
+
+								// 지도 중심 및 확대 레벨 설정
+								map.setCenter(myLocation);
+								map.setLevel(6);
 							});
-
-							// 지도 중심 및 확대 레벨 설정
-							map.setCenter(myLocation);
-							map.setLevel(6);
-						});
-					}
+						}
 				}
-				);
-
 
 
 				// 키워드로 장소를 검색합니다
@@ -292,9 +306,8 @@
 				kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
 
 				// 키워드 검색을 요청하는 함수입니다
-				function searchPlaces() {
-					isWheel = false;
-					ps = new kakao.maps.services.Places();
+				function searchFunction() {
+					
 					var keyword = document.getElementById('keyword').value;
 					console.log(keyword);
 					if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -304,16 +317,23 @@
 					// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 					ps.keywordSearch(keyword, placesSearchCB, { useMapBounds: true });
 				}
+				function searchPlaces() {
+					isWheel = false;
+					ps = new kakao.maps.services.Places();
+					searchFunction();
+				}
 				function searchPlacesWheel() {
 					isWheel = true;
 					ps = new kakao.maps.services.Places(map);
-					var keyword = document.getElementById('keyword').value;
-					console.log(keyword);
-					if (!keyword.replace(/^\s+|\s+$/g, '')) {
-						return false;
-					}
-					// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-					ps.keywordSearch(keyword, placesSearchCB, { useMapBounds: true });
+					searchFunction();
+				}
+				
+				function searchPlaceMine(){
+					isWheel = true;
+					myLocationMapView();
+					ps = new kakao.maps.services.Places(map);
+					
+					searchPlaceWheel();
 				}
 
 				// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -364,7 +384,7 @@
 						(function (marker, title) {
 							kakao.maps.event.addListener(marker, 'mouseover',
 								function () {
-									//displayInfowindow(marker, title);
+									displayInfowindow(marker, title);
 								});
 
 							kakao.maps.event.addListener(marker, 'mouseout',
@@ -373,7 +393,7 @@
 								});
 
 							itemEl.onmouseover = function () {
-								//displayInfowindow(marker, title);
+								displayInfowindow(marker, title);
 							};
 
 							itemEl.onmouseout = function () {
