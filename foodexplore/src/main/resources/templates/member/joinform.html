@@ -25,28 +25,28 @@
                   <tr>
                     <th style="padding-top: 15px;">아이디*</th>
                     <td style="display: flex;padding-top: 10px;flex-wrap: wrap;">
-                      <input type="text" id="user_email" name="user_email" placeholder="이메일 형식으로 입력해주세요." title="아이디입력">
+                      <input type="text" id="user_email" name="user_email" placeholder="이메일 형식으로 입력해주세요." title="아이디입력" required>
                       <button id="idsamebtn">중복확인</button><br>
-                      <span id="idsamemesg">사용할 수 있는 아이디입니다.</span>
+                      <span id="idsamemesg"></span>
                     </td>
                   </tr>
                   <tr>
                     <th>비밀번호*</th>
                     <td>
-                      <input type="text" id="pw" name="pw" placeholder="영문 대소문자/숫자/특수문자, 8~16자">
+                      <input type="text" id="pw" name="pw" placeholder="영문 대소문자/숫자/특수문자, 8~16자" required>
                     </td>                  
                   </tr>
                   <tr>
                     <th>비밀번호 확인*</th>
                     <td style="display: flex;">
-                      <input type="text" id="pwcheck" name="pwcheck" placeholder="비밀번호를 다시 입력해주세요." title="아이디입력">
+                      <input type="text" id="pwcheck" name="pwcheck" placeholder="비밀번호를 다시 입력해주세요." title="아이디입력" required>
                       <span id="pwsamechk">비밀번호가 일치하지 않습니다.</span>
                     </td>                  
                   </tr>
                   <tr>
                     <th>닉네임*</th>
                     <td style="display: flex; flex-wrap: wrap;">
-                      <input type="text" id="nickname" name="nickname" placeholder="닉네임" title="아이디입력">
+                      <input type="text" id="nickname" name="nickname" placeholder="닉네임"required>
                       <button id="namesamebtn">중복확인</button><br>
                       <span id="namesamemesg">사용할 수 있는 아이디입니다.</span>
                     </td>                  
@@ -54,23 +54,23 @@
                   <tr>
                     <th>이름*</th>
                     <td>
-                      <input type="text" id="user_name" name="user_name" placeholder="이름" title="아이디입력">
+                      <input type="text" id="user_name" name="user_name" placeholder="이름" required>
                     </td>                  
                   </tr>
                   <tr>
                     <th>주소*</th>
                     <td class="addr">
-                      <input type="text" id="user_post" name="user_post" placeholder="우편번호">
-                      <input type="button" id="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                      <input type="text" id="user_addr1" name="user_addr1"  placeholder="도로명주소" >
-                      <input type="text" id="user_addr2" name="user_addr2" placeholder="지번주소" style="margin-bottom: 0px;">
+                      <input type="text" id="user_post" name="user_post" placeholder="우편번호" required>
+                      <input type="button" id="btn" onclick="posdtcode()" value="우편번호 찾기" required><br>
+                      <input type="text" id="user_addr1" name="user_addr1"  placeholder="도로명주소" required>
+                      <input type="text" id="user_addr2" name="user_addr2" placeholder="지번주소" style="margin-bottom: 0px;" required>
                       <span id="guide" style="color:#999"></span>
                     </td>                  
                   </tr>
                   <tr style="border-bottom: none;">
                     <th style="padding-bottom: 15px;">휴대폰 번호*</th>
                     <td style="padding-bottom: 10px;">
-                      <input type="text" id="user_phone" name="user_phone" placeholder="휴대폰 번호">
+                      <input type="text" id="user_phone" name="user_phone" placeholder="휴대폰 번호" required>
                     </td>                  
                   </tr>
                 </table>
@@ -81,6 +81,91 @@
 
             </div>
         </div>
+
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+        <script>
+            //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+            function posdtcode() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+        
+                        // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                        var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+        
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraRoadAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                           extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if(extraRoadAddr !== ''){
+                            extraRoadAddr = ' (' + extraRoadAddr + ')';
+                        }
+                        // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                        if(fullRoadAddr !== ''){
+                            fullRoadAddr += extraRoadAddr;
+                        }
+        
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        document.getElementById('user_post').value = data.zonecode; //5자리 새우편번호 사용
+                        document.getElementById('user_addr1').value = fullRoadAddr;
+                        document.getElementById('user_addr2').value = data.jibunAddress;
+        
+                        // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                        if(data.autoRoadAddress) {
+                            //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                            var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                            document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+        
+                        } else if(data.autoJibunAddress) {
+                            var expJibunAddr = data.autoJibunAddress;
+                            document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+        
+                        } else {
+                            document.getElementById('guide').innerHTML = '';
+                        }
+                    }
+                }).open();
+            }
+        </script>
+            <script type="text/javascript">
+                
+                //아이디 중복 체크
+                $("#idsamebtn").on("click", function(){
+                  console.log($("#user_email").val());
+                  
+                let user_email = $("#user_email").val();
+                console.log(user_email);
+
+                  $.ajax({
+                    url:'idCheck',
+                    type:"get",
+                    dataType:"text",
+                    data: { user_email: user_email },
+                    success:function(data,status,xhr){
+                      console.log(data);
+                      if(data == '0'){
+                        $("#idsamemesg").text('이미 존재하는 아이디입니다.');
+                        $("#idsamemesg").css("color", "red");
+                      }else if(data == '1'){
+                        $("#idsamemesg").text('사용 가능한 아이디입니다.');
+                      }
+                      
+                    },
+                    error:function(xhr, status, error){
+                      
+                    }
+                  });//end ajax
+                });//end 
+        
+            </script>
 
       <!-- body 위에 삽입되는 공통 부분 추가하는 코드 -->
       <div th:insert="~{include/footer.html}"></div>

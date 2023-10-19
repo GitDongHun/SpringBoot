@@ -12,7 +12,14 @@ public class MemberDAO {
 	@Autowired
 	SqlSessionTemplate session;
 	
+	/* 회원 가입 */
 	public int join(MemberDTO dto) {
 		return session.insert("MemberMapper.join", dto);
 	}
+	
+	/* 아이디 중복 체크 */
+	public String idCheck(String user_email) {
+		return session.selectOne("MemberMapper.idCheck", user_email);
+	}
+	
 }
