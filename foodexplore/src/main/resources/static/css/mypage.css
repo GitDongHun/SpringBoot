@@ -3,6 +3,7 @@
 /* 사이드바 */
 .sidebar {
     width: 180px;
+    min-height: 500px;
     background-color: white;
     color: white;
     border-right: 1px solid #EFEEEC;
@@ -76,10 +77,11 @@
 	padding:20px 0;
 	letter-spacing:0;
 	float:left;
-	margin-right: 50px
+	margin-right: 50px;
 }
 .memberInfo-body{
-	margin-left: 10px
+	margin-left: 10px;
+	border-right: 1px solid #EFEEEC;
 }
 .row{
 	width: 400px;
