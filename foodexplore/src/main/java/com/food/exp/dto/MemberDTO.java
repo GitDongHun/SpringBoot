@@ -1,6 +1,8 @@
 package com.food.exp.dto;
 
-//@Alias("MemberDTO")
+import org.apache.ibatis.type.Alias;
+
+@Alias("MemberDTO")
 public class MemberDTO {
 	
 	String user_email;
