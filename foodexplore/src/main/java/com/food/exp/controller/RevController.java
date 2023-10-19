@@ -16,5 +16,10 @@ public class RevController {
 	public String rev() {
 		return "/rev/rev";
 	}
+	
+	@GetMapping("/revedit")
+	public String rev_edit() {
+		return "/rev/rev_edit";
+	}
 
 }

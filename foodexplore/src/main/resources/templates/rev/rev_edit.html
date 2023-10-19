@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+    
+		<!-- 사이트 접속 icon -->
+		<link rel="icon" type="image/x-icon" th:href="@{/images/foodexplore_icon.png}" />
+		
+		<!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
+   		<title>리뷰 수정</title>
+		
+		<!-- Bootstrap icons-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link th:href="@{/css/styles.css}" rel="stylesheet" />
+		<link th:href="@{/css/rev_edit.css}" rel="stylesheet" />
+    </head>
+
+    
+    <script>
+        
+    </script>
+
+    <body>
+        <!-- Navigation-->
+        <nav th:insert="~{include/nav.html}"></nav>
+        
+        <div class="contentbox" >
+            <div id="backgroundbanner"></div>
+            <div class="bodycontent">
+                <h2>리뷰 수정</h2>
+                <!-- 사이드바 -->
+				<div class="sidebar">
+					<ul>
+						<li><a href="#mypage">마이페이지</a></li>
+						<li><a href="#editProfile">회원정보 수정</a></li>
+						<li><a href="myLikes">나의 즐겨찾기</a></li>
+						<li><a href="#reviews">리뷰관리</a></li>
+					</ul>
+				</div>
+				<!-- 사이드바 // -->
+                
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
