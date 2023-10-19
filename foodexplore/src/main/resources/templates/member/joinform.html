@@ -5,12 +5,17 @@
     <head th:insert="~{include/head.html}"></head>
 
     <!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
-    <title>Landing Page - Start Bootstrap Theme</title>
+    <title>회원가입</title>
+
+    <!-- 버튼 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <link th:href="@{/css/joinform.css}" rel="stylesheet" />
 
     </head>
-    <body>
+    <body style="overflow: auto;">
         <!-- Navigation-->
         <nav th:insert="~{include/nav.html}"></nav>
 
@@ -23,8 +28,10 @@
                 <table>
                   <tr>
                     <th style="padding-top: 15px;">아이디*</th>
-                    <td style="padding-top: 10px;">
+                    <td style="display: flex;padding-top: 10px;flex-wrap: wrap;">
                       <input type="text" id="user_email" name="user_email" placeholder="이메일 형식으로 입력해주세요." title="아이디입력">
+                      <button id="idsamebtn">중복확인</button><br>
+                      <span id="idsamemesg">사용할 수 있는 아이디입니다.</span>
                     </td>
                   </tr>
                   <tr>
@@ -35,14 +42,17 @@
                   </tr>
                   <tr>
                     <th>비밀번호 확인*</th>
-                    <td>
+                    <td style="display: flex;">
                       <input type="text" id="pwcheck" name="pwcheck" placeholder="비밀번호를 다시 입력해주세요." title="아이디입력">
+                      <span id="pwsamechk">비밀번호가 일치하지 않습니다.</span>
                     </td>                  
                   </tr>
                   <tr>
                     <th>닉네임*</th>
-                    <td>
+                    <td style="display: flex; flex-wrap: wrap;">
                       <input type="text" id="nickname" name="nickname" placeholder="닉네임" title="아이디입력">
+                      <button id="namesamebtn">중복확인</button><br>
+                      <span id="namesamemesg">사용할 수 있는 아이디입니다.</span>
                     </td>                  
                   </tr>
                   <tr>
@@ -53,8 +63,12 @@
                   </tr>
                   <tr>
                     <th>주소*</th>
-                    <td>
-                      <input type="text" id="user_post" name="user_post" placeholder="이메일 형식으로 입력하세요." title="아이디입력">
+                    <td class="addr">
+                      <input type="text" id="user_post" name="user_post" placeholder="우편번호">
+                      <input type="button" id="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                      <input type="text" id="user_addr1" placeholder="도로명주소" >
+                      <input type="text" id="user_addr2" placeholder="지번주소" style="margin-bottom: 0px;">
+                      <span id="guide" style="color:#999"></span>
                     </td>                  
                   </tr>
                   <tr style="border-bottom: none;">
@@ -64,7 +78,9 @@
                     </td>                  
                   </tr>
                 </table>
-                
+                <input type="submit" class="btn btn-primary" name="" value="회원가입"
+                style=" margin-top: 12px; background-color: #ff8100; border: 1px solid #ff8100; width: 145px;">
+
               </form>
 
             </div>

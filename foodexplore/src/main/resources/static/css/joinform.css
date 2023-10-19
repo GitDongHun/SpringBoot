@@ -11,7 +11,7 @@ table {
 
   tr {
     display: flex;
-    border-bottom: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d6d6d69e;
   }
   th {
     width: 145px;
@@ -32,5 +32,53 @@ table {
     border-radius: 4px;
     font-size: 14px;
     padding: 6px 10px;
+    margin-right: 8px;
   }
-  
+
+h2{
+  text-align: left;
+}
+
+td button{
+  height: 35px;
+  font-size: 14px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 100px;
+}
+
+td span{
+  font-size: 13px;
+  margin-left: 11px;
+  margin-top: 1px;
+
+}
+#pwsamechk{
+    margin-left: 0px;
+    padding-top: 13px;
+    color: red;
+}
+.addr{
+  display: flex;
+  flex-wrap: wrap;
+}
+.addr input{
+  margin-bottom: 5px;
+}
+#btn{
+  height: 35px;
+  font-size: 14px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 100px;
+  font-size: 13px;
+}
+.btn:hover {
+  background-color: white !important;
+  color: #ff8000;
+  border: 1px solid #ff8100 !important;
+}
