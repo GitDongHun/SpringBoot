@@ -230,7 +230,7 @@
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
-								키워드 : <input type="text" value="국밥" id="keyword" size="15">
+								키워드 : <input type="text" th:value="${keyword}" id="keyword" size="15">
 								<br>
 								<button type="submit">전국검색</button>
 								<button type="button" onclick="searchPlaceMine()">내위치로검색</button>
@@ -240,8 +240,7 @@
 						
 					</div>
 					<hr>
-
-					
+	
 				</div>
 				<ul id="placesList"></ul>
 					<div id="pagination"></div>
