@@ -18,7 +18,7 @@
 
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
-		<div class="bodycontent" style="display: flex; width: 1500px;">
+		<div class="bodycontent" style="display: flex;">
 
 			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
@@ -35,10 +35,10 @@
 
 				<!-- 회원 정보 (memberInfo) -->
 				<div class="memberInfo">
-					<div class="content design memberInfo-body">
+					<div class="memberInfo-body">
 						<div class="row">
 							<label for="nick" class="memberInfo-title">닉네임</label> <input
-								type="text" id="nick" class="design shape" readonly>
+								type="text" id="nick" class="design shape" >
 						</div>
 						<div class="row">
 							<label for="userEmail" class="memberInfo-title">아이디</label> <input
@@ -76,7 +76,7 @@
 							<a href="/index/myLikes" class="more" title="더보기">더보기 ></a>
 						</div>
 						<div class="mylike-list">
-							<ul>
+							<ul class="list-uibox">
 								<li>
 									<div class="like-rst">
 										<img class="likestar" th:src="@{/images/likestar.png}">
@@ -112,7 +112,7 @@
 							<a href="" class="more" title="더보기">더보기 ></a>
 						</div>
 						<div class="myrev-list">
-							<ul>
+							<ul class="list-uibox">
 								<li>
 									<div class="rev-list">
 										<div id="circle"></div>
