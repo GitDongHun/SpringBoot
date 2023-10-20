@@ -49,74 +49,6 @@
     color: #EF6900;
 }
 
-body{
-    font-family: 'Noto Sans KR', sans-serif;
-}
-.searchbar {
-    display: flex;
-    align-items: center;
-    flex: 1; 
-}
-.searchform{
-    width: 50%;
-}
-#searchinput {
-    flex: 1;
-    padding: 13px;
-    background-color: #eaeaea;
-    border-radius: 20px;
-    border: none;
-    height: 35px;
-    margin-right: 10px;
-    font-size: 14px;
-}
-#searchbtn{
-    border: none;
-    background-color: #FFAF01;
-    border-radius: 35px;
-    width: 35px;
-    height: 35px;
-}
-#searchbtn img {
-    max-width: 80%;
-    max-height: 80%;
-    margin-bottom: 3px;
-}
-.msection a{
-    font-size: 14px;
-    text-decoration-line: none;
-    color: black;
-}
-#loginlink{
-    margin-right: 5px;
-}
-.contentbox {
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-  }
-
-#backgroundbanner{
-    position: absolute;
-
-    background-color: #FFAF01;
-    height: 300px;
-    width: 100%;
-    z-index: -1;
-}
-
-.bodycontent{
-    position: relative;
-    width: 80%;
-    margin: auto;
-    background-color: white;
-    z-index: 1;
-    top: 40px;
-    min-height: 500px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
 h2 {
     font-size: 36px;
     margin-top: 20px;
@@ -124,26 +56,16 @@ h2 {
 
 .sidebar {
     float: left;
+    white-space : nowrap;
     width: 200px;
     height: 100%;
     background-color: white;
     padding: 20px;
 }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar ul li a.current-page {
-    font-weight: bold;
-}
 
 .search-bar {
+	white-space : nowrap;
     text-align: center;
     margin-top: 50px;
     margin-right: 790px;
@@ -160,6 +82,7 @@ h2 {
     background-color: #FFAF01;
     color: white;
     border: none;
+    white-space : nowrap;
 }
 
 .data-table {
@@ -180,23 +103,8 @@ h2 {
     background-color: #f2f2f2;
 }
 
-.contentbox {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 2000px;
-    height: 800px;
-}
-
 .delete-button {
-    position: fixed;
-    bottom: 400px;
-    left: 600px;
-}
-
-@media screen and (max-width: 100px) {
-    .body {
-        width: 100%;
-    }
+    margin-right: -400px;
+    margin-top: -150px;
+    
 }
