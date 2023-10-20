@@ -22,4 +22,16 @@ public class MemberServiceImpl implements MemberService{
 		return dao.idCheck(user_email);
 	}
 
+	@Override
+	public String nameCheck(String nickname) {
+		return dao.nameCheck(nickname);
+	}
+
+	@Override
+	public MemberDTO login(MemberDTO dto) {
+		return dao.login(dto);
+	}
+
+
+
 }
