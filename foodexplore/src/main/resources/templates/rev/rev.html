@@ -9,6 +9,7 @@
     <title>리뷰 관리</title>
 
     <link th:href="@{/css/rev.css}" rel="stylesheet" />
+    <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
 
     </head>
     
@@ -52,15 +53,15 @@
             if (table) {
                 var rows = table.getElementsByTagName('tr');
                 for (var i = 1; i < rows.length; i++) {
-                    var cell = rows[i].getElementsByTagName('td')[2]; // 제목 열의 인덱스에 따라서 2를 조정
+                    var cell = rows[i].getElementsByTagName('td')[2]; // 번호 인덱스 1
                     var link = document.createElement('a');
-                    link.href = 'revedit'; // 실제 링크 주소 입력
+                    link.href = 'revedit';
                     link.innerHTML = cell.innerHTML;
                     cell.innerHTML = '';
                     cell.appendChild(link);
                 }
             }
-        };
+        }; // 수정 화면으로 이동
     </script>
 
     <body>
@@ -70,21 +71,11 @@
         <div class="contentbox" >
             <div id="backgroundbanner"></div>
             <div class="bodycontent">
-                <!-- 사이드바 -->
-				<div class="sidebar">
-					<ul>
-						<li><a href="#mypage">마이페이지</a></li>
-						<li><a href="#editProfile">회원정보 수정</a></li>
-						<li><a href="myLikes">나의 즐겨찾기</a></li>
-						<li><a href="#reviews">리뷰관리</a></li>
-					</ul>
-				</div>
-				<!-- 사이드바 // -->
-				
+				<head th:insert="~{include/sidebar.html}"></head>
 				<div class="content">
                 <h2>리뷰 관리</h2>
                 <div class="search-bar">
-                    <input type="text" placeholder="식당명, 작성일, 제목 검색">
+                    <input type="text" placeholder="식당명 검색">
                     <button type="button">검색</button>
                 </div>
                 <table class="data-table" id="reviewTable">
