@@ -6,6 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,23 +50,35 @@ public class RstController {
 	
 	@GetMapping("/crolling")
 	public String crolling(Model model) {
-	      // Selenium 설정
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/templates/rst/crolling/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+		   // Selenium 설정
+	    System.setProperty("webdriver.gecko.driver", "src/main/resources/templates/rst/crolling/geckodriver.exe");
+	    FirefoxOptions options = new FirefoxOptions();
+	    options.setHeadless(true); // Headless 모드로 설정
+	    WebDriver driver = new FirefoxDriver(options);
 
-        // 크롤링 대상 웹 페이지 열기
-        driver.get("sc-gYrpUN eJNRnf Poi__List__Wrap");
+	    // 크롤링 대상 웹 페이지 열기
+	    driver.get("https://www.diningcode.com/list.dc?query=%EB%82%B4%EC%A3%BC%EB%B3%80");
 
-        // 크롤링 로직
-        WebElement element = driver.findElement(By.className("sc-gYrpUN eJNRnf Poi__List__Wrap"));
-        String data = element.getText();
+	    try {
+	        // WebDriverWait를 사용하여 요소가 나타날 때까지 대기
+	        WebDriverWait wait = new WebDriverWait(driver, 3);
+	        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sc-gYrpUN")));
 
-        // 모델에 데이터 추가
-        model.addAttribute("data", data);
+	        // 크롤링 로직
+	        String data = element.getText();
+	        System.out.println("Crawled Data: " + data);
 
-        // 브라우저 닫기
-        driver.quit();
-		return "/rst/crolling";
+	        // 모델에 데이터 추가
+	        model.addAttribute("data", data);
+	    } catch (Exception e) {
+	        // 요소를 찾지 못한 경우 처리할 예외 코드
+	        e.printStackTrace();
+	    } finally {
+	        // 브라우저 닫기
+	        driver.quit();
+	    }
+
+	    return "/rst/crolling_html";
 	}
 
 }
