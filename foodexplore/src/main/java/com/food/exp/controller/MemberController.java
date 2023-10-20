@@ -20,78 +20,84 @@ import com.food.exp.service.MemberService;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	
+
 	@Autowired
 	MemberService service;
 
-	//회원가입 페이지로 이동
+	// 회원가입 페이지로 이동
 	@GetMapping("/joinform")
 	public String join() {
 		System.out.println("MemberController");
 		return "member/joinform";
 	}
-	
-	//회원가입
+
+	// 회원가입
 	@PostMapping(value = "/join")
 	public String join(MemberDTO dto) {
 		int num = service.join(dto);
 		return "redirect:loginform";
 	}
-	
-	//아이디 중복 체크
+
+	// 아이디 중복 체크
 	@GetMapping(value = "/idCheck", produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String idCheck(@RequestParam("user_email") String user_email) {
 		System.out.println("----");
 		System.out.println(user_email);
-		if(service.idCheck(user_email) != null) {
-			//이미 존재하는 아이디
+		if (service.idCheck(user_email) != null) {
+			// 이미 존재하는 아이디
 			return "0";
-		}else {
-			//사용 가능한 아이디
+		} else {
+			// 사용 가능한 아이디
 			return "1";
 		}
 	}
 
-	//닉네임 중복 체크
+	// 닉네임 중복 체크
 	@GetMapping(value = "/nameCheck", produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String nameCheck(@RequestParam("nickname") String nickname) {
 		System.out.println(nickname);
-		if(service.nameCheck(nickname) != null) {
-			//이미 존재하는 닉네임
+		if (service.nameCheck(nickname) != null) {
+			// 이미 존재하는 닉네임
 			return "0";
-		}else {
-			//사용 가능한 닉네임
+		} else {
+			// 사용 가능한 닉네임
 			return "1";
 		}
 	}
 
-	//로그인 페이지로 이동
+	// 로그인 페이지로 이동
 	@GetMapping("/loginform")
 	public String loginform() {
 		return "member/loginform";
 	}
-	
-	//로그인
+
+	// 로그인
 	@PostMapping(value = "/login")
-	public String login(MemberDTO dto, HttpServletResponse response
-						, HttpSession session, Model m) throws IOException {
+	public String login(MemberDTO dto, HttpServletResponse response, HttpSession session, Model m) throws IOException {
 		System.out.println("login");
-		
+
 		dto = service.login(dto);
 		String user_email = dto.getUser_email();
 		String nickname = dto.getNickname();
-		if(user_email != null) {
-			//로그인 성공
+		if (user_email != null) {
+			// 로그인 성공
 			session.setAttribute("login", user_email);
 			session.setAttribute("nickname", nickname);
 			return "redirect:/main";
-		}else {
-			//로그인 실패
+		} else {
+			// 로그인 실패
 			System.out.println("login fail");
-			 return "redirect:loginform?error=true";
+			return "redirect:loginform?error=true";
 		}
-		
 	}
+
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
+	}
+
 }

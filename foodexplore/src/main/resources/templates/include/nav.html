@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container" style="background-color: white; padding: 2px 20px 2px 20px; white-space: nowrap;">
-        <a class="navbar-brand" href="#!">
+        <a class="navbar-brand" th:href="@{/main}">
             <img class="d-inline-block" th:src="@{/images/food_logo.png}" alt="logo" style="height: 50px;">
         </a>
         <form th:action="@{/rst}" method="POST" class="searchform">
@@ -11,13 +11,13 @@
         </form>
 
         <div class="msection" th:if="${session.login !=null}">
-            <span id="nickname">[[${session.nickname}]]님 </span>
-            <a href="" id="loginlink">로그아웃</a>
-            <a href="" id="joinlink">마이페이지</a>
+            <span id="nickname" style="margin-right: 10px;">[[${session.nickname}]]님 </span>
+            <a th:href="@{/member/logout}" id="logout">로그아웃</a>
+            <a th:href="@{/mypage/main}" id="mypagelink">마이페이지</a>
         </div>
         <div class="msection" th:unless="${session.login !=null}">
-            <a href="" id="loginlink">로그인</a>
-            <a href="" id="joinlink">회원가입</a>
+            <a th:href="@{/member/loginform}" id="loginlink">로그인</a>
+            <a th:href="@{/member/joinform}" id="joinlink">회원가입</a>
         </div>
         
     </div>
