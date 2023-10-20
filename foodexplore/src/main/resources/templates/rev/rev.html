@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-    
-		<!-- 사이트 접속 icon -->
-		<link rel="icon" type="image/x-icon" th:href="@{/images/foodexplore_icon.png}" />
-		
-		<!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
-   		<title>리뷰 관리</title>
-		
-		<!-- Bootstrap icons-->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-		<!-- Core theme CSS (includes Bootstrap)-->
-		<link th:href="@{/css/styles.css}" rel="stylesheet" />
-		<link th:href="@{/css/rev.css}" rel="stylesheet" />
-    </head>
 
+	<head>
+    <!-- 공통적으로 들어가는 부분 가져오는 코드 -->
+    <head th:insert="~{include/head.html}"></head>
+
+    <!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
+    <title>리뷰 관리</title>
+
+    <link th:href="@{/css/rev.css}" rel="stylesheet" />
+
+    </head>
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -111,7 +107,7 @@
 		            </tbody>
 		        </table>
 		        <div class="delete-button">
-			        <button onclick="deleteSelectedRows()">선택 삭제</button>
+			        <button type="button" onclick="deleteSelectedRows()">선택 삭제</button>
 			    </div>
             </div>
             </div>
