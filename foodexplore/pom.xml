@@ -57,6 +57,14 @@
 			<version>11.2.0.1.0</version>
 		</dependency>
 
+		<!-- kakao Map API & 크롤링 관련 -->
+		<!-- Selenium : 동적 페이지 크롤링 -->
+		<dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.141.59</version> <!-- 최신 버전 사용 가능 -->
+    </dependency>
+		
 	</dependencies>
 
 	<build>
