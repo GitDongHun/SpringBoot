@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+ul li {
+    list-style: none;
+}
+
+/* 사이드바 */
+.sidebar a[href="/index/myLikes"] {
+    color: #EF6900;
+}
+
+.myLikes-title{
+	text-align: left;
+	margin-bottom: 40px;
+}
+
+/* 음식점 박스 */
+.rst-box{
+	border-radius: 50px;
+	min-height: 140px;
+	padding:30px;
+	margin: 0px 20px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.like-rst {
+    display: flex;
+    align-items: center;
+}
+
+.food-img {
+    width: 60px;
+    height:60px;
+    background-color: gray;
+    margin-right: 10px; /* 이미지와 텍스트 사이의 여백을 조정합니다 */
+}
+
+.text-info {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.rstname {
+    font-size: 20px;
+    color: black;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.rst-info {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.rstaddr {
+    color: black;
+    margin-left: 5px;
+}
+.revscore{
+	color: black;
+    margin-left: 5px;
+    padding-right: 5px;
+	border-right: 1px solid #CACACA;
+}
+

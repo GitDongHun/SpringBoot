@@ -7,9 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MypageController {
 
 	@GetMapping("/mypage")
-	public String join() {
+	public String mypage() {
 		//System.out.println("mypageController");
 		return "member/mypage";
+	}
+	
+	@GetMapping("/myLikes")
+	public String myLikes() {
+		//System.out.println("myLikesController");
+		return "member/myLikes";
 	}
 
 }
