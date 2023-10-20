@@ -204,10 +204,11 @@
 			color: #777;
 		}
 
-
-
-		.bodycontent {
-			height:100% !important; 
+	
+	</style>
+	<style>
+			.bodycontent {
+			height:auto !important; 
 		}
 	</style>
 
@@ -219,7 +220,7 @@
 
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
-		<div class="bodycontent">
+		<div id="bodycontent" class="bodycontent">
 
 			<!-- kakao Map API UI -->
 			<br>지도 검색 서비스
@@ -234,6 +235,8 @@
 								<br>
 								<button type="submit">전국검색</button>
 								<button type="button" onclick="searchPlaceMine()">내위치로검색</button>
+								
+								<div><input type="checkbox" id="isCenter" /> <label>지도 중심위치로 검색 새로고침</label></div>
 							</form>
 							
 						</div>
@@ -242,12 +245,12 @@
 					<hr>
 	
 				</div>
-				<ul id="placesList"></ul>
-					<div id="pagination"></div>
+				
 			
 			</div>
 
-
+			<ul id="placesList"></ul>
+			<div id="pagination"></div>
 			<!-- 이곳에서 코드 작업 -->
 			<!-- kakao Map Script -->
 			<script th:inline="javascript">
@@ -273,7 +276,7 @@
 				// 내위치
 				var myLocationMarker;
 				// 내위치표시
-				kakao.maps.load(myLocationMapView());
+				setTimeout(()=> kakao.maps.load(myLocationMapView()));
 				
 				function myLocationMapView(){
 						if (navigator.geolocation) {
@@ -298,9 +301,9 @@
 
 
 				// 키워드로 장소를 검색합니다
-				setTimeout(() => searchPlaces(), 300);
+				setTimeout(() => searchPlaceMine());
 
-				// 확대,축소,이동시 재검색합니다
+				// 확대,축소,이동시 재검색할지 설정
 				var isWheel = false;
 				kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
 
@@ -322,17 +325,18 @@
 					searchFunction();
 				}
 				function searchPlacesWheel() {
+					if(document.getElementById("isCenter").checked){
 					isWheel = true;
 					ps = new kakao.maps.services.Places(map);
 					searchFunction();
+					}
 				}
 				
 				function searchPlaceMine(){
 					isWheel = true;
 					myLocationMapView();
 					ps = new kakao.maps.services.Places(map);
-					
-					searchPlaceWheel();
+					searchFunction();
 				}
 
 				// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -515,6 +519,7 @@
 					}
 				}
 
+				
 
 
 			</script>
