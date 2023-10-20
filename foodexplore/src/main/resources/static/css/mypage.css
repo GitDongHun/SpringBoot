@@ -1,159 +1,195 @@
 @charset "UTF-8";
 
-/* 사이드바 */
-.sidebar {
-    width: 180px;
-    min-height: 500px;
-    background-color: white;
-    color: white;
-    border-right: 1px solid #EFEEEC;
-    padding: 20px;
-}
-.content {
-    flex: 1; /* 남은 공간을 채우도록 설정 */
-    padding: 30px;
-}
-.sidebar ul {	/* 사이드바 스타일 */
+ul li {
     list-style: none;
-    padding: 0;
-}
-.sidebar li {
-	display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-    justify-content: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 140px;
-}
-.sidebar a {
-    display: block;
-    font-size: 16px;
-    padding: 10px;
-    color: black;
-    text-decoration: none;
-}
-.sidebar a:hover {		/* 마우스 호버 효과 */
-    color: #EF6900;
-}
-.sidebar a[href="#mypage"] {
-    font-size: 20px;
-    width: 140px;
-    height: 50px;
-    border-radius: 50px;
-    text-align: center;
-    background-color: #EF6900;
-    color: white;
 }
 
 /* 안녕하세요 박스 */
 .hello-box {
-    width: 100%;
-    height: 130px;
-    background-color: #FFF7CC;
-    border-radius: 10px;
-    padding: 10px; /* padding을 조정 */
-    position: relative;
-    display: flex; /* Flexbox 레이아웃 사용 */
-    align-items: center; /* 수직 가운데 정렬 */
+	width: 100%;
+	height: 130px;
+	background-color: #FFF7CC;
+	border-radius: 10px;
+	padding: 10px;
+	position: relative;
+	display: flex;
+	align-items: center;
 }
+
 .hello-boxtext {
-    flex: 1; /* 텍스트가 높이를 기반으로 수평으로 확장 */
-    font-size: 32px;
+    width: 300px;
+    font-size: 35px;
+    margin-left: 10px;
     text-align: center;
-    margin-left: 100px; /* 로고와의 간격을 설정 */
 }
+
 .hello-boxlogo {
-    width: 100px;
-    height: auto;
+	width: 100px;
+	height: auto;
+    margin-left: 30px;
 }
 
 /* 회원정보 */
-.memberInfo{
-	width: 600px;
-	font-size:18px;
-	line-height:17px;
-	display:inline-block;
-	vertical-align:middle;
-	padding:20px 0;
-	letter-spacing:0;
-	float:left;
-	margin-right: 50px;
+.memberInfo {
+	width: 650px;
+	font-size: 18px;
+	line-height: 17px;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 20px 0px;
+	letter-spacing: 0px;
+	float: left;
 }
-.memberInfo-body{
+
+.memberInfo-body {
 	margin-left: 10px;
-	border-right: 1px solid #EFEEEC;
+	margin-right: 40px;
 }
-.row{
+
+.row {
 	width: 400px;
 }
+
 .memberInfo-title {
 	text-align: left;
 	font-size: 15px;
 	margin-bottom: 10px;
 	padding: 0px 0px 0px 5px;
 }
-.shape{
-	width:400px;
+
+.shape {
+	width: 400px;
 	height: 45px;
 	border: 1px solid #CACACA;
 	border-radius: 5px;
 	margin-bottom: 10px;
 }
-.editProfile-btn{
+
+.editProfile-btn {
 	padding: 1px 12px;
 	margin: 0px 20px;
 	border-radius: 5px;
 	border: none;
 	background-color: #d5d5d5;
 	color: white;
-	font-size:15px;
-	line-height:1.4em;
-	max-width:100%;
-	height:43px;
-	float:right;
+	font-size: 15px;
+	line-height: 1.4em;
+	max-width: 100%;
+	height: 43px;
+	float: right;
 }
 
 /* 나의 즐겨찾기&리뷰관리 */
-.like-review{
-	width: 600px;
-	float: right;
+.like-review {
+	width: 550px;
+	padding-bottom: 20px;
+	margin-top: 30px;
+	border-left: 1px solid #EFEEEC;
+	float: left;
 }
-.mylist-box{
+
+.mylist-box {
 	width: 500px;
-	padding:20px 0;
-	float:left;
+	padding-bottom: 20px;
+	float: left;
+	margin-left: 50px;
 }
-.title-util{
+
+.title-util {
 	height: 50px;
-	margin-top: 50px;
-	
+	margin-top: 30px;
 }
+
 .title-name {
 	color: #EF6900;
 	font-size: 30px;
-    display: inline-block;
-    margin-right: 10px; /* 제목과 링크 사이의 간격 조절 */
-    float: left;
+	display: inline-block;
+	margin-right: 10px; /* 제목과 링크 사이의 간격 조절 */
+	float: left;
 }
+
 .more {
-    display: inline-block;
-    vertical-align: middle; /* 수직 가운데 정렬 */
-    float: right;
+	display: inline-block;
+	vertical-align: middle; /* 수직 가운데 정렬 */
+	float: right;
+	font-size: 18px;
+	color: black;
+	margin-top: 20px;
+	margin-right: 10px;
+	text-decoration: none;
 }
-.mylike-list{
-	width: 500px;
-	height: 100px;
-	border-top: 1px solid #CACACA;
-	border-bottom: 1px solid #CACACA;
-	float: left;
-	margin-bottom: 50px;
+
+.more:hover { /* 마우스 호버 효과 */
+	text-decoration: underline;
 }
-.myrev-list{
+
+.mylike-list {
 	width: 500px;
-	height: 100px;
+	height: auto;
 	border-top: 1px solid #CACACA;
-	border-bottom: 1px solid #CACACA;
+	border-bottom: 1px solid #EFEEEC;
 	float: left;
 }
 
+.myrev-list {
+	width: 500px;
+	height: auto;
+	border-top: 1px solid #CACACA;
+	border-bottom: 1px solid #EFEEEC;
+	float: left;
+}
 
+/* 나의 즐찾 상세 */
+.like-rst, .rev-list {
+    display: flex;
+    align-items: center;
+}
+
+.likestar {
+    width: 45px;
+    margin-right: 10px; /* 이미지와 텍스트 사이의 여백을 조정합니다 */
+}
+
+#circle {
+  width : 45px;
+  height : 45px;
+  margin-right: 10px; /* 이미지와 텍스트 사이의 여백을 조정합니다 */
+  border-radius: 50%;
+  background-color: #EF6900;
+
+}
+
+.text-info {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.rstname {
+    font-size: 20px;
+    color: black;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.rst-info {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.rstaddr, .revdate {
+    color: black;
+    margin-left: 5px;
+}
+.revscore{
+	color: black;
+    margin-left: 5px;
+    padding-right: 5px;
+	border-right: 1px solid #CACACA;
+}
+.revcontent{
+	font-size: 15px;
+    color: black;
+    margin-top: 10px;
+}

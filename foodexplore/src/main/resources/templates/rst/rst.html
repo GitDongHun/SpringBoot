@@ -204,10 +204,11 @@
 			color: #777;
 		}
 
-
-
-		.bodycontent {
-			height:100% !important; 
+	
+	</style>
+	<style>
+			.bodycontent {
+			height:auto !important; 
 		}
 	</style>
 
@@ -219,7 +220,7 @@
 
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
-		<div class="bodycontent">
+		<div id="bodycontent" class="bodycontent">
 
 			<!-- kakao Map API UI -->
 			<br>지도 검색 서비스
@@ -234,6 +235,8 @@
 								<br>
 								<button type="submit">전국검색</button>
 								<button type="button" onclick="searchPlaceMine()">내위치로검색</button>
+								
+								<div><input type="checkbox" id="isCenter" /> <label>지도 중심위치로 검색 새로고침</label></div>
 							</form>
 							
 						</div>
@@ -242,12 +245,12 @@
 					<hr>
 	
 				</div>
-				<ul id="placesList"></ul>
-					<div id="pagination"></div>
+				
 			
 			</div>
 
-
+			<ul id="placesList"></ul>
+			<div id="pagination"></div>
 			<!-- 이곳에서 코드 작업 -->
 			<!-- kakao Map Script -->
 			<script th:inline="javascript">
@@ -268,12 +271,12 @@
 				var ps = new kakao.maps.services.Places(map);
 
 				// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-				var infowindow = new kakao.maps.InfoWindow({zIndex: 1});
+				var infowindow = new kakao.maps.InfoWindow({zIndex: 1,disableAutoPan:true});
 
 				// 내위치
 				var myLocationMarker;
 				// 내위치표시
-				kakao.maps.load(myLocationMapView());
+				setTimeout(()=> kakao.maps.load(myLocationMapView()));
 				
 				function myLocationMapView(){
 						if (navigator.geolocation) {
@@ -298,9 +301,9 @@
 
 
 				// 키워드로 장소를 검색합니다
-				setTimeout(() => searchPlaces(), 300);
+				setTimeout(() => searchPlaceMine());
 
-				// 확대,축소,이동시 재검색합니다
+				// 확대,축소,이동시 재검색할지 설정
 				var isWheel = false;
 				kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
 
@@ -308,7 +311,6 @@
 				function searchFunction() {
 					
 					var keyword = document.getElementById('keyword').value;
-					console.log(keyword);
 					if (!keyword.replace(/^\s+|\s+$/g, '')) {
 						return false;
 					}
@@ -322,17 +324,18 @@
 					searchFunction();
 				}
 				function searchPlacesWheel() {
+					if(document.getElementById("isCenter").checked){
 					isWheel = true;
 					ps = new kakao.maps.services.Places(map);
 					searchFunction();
+					}
 				}
 				
 				function searchPlaceMine(){
 					isWheel = true;
 					myLocationMapView();
 					ps = new kakao.maps.services.Places(map);
-					
-					searchPlaceWheel();
+					searchFunction();
 				}
 
 				// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -380,7 +383,7 @@
 						// 마커와 검색결과 항목에 mouseover 했을때
 						// 해당 장소에 인포윈도우에 장소명을 표시합니다
 						// mouseout 했을 때는 인포윈도우를 닫습니다
-						(function (marker, title) {
+						(function (marker, title,i,placePosition) {
 							kakao.maps.event.addListener(marker, 'mouseover',
 								function () {
 									displayInfowindow(marker, title);
@@ -393,12 +396,18 @@
 
 							itemEl.onmouseover = function () {
 								displayInfowindow(marker, title);
+
 							};
 
 							itemEl.onmouseout = function () {
 								infowindow.close();
 							};
-						})(marker, places[i].place_name);
+							itemEl.onclick=function(){
+								map.setCenter(placePosition);
+								map.setLevel(6);
+							};
+
+						})(marker, places[i].place_name,i, placePosition);
 
 						fragment.appendChild(itemEl);
 					}
@@ -501,7 +510,7 @@
 				// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 				// 인포윈도우에 장소명을 표시합니다
 				function displayInfowindow(marker, title) {
-					var content = '<div style="padding:5px;z-index:1;">' + title
+					var content = '<div style="width:auto;padding:5px;z-index:1;">' + title
 						+ '</div>';
 
 					infowindow.setContent(content);
@@ -514,8 +523,6 @@
 						el.removeChild(el.lastChild);
 					}
 				}
-
-
 
 			</script>
 
