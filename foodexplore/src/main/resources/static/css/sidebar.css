@@ -2,15 +2,14 @@
 
 .sidebar {
 	width: 180px;
-	min-height: 500px;
 	background-color: white;
 	color: white;
-	border-right: 1px solid #EFEEEC;
 	padding: 20px;
 }
 
 .content {
 	flex: 1; /* 남은 공간을 채우도록 설정 */
+	border-left: 1px solid #EFEEEC;
 	padding: 30px;
 }
 
