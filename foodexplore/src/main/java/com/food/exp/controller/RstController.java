@@ -28,6 +28,10 @@ public class RstController {
 	
 	@GetMapping("/rst")
 	public String rst_main(Model model) {
+		
+		//이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분할 함수 만들어야함
+		
+		//api키 가지고오기
 		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
 		model.addAttribute("keyword","국밥");
 		System.out.println("RstController 실행-GET");
