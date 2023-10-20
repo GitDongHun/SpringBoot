@@ -1,57 +1,8 @@
 @charset "UTF-8";
 
-/* 사이드바 */
-.sidebar {
-    width: 180px;
-    min-height: 500px;
-    background-color: white;
-    color: white;
-    border-right: 1px solid #EFEEEC;
-    padding: 20px;
-}
-.content {
-    flex: 1; /* 남은 공간을 채우도록 설정 */
-    padding: 30px;
-}
-.sidebar ul {	/* 사이드바 스타일 */
-    list-style: none;
-    padding: 0;
-}
-.sidebar li {
-	display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-    justify-content: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 140px;
-}
-.sidebar a {
-    display: block;
-    font-size: 16px;
-    padding: 10px;
-    color: black;
-    text-decoration: none;
-}
-.sidebar a:hover {		/* 마우스 호버 효과 */
-    color: #EF6900;
-}
-.sidebar a[href="#mypage"] {
-    font-size: 20px;
-    width: 140px;
-    height: 50px;
-    border-radius: 50px;
-    text-align: center;
-    background-color: #EF6900;
-    color: white;
-}
-
-.sidebar a[href="#reviews"] {
-    color: #EF6900;
-}
-
-h2 {
-    font-size: 36px;
-    margin-top: 20px;
+.sidebar a[href="/index/rev"] {
+	text-align: center;
+	color: #EF6900;
 }
 
 .sidebar {
@@ -68,7 +19,7 @@ h2 {
 	white-space : nowrap;
     text-align: center;
     margin-top: 50px;
-    margin-right: 790px;
+    margin-right: 515px;
 }
 
 .search-bar input {
