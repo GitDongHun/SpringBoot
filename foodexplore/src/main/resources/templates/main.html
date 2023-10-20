@@ -185,26 +185,7 @@
 
 <body>
 	<!-- Navigation-->
-	<nav class="navbar navbar-light bg-light static-top">
-		<div class="container" style="padding-top: 2px; padding-bottom: 2px;">
-			<a class="navbar-brand" href="#!"> <img class="d-inline-block"
-				th:src="@{/images/food_logo.png}" alt="logo" style="height: 50px;">
-			</a>
-			<form action="설정하기" class="searchform">
-				<div class="searchbar">
-					<input type="text" id="searchinput" name="query" value=""
-						placeholder="지역, 음식 또는 식당명 검색">
-					<button id="searchbtn" type="submit">
-						<img th:src="@{/images/searchicon.png}">
-					</button>
-				</div>
-			</form>
-			<!-- <a class="btn btn-primary" href="#signup">Sign Up</a> -->
-			<div class="msection">
-				<a href="" id="loginlink">로그인</a> <a href="" id="joinlink">회원가입</a>
-			</div>
-		</div>
-	</nav>
+	<nav th:insert="~{include/nav.html}"></nav>
 
 	<!-- 주황 부분 -->
 	<div class="background">
