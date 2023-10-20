@@ -52,7 +52,7 @@ body{
     position: absolute;
     background-color: #FFAF01;
     height: 300px;
-    min-width: 1600px;
+    min-width: 1200px;
     width: 100%;
     z-index: -1;
 }
