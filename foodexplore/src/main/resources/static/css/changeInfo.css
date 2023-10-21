@@ -1,5 +1,6 @@
 .titletext{
     margin-bottom: 23px;
+    margin-top: 4px;
 }
 
 table {
@@ -22,12 +23,12 @@ table {
   }
 
   td {
-    padding: 6px 15px;
+    padding: 6px 18px;
     flex: 1;
   }
 
   td input {
-    width: 60%;
+    width: 65%;
     display: block;
     border: 1px solid #d6d6d6;
     border-radius: 4px;
