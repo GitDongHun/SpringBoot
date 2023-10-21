@@ -34,7 +34,7 @@ body{
     margin-bottom: 3px;
 }
 .msection a{
-	margin-right:40px;
+	/* margin-right:40px; */
     font-size: 15px;
     text-decoration-line: none;
     color: black;

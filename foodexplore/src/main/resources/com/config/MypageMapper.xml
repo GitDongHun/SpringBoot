@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MypageMapper">
+
+   <!-- 회원가입 -->
+   <select id="getInfo" parameterType="String" resultType="MemberDTO">
+    select user_email,nickname,pw,user_name,
+ 		   user_post,user_addr1,user_addr2,user_phone
+    from member
+    where user_email = #{user_email}
+   </select>
+
+   
+</mapper>
