@@ -8,6 +8,7 @@
 <title>먹스플로어</title>
 
 <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
+<link th:href="@{/css/changeInfo.css}" rel="stylesheet" />
 
 </head>
 <body>
@@ -23,23 +24,68 @@
 			<nav th:insert="~{include/sidebar.html}"></nav>
 			<div class="content">
 
-				<h2 class="myLikes-title">나의 즐겨찾기</h2>
-
-				<!-- 나의 즐겨찾기 -->
-				<div class="rst-box">
-					<div class="">
-						<div class="like-rst">
-							<img class="food-img" id="food-img">
-							<div class="text-info">
-								<p class="rstname">음식점이름</p>
-								<div class="rst-info">
-									<p class="revscore">리뷰 4.5/5</p>
-									<p class="rstaddr">**시 **구 ***로 **번길 **(**동)</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                <div style="width: 1000px; margin: auto;">
+                    <h2 class="titletext" >회원 가입</h2>
+                    <form id="memberJoinForm" th:action="@{/member/join}" method="POST">
+                      <table>
+                        <tr>
+                          <th style="padding-top: 15px;">아이디*</th>
+                          <td style="display: flex;padding-top: 10px;flex-wrap: wrap;">
+                            <input type="text" id="user_email" name="user_email" placeholder="이메일 형식으로 입력해주세요." title="아이디입력" required>
+                            <button id="idsamebtn">중복확인</button><br>
+                            <span id="idsamemesg"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>비밀번호*</th>
+                          <td>
+                            <input type="text" id="pw" name="pw" placeholder="영문 대소문자/숫자/특수문자, 8~16자" required>
+                          </td>                  
+                        </tr>
+                        <tr>
+                          <th>비밀번호 확인*</th>
+                          <td style="display: flex;">
+                            <input type="text" id="pwcheck" name="pwcheck" placeholder="비밀번호를 한번 더 입력해주세요." title="아이디입력" required>
+                            <span id="pwsamechk"></span>
+                          </td>                  
+                        </tr>
+                        <tr>
+                          <th>닉네임*</th>
+                          <td style="display: flex; flex-wrap: wrap;">
+                            <input type="text" id="nickname" name="nickname" placeholder="닉네임"required>
+                            <button id="namesamebtn">중복확인</button><br>
+                            <span id="namesamemesg"></span>
+                          </td>                  
+                        </tr>
+                        <tr>
+                          <th>이름*</th>
+                          <td>
+                            <input type="text" id="user_name" name="user_name" placeholder="이름" required>
+                          </td>                  
+                        </tr>
+                        <tr>
+                          <th>주소*</th>
+                          <td class="addr">
+                            <input type="text" id="user_post" name="user_post" placeholder="우편번호" required>
+                            <input type="button" id="btn" onclick="posdtcode()" value="우편번호 찾기" required><br>
+                            <input type="text" id="user_addr1" name="user_addr1"  placeholder="도로명주소" required>
+                            <input type="text" id="user_addr2" name="user_addr2" placeholder="지번주소" style="margin-bottom: 0px;" required>
+                            <span id="guide" style="color:#999"></span>
+                          </td>                  
+                        </tr>
+                        <tr style="border-bottom: none;">
+                          <th style="padding-bottom: 15px;">휴대폰 번호*</th>
+                          <td style="padding-bottom: 10px;">
+                            <input type="text" id="user_phone" name="user_phone" placeholder="휴대폰 번호" required>
+                          </td>                  
+                        </tr>
+                      </table>
+                      <input type="submit" class="btn btn-primary" name="joinbtn" value="회원가입"
+                      style=" margin-top: 30px; background-color: #ff8100; border: 1px solid #ff8100; width: 200px; font-size: 20px;">
+      
+                    </form>
+      
+                  </div>
 
 
 

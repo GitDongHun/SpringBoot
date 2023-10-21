@@ -39,7 +39,7 @@
 	color: #EF6900;
 }
 
-.sidebar a[href="/index/mypage"] {
+.sidebar a[href="/index/mypage/main"] {
 	font-size: 20px;
 	width: 140px;
 	height: 50px;
