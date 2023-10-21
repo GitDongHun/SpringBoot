@@ -201,6 +201,7 @@ distance			String		중심좌표까지의 거리 (단, x,y 파라미터를 준 �
 						+ '"></span>'
 						+ '<div class="info">'
 						+ '   <h5>' + places.place_name + '</h5>'
+						+ '   <h5>' + places.id + '</h5>'
 						;
 
 					if (places.road_address_name) {
