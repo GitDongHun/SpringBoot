@@ -102,6 +102,7 @@
 	.top-container {
 		width: 100%;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		margin-top: 100px;
@@ -110,12 +111,12 @@
 		background-color: #EFEEEC;
 	}
 	
-	.1st{
-	}
-	
-	.2nd{
-	}
-	
+	.best {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		text-align: center;
+	}	
 
 	.nationwide {
 		background-color: #fff;
@@ -128,8 +129,11 @@
 		display: inline-flex;
 		flex-direction: column;
 		align-items: center;
-	
 		text-decoration: none;
+	}
+	
+	.nationwide span {
+		white-space: nowrap;
 	}
 
 	.rst-box {
@@ -214,8 +218,8 @@
         	==> average 구현 시 0.5 단위로 반올림도 적용해야 함
 	-->
 	<div class="top-container jump">
-		<div class="1st">
-			<div class="nationwide">전국 Top 1</div>
+		<div th:each="index : ${#numbers.sequence(0, 9)}" class="best">
+			<div class="nationwide">전국 Top <span th:text="${index + 1}"></span></div>
 			<div class="rst-box">
 				<h3>식당명</h3>
 				<div class="representative">
@@ -232,131 +236,7 @@
 					<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> <label for="1-star" class="star">★</label>
 				</div> <!-- end star-rating -->
 			</div> <!-- end rst-box -->
-		</div> <!-- end 1st -->
-
-<!-- DB에 식당 리뷰 쌓아서 top 10 만들어 놓고 반복문으로 10개 출력 가능?
-	실시간으로 누군가 top 10 가게 리뷰 써서 순위 변동 생기면 바로 반영 가능? -->
-		<div class="1st">
-			<div class="nationwide">전국 Top 1</div>
-			<div class="rst-box">
-				<h3>식당명</h3>
-				<div class="representative">
-					<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-				</div> <!-- end representative -->
-				<div class="rst-addr1">도로명 주소</div>
-				<div class="rst-addr2">지번 주소</div>
-				<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
-				<div class="star-rating space-x-4 mx-auto">
-					<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
-					<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" /> <label for="4-stars" class="star">★</label>
-					<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" /> <label for="3-stars" class="star">★</label>
-					<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" /> <label for="2-stars" class="star">★</label>
-					<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> <label for="1-star" class="star">★</label>
-				</div> <!-- end star-rating -->
-			</div> <!-- end rst-box -->
-		</div> <!-- end 1st -->
-		
-		<div class="1st">
-			<div class="nationwide">전국 Top 1</div>
-			<div class="rst-box">
-				<h3>식당명</h3>
-				<div class="representative">
-					<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-				</div> <!-- end representative -->
-				<div class="rst-addr1">도로명 주소</div>
-				<div class="rst-addr2">지번 주소</div>
-				<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
-				<div class="star-rating space-x-4 mx-auto">
-					<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
-					<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" /> <label for="4-stars" class="star">★</label>
-					<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" /> <label for="3-stars" class="star">★</label>
-					<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" /> <label for="2-stars" class="star">★</label>
-					<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> <label for="1-star" class="star">★</label>
-				</div> <!-- end star-rating -->
-			</div> <!-- end rst-box -->
-		</div> <!-- end 1st -->
-		
-		<div class="1st">
-			<div class="nationwide">전국 Top 1</div>
-			<div class="rst-box">
-				<h3>식당명</h3>
-				<div class="representative">
-					<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-				</div> <!-- end representative -->
-				<div class="rst-addr1">도로명 주소</div>
-				<div class="rst-addr2">지번 주소</div>
-				<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
-				<div class="star-rating space-x-4 mx-auto">
-					<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
-					<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" /> <label for="4-stars" class="star">★</label>
-					<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" /> <label for="3-stars" class="star">★</label>
-					<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" /> <label for="2-stars" class="star">★</label>
-					<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> <label for="1-star" class="star">★</label>
-				</div> <!-- end star-rating -->
-			</div> <!-- end rst-box -->
-		</div> <!-- end 1st -->
-		
-		<div class="1st">
-			<div class="nationwide">전국 Top 1</div>
-			<div class="rst-box">
-				<h3>식당명</h3>
-				<div class="representative">
-					<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-				</div> <!-- end representative -->
-				<div class="rst-addr1">도로명 주소</div>
-				<div class="rst-addr2">지번 주소</div>
-				<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
-				<div class="star-rating space-x-4 mx-auto">
-					<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
-					<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" /> <label for="4-stars" class="star">★</label>
-					<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" /> <label for="3-stars" class="star">★</label>
-					<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" /> <label for="2-stars" class="star">★</label>
-					<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> <label for="1-star" class="star">★</label>
-				</div> <!-- end star-rating -->
-			</div> <!-- end rst-box -->
-		</div> <!-- end 1st -->
-		
-		<div class="1st">
-			<div class="nationwide">전국 Top 1</div>
-			<div class="rst-box">
-				<h3>식당명</h3>
-				<div class="representative">
-					<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-				</div> <!-- end representative -->
-				<div class="rst-addr1">도로명 주소</div>
-				<div class="rst-addr2">지번 주소</div>
-				<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
-				<div class="star-rating space-x-4 mx-auto">
-					<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
-					<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" /> <label for="4-stars" class="star">★</label>
-					<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" /> <label for="3-stars" class="star">★</label>
-					<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" /> <label for="2-stars" class="star">★</label>
-					<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> <label for="1-star" class="star">★</label>
-				</div> <!-- end star-rating -->
-			</div> <!-- end rst-box -->
-		</div> <!-- end 1st -->
-		
-		<div class="1st">
-			<div class="nationwide">전국 Top 1</div>
-			<div class="rst-box">
-				<h3>식당명</h3>
-				<div class="representative">
-					<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-				</div> <!-- end representative -->
-				<div class="rst-addr1">도로명 주소</div>
-				<div class="rst-addr2">지번 주소</div>
-				<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
-				<div class="star-rating space-x-4 mx-auto">
-					<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings" /> <label for="5-stars" class="star pr-4">★</label>
-					<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings" /> <label for="4-stars" class="star">★</label>
-					<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings" /> <label for="3-stars" class="star">★</label>
-					<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings" /> <label for="2-stars" class="star">★</label>
-					<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" /> <label for="1-star" class="star">★</label>
-				</div> <!-- end star-rating -->
-			</div> <!-- end rst-box -->
-		</div> <!-- end 1st -->
-				
-
+		</div> <!-- end best --> <br>
 	</div> <!-- end top-container -->
 
 
