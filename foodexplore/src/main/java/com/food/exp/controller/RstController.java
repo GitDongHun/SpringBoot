@@ -54,6 +54,8 @@ public class RstController {
 	
 	@GetMapping("/crolling")
 	public String crolling(Model model) {
+			// Selenium 사용하여 크롤링 
+			//>>> Firefox 브라우저 설치하고, Firefox Driver 파일인 geckodriver.exe를 하단에 설정한 경로에 넣어야 작동가능
 		   // Selenium 설정
 	    System.setProperty("webdriver.gecko.driver", "src/main/resources/templates/rst/crolling/geckodriver.exe");
 	    FirefoxOptions options = new FirefoxOptions();
@@ -65,7 +67,7 @@ public class RstController {
 
 	    try {
 	        // WebDriverWait를 사용하여 요소가 나타날 때까지 대기
-	        WebDriverWait wait = new WebDriverWait(driver, 3);
+	        WebDriverWait wait = new WebDriverWait(driver, 15);
 	        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("sc-gYrpUN")));
 
 	        // 크롤링 로직
