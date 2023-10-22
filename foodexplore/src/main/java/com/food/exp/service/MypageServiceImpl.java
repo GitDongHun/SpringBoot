@@ -17,4 +17,9 @@ public class MypageServiceImpl implements MypageService{
 		return dao.getInfo(user_email);
 	}
 
+	@Override
+	public int changeInfo(MemberDTO dto) {
+		return dao.changeInfo(dto);
+	}
+
 }

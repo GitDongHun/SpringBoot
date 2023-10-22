@@ -157,21 +157,26 @@
                 }).open();
             }
         </script>
+
             <script type="text/javascript"> 
+            $(document).ready(function() {
               let nicknameAvailable = false; // 닉네임 중복 여부
-              let pwdMatch = false; // 비밀번호 일치 여부
+              let pwdMatch = true; // 비밀번호 일치 여부
+              let originalnickname = $("#nickname").val();
                 
                 //닉네임 중복 체크
                  $("#namesamebtn").on("click", function(e){     
+                  console.log("중복확인"+ originalnickname);
                   e.preventDefault(); // 폼 서브밋 방지
-         
+
                   let nickname = $("#nickname").val();
+                  
                   console.log(nickname);
 
-                  if(nickname !== ""){
+                  if(nickname !== "" && nickname !== originalnickname) {
 
                   $.ajax({
-                    url:'nameCheck',
+                    url:'/index/member/nameCheck',
                     type:"get",
                     dataType:"text",
                     data: { nickname: nickname },
@@ -192,6 +197,11 @@
                       
                     }
                   });//end ajax
+                }else if(nickname == originalnickname){
+                  $("#namesamemesg").text('현재 닉네임입니다.');
+                  $("#namesamemesg").css("color", "black");
+                  nicknameAvailable = true;
+
                 }
                 });//end 
 
@@ -221,6 +231,8 @@
                     $("input[type=submit]").prop("disabled", true);
                   }
                 }
+
+              });
             </script>
 	</div>
 	<!-- end contentbox -->

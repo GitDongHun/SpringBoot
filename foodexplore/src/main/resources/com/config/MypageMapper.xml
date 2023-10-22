@@ -4,13 +4,23 @@
 
 <mapper namespace="MypageMapper">
 
-   <!-- 회원가입 -->
+   <!-- 회원 정보 가져오기 -->
    <select id="getInfo" parameterType="String" resultType="MemberDTO">
     select user_email,nickname,pw,user_name,
  		   user_post,user_addr1,user_addr2,user_phone
     from member
     where user_email = #{user_email}
    </select>
+   
+   <!-- 회원정보 수정 -->
+   <update id="changeInfo" parameterType="MemberDTO">
+   	update member
+   	set user_email = #{user_email}, nickname  = #{nickname},
+   		pw  = #{pw},user_name  = #{user_name},
+ 	   	user_post  = #{user_post}, user_addr1 = #{user_addr1}, 
+ 	   	user_addr2  = #{user_addr2}, user_phone  = #{user_phone}
+    where user_email = #{user_email}
+   </update>
 
    
 </mapper>

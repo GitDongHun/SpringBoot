@@ -16,4 +16,8 @@ public class MypageDAO {
 	public MemberDTO getInfo(String user_email) {
 		return session.selectOne("MypageMapper.getInfo", user_email);
 	}
+	// 회원 정보 변경 
+	public int changeInfo(MemberDTO dto) {
+		return session.update("MypageMapper.changeInfo", dto);
+	}
 }
