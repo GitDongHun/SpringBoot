@@ -22,10 +22,7 @@ public class RstController {
 
 	@Autowired
 	ServletContext application;
-	
 
-	
-	
 	@GetMapping("/rst")
 	public String rst_main(Model model) {
 		

@@ -103,6 +103,8 @@ function searchPlaceMine() {
 	searchFunction();
 }
 
+searchPlaceMine();
+
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
 	if (status === kakao.maps.services.Status.OK) {
