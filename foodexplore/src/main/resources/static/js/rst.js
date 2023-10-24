@@ -184,8 +184,34 @@ function displayPlaces(places) {
 
 
 
-
 		//여기서 javascript - OracleDB로 전송을 위한 함수를 구현해야한다.
+		
+		
+		if(i==0){
+
+			//00. DEBUG // places to JSON 출력하기
+			//console.log(`places:${places[i]}`);
+			console.log(`places: ${JSON.stringify(places)}`);
+
+
+			//01. fetch함수 사용
+			fetch('/htmltodb',{
+				method:'POST',
+				headers:{
+					'Content-Type':'application/json'
+				},
+				body: JSON.stringify(places)
+			})
+			.then(response=>response.json())
+			.then(data=>{
+				console.log(data); //서버에서 반환한 응답 데이터
+			})
+			.catch(error=>{
+				console.error("Error:",error);
+			});
+
+		}
+
 
 
 		
