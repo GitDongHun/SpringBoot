@@ -82,7 +82,11 @@ function searchFunction() {
 
 	// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 	ps.keywordSearch(keyword, placesSearchCB, { useMapBounds: true });
+
 }
+
+
+
 function searchPlaces() {
 	isWheel = false;
 	ps = new kakao.maps.services.Places();
@@ -138,9 +142,12 @@ function displayPlaces(places) {
 	for (var i = 0; i < places.length; i++) {
 
 		// 마커를 생성하고 지도에 표시합니다
-		var placePosition = new kakao.maps.LatLng(places[i].y,
-			places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
-				i, places[i]); // 검색 결과 항목 Element를 생성합니다
+		var placePosition = new kakao.maps.LatLng(places[i].y,places[i].x),
+		marker = addMarker(placePosition, i),
+		itemEl = getListItem(i, places[i]); 
+		
+		// 검색 결과 항목 Element를 생성합니다
+
 
 		// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 		// LatLngBounds 객체에 좌표를 추가합니다
@@ -174,6 +181,16 @@ function displayPlaces(places) {
 			};
 
 		})(marker, places[i].place_name, i, placePosition);
+
+
+
+
+		//여기서 javascript - OracleDB로 전송을 위한 함수를 구현해야한다.
+
+
+		
+
+
 
 		fragment.appendChild(itemEl);
 	}
