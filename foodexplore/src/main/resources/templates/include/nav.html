@@ -11,7 +11,7 @@
         </form>
 
         <div class="msection" th:if="${session.login !=null}">
-            <span id="nickname" style="margin-right: 10px;">[[${session.nickname}]]님 </span>
+            <span id="navNickname" style="margin-right: 10px;">[[${session.nickname}]]님 </span>
             <a th:href="@{/mypage/main}" id="mypagelink">마이페이지</a>
             <a th:href="@{/member/logout}" id="logout">로그아웃</a>
         </div>

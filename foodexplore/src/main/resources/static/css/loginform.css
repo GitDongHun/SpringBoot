@@ -32,6 +32,7 @@ h2{
 #joinbtn:hover{
   background-color: white !important;
   border: 1px solid #ff8100 !important;
+  color: #ff8100;
 }
 .btn:hover {
   background-color: white !important;

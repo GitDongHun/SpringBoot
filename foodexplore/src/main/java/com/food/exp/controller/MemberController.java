@@ -77,14 +77,19 @@ public class MemberController {
 	public String login(MemberDTO dto, HttpServletResponse response, HttpSession session) throws IOException {
 		System.out.println("login");
 
+		if (service.login(dto) != null) {
 		dto = service.login(dto);
 		String user_email = dto.getUser_email();
 		String nickname = dto.getNickname();
-		if (user_email != null) {
 			// 로그인 성공
 			session.setAttribute("login", user_email);
 			session.setAttribute("nickname", nickname);
-			return "redirect:/main";
+			if(session.getAttribute("dest") != null) {
+				Object dest = session.getAttribute("dest");
+				return "redirect:"+(String)dest;
+			}else {
+				return "redirect:/main";
+			}
 		} else {
 			// 로그인 실패
 			System.out.println("login fail");
