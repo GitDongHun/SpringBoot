@@ -48,6 +48,7 @@ td button{
   border: none;
   border-radius: 4px;
   width: 135px;
+  margin-right: 30px;
 }
 
 td span{
@@ -81,4 +82,7 @@ td span{
   background-color: white !important;
   color: #ff8000;
   border: 1px solid #ff8100 !important;
+}
+#idsamebtn{
+  margin-right: 30px;
 }
