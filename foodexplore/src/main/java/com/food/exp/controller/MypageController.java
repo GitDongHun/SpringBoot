@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.food.exp.dto.MemberDTO;
@@ -40,5 +41,20 @@ public class MypageController {
 		MemberDTO dto = service.getInfo(user_email);
 		m.addAttribute("MemberDTO", dto);
 		return "member/changeInfo";
+	}
+	//회원정보 수정 
+	@PostMapping("/updateInfo")
+	public String updateInfo(MemberDTO dto) {
+		int num = service.changeInfo(dto);
+		return "redirect:main";
+	}
+	//회원 탈퇴 
+	@PostMapping("/delMember")
+	public String delMember(HttpSession session) {
+		String user_email = (String) session.getAttribute("login");
+
+		int num = service.delMember(user_email);
+		session.invalidate();
+		return "redirect:/main";
 	}
 }
