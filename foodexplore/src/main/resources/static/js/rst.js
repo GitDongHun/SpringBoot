@@ -77,7 +77,7 @@ function searchFunction() {
 
 	var keyword = document.getElementById('keyword').value;
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
-		return false;
+		ps.categorySearch('FD6',placesSearchCB,{ useMapBounds: true })
 	}
 
 	// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
@@ -186,7 +186,7 @@ function displayPlaces(places) {
 
 		//여기서 javascript - OracleDB로 전송을 위한 함수를 구현해야한다.
 		
-		
+		/*
 		if(i==0){
 
 			//00. DEBUG // places to JSON 출력하기
@@ -211,7 +211,7 @@ function displayPlaces(places) {
 				console.error("Error:",error);
 			});
 		}
-
+*/
 
 
 		

@@ -38,11 +38,12 @@
 				<div id="menu_wrap" class="bg_white">
 					<div class="option">
 						<div>
-							<form onsubmit="searchPlaces(); return false;">
+							<form onsubmit="searchPlaceMine(); return false;">
 								키워드 : <input type="text" th:value="${keyword}" id="keyword" size="15">
 								<br>
-								<button type="submit">전국검색</button>
-								<button type="button" onclick="searchPlaceMine()">내위치로검색</button>
+								<button type="submit" >내위치로검색</button>
+								<button type="button" onclick="searchPlaces()">전국검색</button>
+								
 								
 								<div><input type="checkbox" id="isCenter" /> <label>지도 중심위치로 검색 새로고침</label></div>
 							</form>
