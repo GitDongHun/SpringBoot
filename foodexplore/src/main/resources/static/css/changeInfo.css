@@ -83,3 +83,19 @@ td span{
   color: #ff8000;
   border: 1px solid #ff8100 !important;
 }
+#delbtn{
+  height: 35px;
+  width: 85px;
+  border: none;
+  color: white;
+  background-color: #979797;
+  border-radius: 5px;
+
+}
+#joinbtn{
+  background-color: #ff8100;
+  border: 1px solid #ff8100;
+  width: 200px;
+  font-size: 20px;
+  margin-right: 254px;
+}

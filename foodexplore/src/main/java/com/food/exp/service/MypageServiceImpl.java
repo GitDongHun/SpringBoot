@@ -22,4 +22,9 @@ public class MypageServiceImpl implements MypageService{
 		return dao.changeInfo(dto);
 	}
 
+	@Override
+	public int delMember(String user_email) {
+		return dao.delMember(user_email);
+	}
+
 }

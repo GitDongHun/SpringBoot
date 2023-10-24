@@ -21,6 +21,12 @@
  	   	user_addr2  = #{user_addr2}, user_phone  = #{user_phone}
     where user_email = #{user_email}
    </update>
+   
+   <!-- 회원탈퇴 -->
+   <delete id="delMember" parameterType="String" >
+   	delete from member
+   	where user_email = #{user_email}
+   </delete>
 
    
 </mapper>

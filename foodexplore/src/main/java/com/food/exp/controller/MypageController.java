@@ -48,4 +48,13 @@ public class MypageController {
 		int num = service.changeInfo(dto);
 		return "redirect:main";
 	}
+	//회원 탈퇴 
+	@PostMapping("/delMember")
+	public String delMember(HttpSession session) {
+		String user_email = (String) session.getAttribute("login");
+
+		int num = service.delMember(user_email);
+		session.invalidate();
+		return "redirect:/main";
+	}
 }

@@ -14,10 +14,12 @@ public class WebConfig implements WebMvcConfigurer {
 	MyHandlerInterceptor interceptor;
 
 	
+	//로그인 필요한 곳 링크 추후 추가 ex: 즐겨찾기
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor)
 		        .addPathPatterns("/mypage/**");
+		
 //		registry.addInterceptor(loginIC)
 //		.addPathPatterns("/member/login");
 	}

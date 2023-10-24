@@ -86,9 +86,10 @@
                           </td>                  
                         </tr>
                       </table>
-                      <input type="submit" class="btn btn-primary" name="joinbtn" value="회원정보 수정"
-                      style=" margin-top: 30px; background-color: #ff8100; border: 1px solid #ff8100; width: 200px; font-size: 20px;">
-      
+                      <div style="margin-top: 30px;display: flex;justify-content: flex-end;">
+                        <input type="submit" id="joinbtn" class="btn btn-primary" name="joinbtn" value="회원정보 수정">
+                        <button id="delbtn">회원 탈퇴</button>
+                      </div>
                     </form>
       
                   </div>
@@ -233,6 +234,28 @@
                 }
 
               });
+            </script>
+            <script>
+              $(document).ready(function() {
+                $("#delbtn").click(function(e) {
+                  e.preventDefault(); // 폼 서브밋 방지
+                  deleteMember(); 
+                });
+              });
+
+              function deleteMember() {
+                var result = confirm("회원 탈퇴를 진행하시겠습니까?");
+
+                if (result) {
+                  // 사용자가 "Yes"를 선택한 경우
+                  window.location.href = "/index/mypage/delMember";
+                  var formObj = $("form");
+                  formObj.attr("action","delMember");
+                  formObj.submit();
+
+                } //사용자가 아니오를 선택한 경우 원래 상태로 돌아감
+              }
+
             </script>
 	</div>
 	<!-- end contentbox -->

@@ -20,4 +20,8 @@ public class MypageDAO {
 	public int changeInfo(MemberDTO dto) {
 		return session.update("MypageMapper.changeInfo", dto);
 	}
+	// 회원 탈퇴
+	public int delMember(String user_email) {
+		return session.delete("MypageMapper.delMember",user_email);
+	}
 }
