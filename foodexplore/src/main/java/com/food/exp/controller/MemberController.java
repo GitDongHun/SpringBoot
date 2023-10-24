@@ -77,10 +77,12 @@ public class MemberController {
 	public String login(MemberDTO dto, HttpServletResponse response, HttpSession session) throws IOException {
 		System.out.println("login");
 
+		if (service.login(dto) != null) {
 		dto = service.login(dto);
+		System.out.println(dto.toString());
 		String user_email = dto.getUser_email();
+		System.out.println("user "+ user_email);
 		String nickname = dto.getNickname();
-		if (user_email != null) {
 			// 로그인 성공
 			session.setAttribute("login", user_email);
 			session.setAttribute("nickname", nickname);
