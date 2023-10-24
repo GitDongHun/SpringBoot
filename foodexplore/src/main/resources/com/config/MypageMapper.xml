@@ -4,7 +4,7 @@
 
 <mapper namespace="MypageMapper">
 
-   <!-- 회원가입 -->
+   <!-- 회원정보 가져오기 -->
    <select id="getInfo" parameterType="String" resultType="MemberDTO">
     select user_email,nickname,pw,user_name,
  		   user_post,user_addr1,user_addr2,user_phone
@@ -12,5 +12,13 @@
     where user_email = #{user_email}
    </select>
 
+	<!-- 즐찾정보 가져오기 -->
+	<select id="getLikes" parameterType="String" resultType="LikesDTO">
+    select user_email, rst_id
+    from likes
+    <!-- inner join restaurant
+    	  on rst_id = restaurant.rst_id -->
+    where user_email = #{user_email}
+   </select>
    
 </mapper>
