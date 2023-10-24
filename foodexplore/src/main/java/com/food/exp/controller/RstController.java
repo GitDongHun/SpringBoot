@@ -1,5 +1,7 @@
 package com.food.exp.controller;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.openqa.selenium.By;
@@ -18,12 +20,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.food.exp.dto.RstDTO;
+
 @Controller
 public class RstController {
 
 	@Autowired
 	ServletContext application;
-
+	
 	@GetMapping("/rst")
 	public String rst_main(Model model) {
 		
@@ -51,13 +55,13 @@ public class RstController {
 	}
 	
 	@PostMapping("/htmltodb")
-	public void htmltodb(@RequestBody String requestObject){
+	public void htmltodb(@RequestBody List<RstDTO> rst){
 		
 		
 		
 	}
 
-	
+	/*
 	@GetMapping("/crolling")
 	public String crolling(Model model) {
 			// Selenium 사용하여 크롤링 
@@ -92,5 +96,6 @@ public class RstController {
 
 	    return "/rst/crolling_html";
 	}
-
+*/
+	
 }

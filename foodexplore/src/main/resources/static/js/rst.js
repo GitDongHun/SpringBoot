@@ -191,10 +191,10 @@ function displayPlaces(places) {
 
 			//00. DEBUG // places to JSON 출력하기
 			//console.log(`places:${places[i]}`);
-			console.log(`places: ${JSON.stringify(places)}`);
+			//console.log(`places: ${JSON.stringify(places[i])}`);
 
 
-			//01. fetch함수 사용
+			//01. fetch함수 사용하여 전송하기
 			fetch('/htmltodb',{
 				method:'POST',
 				headers:{
@@ -209,7 +209,6 @@ function displayPlaces(places) {
 			.catch(error=>{
 				console.error("Error:",error);
 			});
-
 		}
 
 
