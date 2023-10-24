@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.food.exp.dao.MypageDAO;
+import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.MemberDTO;
 
 @Service
@@ -25,6 +26,11 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int delMember(String user_email) {
 		return dao.delMember(user_email);
+	}
+	
+	@Override
+	public LikesDTO getLikes(String user_email) {
+		return dao.getLikes(user_email);
 	}
 
 }
