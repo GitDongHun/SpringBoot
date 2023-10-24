@@ -45,14 +45,14 @@ function myLocationMapView() {
 		map.setLevel(6);
 
 		// 이제 위치 정보가 준비되었으므로 검색을 시작
-		//searchPlaces();
+		searchFunction();
 	};
 
 	var onError = function (error) {
 		console.error('내 위치 정보를 가져오는 데 실패했습니다.', error);
 
 		// 위치 정보를 가져오지 못했을 때도 검색을 시작
-		//searchPlaces();
+		searchFunction();
 	};
 
 	if (navigator.geolocation) {
@@ -61,7 +61,7 @@ function myLocationMapView() {
 		console.error('브라우저가 Geolocation을 지원하지 않습니다.');
 
 		// 위치 정보를 가져오지 못했을 때도 검색을 시작
-		//searchPlaces();
+		searchFunction();
 	}
 }
 
@@ -98,9 +98,8 @@ function searchPlacesWheel() {
 
 function searchPlaceMine() {
 	isWheel = true;
-	myLocationMapView();
 	ps = new kakao.maps.services.Places(map);
-	searchFunction();
+	myLocationMapView();
 }
 
 searchPlaceMine();
