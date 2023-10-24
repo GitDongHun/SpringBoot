@@ -58,7 +58,6 @@ public class RstController {
 	public void htmltodb(@RequestBody List<RstDTO> rst){
 		
 		
-		
 	}
 
 	/*

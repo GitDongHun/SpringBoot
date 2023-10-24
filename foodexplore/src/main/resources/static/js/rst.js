@@ -195,10 +195,11 @@ function displayPlaces(places) {
 
 
 			//01. fetch함수 사용하여 전송하기
-			fetch('/htmltodb',{
+			fetch('/index/htmltodb',{
 				method:'POST',
 				headers:{
-					'Content-Type':'application/json'
+					'Content-Type':'application/json',
+					'charset':'UTF-8'
 				},
 				body: JSON.stringify(places)
 			})
