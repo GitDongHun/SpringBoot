@@ -79,14 +79,17 @@ public class MemberController {
 
 		if (service.login(dto) != null) {
 		dto = service.login(dto);
-		System.out.println(dto.toString());
 		String user_email = dto.getUser_email();
-		System.out.println("user "+ user_email);
 		String nickname = dto.getNickname();
 			// 로그인 성공
 			session.setAttribute("login", user_email);
 			session.setAttribute("nickname", nickname);
-			return "redirect:/main";
+			if(session.getAttribute("dest") != null) {
+				Object dest = session.getAttribute("dest");
+				return "redirect:"+(String)dest;
+			}else {
+				return "redirect:/main";
+			}
 		} else {
 			// 로그인 실패
 			System.out.println("login fail");
