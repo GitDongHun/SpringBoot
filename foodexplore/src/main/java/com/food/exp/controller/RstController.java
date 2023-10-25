@@ -35,7 +35,7 @@ public class RstController {
 		
 		//api키 가지고오기
 		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
-		model.addAttribute("keyword","국밥");
+		model.addAttribute("keyword","");
 		System.out.println("RstController 실행-GET");
 		return "/rst/rst";
 	}
@@ -48,7 +48,7 @@ public class RstController {
 			model.addAttribute("keyword",rst_query);
 		}else
 		{
-			model.addAttribute("keyword","국밥");
+			model.addAttribute("keyword","");
 		}
 		System.out.println("RstController 실행-POST");
 		return "/rst/rst";
