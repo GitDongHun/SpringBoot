@@ -34,3 +34,7 @@ build/
 
 ### Crolling ###
 src/main/resources/templates/rst/crolling/
+
+### application.properties ###
+src/main/resources/application.properties
+

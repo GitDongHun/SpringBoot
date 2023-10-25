@@ -8,5 +8,8 @@ public interface MemberService {
 	public String idCheck(String user_email);
 	public String nameCheck(String nickname);
 	public MemberDTO login(MemberDTO dto);
+	public String findId(MemberDTO dto);
+	public String findPw(MemberDTO dto);
+	public int updatePw(MemberDTO dto);
 
 }

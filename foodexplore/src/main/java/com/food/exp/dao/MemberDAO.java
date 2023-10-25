@@ -28,5 +28,16 @@ public class MemberDAO {
 	public MemberDTO login(MemberDTO dto) {
 		return session.selectOne("MemberMapper.login",dto);
 	}
-	
+	// 아이디 찾기
+	public String findId(MemberDTO dto) {
+		return session.selectOne("MemberMapper.findId",dto);
+	}	
+	// 비밀번호 찾기
+	public String findPw(MemberDTO dto) {
+		return session.selectOne("MemberMapper.findPw",dto);
+	}	
+	// 비밀번호 변경
+	public int updatePw(MemberDTO dto) {
+		return session.update("MemberMapper.updatePw",dto);
+	}	
 }

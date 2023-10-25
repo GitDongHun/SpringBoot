@@ -32,6 +32,21 @@ public class MemberServiceImpl implements MemberService{
 		return dao.login(dto);
 	}
 
+	@Override
+	public String findId(MemberDTO dto) {
+		return dao.findId(dto);
+	}
+
+	@Override
+	public String findPw(MemberDTO dto) {
+		return dao.findPw(dto);
+	}
+
+	@Override
+	public int updatePw(MemberDTO dto) {
+		return dao.updatePw(dto);
+	}
+
 
 
 }
