@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.food.exp.mapper.RestaurantMapper">
+<mapper namespace="RstMapper">
 
 
 <select id="getAllRestaurants" resultType="com.food.exp.dto.RstDTO">
-    SELECT * FROM restaurants
+    SELECT * FROM restaurant
 </select>
 
 <insert id="saveRestaurant">
-    INSERT INTO restaurants (rst_id, rst_name, rst_addr1, rst_addr2, rst_phone, rst_cate)
+    INSERT INTO restaurant (rst_id, rst_name, rst_addr1, rst_addr2, rst_phone, rst_cate)
     VALUES (#{rst_id}, #{rst_name}, #{rst_addr1}, #{rst_addr2}, #{rst_phone}, #{rst_cate})
 </insert>
 
 <select id="selectRestaurantById" resultType="com.food.exp.dto.RstDTO">
-    SELECT * FROM restaurants
+    SELECT * FROM restaurant
     WHERE rst_id = #{rst_id}
 </select>
 

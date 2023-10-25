@@ -31,6 +31,7 @@ public class RstController {
 	@Autowired
 	ServletContext application;
 
+	@Autowired
 	RstService rstService;
 
 	@GetMapping("/rst")
@@ -89,24 +90,15 @@ public class RstController {
 
 		System.out.println("===============================================");
 		System.out.println("01. 서버에서 가져온 데이터를 rstDTO로 옮기고 재출력 ");
-		System.out.println("rst_id	>> id");
-		System.out.println("rst_name	>> place_name");
-		System.out.println("rst_addr1	>> road_address_name");
-		System.out.println("rst_addr2	>> address_name");
-		System.out.println("rst_phone	>> phone");
-		System.out.println("rst_cate	>> category_name");
-
 		for (RstDTO dto : rstDTOList) {
 			System.out.println(dto.getAll());
 		}
-
 		System.out.println("===============================================");
 		System.out.println("02. Mybatis 사용하여 DB로 전송 ");
-
 		for (RstDTO dto : rstDTOList) {
+			System.out.println();
 			rstService.saveRestaurant(dto);
 		}
-
 		return "/rst/rst";
 	}
 
