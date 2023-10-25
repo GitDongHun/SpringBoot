@@ -23,12 +23,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.food.exp.dto.RstDTO;
 import com.food.exp.dto.RstTempDTO;
+import com.food.exp.service.RstService;
 
 @Controller
 public class RstController {
 
 	@Autowired
 	ServletContext application;
+
+	RstService rstService;
 
 	@GetMapping("/rst")
 	public String rst_main(Model model) {
@@ -67,61 +70,44 @@ public class RstController {
 
 			// 01. rstDTO에 rsttempList값을 재전달
 			RstDTO rstDTO = new RstDTO();
-			rstDTO.setRst_id(rstTempDTO.getId());
-			rstDTO.setRst_name(rstTempDTO.getPlace_name());
-			rstDTO.setRst_cate(rstTempDTO.getCategory_name());
+			rstDTO.setRst_id((rstTempDTO.getId() != null) ? rstTempDTO.getId() : "");
+			rstDTO.setRst_name((rstTempDTO.getPlace_name() != null) ? rstTempDTO.getPlace_name() : "");
+			rstDTO.setRst_cate((rstTempDTO.getCategory_name() != null) ? rstTempDTO.getCategory_name() : "");
+			rstDTO.setRst_phone((rstTempDTO.getPhone() != null) ? rstTempDTO.getPhone() : "");
+			rstDTO.setRst_addr1((rstTempDTO.getRoad_address_name() != null) ? rstTempDTO.getRoad_address_name() : "");
+			rstDTO.setRst_addr2((rstTempDTO.getAddress_name() != null) ? rstTempDTO.getAddress_name() : "");
 
-			rstDTO.setRst_phone(rstTempDTO.getPhone());
-			rstDTO.setRst_addr2(rstTempDTO.getAddress_name());
-			rstDTO.setRst_addr1(rstTempDTO.getRoad_address_name());
 			// rstDTO.setX(rstTempDTO.getX());
 			// rstDTO.setY(rstTempDTO.getY());
 			// rstDTO.setPlaceUrl(rstTempDTO.getPlace_url());
 			// rstDTO.setDistance(rstTempDTO.getDistance());
 			// rstDTO.setCategoryGroupCode(rstTempDTO.getCategory_group_code());
 			// rstDTO.setCategoryGroupName(rstTempDTO.getCategory_group_name());
-			
+
 			rstDTOList.add(rstDTO);
 		}
 
 		System.out.println("===============================================");
 		System.out.println("01. 서버에서 가져온 데이터를 rstDTO로 옮기고 재출력 ");
-		for(RstDTO dto:rstDTOList) {
+		System.out.println("rst_id	>> id");
+		System.out.println("rst_name	>> place_name");
+		System.out.println("rst_addr1	>> road_address_name");
+		System.out.println("rst_addr2	>> address_name");
+		System.out.println("rst_phone	>> phone");
+		System.out.println("rst_cate	>> category_name");
+
+		for (RstDTO dto : rstDTOList) {
 			System.out.println(dto.getAll());
 		}
-		
-		
-		
+
 		System.out.println("===============================================");
-		System.out.println("02. Mybatis 사용하여 DB로 전송(구현중) ");
+		System.out.println("02. Mybatis 사용하여 DB로 전송 ");
+
+		for (RstDTO dto : rstDTOList) {
+			rstService.saveRestaurant(dto);
+		}
 
 		return "/rst/rst";
 	}
-
-	/*
-	 * @GetMapping("/crolling") public String crolling(Model model) { // Selenium
-	 * 사용하여 크롤링 //>>> Firefox 브라우저 설치하고, Firefox Driver 파일인 geckodriver.exe를 하단에 설정한
-	 * 경로에 넣어야 작동가능 // Selenium 설정 System.setProperty("webdriver.gecko.driver",
-	 * "src/main/resources/templates/rst/crolling/geckodriver.exe"); FirefoxOptions
-	 * options = new FirefoxOptions(); options.setHeadless(true); // Headless 모드로 설정
-	 * WebDriver driver = new FirefoxDriver(options);
-	 * 
-	 * // 크롤링 대상 웹 페이지 열기 driver.get(
-	 * "https://www.diningcode.com/list.dc?query=%EB%82%B4%EC%A3%BC%EB%B3%80");
-	 * 
-	 * try { // WebDriverWait를 사용하여 요소가 나타날 때까지 대기 WebDriverWait wait = new
-	 * WebDriverWait(driver, 15); WebElement element =
-	 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(
-	 * "sc-gYrpUN")));
-	 * 
-	 * // 크롤링 로직 String data = element.getText();
-	 * System.out.println("Crawled Data: " + data);
-	 * 
-	 * // 모델에 데이터 추가 model.addAttribute("data", data); } catch (Exception e) { //
-	 * 요소를 찾지 못한 경우 처리할 예외 코드 e.printStackTrace(); } finally { // 브라우저 닫기
-	 * driver.quit(); }
-	 * 
-	 * return "/rst/crolling_html"; }
-	 */
 
 }
