@@ -62,8 +62,10 @@ public class RstController {
 	@PostMapping("/htmltodb")
 	public String htmltodb(@RequestBody List<RstTempDTO> rsttempList) {
 		List<RstDTO> rstDTOList = new ArrayList<>();
+	
 		System.out.println("===============================================");
-		System.out.println("00. debug: 서버에서 그대로 가져온 key와 value");
+		System.out.println("01. 서버에서 가져온 데이터를 rstDTO로 옮기기 ");
+
 		for (RstTempDTO rstTempDTO : rsttempList) {
 
 			// 00. debug: 잘왔는지 데이터 출력
@@ -88,15 +90,10 @@ public class RstController {
 			rstDTOList.add(rstDTO);
 		}
 
-		System.out.println("===============================================");
-		System.out.println("01. 서버에서 가져온 데이터를 rstDTO로 옮기고 재출력 ");
-		for (RstDTO dto : rstDTOList) {
-			System.out.println(dto.getAll());
-		}
+
 		System.out.println("===============================================");
 		System.out.println("02. Mybatis 사용하여 DB로 전송 ");
 		for (RstDTO dto : rstDTOList) {
-			System.out.println();
 			rstService.saveRestaurant(dto);
 		}
 		return "/rst/rst";
