@@ -1,5 +1,6 @@
 package com.food.exp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.food.exp.dto.RstDTO;
+import com.food.exp.dto.RstTempDTO;
 
 @Controller
 public class RstController {
@@ -55,9 +57,33 @@ public class RstController {
 	}
 	
 	@PostMapping("/htmltodb")
-	public void htmltodb(@RequestBody List<RstDTO> rst){
+	public String htmltodb(@RequestBody List<RstTempDTO> rsttempList){
+		List<RstDTO> rstDTOList = new ArrayList<>();
+		
+		for (RstTempDTO rstTempDTO : rsttempList) {
+			
+			//00. debug: 잘왔는지 데이터 출력
+			System.out.println(rstTempDTO.getAll());
+			
+			
+			//01. rstDTO에 rsttempList값을 재전달
+			RstDTO rstDTO = new RstDTO();
+	        rstDTO.setRst_id(rstTempDTO.getId());
+	        rstDTO.setRst_cate(rstTempDTO.getCategory_name());
+	            //rstDTO.setCategoryGroupCode(rstTempDTO.getCategory_group_code());
+	            //rstDTO.setCategoryGroupName(rstTempDTO.getCategory_group_name());
+	            rstDTO.setRst_phone(rstTempDTO.getPhone());
+	           // rstDTO.setAddressName(rstTempDTO.getAddress_name());
+	           // rstDTO.setRoadAddressName(rstTempDTO.getRoad_address_name());
+	           // rstDTO.setX(rstTempDTO.getX());
+	           // rstDTO.setY(rstTempDTO.getY());
+	           // rstDTO.setPlaceUrl(rstTempDTO.getPlace_url());
+	           // rstDTO.setDistance(rstTempDTO.getDistance());
+			
+		}
 		
 		
+		return "/rst/rst";
 	}
 
 	/*

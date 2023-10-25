@@ -186,8 +186,8 @@ function displayPlaces(places) {
 
 		//여기서 javascript - OracleDB로 전송을 위한 함수를 구현해야한다.
 		
-		/*
-		if(i==0){
+		
+		(function(){if(i==0){
 
 			//00. DEBUG // places to JSON 출력하기
 			//console.log(`places:${places[i]}`);
@@ -210,8 +210,11 @@ function displayPlaces(places) {
 			.catch(error=>{
 				console.error("Error:",error);
 			});
+
+			console.log(`${JSON.stringify(places)}`)
 		}
-*/
+	})();
+
 
 
 		
