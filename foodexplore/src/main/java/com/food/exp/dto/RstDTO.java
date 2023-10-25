@@ -73,4 +73,13 @@ public class RstDTO {
     public void setRst_cate(String rst_cate) {
         this.rst_cate = rst_cate;
     }
+    
+    public String getAll() {
+        return "rst_id: " + rst_id + ", " +
+               "rst_name: " + rst_name + ", " +
+               "rst_addr1: " + rst_addr1 + ", " +
+               "rst_addr2: " + rst_addr2 + ", " +
+               "rst_phone: " + rst_phone + ", " +
+               "rst_cate: " + rst_cate;
+    }
 }

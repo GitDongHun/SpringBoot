@@ -2,6 +2,7 @@ package com.food.exp.dto;
 
 public class RstTempDTO {
     private String id;
+    private String place_name;
     private String category_name;
     private String category_group_code;
     private String category_group_name;
@@ -28,6 +29,14 @@ public class RstTempDTO {
 
     public String getCategory_name() {
         return category_name;
+    }
+    
+    public String getPlace_name() {
+        return place_name;
+    }
+
+    public void setPlace_name(String place_name) {
+        this.place_name = place_name;
     }
 
     public void setCategory_name(String category_name) {
@@ -108,6 +117,7 @@ public class RstTempDTO {
     
     public String getAll() {
         return "id: " + id + ", " +
+               "place_name: " + place_name + ", " +
                "category_name: " + category_name + ", " +
                "category_group_code: " + category_group_code + ", " +
                "category_group_name: " + category_group_name + ", " +

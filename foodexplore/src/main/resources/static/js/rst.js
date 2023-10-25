@@ -211,7 +211,6 @@ function displayPlaces(places) {
 				console.error("Error:",error);
 			});
 
-			console.log(`${JSON.stringify(places)}`)
 		}
 	})();
 
