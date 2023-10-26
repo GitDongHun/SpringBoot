@@ -3,6 +3,7 @@
 
 <head>
 	<!-- 공통적으로 들어가는 부분 가져오는 코드 -->
+
 	<head th:insert="~{include/head.html}"></head>
 
 	<!-- 타이틀 수정 및 자기 html의 head에 추가한 것 타임리프 형식으로 추가하기 -->
@@ -12,14 +13,8 @@
 	<!--  kakao Map API & CSS -->
 	<script
 		th:src="'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + ${apiKey}+'&libraries=services,clusterer,drawing'"></script>
-	
+
 	<link th:href="@{/css/rst.css}" rel="stylesheet" />
-	<style>
-			.bodycontent {
-				width:80% !important;
-				height:auto !important; 
-		}
-	</style>
 </head>
 
 <body>
@@ -29,43 +24,48 @@
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
 		<div id="bodycontent" class="bodycontent">
+			<div class="_01_all">
+				<!-- kakao Map API UI -->
+				<br>지도 검색 서비스
+				<div class="_01_01_main">
+					<div class="map_wrap">
+						<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
-			<!-- kakao Map API UI -->
-			<br>지도 검색 서비스
-			<div class="map_wrap">
-				<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+						<div id="menu_wrap" class="bg_white">
+							<div class="option">
+								<div>
+									<form onsubmit="searchPlaceMine(); return false;">
+										키워드 : <input type="text" th:value="${keyword}" id="keyword" size="15">
+										<br>
+										<button type="submit">내위치로검색</button>
+										<button type="button" onclick="searchPlaces()">전국검색</button>
 
-				<div id="menu_wrap" class="bg_white">
-					<div class="option">
-						<div>
-							<form onsubmit="searchPlaceMine(); return false;">
-								키워드 : <input type="text" th:value="${keyword}" id="keyword" size="15">
-								<br>
-								<button type="submit" >내위치로검색</button>
-								<button type="button" onclick="searchPlaces()">전국검색</button>
-								
-								
-								<div><input type="checkbox" id="isCenter" /> <label>지도 중심위치로 검색 새로고침</label></div>
-							</form>
-							
+
+										<div><input type="checkbox" id="isCenter" /> <label>지도 중심위치로 검색 새로고침</label>
+										</div>
+									</form>
+
+								</div>
+
+							</div>
+							<hr>
+
 						</div>
-						
+
+
 					</div>
-					<hr>
-	
+					<div class="_01_01_01_sub">
+						<ul id="placesList"></ul>
+						<div id="pagination"></div>
+
+					</div>
+					
+					<!-- 이곳에서 코드 작업 -->
+					<!-- kakao Map Script -->
+
+					<script type="text/javascript" th:src="@{/js/rst.js}"></script>
 				</div>
-				
-			
 			</div>
-
-			<ul id="placesList"></ul>
-			<div id="pagination"></div>
-			<!-- 이곳에서 코드 작업 -->
-			<!-- kakao Map Script -->
-			
-			<script type="text/javascript" th:src="@{/js/rst.js}"></script>
-
-
 		</div>
 	</div>
 

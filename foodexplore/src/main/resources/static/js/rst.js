@@ -195,7 +195,7 @@ function displayPlaces(places) {
 
 
 			//01. fetch함수 사용하여 전송하기
-			fetch('/index/htmltodb',{
+			fetch('/foodexp/htmltodb',{
 				method:'POST',
 				headers:{
 					'Content-Type':'application/json',
