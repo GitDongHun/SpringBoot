@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RevMapper">
+	
+	<!-- 내 리뷰 -->
+	<select id="getReviewById" resultType="RevDTO" parameterType="string">
+        SELECT * FROM review WHERE user_email = #{user_email,jdbcType=VARCHAR}
+    </select>
+    
+	<!-- 전체 리뷰 보기 -->
+    <select id="getAllReviews" resultType="RevDTO">
+        SELECT * FROM review
+    </select>
+    
+	<!-- 리뷰 추가 -->
+    <insert id="addReview" parameterType="RevDTO">
+        INSERT INTO review (REV_NO, USER_EMAIL, RST_ID, REV_STAR, REV_COMMENT, REV_DATE, REV_TITLE) 
+        VALUES (#{REV_NO}, #{USER_EMAIL,jdbcType=VARCHAR}, #{RST_ID}, #{REV_STAR}, #{REV_COMMENT}, #{REV_DATE}, #{REV_TITLE})
+    </insert>
+    
+	<!-- 리뷰 수정 -->
+    <update id="updateReview" parameterType="RevDTO">
+        UPDATE review SET USER_EMAIL = #{USER_EMAIL,jdbcType=VARCHAR}, RST_ID = #{RST_ID}, REV_STAR = #{REV_STAR}, 
+        REV_COMMENT = #{REV_COMMENT}, REV_DATE = #{REV_DATE}, REV_TITLE = #{REV_TITLE} WHERE REV_NO = #{REV_NO}
+    </update>
+
+	<!-- 리뷰 삭제 -->
+    <delete id="deleteReview" parameterType="int">
+        DELETE FROM review WHERE REV_NO = #{REV_NO}
+    </delete>
+	
+</mapper>
