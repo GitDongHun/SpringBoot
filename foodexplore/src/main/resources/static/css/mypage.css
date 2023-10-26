@@ -84,6 +84,11 @@ ul li {
 	text-decoration: none;
 }
 
+.changeInfo-btn:hover {
+    background-color: #b3b3b3;
+    color: white;
+}
+
 /* 나의 즐겨찾기&리뷰관리 */
 .like-review {
 	width: 480px;
@@ -127,11 +132,13 @@ ul li {
 
 .more:hover { /* 마우스 호버 효과 */
 	text-decoration: underline;
+	color: black;
 }
 
 .list-uibox{
 	padding: 5px 20px;
 	margin: 0px;
+	min-height: 180px;
 }
 .mylike-list {
 	width: 450px;

@@ -45,7 +45,12 @@ ul li {
     font-size: 20px;
     color: black;
     margin: 0px;
-    margin-top: 10px;
+}
+
+.rstcate{
+	color: #808080;
+	font-size: 13px;
+	margin: 7px 0px 0px 7px;
 }
 
 .rst-info {
@@ -57,18 +62,20 @@ ul li {
 
 .rstaddr {
     color: black;
+    margin-bottom: 5px;
 }
 
 .like-count {
     color: black;
     margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 .revscore{
 	color: black;
-    margin-left: 5px;
     padding-right: 5px;
 	border-right: 1px solid #CACACA;
+    margin-bottom: 5px;
 }
 
 .star {
@@ -76,5 +83,7 @@ ul li {
 	margin-left: auto;
 	margin-right: 30px;
     color: #FFAF01;
+    background-color: white;
+    border: none;
 }
 

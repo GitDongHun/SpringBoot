@@ -18,7 +18,7 @@
 
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
-		<div class="bodycontent" style="display: flex;;">
+		<div class="bodycontent" style="display: flex;">
 
 			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
@@ -27,53 +27,70 @@
 				<h2 class="myLikes-title">나의 즐겨찾기</h2>
 
 				<!-- 나의 즐겨찾기 -->
-				<div class="rst-box">
-					<div class="">
-						<div class="like-rst">
-							<img class="food-img" id="food-img">
-							<div class="text-info">
-								<p class="rstname">음식점이름</p>
-								<div class="rst-info">
-									<p class="rstaddr">**시 **구 ***로 **번길 **(**동)</p>
-								</div>
-								<div class="rst-info">
-									<p class="revscore">리뷰 4.5/5</p>
-									<p class="like-count">즐겨찾기 1061</p>
-								</div>
+				<div class="rst-box" th:each="likeItem: ${LikesDTO}">
+					<div class="like-rst">
+						<img class="food-img" id="food-img">
+						<div class="text-info">
+							<div class="rst-info">
+								<p class="rstname" th:text="${likeItem.rst_name}" />
+								<p class="rstcate" th:text="${likeItem.rst_cate}" />
 							</div>
-							<p class="star">★</p>
+							<div class="rst-info">
+								<p class="rstaddr" th:text="${likeItem.rst_addr1}" />
+							</div>
+							<div class="rst-info">
+								<p class="revscore">리뷰 4.5/5</p>
+								<p class="like-count">즐겨찾기 1061</p>
+							</div>
 						</div>
+						<button class="star" id="delstar">★</button>
 					</div>
 				</div>
-				<div class="rst-box">
-					<div class="">
-						<div class="like-rst">
-							<img class="food-img" id="food-img">
-							<div class="text-info">
-								<p class="rstname">음식점이름</p>
-								<div class="rst-info">
-									<p class="rstaddr">**시 **구 ***로 **번길 **(**동)</p>
-								</div>
-								<div class="rst-info">
-									<p class="revscore">리뷰 4.5/5</p>
-									<p class="like-count">즐겨찾기 1061</p>
-								</div>
-							</div>
-							<p class="star">★</p>
-						</div>
-					</div>
-				</div>
-
-
 
 			</div>
 			<!-- end content -->
 
-
-
-
 		</div>
 		<!-- end bodycontent -->
+
+		<script>
+			/* // 삭제
+			$(document).ready(function() {
+                $("#delstar").click(function(e) {
+                  e.preventDefault(); // 폼 서브밋 방지
+                  deleteLikes(); 
+                });
+              });
+
+              function deleteLikes() {
+                var result = confirm("즐겨찾기를 삭제하시겠습니까?");
+
+                if (result) {
+                  // 사용자가 "Yes"를 선택한 경우
+                  window.location.href = "/index/mypage/delLikes";
+                  var formObj = $("form");
+                  formObj.attr("action","delLikes");
+                  formObj.submit();
+
+                } //사용자가 아니오를 선택한 경우 원래 상태로 돌아감
+              } */
+			
+			
+			
+			
+			
+			/* 			$(function() {
+			 $('#star').click(function() {
+			 if ($(this).html() == '★') {
+			 $(this).html('☆');
+			 } else {
+			 $(this).html('★');
+			 }
+			 });
+			 }); */
+		</script>
+
+
 	</div>
 	<!-- end contentbox -->
 

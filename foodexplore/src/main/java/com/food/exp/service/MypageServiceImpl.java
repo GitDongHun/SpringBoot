@@ -1,5 +1,7 @@
 package com.food.exp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +29,16 @@ public class MypageServiceImpl implements MypageService{
 	public int delMember(String user_email) {
 		return dao.delMember(user_email);
 	}
-	
+
 	@Override
-	public LikesDTO getLikes(String user_email) {
+	public List<LikesDTO> getLikes(String user_email) {
 		return dao.getLikes(user_email);
 	}
 
+	@Override
+	public int delLikes(String rst_id) {
+		return dao.delLikes(rst_id);
+	}
+
+	
 }

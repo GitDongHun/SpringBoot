@@ -1,5 +1,7 @@
 package com.food.exp.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,7 +29,11 @@ public class MypageDAO {
 	}
 	
 	// 즐겨찾기 가져오기
-	public LikesDTO getLikes(String user_email) {
-		return session.selectOne("MypageMapper.getLikes", user_email);
+	public List<LikesDTO> getLikes(String user_email) {
+		return session.selectList("MypageMapper.getLikes",user_email);
+	}
+	// 즐겨찾기 삭제
+	public int delLikes(String rst_id) {
+		return session.delete("MypageMapper.delLikes",rst_id);
 	}
 }
