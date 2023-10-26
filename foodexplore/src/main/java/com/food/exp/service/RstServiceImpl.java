@@ -10,25 +10,20 @@ import com.food.exp.dto.RstDTO;
 
 @Service
 public class RstServiceImpl implements RstService {
-    private final RstDAO rstDAO;
-
-    @Autowired
-    public RstServiceImpl(RstDAO rstDAO) {
-        this.rstDAO = rstDAO;
-    }
+    
+	@Autowired
+    RstDAO rstDAO;
+    
 	@Override
 	public List<RstDTO> getAllRestaurants() {
-		// TODO Auto-generated method stub
-		return null;
+		return rstDAO.getAllRestaurants();
 	}
 	@Override
 	public void saveRestaurant(RstDTO restaurant) {
-		// TODO Auto-generated method stub
-		
+		rstDAO.saveRestaurant(restaurant);
 	}
 	@Override
-	public RstDTO getRestaurantById(String rst_id) {
-		// TODO Auto-generated method stub
+	public RstDTO selectRestaurantById(String rst_id) {
 		return null;
 	}
 

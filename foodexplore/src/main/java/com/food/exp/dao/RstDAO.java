@@ -19,15 +19,14 @@ public class RstDAO {
     }
 
     public void saveRestaurant(RstDTO restaurant) {
-        sqlSessionTemplate.insert("RstMapper.insertRestaurant", restaurant);
+        sqlSessionTemplate.insert("RstMapper.saveRestaurant", restaurant);
     }
 
-    public RstDTO getRestaurantById(String rst_id) {
+    public RstDTO selectRestaurantById(String rst_id) {
         return sqlSessionTemplate.selectOne("RstMapper.selectRestaurantById", rst_id);
     }
 
 	public List<RstDTO> getAllRestaurants() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectList("RstMapper.getAllRestaurants");
 	}
 }
