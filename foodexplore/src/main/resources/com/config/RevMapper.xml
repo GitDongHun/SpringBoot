@@ -6,13 +6,24 @@
 	
 	<!-- 내 리뷰 -->
 	<select id="getReviewById" resultType="RevDTO" parameterType="string">
-        SELECT * FROM review WHERE user_email = #{user_email,jdbcType=VARCHAR}
+        SELECT r.*, rt.rst_name 
+	    FROM review r
+	    INNER JOIN restaurant rt ON r.rst_id = rt.rst_id
+	    WHERE r.user_email = #{user_email, jdbcType=VARCHAR}
     </select>
     
 	<!-- 전체 리뷰 보기 -->
     <select id="getAllReviews" resultType="RevDTO">
         SELECT * FROM review
     </select>
+    
+    <!-- 리뷰 자세히 보기 -->
+    <select id="selectByRev_No" resultType="RevDTO" parameterType="int">
+    	SELECT r.*, rt.rst_name 
+	    FROM review r
+	    INNER JOIN restaurant rt ON r.rst_id = rt.rst_id
+	    WHERE r.REV_NO = #{REV_NO}
+	</select>
     
 	<!-- 리뷰 추가 -->
     <insert id="addReview" parameterType="RevDTO">
@@ -23,7 +34,7 @@
 	<!-- 리뷰 수정 -->
     <update id="updateReview" parameterType="RevDTO">
         UPDATE review SET USER_EMAIL = #{USER_EMAIL,jdbcType=VARCHAR}, RST_ID = #{RST_ID}, REV_STAR = #{REV_STAR}, 
-        REV_COMMENT = #{REV_COMMENT}, REV_DATE = #{REV_DATE}, REV_TITLE = #{REV_TITLE} WHERE REV_NO = #{REV_NO}
+        REV_COMMENT = #{REV_COMMENT}, REV_TITLE = #{REV_TITLE} WHERE REV_NO = #{REV_NO}
     </update>
 
 	<!-- 리뷰 삭제 -->

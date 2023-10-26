@@ -20,9 +20,14 @@ public class RevDAO {
     }
 
 	// id에 해당하는 리뷰 가져오기
-    public RevDTO getReviewById(String user_email) {
-        return session.selectOne("RevMapper.getReviewById", user_email);
+    public List<RevDTO> getReviewById(String user_email) {
+        return session.selectList("RevMapper.getReviewById", user_email);
     }
+    
+    // 리뷰 자세히 보기
+    public RevDTO selectByRev_No(int no) {
+		return session.selectOne("RevMapper.selectByRev_No", no);
+	}
     
     // 전체 리뷰 가져오기
     public List<RevDTO> getAllReviews() {

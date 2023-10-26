@@ -52,9 +52,11 @@
 		            <tbody>
 		                <tr th:each="review : ${reviews}">
 						    <td><input type="checkbox" class="row-checkbox"></td>
-						    <td th:text="${review.rst_id}"></td>
-						    <td th:text="${review.rev_title}"></td>
-						    <td th:text="${review.rev_date}"></td>
+						    <td th:text="${review.rst_name}"></td>
+						    <td>
+						    <a th:href="@{/mypage/revedit(rev_no=${review.rev_no})}" th:text="${review.rev_title}">로그인</a>
+						    </td>
+						    <td th:text="${#dates.format(review.rev_date, 'yyyy-MM-dd')}"></td>
 						</tr>
 		            </tbody>
 		        </table>
