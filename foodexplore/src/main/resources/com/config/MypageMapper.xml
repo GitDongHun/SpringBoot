@@ -5,7 +5,6 @@
 <mapper namespace="MypageMapper">
 
    <!-- 회원 정보 가져오기 -->
-
    <select id="getInfo" parameterType="String" resultType="MemberDTO">
     select user_email,nickname,pw,user_name,
  		   user_post,user_addr1,user_addr2,user_phone
@@ -29,13 +28,20 @@
    	where user_email = #{user_email}
    </delete>
 
-	<!-- 즐찾정보 가져오기 -->
+	<!-- 즐겨찾기 정보 가져오기 -->
 	<select id="getLikes" parameterType="String" resultType="LikesDTO">
-    select user_email, rst_id
-    from likes
-    <!-- inner join restaurant
-    	  on rst_id = restaurant.rst_id -->
+    select *
+    from restaurant
+    inner join likes
+    	  on restaurant.rst_id = likes.rst_id
     where user_email = #{user_email}
    </select>
+   
+   <!-- 즐겨찾기 삭제 -->
+   <delete id="delLikes" parameterType="String" >
+   	delete from likes
+   	where rst_id = #{rst_id}
+   		  and user_id = #{user_id}
+   </delete>
    
 </mapper>
