@@ -2,11 +2,11 @@ package com.food.exp.controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.food.exp.dto.MemberDTO;
+import com.food.exp.service.FindService;
 import com.food.exp.service.MemberService;
 
 @Controller
@@ -22,6 +23,9 @@ public class MemberController {
 
 	@Autowired
 	MemberService service;
+
+	@Autowired
+	FindService fservice;
 
 	// 회원가입 페이지로 이동
 	@GetMapping("/joinform")
@@ -74,7 +78,7 @@ public class MemberController {
 
 	// 로그인
 	@PostMapping(value = "/login")
-	public String login(MemberDTO dto, HttpServletResponse response, HttpSession session) throws IOException {
+	public String login(MemberDTO dto, HttpSession session) throws IOException {
 		System.out.println("login");
 
 		if (service.login(dto) != null) {
@@ -102,6 +106,51 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/main";
+	}
+	
+	// 아이디찾기 페이지로 이동
+	@GetMapping("/findIdForm")
+	public String findIdForm() {
+		return "member/findIdForm";
+	}
+	// 비밀번호찾기 페이지로 이동
+	@GetMapping("/findPwForm")
+	public String findPwForm() {
+		return "member/findPwForm";
+	}
+	// 비밀번호찾기 페이지로 이동
+	@GetMapping("/sendPw")
+	public String sendPw() {
+		return "member/sendPw";
+	}
+
+	// 아이디 찾기
+	@PostMapping("/findId")
+	public String findId(MemberDTO dto, Model m) {
+		String user_email = service.findId(dto);
+		if(user_email != null) {
+			//정보가 일치하는 회원
+			m.addAttribute("user_email", user_email);
+			return "member/findIdSuccess";
+		}else {
+			//정보가 일치하지 않는 회원
+			return "redirect:findIdForm?error=true";
+		}
+	}
+	
+	// 비밀번호 찾기
+	@PostMapping("/findPw")
+	public String findPw(MemberDTO dto, Model m) {
+		String user_email = service.findPw(dto);
+		if(user_email != null) {
+			//정보가 일치하는 회원
+			fservice.sendMail(user_email);
+			
+			return "member/sendPw";
+		}else {
+			//정보가 일치하지 않는 회원
+			return "redirect:findPwForm?error=true";
+		}
 	}
 
 }

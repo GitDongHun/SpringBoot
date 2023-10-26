@@ -60,11 +60,17 @@
 		<!-- kakao Map API & 크롤링 관련 -->
 		<!-- Selenium : 동적 페이지 크롤링 -->
 		<dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-java</artifactId>
-        <version>3.141.59</version> <!-- 최신 버전 사용 가능 -->
-    </dependency>
-		
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version> <!-- 최신 버전 사용 가능 -->
+		</dependency>
+
+		<!-- SMTP -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

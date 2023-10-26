@@ -1,51 +1,51 @@
 .titletext{
-    margin-top:30px;
-    margin-bottom: 36px;
-    text-align: center;
+  margin-top:30px;
+  margin-bottom: 36px;
+  text-align: center;
 }
 
 h2{
-  text-align: left;
+text-align: left;
 }
 
 #loginForm input {
-  width: 380px;
-  height: 45px;
-  border: 1px solid #d6d6d6;
-  border-radius: 4px;
-  font-size: 18px;
-  padding: 6px 14px;
-  margin-bottom: 12px;
+width: 380px;
+height: 45px;
+border: 1px solid #d6d6d6;
+border-radius: 4px;
+font-size: 18px;
+padding: 6px 14px;
+margin-bottom: 12px;
 }
 
 #joinbtn{
-  height: 45px;
-  font-size: 18px;
-  background-color: white;
-  color: black;
-  border: 1px solid #808080;
-  border-radius: 4px;
-  width: 380px;
-  margin-bottom: 24px;
+height: 45px;
+font-size: 18px;
+background-color: white;
+color: black;
+border: 1px solid #808080;
+border-radius: 4px;
+width: 380px;
+margin-bottom: 24px;
 }
 
 #joinbtn:hover{
-  background-color: white !important;
-  border: 1px solid #ff8100 !important;
-  color: #ff8100;
+background-color: white !important;
+border: 1px solid #ff8100 !important;
+color: #ff8100;
 }
 .btn:hover {
-  background-color: white !important;
-  color: #ff8000;
-  border: 1px solid #ff8100 !important;
+background-color: white !important;
+color: #ff8000;
+border: 1px solid #ff8100 !important;
 }
 
 .bodycontent a{
-  color: black !important;
-  text-decoration: none !important;
-  
+color: black !important;
+text-decoration: none !important;
+
 }
 
 span {
-  color: #d1d1d1;
+color: #d1d1d1;
 }

@@ -37,14 +37,14 @@
                         <tr>
                           <th>비밀번호*</th>
                           <td>
-                            <input type="text" id="pw" name="pw" placeholder="영문 대소문자/숫자/특수문자, 8~16자" required
+                            <input type="password" id="pw" name="pw" placeholder="영문 대소문자/숫자/특수문자, 8~16자" required
                             th:value="${MemberDTO.pw}">
                           </td>                  
                         </tr>
                         <tr>
                           <th>비밀번호 확인*</th>
                           <td style="display: flex;">
-                            <input type="text" id="pwcheck" name="pwcheck" placeholder="비밀번호를 한번 더 입력해주세요." title="아이디입력" required
+                            <input type="password" id="pwcheck" name="pwcheck" placeholder="비밀번호를 한번 더 입력해주세요." title="아이디입력" required
                             th:value="${MemberDTO.pw}">
                             <span id="pwsamechk"></span>
                           </td>                  
