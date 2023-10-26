@@ -94,7 +94,7 @@ public class RstController {
 		System.out.println("===============================================");
 		System.out.println("02. Mybatis 사용하여 DB로 전송 ");
 		for (RstDTO dto : rstDTOList) {
-			rstService.saveRestaurant(dto);
+			rstService.insertOrUpdateRestaurant(dto);
 		}
 		return "/rst/rst";
 	}

@@ -18,8 +18,9 @@ public class RstDAO {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
-    public void saveRestaurant(RstDTO restaurant) {
-        sqlSessionTemplate.insert("RstMapper.saveRestaurant", restaurant);
+    public void insertOrUpdateRestaurant(RstDTO restaurant) {
+        sqlSessionTemplate.insert("RstMapper.insertOrUpdateRestaurant", restaurant);
+       
     }
 
     public RstDTO selectRestaurantById(String rst_id) {

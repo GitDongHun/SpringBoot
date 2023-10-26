@@ -7,10 +7,23 @@
     SELECT * FROM restaurant
 </select>
 
-<insert id="saveRestaurant">
-    INSERT INTO restaurant (rst_id, rst_name, rst_addr1, rst_addr2, rst_phone, rst_cate)
-    VALUES (#{rst_id}, #{rst_name}, #{rst_addr1}, #{rst_addr2}, #{rst_phone}, #{rst_cate})
+<insert id="insertOrUpdateRestaurant" >
+MERGE INTO restaurant r
+  USING dual ON (r.rst_id = '${rst_id}')
+  WHEN MATCHED THEN
+    UPDATE SET
+    rst_name = '${rst_name}',
+    rst_addr1 = '${rst_addr1}',
+    rst_addr2 = '${rst_addr2}',
+    rst_phone = '${rst_phone}',
+    rst_cate = '${rst_cate}'
+  WHEN NOT MATCHED THEN
+    INSERT (rst_id, rst_name, rst_addr1, rst_addr2, rst_phone, rst_cate)
+    VALUES ('${rst_id}', '${rst_name}', '${rst_addr1}', '${rst_addr2}', '${rst_phone}', '${rst_cate}')
 </insert>
+
+
+
 
 <select id="selectRestaurantById" resultType="com.food.exp.dto.RstDTO">
     SELECT * FROM restaurant
