@@ -19,8 +19,8 @@ public class RstServiceImpl implements RstService {
 		return rstDAO.getAllRestaurants();
 	}
 	@Override
-	public void saveRestaurant(RstDTO restaurant) {
-		rstDAO.saveRestaurant(restaurant);
+	public void insertOrUpdateRestaurant(RstDTO restaurant) {
+		rstDAO.insertOrUpdateRestaurant(restaurant);
 	}
 	@Override
 	public RstDTO selectRestaurantById(String rst_id) {
