@@ -110,7 +110,7 @@ button{
 .review .rating {
 	position: relative;
 	color: #ddd;
-	font-size: 25px;
+	font-size: 20px;
 	text-align: center;
   }
   
@@ -136,4 +136,17 @@ button{
 /* 리뷰 별점 */
 .rev_date{
     margin-left:6px;
+}
+.stars{
+    display: inline-block;
+}
+.rev_content{
+	padding-left: 10px;
+	padding-top: 10px;
+	font-size: 19px;
+}
+.rtitle{
+	text-decoration: underline;
+    text-underline-offset: 5px;
+    margin-bottom: 6px;
 }
