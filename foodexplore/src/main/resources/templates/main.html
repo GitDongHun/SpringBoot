@@ -35,7 +35,7 @@
 		font-style: normal;
 	}
 
-	<!-- 주황 부분 -->
+	/* <!-- 주황 부분 --> */
 	.background {
 		position: relative;
 		height: 600px;
@@ -93,7 +93,7 @@
 		margin-bottom: 30px;
 	}
 
-<!-- top10 부분 -->
+/* <!-- top10 부분 --> */
 	.jump {	/*  */
 		position: absolute;
 		top: 750px;
@@ -161,7 +161,7 @@
 		background-color: rgba(0, 0, 0, 0.5);
 		z-index: 1;
 		text-align: center;
-		display: flex;
+		/* display: flex; */
 		justify-content: center;
 		align-items: center;
 	}
@@ -184,23 +184,23 @@
 	<script type="text/javascript">
 		function openModal() {
 			var modal = document.getElementById("myModal");
-			modal.style.display = "block";
+			modal.style.display = "flex";
 		  
 			var regionContent = document.getElementById("regionContent");
 		}
 		
 		// "region.html" 파일을 가져오는 fetch 요청
-		fetch("region")
-			.then(function (response) {
-				return response.text();
-			})
-			.then(function (data) {
-				// 가져온 HTML 내용을 모달 창의 내용으로 설정
-				regionContent.innerHTML = data;
-		    })
-		    .catch(function (error) {
-				console.error("파일을 불러오는 중 오류가 발생했습니다.", error);
-		    });
+		// fetch("region")
+		// 	.then(function (response) {
+		// 		return response.text();
+		// 	})
+		// 	.then(function (data) {
+		// 		// 가져온 HTML 내용을 모달 창의 내용으로 설정
+		// 		regionContent.innerHTML = data;
+		//     })
+		//     .catch(function (error) {
+		// 		console.error("파일을 불러오는 중 오류가 발생했습니다.", error);
+		//     });
 
 		function closeModal() {
 			var modal = document.getElementById("myModal");
@@ -230,6 +230,8 @@
 						<!-- 모달 창 -->
 						<div id="myModal" class="modal">
 							<div class="modal-content">
+								<div th:insert="~{commons/region.html}"></div>
+
 								<span class="close" onclick="closeModal()">&times;</span>
 								<p id="regionContent"></p>
 							</div>
