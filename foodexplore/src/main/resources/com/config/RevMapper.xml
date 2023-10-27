@@ -12,23 +12,18 @@
 	    WHERE r.user_email = #{user_email, jdbcType=VARCHAR}
     </select>
     
-	<!-- 전체 리뷰 보기 -->
-    <select id="getAllReviews" resultType="RevDTO">
-        SELECT * FROM review
-    </select>
-    
     <!-- 리뷰 자세히 보기 -->
     <select id="selectByRev_No" resultType="RevDTO" parameterType="int">
     	SELECT r.*, rt.rst_name 
 	    FROM review r
 	    INNER JOIN restaurant rt ON r.rst_id = rt.rst_id
-	    WHERE r.REV_NO = #{REV_NO}
+	    WHERE r.REV_NO = #{rev_no}
 	</select>
     
 	<!-- 리뷰 추가 -->
     <insert id="addReview" parameterType="RevDTO">
         INSERT INTO review (REV_NO, USER_EMAIL, RST_ID, REV_STAR, REV_COMMENT, REV_DATE, REV_TITLE) 
-        VALUES (#{REV_NO}, #{USER_EMAIL,jdbcType=VARCHAR}, #{RST_ID}, #{REV_STAR}, #{REV_COMMENT}, #{REV_DATE}, #{REV_TITLE})
+        VALUES (#{rev_no}, #{user_email,jdbcType=VARCHAR}, #{rst_id,jdbcType=VARCHAR}, #{rev_star}, #{rev_comment,jdbcType=VARCHAR}, #{rev_date}, #{rev_title,jdbcType=VARCHAR})
     </insert>
     
 	<!-- 리뷰 수정 -->
@@ -41,7 +36,7 @@
 
 	<!-- 리뷰 삭제 -->
     <delete id="deleteReview" parameterType="int">
-        DELETE FROM review WHERE REV_NO = #{REV_NO}
+        DELETE FROM review WHERE REV_NO = #{rev_no}
     </delete>
 	
 </mapper>

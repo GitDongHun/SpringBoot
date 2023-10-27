@@ -24,6 +24,32 @@
                 });
             });
         }); // 체크박스
+        
+        function DelSelect() {
+            var checkboxes = document.getElementsByClassName('row-checkbox');
+            var checkedReviews = [];
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    var rev_no = checkboxes[i].parentNode.parentNode.querySelector('td:nth-child(2)').innerText;
+                    checkedReviews.push(rev_no);
+                }
+            }
+
+            // AJAX 요청
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/deleteSelectedReviews", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(checkedReviews));
+
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    // 삭제 작업이 성공적으로 처리된 후 수행할 작업을 여기에 추가할 수 있습니다.
+                    console.log('리뷰가 성공적으로 삭제되었습니다.');
+                } else {
+                    console.log('삭제 작업이 실패했습니다.');
+                }
+            };
+        }
     </script>
 
     <body>
@@ -61,7 +87,7 @@
 		            </tbody>
 		        </table>
 		        <div class="delete-button">
-			        <button type="button" onclick="deleteSelectedRows()">선택 삭제</button>
+			        <button type="button" onclick="DelSelect()">선택 삭제</button>
 			    </div>
             </div>
             </div>
