@@ -35,7 +35,7 @@
 		font-style: normal;
 	}
 
-	<!-- 주황 부분 -->
+	/* <!-- 주황 부분 --> */
 	.background {
 		position: relative;
 		height: 600px;
@@ -93,7 +93,7 @@
 		margin-bottom: 30px;
 	}
 
-<!-- top10 부분 -->
+/* <!-- top10 부분 --> */
 	.jump {	/*  */
 		position: absolute;
 		top: 750px;
@@ -183,7 +183,6 @@
 	<script type="text/javascript">
 		function openModal() {
 			var modal = document.getElementById("myModal");
-			var btnModal = document.getElementById("btn-modal");
 			modal.style.display = "flex";
 		  
 			var regionContent = document.getElementById("regionContent");
@@ -201,7 +200,6 @@
 					console.error("파일을 불러오는 중 오류가 발생했습니다.", error);
 			    });
 		}
-		
 
 		function closeModal() {
 			var modal = document.getElementById("myModal");
@@ -231,6 +229,8 @@
 						<!-- 모달 창 -->
 						<div id="myModal" class="modal">
 							<div class="modal-content">
+								<div th:insert="~{commons/region.html}"></div>
+
 								<span class="close" onclick="closeModal()">&times;</span>
 								<p id="regionContent"></p>
 							</div>
