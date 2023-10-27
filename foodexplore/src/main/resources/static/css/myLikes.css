@@ -5,7 +5,7 @@ ul li {
 }
 
 /* 사이드바 */
-.sidebar a[href="/index/mypage/myLikes"] {
+.sidebar a[href="/foodexp/mypage/myLikes"] {
     color: #EF6900;
 }
 

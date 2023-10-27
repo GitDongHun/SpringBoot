@@ -29,11 +29,6 @@ public class RevDAO {
 		return session.selectOne("RevMapper.selectByRev_No", no);
 	}
     
-    // 전체 리뷰 가져오기
-    public List<RevDTO> getAllReviews() {
-        return session.selectList("RevMapper.getAllReviews");
-    }
-    
     // 리뷰 수정
     public int updateReview(RevDTO review) {
         return session.update("RevMapper.updateReview", review);

@@ -175,7 +175,7 @@ ul li {
   margin-right: 15px;
   border-radius: 50%;
   background-color: #EF6900;
-  margin-top: -50px;
+  margin-top: -35px;
 
 }
 
@@ -208,7 +208,6 @@ ul li {
 	border-right: 1px solid #CACACA;
 }
 .revcontent{
-	font-size: 15px;
+	font-size: 14px;
     color: black;
-    margin-top: 10px;
 }
