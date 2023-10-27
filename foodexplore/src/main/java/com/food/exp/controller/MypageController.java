@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.MemberDTO;
+import com.food.exp.dto.RevDTO;
 import com.food.exp.service.MypageService;
 
 @Controller
@@ -33,28 +34,31 @@ public class MypageController {
 		List<LikesDTO> likesDTO = service.getLikes(user_email);
 		m.addAttribute("LikesDTO", likesDTO);
 		// 리뷰 정보
-		
+		List<RevDTO> revDTO = service.getRev(user_email);
+		m.addAttribute("RevDTO", revDTO);
 		return "member/mypage";
 	}
 
 	// 나의 즐겨찾기 페이지
 	@GetMapping("/myLikes")
-	public String myLikes(HttpSession session, Model m) {
+	public String myLikes(HttpSession session, Model m, LikesDTO dto) {
 		// 즐겨찾기 정보
 		String user_email = (String) session.getAttribute("login");
+		dto.setUser_email(user_email);
 		List<LikesDTO> likesDTO = service.getLikes(user_email);
 		m.addAttribute("LikesDTO", likesDTO);
+		System.out.println(likesDTO.toString());
 		return "member/myLikes";
 	}
-	
+
 	// 즐겨찾기 삭제
-	@GetMapping("/delLikes")
-	public String delLikes(HttpSession session) {
-		String rst_id = (String) session.getAttribute("login");
-		int result = service.delLikes(rst_id);
-		return "redirect:/member/myLikes";
+	@PostMapping("/delLikes")
+	public String delLikes(HttpSession session, LikesDTO dto) {
+		String user_email = (String) session.getAttribute("login");
+		dto.setUser_email(user_email);
+		int num = service.delLikes(dto);
+		return "redirect:/mypage/myLikes";
 	}
-	
 
 	// 회원정보 수정 페이지로 이동
 	@GetMapping("/changeInfo")

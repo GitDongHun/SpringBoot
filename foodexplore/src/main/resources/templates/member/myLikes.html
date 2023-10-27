@@ -27,23 +27,26 @@
 				<h2 class="myLikes-title">나의 즐겨찾기</h2>
 
 				<!-- 나의 즐겨찾기 -->
-				<div class="rst-box" th:each="likeItem: ${LikesDTO}">
+				<div class="rst-box" th:each="likes: ${LikesDTO}">
 					<div class="like-rst">
 						<img class="food-img" id="food-img">
 						<div class="text-info">
 							<div class="rst-info">
-								<p class="rstname" th:text="${likeItem.rst_name}" />
-								<p class="rstcate" th:text="${likeItem.rst_cate}" />
+								<p class="rstname" th:text="${likes.rst_name}" />
+								<p class="rstcate" th:text="${likes.rst_cate}" />
 							</div>
 							<div class="rst-info">
-								<p class="rstaddr" th:text="${likeItem.rst_addr1}" />
+								<p class="rstaddr" th:text="${likes.rst_addr1}" />
 							</div>
 							<div class="rst-info">
-								<p class="revscore">리뷰 4.5/5</p>
-								<p class="like-count">즐겨찾기 1061</p>
+								<p class="revscore">별점 <span th:if="${likes.rev_avg}" th:text="${likes.rev_avg+ '/5'}"></span></p>
+								<p class="like-count">즐겨찾기 <span th:text="${likes.likes_total}"></span></p>
 							</div>
 						</div>
-						<button class="star" id="delstar">★</button>
+						<form th:action="@{/mypage/delLikes}" class="star" method="post">
+							<input type="hidden" name="rst_id" th:value="${likes.rst_id}" />
+							<button type="submit" class="star" id="delstar">★</button>
+						</form>
 					</div>
 				</div>
 
@@ -54,40 +57,59 @@
 		<!-- end bodycontent -->
 
 		<script>
-			/* // 삭제
-			$(document).ready(function() {
-                $("#delstar").click(function(e) {
-                  e.preventDefault(); // 폼 서브밋 방지
-                  deleteLikes(); 
-                });
-              });
+		
+		/* $(document).ready(function() {
+		    $(".star").click(function() {
+		        // 버튼 텍스트를 ★에서 ☆로 변경
+		        var $button = $(this);
+		        if ($button.text() === '★') {
+		            $button.text('☆');
+		            
+		            // 삭제 요청을 서버로 전송
+		            var $form = $button.closest('.star-form');
+		            $.post($form.attr('action'), $form.serialize(), function(response) {
+		            });
+		        }
+		    });
+		}); */
+			
+		
+		/* $(document).ready(function() {
+		    $(".star").each(function() {
+		        var $button = $(this);
+		        var rstId = $button.siblings('input[name="rst_id"]').val();
+		        var isLiked = localStorage.getItem('liked_' + rstId) === 'true';
 
-              function deleteLikes() {
-                var result = confirm("즐겨찾기를 삭제하시겠습니까?");
+		        // 초기 버튼 텍스트 설정
+		        if (isLiked) {
+		            $button.text('★');
+		        } else {
+		            $button.text('☆');
+		        }
 
-                if (result) {
-                  // 사용자가 "Yes"를 선택한 경우
-                  window.location.href = "/index/mypage/delLikes";
-                  var formObj = $("form");
-                  formObj.attr("action","delLikes");
-                  formObj.submit();
+		        $button.click(function() {
+		            var isLiked = $button.text() === '★';
 
-                } //사용자가 아니오를 선택한 경우 원래 상태로 돌아감
-              } */
-			
-			
-			
-			
-			
-			/* 			$(function() {
-			 $('#star').click(function() {
-			 if ($(this).html() == '★') {
-			 $(this).html('☆');
-			 } else {
-			 $(this).html('★');
-			 }
-			 });
-			 }); */
+		            // 즐겨찾기 상태를 토글하고 로컬 스토리지에 저장
+		            isLiked = !isLiked;
+		            localStorage.setItem('liked_' + rstId, isLiked);
+
+		            // 서버로 상태 업데이트 요청 보내기
+		            var $form = $button.closest('form');
+		            $.post($form.attr('action'), $form.serialize(), function(response) {
+		                // 서버 응답을 무시할 수 있음
+		            });
+
+		            // 버튼 텍스트 변경
+		            if (isLiked) {
+		                $button.text('★'); // 즐겨찾기 추가
+		            } else {
+		                $button.text('☆'); // 즐겨찾기 삭제
+		            }
+		        });
+		    });
+		}); */
+		
 		</script>
 
 

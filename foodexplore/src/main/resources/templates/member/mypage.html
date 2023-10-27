@@ -71,7 +71,7 @@
 								type="text" required th:value="${MemberDTO.user_addr2}"
 								id="user_addr2" class="design shape" readonly>
 						</div>
-						<a class="changeInfo-btn" href="/index/mypage/changeInfo">회원
+						<a class="changeInfo-btn" th:href="@{/mypage/changeInfo}">회원
 							정보 수정</a>
 					</div>
 				</div>
@@ -83,18 +83,19 @@
 					<div class="mylist-box">
 						<div class="title-util">
 							<h2 class="title-name">나의 즐겨찾기</h2>
-							<a href="/index/mypage/myLikes" class="more" title="더보기">더보기 ></a>
+							<a th:href="@{/mypage/myLikes}" class="more" title="더보기">더보기
+								></a>
 						</div>
 						<div class="mylike-list">
 							<ul class="list-uibox">
-								 <li th:each="likeItem: ${LikesDTO}">
+								<li th:each="likes, limit: ${LikesDTO}" th:if="${limit.index < 3}">
 									<div class="like-rst">
 										<img class="likestar" th:src="@{/images/likestar.png}">
 										<div class="text-info">
-											<p class="rstname" th:text="${likeItem.rst_name}" />
+											<p class="rstname" th:text="${likes.rst_name}" />
 											<div class="rst-info">
 												<p class="revscore">별점 4.5/5(100)</p>
-												<p class="rstaddr" th:text="${likeItem.rst_addr1}" />
+												<p class="rstaddr" th:text="${likes.rst_addr1}" />
 											</div>
 										</div>
 									</div>
@@ -107,33 +108,21 @@
 					<div class="mylist-box">
 						<div class="title-util">
 							<h2 class="title-name">리뷰 관리</h2>
-							<a href="/index/mypage/rev" class="more" title="더보기">더보기 ></a>
+							<a th:href="@{/mypage/rev}" class="more" title="더보기">더보기 ></a>
 						</div>
 						<div class="myrev-list">
 							<ul class="list-uibox">
-								<li>
+								<li th:each="revs, limit: ${RevDTO}" th:if="${limit.index < 3}">
 									<div class="rev-list">
 										<div id="circle"></div>
 										<div class="text-info">
-											<p class="rstname">음식점이름</p>
+											<p class="rstname" th:text="${revs.rst_name}" />
 											<div class="rst-info">
 												<p class="revscore">별점 4.5/5</p>
-												<p class="revdate">2023.10.20</p>
+												<p class="revdate"
+													th:text="${#dates.format(revs.rev_date, 'yyyy-MM-dd')}" />
 											</div>
-											<p class="revcontent">후기가 있다... 리뷰가 있다... 리...뷰.....</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="rev-list">
-										<div id="circle"></div>
-										<div class="text-info">
-											<p class="rstname">음식점이름</p>
-											<div class="rst-info">
-												<p class="revscore">별점 4.5/5</p>
-												<p class="revdate">2023.10.20</p>
-											</div>
-											<p class="revcontent">맛있어요.</p>
+											<p class="revcontent" th:text="${revs.rev_comment}" />
 										</div>
 									</div>
 								</li>

@@ -8,18 +8,22 @@ public class LikesDTO {
 	String rst_id;
 	String rst_name;
 	String rst_addr1;
-	String rst_addr2;
 	String rst_cate;
+	int likes_total;
+	int rev_avg;
 	
 	public LikesDTO() {}
 
-	public LikesDTO(String user_email, String rst_id, String rst_name, String rst_addr1, String rst_cate) {
+	public LikesDTO(String user_email, String rst_id, String rst_name, String rst_addr1, String rst_cate,
+			int likes_total, int rev_avg) {
 		super();
 		this.user_email = user_email;
 		this.rst_id = rst_id;
 		this.rst_name = rst_name;
 		this.rst_addr1 = rst_addr1;
 		this.rst_cate = rst_cate;
+		this.likes_total = likes_total;
+		this.rev_avg = rev_avg;
 	}
 
 	public String getUser_email() {
@@ -62,10 +66,27 @@ public class LikesDTO {
 		this.rst_cate = rst_cate;
 	}
 
+	public int getLikes_total() {
+		return likes_total;
+	}
+
+	public void setLikes_total(int likes_total) {
+		this.likes_total = likes_total;
+	}
+
+	public int getRev_avg() {
+		return rev_avg;
+	}
+
+	public void setRev_avg(int rev_avg) {
+		this.rev_avg = rev_avg;
+	}
+
 	@Override
 	public String toString() {
 		return "LikesDTO [user_email=" + user_email + ", rst_id=" + rst_id + ", rst_name=" + rst_name + ", rst_addr1="
-				+ rst_addr1 + ", rst_cate=" + rst_cate + "]";
+				+ rst_addr1 + ", rst_cate=" + rst_cate + ", likes_total=" + likes_total + ", rev_avg=" + rev_avg + "]";
 	}
+
 
 }
