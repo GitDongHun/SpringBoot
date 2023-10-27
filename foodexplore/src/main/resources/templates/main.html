@@ -184,21 +184,6 @@
 		function openModal() {
 			var modal = document.getElementById("myModal");
 			modal.style.display = "flex";
-		  
-			var regionContent = document.getElementById("regionContent");
-			
-			// "region.html" 파일을 가져오는 fetch 요청
-			fetch("region")
-				.then(function (response) {
-					return response.text();
-				})
-				.then(function (data) {
-					// 가져온 HTML 내용을 모달 창의 내용으로 설정
-					regionContent.innerHTML = data;
-			    })
-			    .catch(function (error) {
-					console.error("파일을 불러오는 중 오류가 발생했습니다.", error);
-			    });
 		}
 
 		function closeModal() {
@@ -230,9 +215,7 @@
 						<div id="myModal" class="modal">
 							<div class="modal-content">
 								<div th:insert="~{commons/region.html}"></div>
-
 								<span class="close" onclick="closeModal()">&times;</span>
-								<p id="regionContent"></p>
 							</div>
 						</div> <!-- end modal -->
 					</div> <!-- end different -->

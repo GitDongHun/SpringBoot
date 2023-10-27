@@ -88,7 +88,6 @@
 
 		function reg1_change(selectedValue, h_area2) {
 			var reg1Index = parseInt(selectedValue, 10);
-			console.log("aaa");
 			var reg2Numbers = reg2_num[reg1Index];
 			var reg2Names = reg2_name[reg1Index];
 			var h_area2Options = h_area2.options;
