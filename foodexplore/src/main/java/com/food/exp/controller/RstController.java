@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,42 +34,36 @@ public class RstController {
 	RevService service;
 
 	@GetMapping("/rst")
-	public String rst_main(Model model) {
+	public String rst_main(HttpSession session,Model model) {
 
 		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분할 함수 만들어야함
-
+		
 		// api키 가지고오기
 		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
-		model.addAttribute("keyword", "");
-		System.out.println("RstController 실행-GET");
+		model.addAttribute("searchinput", "");
+		System.out.println("RstController 실행-GET 현재위치, 다른위치 검색할 함수 만들어야함");
 		return "/rst/rst";
 	}
 
 	@PostMapping("/rst")
-	public String rst_post(@RequestParam("query") String rst_query, Model model) {
+	public String rst_post(@RequestParam("query") String rst_query, Model model,HttpSession session) {
 		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
 
 		if (rst_query != "") {
-			model.addAttribute("keyword", rst_query);
+			model.addAttribute("searchinput", rst_query);
+			session.setAttribute("searchinput", rst_query);
 		} else {
-			model.addAttribute("keyword", "");
+			model.addAttribute("searchinput", "");
+			session.setAttribute("searchinput", "");
 		}
-		System.out.println("RstController 실행-POST");
+		System.out.println("RstController 실행-POST 키워드로 검색, 키워드는"+rst_query);
 		return "/rst/rst";
 	}
 
 	@PostMapping("/htmltodb")
 	public String htmltodb(@RequestBody List<RstTempDTO> rsttempList) {
 		List<RstDTO> rstDTOList = new ArrayList<>();
-	
-		System.out.println("===============================================");
-		System.out.println("01. 서버에서 가져온 데이터를 rstDTO로 옮기기 ");
-
-		for (RstTempDTO rstTempDTO : rsttempList) {
-
-			// 00. debug: 잘왔는지 데이터 출력
-			System.out.println(rstTempDTO.getAll());
-
+			for (RstTempDTO rstTempDTO : rsttempList) {
 			// 01. rstDTO에 rsttempList값을 재전달
 			RstDTO rstDTO = new RstDTO();
 			rstDTO.setRst_id((rstTempDTO.getId() != null) ? rstTempDTO.getId() : "");
@@ -84,13 +79,8 @@ public class RstController {
 			// rstDTO.setDistance(rstTempDTO.getDistance());
 			// rstDTO.setCategoryGroupCode(rstTempDTO.getCategory_group_code());
 			// rstDTO.setCategoryGroupName(rstTempDTO.getCategory_group_name());
-
 			rstDTOList.add(rstDTO);
 		}
-
-
-		System.out.println("===============================================");
-		System.out.println("02. Mybatis 사용하여 DB로 전송 ");
 		for (RstDTO dto : rstDTOList) {
 			rstService.insertOrUpdateRestaurant(dto);
 		}
