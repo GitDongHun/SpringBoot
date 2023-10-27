@@ -177,7 +177,7 @@
                   if(nickname !== "" && nickname !== originalnickname) {
 
                   $.ajax({
-                    url:'/index/member/nameCheck',
+                    url:'/foodexp/member/nameCheck',
                     type:"get",
                     dataType:"text",
                     data: { nickname: nickname },
@@ -248,7 +248,7 @@
 
                 if (result) {
                   // 사용자가 "Yes"를 선택한 경우
-                  window.location.href = "/index/mypage/delMember";
+                  window.location.href = "/foodexp/mypage/delMember";
                   var formObj = $("form");
                   formObj.attr("action","delMember");
                   formObj.submit();

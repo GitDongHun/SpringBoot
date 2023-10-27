@@ -20,7 +20,7 @@ public class RevServiceImpl implements RevService {
 	}
 
 	@Override
-	public RevDTO getReviewById(String user_email) {
+	public List<RevDTO> getReviewById(String user_email) {
 		 return dao.getReviewById(user_email);
 	}
 
@@ -30,13 +30,20 @@ public class RevServiceImpl implements RevService {
 	}
 
 	@Override
-	public void updateReview(RevDTO review) {
-		dao.updateReview(review);
+	public int updateReview(RevDTO review) {
+		return dao.updateReview(review);
 	}
 
 	@Override
 	public void deleteReview(int rev_no) {
 		dao.deleteReview(rev_no);
 	}
+
+	@Override
+	public RevDTO selectByRev_No(int rev_no) {
+		return dao.selectByRev_No(rev_no);
+	}
+
+
 	
 }

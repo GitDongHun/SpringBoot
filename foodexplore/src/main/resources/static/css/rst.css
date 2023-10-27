@@ -13,14 +13,10 @@
 			text-decoration: none;
 		}
 
-		.map_wrap {
-			position: relative;
-			width: 100%;
-			height: 500px;
-		}
+
 
 		#menu_wrap {
-			position: absolute;
+			position: relative;
 			top: 0;
 			left: 0;
 			bottom: 0;
@@ -185,4 +181,55 @@
 			font-weight: bold;
 			cursor: default;
 			color: #777;
+		}
+
+
+
+
+		.bodycontent {
+			width: 80% !important;
+			height: 80vh !important;
+			position:relative;
+		}
+
+
+		.map_wrap {
+			position: relative;
+			width: 100%;
+			height: 50vh;
+		}
+
+		._01_all{
+			display:flex;flex-direction: column;
+		}
+
+
+
+		._01_01_01_sub {
+			z-index: 1;
+			background-color:white;
+			
+			border-color:black;
+			
+		}
+
+		@media (min-width:900px){
+
+
+			.map_wrap {
+				position: relative;
+				width: 100%;
+				height: 73vh;
+			}
+			._01_01_main{
+				display:flex;
+			}
+			._01_01_01_sub{
+				overflow:auto;
+				display:block;
+				position:absolute;
+				margin-top: 90px;
+				height:50vh;
+				background-color:rgba(255,255,255,0.8);
+			}
 		}
