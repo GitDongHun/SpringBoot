@@ -75,7 +75,7 @@ kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
 // 키워드 검색을 요청하는 함수입니다
 function searchFunction() {
 
-	var keyword = document.getElementById('keyword').value;
+	var keyword = document.getElementById('searchinput').value;
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		ps.categorySearch('FD6',placesSearchCB,{ useMapBounds: true })
 	}
@@ -106,7 +106,7 @@ function searchPlaceMine() {
 	myLocationMapView();
 }
 
-searchPlaceMine();
+searchPlaces();
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
