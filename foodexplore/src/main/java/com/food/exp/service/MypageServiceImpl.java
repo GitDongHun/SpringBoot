@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.food.exp.dao.MypageDAO;
 import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.MemberDTO;
+import com.food.exp.dto.RevDTO;
 
 @Service
 public class MypageServiceImpl implements MypageService{
@@ -34,11 +35,16 @@ public class MypageServiceImpl implements MypageService{
 	public List<LikesDTO> getLikes(String user_email) {
 		return dao.getLikes(user_email);
 	}
-
+	
 	@Override
-	public int delLikes(String rst_id) {
-		return dao.delLikes(rst_id);
+	public int delLikes(LikesDTO dto) {
+		return dao.delLikes(dto);
 	}
 
-	
+	@Override
+	public List<RevDTO> getRev(String user_email) {
+		return dao.getRev(user_email);
+	}
+
+
 }

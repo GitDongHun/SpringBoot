@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.MemberDTO;
+import com.food.exp.dto.RevDTO;
 
 @Repository("MypageDAO")
 public class MypageDAO {
@@ -25,15 +26,20 @@ public class MypageDAO {
 	}
 	// 회원 탈퇴
 	public int delMember(String user_email) {
-		return session.delete("MypageMapper.delMember",user_email);
+		return session.delete("MypageMapper.delMember", user_email);
 	}
 	
 	// 즐겨찾기 가져오기
 	public List<LikesDTO> getLikes(String user_email) {
-		return session.selectList("MypageMapper.getLikes",user_email);
+		return session.selectList("MypageMapper.getLikes", user_email);
 	}
 	// 즐겨찾기 삭제
-	public int delLikes(String rst_id) {
-		return session.delete("MypageMapper.delLikes",rst_id);
+	public int delLikes(LikesDTO dto) {
+		return session.delete("MypageMapper.delLikes", dto);
+	}
+	
+	// 리뷰 정보 가져오기
+	public List<RevDTO> getRev(String user_email) {
+		return session.selectList("MypageMapper.getRev", user_email);
 	}
 }
