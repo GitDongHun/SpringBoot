@@ -1,3 +1,7 @@
+.sidebar a[href="/foodexp/mypage/changeInfo"] {
+	color: #EF6900;
+}
+
 .titletext{
     margin-bottom: 23px;
     margin-top: 4px;
