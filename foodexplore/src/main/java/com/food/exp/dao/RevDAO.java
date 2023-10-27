@@ -35,8 +35,8 @@ public class RevDAO {
     }
     
     // 리뷰 수정
-    public void updateReview(RevDTO review) {
-        session.update("RevMapper.updateReview", review);
+    public int updateReview(RevDTO review) {
+        return session.update("RevMapper.updateReview", review);
     }
 
     // 리뷰 삭제

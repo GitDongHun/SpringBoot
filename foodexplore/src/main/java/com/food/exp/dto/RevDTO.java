@@ -14,7 +14,8 @@ public class RevDTO {
 	Date rev_date;
 	String rev_title;
 	String rst_name;
-	public RevDTO() {}
+	
+	public RevDTO() {};	
 	public RevDTO(int rev_no, String user_email, String rst_id, int rev_star, String rev_comment, Date rev_date,
 			String rev_title, String rst_name) {
 		super();

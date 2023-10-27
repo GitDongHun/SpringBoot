@@ -33,8 +33,10 @@
     
 	<!-- 리뷰 수정 -->
     <update id="updateReview" parameterType="RevDTO">
-        UPDATE review SET USER_EMAIL = #{USER_EMAIL,jdbcType=VARCHAR}, RST_ID = #{RST_ID}, REV_STAR = #{REV_STAR}, 
-        REV_COMMENT = #{REV_COMMENT}, REV_TITLE = #{REV_TITLE} WHERE REV_NO = #{REV_NO}
+        UPDATE review SET REV_STAR = #{rev_star}, REV_COMMENT = #{rev_comment, jdbcType=VARCHAR}, REV_TITLE = #{rev_title, jdbcType=VARCHAR},
+        rev_date = sysdate 
+        WHERE REV_NO = #{rev_no}
+        and  USER_EMAIL = #{user_email,jdbcType=VARCHAR}
     </update>
 
 	<!-- 리뷰 삭제 -->

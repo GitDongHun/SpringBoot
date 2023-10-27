@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,10 +41,11 @@ public class RevController {
 	    return "/rev/rev_edit";
 	}
 	
-//	@PostMapping("/updateReview")
-//	public String updateReview(@ModelAttribute("review") RevDTO review) {
-//	    service.updateReview(review);
-//	    return "redirect:rev";
+//	@RequestMapping(value = "/update", method = RequestMethod.POST)
+//	public String updateReview(@ModelAttribute("review") RevDTO review, Model model) {
+//		service.updateReview(review);
+//		System.out.println(review.toString());
+//	    return "redirect:/mypage/rev";
 //	}
 
 	@PostMapping("/deleteReview")
@@ -52,13 +54,21 @@ public class RevController {
 	    return "redirect:rev";
 	}
 	
-	@RequestMapping(value = "/updateReview", method = RequestMethod.POST)
-	public String updateReview(RevDTO revDTO,Model model) {
-		RevDTO num = service.updateReview(revDTO);
-		System.out.println(num);
-		model.addAttribute("review", num);
+	@PostMapping("/update")
+	public String updateReview(RevDTO revDTO, HttpSession session) {
+		String user_email = (String) session.getAttribute("login");
+		revDTO.setUser_email(user_email);
+		System.out.println(revDTO.toString());
+		int num = service.updateReview(revDTO);
 		return "redirect:/rev";
 	}
+	
+//	@RequestMapping(value = "/update", method = RequestMethod.POST)
+//	public String update(RevDTO review, Model model) {
+//		int num = service.updateReview(review);
+//		model.addAttribute("review", num);
+//		return "redirect:rev";
+//	}
 	
 	// 리뷰 수정 화면
 //	@GetMapping("/revedit")

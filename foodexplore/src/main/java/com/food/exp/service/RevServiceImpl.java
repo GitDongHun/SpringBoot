@@ -30,9 +30,8 @@ public class RevServiceImpl implements RevService {
 	}
 
 	@Override
-	public RevDTO updateReview(RevDTO review) {
-		dao.updateReview(review);
-		return review;
+	public int updateReview(RevDTO review) {
+		return dao.updateReview(review);
 	}
 
 	@Override
