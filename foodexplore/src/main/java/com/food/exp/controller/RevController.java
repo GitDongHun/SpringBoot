@@ -24,7 +24,7 @@ public class RevController {
 	@Autowired
 	RevService service;
 	
-	// 리뷰 관리 화면
+	// 내 리뷰 목록
 	@GetMapping("/rev")
 	public String rev(Model model, HttpSession session) {
 		String user_email = (String) session.getAttribute("login");
@@ -41,41 +41,22 @@ public class RevController {
 	    return "/rev/rev_edit";
 	}
 	
-//	@RequestMapping(value = "/update", method = RequestMethod.POST)
-//	public String updateReview(@ModelAttribute("review") RevDTO review, Model model) {
-//		service.updateReview(review);
-//		System.out.println(review.toString());
-//	    return "redirect:/mypage/rev";
-//	}
-
-	@PostMapping("/deleteReview")
-	public String deleteReview(@RequestParam("rev_no") int rev_no) {
-	    service.deleteReview(rev_no);
-	    return "redirect:rev";
-	}
-	
+	// 리뷰 수정
 	@PostMapping("/update")
-	public String updateReview(RevDTO revDTO, HttpSession session) {
+	public String updateReview(@ModelAttribute("review") RevDTO revDTO, HttpSession session) {
 		String user_email = (String) session.getAttribute("login");
 		revDTO.setUser_email(user_email);
+		service.updateReview(revDTO);
 		System.out.println(revDTO.toString());
-		int num = service.updateReview(revDTO);
-		return "redirect:/rev";
+		return "redirect:/mypage/rev";
 	}
 	
-//	@RequestMapping(value = "/update", method = RequestMethod.POST)
-//	public String update(RevDTO review, Model model) {
-//		int num = service.updateReview(review);
-//		model.addAttribute("review", num);
-//		return "redirect:rev";
-//	}
+	// 리뷰 삭제
+	@PostMapping("/delete")
+	public String deleteReview(@RequestParam("rev_no") int rev_no) {
+	    service.deleteReview(rev_no);
+	    return "redirect:/mypage/rev";
+	}
 	
-	// 리뷰 수정 화면
-//	@GetMapping("/revedit")
-//	public String rev_edit(@RequestParam("rev_no") int rev_no, Model model) {
-//	    RevDTO review = service.updateReview(rev_no); // RevDTO 객체를 가져오는 메소드를 사용하여 리뷰 정보 가져오기
-//	    model.addAttribute("review", review);
-//	    return "/rev/rev_edit";
-//	}
 
 }

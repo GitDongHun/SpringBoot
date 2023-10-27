@@ -25,11 +25,6 @@ public class RevServiceImpl implements RevService {
 	}
 
 	@Override
-	public List<RevDTO> getAllReviews() {
-		 return dao.getAllReviews();
-	}
-
-	@Override
 	public int updateReview(RevDTO review) {
 		return dao.updateReview(review);
 	}
@@ -43,7 +38,5 @@ public class RevServiceImpl implements RevService {
 	public RevDTO selectByRev_No(int rev_no) {
 		return dao.selectByRev_No(rev_no);
 	}
-
-
 	
 }
