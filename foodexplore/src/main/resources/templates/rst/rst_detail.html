@@ -34,7 +34,7 @@
 								★★★★★
 								<span class="rating_star" data-star="1.5">★★★★★</span>
 								<input type="range" value="1" step="1" min="0" max="10">
-							  </div>
+							</div>
 						</div>
 					</div>
 					<div class="rstbtn">
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div id="phone_info">
-						<img th:src="@{/images/phone.png}" alt="phone" style="height: 25px;">
+						<img th:src="@{/images/phone.png}" alt="phone" style="height: 26px;margin-right: 7px;">
 						<span id="phoneInfo">031-111-0000</span>
 					</div>
 					
@@ -80,18 +80,22 @@
 					</div>
 					<div class="review">
 						<div class="user_info">
-							<img src="" alt="">
+							<img th:src="@{/images/user.png}" alt="location" style="height: 70px;margin-right: 6px;">
 							<div>
-								<span id="nickname">김아무개</span>
+								<span class="nickname">김아무개</span><br>
 								<div class="stars">
-									<img src="" alt="">
+									<div class="rating">
+										★★★★★
+										<span class="rating_star" data-star="1.5">★★★★★</span>
+										<input type="range" value="1" step="1" min="0" max="10">
+									</div>								
 								</div>
-								<span id="rev_date">2023-10-13</span>
+								<span class="rev_date">2023-10-13</span>
 							</div>
 						</div>
 						<div class="rev_content">
-							<div id="rev_title">맛있어요</div>
-							<div id="rev_comment">맛있더라구요</div>
+							<div class="rtitle">한줄 리뷰: <span id="rev_title">맛있어요</span></div>
+							<div class="rev_comment">맛있더라구요</div>
 							<div class="rev_photo"></div>
 							<br>
 							<!-- <button class="rev_like">공감</button> -->
