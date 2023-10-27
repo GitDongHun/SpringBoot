@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-.sidebar a[href="/index/rev"] {
-	text-align: center;
+.sidebar a[href="/foodexp/mypage/rev"] {
 	color: #EF6900;
 }
 
