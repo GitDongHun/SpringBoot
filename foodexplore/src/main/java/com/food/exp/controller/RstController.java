@@ -98,5 +98,11 @@ public class RstController {
 		}
 		return "/rst/rst";
 	}
+	
+	@GetMapping("/rst/rst_detail")
+	public String rst_detail() {
+
+		return "/rst/rst_detail";
+	}
 
 }
