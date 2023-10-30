@@ -117,7 +117,7 @@ var isWheel = false;
 // 키워드 검색을 요청하는 함수입니다
 function searchFunction() {
 
-	var keyword = document.getElementById('searchinput').value;
+	var keyword = "음식점 "+document.getElementById('searchinput').value;
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		ps.categorySearch('FD6',placesSearchCB,{ useMapBounds: true })
 	}
