@@ -274,3 +274,29 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked){
 				flex:1;
 			}
 		}
+		
+		.menu_cate {
+			padding: 15px 10px;
+		}
+		.menu_cate input[type=radio]{
+			display: none;
+		}
+		.menu_cate input[type=radio]+label{
+			display: inline-block;
+			cursor: pointer;
+			height: 24px;
+			width: 90px;
+			border: 1px solid #333;
+			line-height: 24px;
+			text-align: center;
+			font-weight:bold;
+			font-size:13px;
+		}
+		.menu_cate input[type=radio]+label{
+			background-color: #fff;
+			color: #333;
+		}
+		.menu_cate input[type=radio]:checked+label{
+			background-color: #333;
+			color: #fff;
+		}
