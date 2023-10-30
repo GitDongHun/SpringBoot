@@ -20,6 +20,46 @@ var infowindow = new kakao.maps.InfoWindow({ zIndex: 1, disableAutoPan: true });
 // 내위치
 var myLocationMarker;
 
+
+// 검색 form의 리턴값을 없애기 위한 javascript 동작
+
+document.addEventListener("DOMContentLoaded", function () {
+	var myForm = document.getElementById("searchForm");
+
+	myForm.onsubmit = function (event) {
+		event.preventDefault(); // 폼 제출 기본 동작 방지
+		searchPlaces();
+		console.log("Hello, world!"); // 콘솔에 메시지 출력
+	};
+});
+
+
+
+
+// ******여기 위치에 post get 등등으로 내위치로검색, 전국검색을 나눠야할 기능이 실행되어야함
+
+
+
+// 서버에서 전송된 라디오버튼 설정을 마친 뒤에 이제 검색을 시작한다.
+
+
+searchPlaces();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //내위치에 마커를 생성합니다
 function myLocationMapView() {
 	var onSuccess = function (position) {
@@ -87,11 +127,20 @@ function searchFunction() {
 
 
 
+// 라디오 버튼으로 검색 유형 선택
 function searchPlaces() {
-	isWheel = false;
-	ps = new kakao.maps.services.Places();
-	searchFunction();
+    var searchType = document.querySelector('input[name="searchType"]:checked').value;
+
+    isWheel = false;
+    ps = new kakao.maps.services.Places();
+
+    if (searchType === "nationwide") {
+        searchFunction();
+    } else if (searchType === "myLocation") {
+        searchPlaceMine();
+    }
 }
+
 function searchPlacesWheel() {
 	if (document.getElementById("isCenter").checked) {
 		isWheel = true;
@@ -106,7 +155,7 @@ function searchPlaceMine() {
 	myLocationMapView();
 }
 
-searchPlaces();
+
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {

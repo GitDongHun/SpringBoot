@@ -26,7 +26,11 @@
 		<div id="bodycontent" class="bodycontent">
 			<div class="_01_all">
 				<!-- kakao Map API UI -->
-				<br>음식점 검색
+				<br><div style="
+				font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+				font-size: 24px;
+				float:left;
+				">음식점 검색</div>
 
 
 
@@ -34,6 +38,21 @@
 
 
 				<div id="menu_wrap" class="bg_white">
+					
+					
+					
+					<div class="option">
+						<div>
+							<form onsubmit="searchPlaces(); return false;">
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="myLocation" checked> 내위치로검색</label>
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="nationwide"> 전국검색</label>
+								<div><input type="checkbox" id="isCenter" /> <span>지도 중심위치로 검색 새로고침</span></div>
+							</form>
+							
+						</div>
+					</div>
+					
+					<!--
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
@@ -45,6 +64,11 @@
 							</form>
 						</div>
 					</div>
+					-->
+
+
+
+
 					<hr>
 				</div>
 				<!-- 작성 -->
