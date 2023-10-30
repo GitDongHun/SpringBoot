@@ -20,11 +20,10 @@
 			top: 0;
 			left: 0;
 			bottom: 0;
-			width: 300px;
+			width: auto;
 			height: 80px;
 			margin: 10px 0 30px 10px;
 			padding: 5px;
-			overflow-y: auto;
 			background: rgba(255, 255, 255, 0.7);
 			z-index: 1;
 			font-size: 12px;
@@ -187,20 +186,24 @@
 
 
 		.bodycontent {
-			width: 80% !important;
-			height: 80vh !important;
 			position:relative;
+			width: 80% !important;
+			height:60vh !important;
 		}
 
+		
 
 		.map_wrap {
 			position: relative;
 			width: 100%;
-			height: 50vh;
+			height: 30vh;
+
 		}
 
 		._01_all{
-			display:flex;flex-direction: column;
+			display:flex;
+			flex-direction: column;
+			height:100%;
 		}
 
 
@@ -213,23 +216,61 @@
 			
 		}
 
-		@media (min-width:900px){
 
 
-			.map_wrap {
-				position: relative;
-				width: 100%;
-				height: 73vh;
+
+/* 체크되지 않은 라디오 버튼 스타일 */
+input.custom-radio[type="radio"] {
+    display: none; /* 체크 버튼 감추기 */
+}
+
+/* 라디오 버튼 레이블 스타일 */
+label.custom-radio {
+    display: inline-block;
+    line-height: 32px;
+    padding: 2px 18px 0;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+label.custom-radio:hover{
+	
+}
+
+/* 체크된 라디오 버튼 스타일 */
+label.custom-radio:has(input.custom-radio[type="radio"]:checked){
+    border: 2px solid orange; /* 체크된 경우 테두리 색상 변경 */
+	color:orange;
+    font-weight: bold; /* 체크된 경우 글꼴을 굵게 표시 */
+}
+
+
+
+
+
+
+
+
+
+		@media (min-width:1300px){
+			.map_wrap{
+				height:60vh;
 			}
+
 			._01_01_main{
 				display:flex;
+
+
+				height:100%;
 			}
 			._01_01_01_sub{
 				overflow:auto;
 				display:block;
 				position:absolute;
-				margin-top: 90px;
-				height:50vh;
+				height:45vh;
 				background-color:rgba(255,255,255,0.8);
+				flex:1;
 			}
 		}
