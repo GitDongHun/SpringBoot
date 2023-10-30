@@ -2,12 +2,14 @@ package com.food.exp.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.MemberDTO;
+import com.food.exp.dto.PageDTO;
 import com.food.exp.dto.RevDTO;
 
 @Repository("MypageDAO")
@@ -29,9 +31,30 @@ public class MypageDAO {
 		return session.delete("MypageMapper.delMember", user_email);
 	}
 	
+	// 즐겨찾기 페이지
+	public int totalCount(String user_email) {
+		return session.selectOne("MypageMapper.totalCount", user_email);
+	}
 	// 즐겨찾기 가져오기
-	public List<LikesDTO> getLikes(String user_email) {
-		return session.selectList("MypageMapper.getLikes", user_email);
+	/*
+	 * public List<LikesDTO> getLikes(String user_email) { return
+	 * session.selectList("MypageMapper.getLikes", user_email); }
+	 */
+	public PageDTO getLikes(int curPage, String user_email) {
+	    PageDTO pageDTO = new PageDTO();
+	    int offset = (curPage - 1) * pageDTO.getPerPage();
+	    int limit = pageDTO.getPerPage();
+
+	    List<LikesDTO> list = session.selectList("MypageMapper.getLikes", user_email, new RowBounds(offset, limit));
+
+	    pageDTO.setList(list);
+	    pageDTO.setCurPage(curPage);
+
+	    // 전체 좋아요 수를 가져와서 설정합니다.
+	    int totalLikes = totalCount(user_email);
+	    pageDTO.setTotalCount(totalLikes);
+
+	    return pageDTO;
 	}
 	// 즐겨찾기 삭제
 	public int delLikes(LikesDTO dto) {
