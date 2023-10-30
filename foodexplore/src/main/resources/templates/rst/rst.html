@@ -44,9 +44,11 @@
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
-								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="myLocation" checked> 내위치로검색</label>
-								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="nationwide"> 전국검색</label>
-								<div><input type="checkbox" id="isCenter" /> <span>지도 중심위치로 검색 새로고침</span></div>
+								필터
+								|
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="myLocation" onclick="searchPlaces()" checked> 내위치</label>
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="nationwide" onclick="searchPlaces()"> 전국</label>
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="myMap" onclick="searchPlaces()"> 지도</label>
 							</form>
 							
 						</div>
