@@ -69,7 +69,7 @@ h2{
 	pointer-events: none;
   }
 /* 식당 별점 표시 */
-button{
+.btnlikes, .write_rev{
     padding: 4px 13px;
     border-radius: 20px;
     height: 37.5px;
