@@ -110,12 +110,14 @@ function myLocationMapView() {
 
 // 확대,축소,이동시 재검색할지 설정
 var isWheel = false;
-kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
+
+// 지도 선택시 실시간으로 새로고침할지 설정
+//kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
 
 // 키워드 검색을 요청하는 함수입니다
 function searchFunction() {
 
-	var keyword = document.getElementById('searchinput').value;
+	var keyword = "음식점 "+document.getElementById('searchinput').value;
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		ps.categorySearch('FD6',placesSearchCB,{ useMapBounds: true })
 	}
@@ -138,11 +140,14 @@ function searchPlaces() {
         searchFunction();
     } else if (searchType === "myLocation") {
         searchPlaceMine();
-    }
+    }else if (searchType === "myMap"){
+		searchPlacesWheel();
+	}
 }
 
 function searchPlacesWheel() {
-	if (document.getElementById("isCenter").checked) {
+	var searchType = document.querySelector('input[name="searchType"]:checked').value;
+	if (searchType==="myMap") {
 		isWheel = true;
 		ps = new kakao.maps.services.Places(map);
 		searchFunction();
