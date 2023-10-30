@@ -39,7 +39,7 @@
 								<p class="rstaddr" th:text="${likes.rst_addr1}" />
 							</div>
 							<div class="rst-info">
-								<p class="revscore">별점 <span th:if="${likes.rev_avg}" th:text="${likes.rev_avg+ '/5'}"></span></p>
+								<p class="revscore" th:if="${likes.rev_avg}">별점 <span th:text="${likes.rev_avg+ '/5'}"></span></p>
 								<p class="like-count">즐겨찾기 <span th:text="${likes.likes_total}"></span></p>
 							</div>
 						</div>
