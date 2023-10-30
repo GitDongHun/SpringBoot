@@ -5,7 +5,7 @@
 		font-style: normal;
 	}
 
-	/* ÁÖÈ² ºÎºĞ  */
+	/* ì£¼í™© ë¶€ë¶„ */
 	.background {
 		position: relative;
 		height: 600px;
@@ -64,7 +64,7 @@
 	}
 	
 
-	/* ¸ğ´Ş ½ºÅ¸ÀÏ */
+	/* ëª¨ë‹¬ ìŠ¤íƒ€ì¼ */
 	.modal {
 		display: none;
 		position: fixed;
@@ -136,7 +136,7 @@
 	}
 	
 	
-	/* top10 ºÎºĞ  */
+	/* top10 ë¶€ë¶„  */
 	.jump {	/*  */
 		position: absolute;
 		top: 750px;
