@@ -38,4 +38,10 @@ public class RevDAO {
     public void deleteReview(int rev_no) {
         session.delete("RevMapper.deleteReview", rev_no);
     }
+    
+    // 식당별 리뷰
+    public List<RevDTO> revByRst(String rst_id) {
+        return session.selectList("RevMapper.revByRst", rst_id);
+    }
+    
 }

@@ -32,7 +32,6 @@ $(document).ready(function() {
         }
     });
     $('.write_rev').click(function(){
-        //링크 수정
-        window.location.href = "/foodexplore/mypage/rev/write";
+        window.location.href = "/foodexp/rst/revwrite";
     });
 });

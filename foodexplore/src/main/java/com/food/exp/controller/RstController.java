@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.food.exp.dto.RevDTO;
@@ -31,7 +33,7 @@ public class RstController {
 	RstService rstService;
 	
 	@Autowired
-	RevService service;
+	RevService revService;
 
 	@GetMapping("/rst")
 	public String rst_main(HttpSession session,Model model) {
@@ -87,19 +89,25 @@ public class RstController {
 		return "/rst/rst";
 	}
 	
-	@GetMapping("/rst/rst_detail")
-	public String rst_detail() {
-
-		return "/rst/rst_detail";
+	// 식당 자세히 보기
+	@RequestMapping(value = "/rst/rst_detail", method = RequestMethod.GET)
+	public String retrieve(@RequestParam("rst_id") String rst_id, Model model) {
+	    rstService.getAllRestaurants();
+	    model.addAttribute("detail");
+	    return "/rst/rst_detail";
 	}
 
 	// 리뷰 작성 페이지
-	@GetMapping("/rst/revcreate")
+	@GetMapping("/rst/revwrite")
 	public String addReview(@ModelAttribute("review") RevDTO review) {
 //		service.addReview(review);
 //		System.out.println(review);
 //		return "redirect:/rst";
-		return "/rst/rev_create";
+		
+//		review.setRev_date(new Date());
+//	    service.addReview(review);
+	    
+		return "/rst/rev_write";
 	}
 	
 //	@PostMapping("/rst/revcreate")

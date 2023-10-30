@@ -7,7 +7,7 @@
 
 	<!-- 타이틀 수정 및 자기 html의 head에 추가한 것 타임리프 형식으로 추가하기 -->
 	<!-- 예시: <link th:href="@{/css/header.css}" rel="stylesheet" /> -->
-	<title>Landing Page - Start Bootstrap Theme</title>
+	<title>먹스플로어</title>
 
 	<link th:href="@{/css/rst_detail.css}" rel="stylesheet" />
 	<script type="text/javascript" th:src="@{/js/rst_detail.js}"></script>	
@@ -23,12 +23,12 @@
 
 			<div class="maincontent">
 				<div class="photos"></div>
-				<h2>명물갈비집 서울점</h2>
+				<h2 th:text="${rst_name}"></h2>
 				<div class="rst_cate">음식점 > 한식 > 육류,고기 > 갈비음식점 > 한식 > 육류,고기 > 갈비</div>
 				<div class="box">
 					<div class="evaluation">
-						<div id="rev_count">11명의 평가</div>
-						<!-- <div id="score">3.9점</div> -->
+<!-- 						<div id="rev_count">11명의 평가</div> -->
+						<div id="score">3.9점</div>
 						<div class="star_box">
 							<div class="rating">
 								★★★★★

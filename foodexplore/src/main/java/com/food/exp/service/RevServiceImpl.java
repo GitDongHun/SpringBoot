@@ -38,5 +38,10 @@ public class RevServiceImpl implements RevService {
 	public RevDTO selectByRev_No(int rev_no) {
 		return dao.selectByRev_No(rev_no);
 	}
+
+	@Override
+	public List<RevDTO> revByRst(String rst_id) {
+		return dao.revByRst(rst_id);
+	}
 	
 }

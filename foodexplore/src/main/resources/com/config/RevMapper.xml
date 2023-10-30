@@ -29,7 +29,7 @@
 	<!-- 리뷰 수정 -->
     <update id="updateReview" parameterType="RevDTO">
         UPDATE review SET REV_STAR = #{rev_star}, REV_COMMENT = #{rev_comment, jdbcType=VARCHAR}, REV_TITLE = #{rev_title, jdbcType=VARCHAR},
-        rev_date = sysdate 
+        rev_date = sysdate
         WHERE REV_NO = #{rev_no}
         and  USER_EMAIL = #{user_email,jdbcType=VARCHAR}
     </update>
@@ -38,5 +38,12 @@
     <delete id="deleteReview" parameterType="int">
         DELETE FROM review WHERE REV_NO = #{rev_no}
     </delete>
-	
+    
+    <!-- 식당별 리뷰 -->
+    <select id="revByRst" resultType="RstDTO" parameterType="String">
+	    select restaurant.*, review.*
+		from restaurant
+		inner join review on restaurant.rst_id = review.rst_id
+		where review.user_email = #{user_email}
+    </select>
 </mapper>
