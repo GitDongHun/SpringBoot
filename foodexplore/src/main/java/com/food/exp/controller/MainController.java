@@ -23,10 +23,10 @@ public class MainController {
 			return "sample_template/template_thymeleaf";
 		}
 
-		@GetMapping("/region")
-		public String region_food() {
-			return "commons/region";
-		}
+//		@GetMapping("/region")
+//		public String region_food() {
+//			return "commons/region";
+//		}
 		
 		
 }

@@ -94,7 +94,7 @@
 
 			// 기본 옵션 추가
 			var defaultOption = document.createElement('option');
-			defaultOption.text = '-선택-';
+			defaultOption.text = '-시군구-';
 			defaultOption.value = '';
 			defaultOption.setAttribute('disabled', 'true');
 			defaultOption.setAttribute('selected', 'true');
