@@ -308,7 +308,7 @@ function getListItem(index, places) {
 		+ (index + 1)
 		+ '"></span>'
 		+ '<div class="info">'
-		+ '   <h5>' + places.place_name + '</h5>'
+		+ '   <a href="rst/rst_detail?rst_id=' + places.id + '"><h5>' + places.place_name + '</h5></a>'
 		+ '   <h5>' + places.id + '</h5>'
 		;
 

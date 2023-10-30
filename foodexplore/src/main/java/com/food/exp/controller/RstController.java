@@ -89,12 +89,23 @@ public class RstController {
 		return "/rst/rst";
 	}
 	
-	// 식당 자세히 보기
-	@RequestMapping(value = "/rst/rst_detail", method = RequestMethod.GET)
-	public String retrieve(@RequestParam("rst_id") String rst_id, Model model) {
-	    rstService.getAllRestaurants();
-	    model.addAttribute("detail");
-	    return "/rst/rst_detail";
+	//00. rst_id를 GET방식으로 가지고옵니다.
+	@GetMapping("/rst/rst_detail")
+	public String rst_detail(@RequestParam("rst_id") String rst_id) {
+		
+		//01. 가지고온 rst_id를 RstDTO에 정의된 형태로 넣기위해, rstService를 사용합니다.
+		//rstService에 미리 정의해놓은 ID값으로 식당DB를 가지고오는 함수를 실행시킵니다.
+		RstDTO tableInfo=rstService.selectRestaurantById(rst_id);
+		
+		//01. DEBUG 테스트, RstDTO에서 잘 가지고 왔는지 값 확인
+		System.out.println(tableInfo.getAll());
+		
+		//02. 가지고온 rst_id를 RevDTO에 정의된 형태로 가지고 오기 위해, revService를 사용합니다.
+		//revService에 미리 정의해놓은 ID값으로 리뷰DB를 가지고오는 함수를 실행시킵니다.
+		//(여기서부터 구현중!!!!!!!)
+		
+		
+		return "/rst/rst_detail";
 	}
 
 	// 리뷰 작성 페이지

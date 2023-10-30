@@ -24,7 +24,8 @@ public class RstServiceImpl implements RstService {
 	}
 	@Override
 	public RstDTO selectRestaurantById(String rst_id) {
-		return null;
+		
+		return rstDAO.selectRestaurantById(rst_id);
 	}
 
     // 다른 비즈니스 로직 메서드의 구현
