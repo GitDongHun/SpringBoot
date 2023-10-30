@@ -277,6 +277,10 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked){
 		
 		.menu_cate {
 			padding: 15px 10px;
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: space-evenly;
 		}
 		.menu_cate input[type=radio]{
 			display: none;
@@ -284,19 +288,21 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked){
 		.menu_cate input[type=radio]+label{
 			display: inline-block;
 			cursor: pointer;
-			height: 24px;
+			height: 27px;
 			width: 90px;
-			border: 1px solid #333;
+			border: 1px solid #ff8100;
 			line-height: 24px;
 			text-align: center;
-			font-weight:bold;
-			font-size:13px;
+			/* font-weight:bold; */
+			font-size:15px;
+			border-radius: 15px;
+			margin-bottom: 8px;
 		}
 		.menu_cate input[type=radio]+label{
 			background-color: #fff;
-			color: #333;
+			color: black;
 		}
 		.menu_cate input[type=radio]:checked+label{
-			background-color: #333;
+			background-color: #ff8100;
 			color: #fff;
 		}
