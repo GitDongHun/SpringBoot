@@ -118,6 +118,12 @@ var isWheel = false;
 function searchFunction() {
 
 	var keyword = "음식점 "+document.getElementById('searchinput').value;
+
+	var selectCate = $("input[type='radio'][name='shop']:checked").next("label").text();
+
+	keyword = keyword +" "+ selectCate;
+	console.log(keyword);
+
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
 		ps.categorySearch('FD6',placesSearchCB,{ useMapBounds: true })
 	}
