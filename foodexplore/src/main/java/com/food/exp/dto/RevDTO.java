@@ -11,12 +11,12 @@ public class RevDTO {
 	String rst_id;
 	int rev_star;
 	String rev_comment;
-	Date rev_date;
+	String rev_date;
 	String rev_title;
 	String rst_name;
 	
 	public RevDTO() {};	
-	public RevDTO(int rev_no, String user_email, String rst_id, int rev_star, String rev_comment, Date rev_date,
+	public RevDTO(int rev_no, String user_email, String rst_id, int rev_star, String rev_comment, String rev_date,
 			String rev_title, String rst_name) {
 		super();
 		this.rev_no = rev_no;
@@ -58,10 +58,10 @@ public class RevDTO {
 	public void setRev_comment(String rev_comment) {
 		this.rev_comment = rev_comment;
 	}
-	public Date getRev_date() {
+	public String getRev_date() {
 		return rev_date;
 	}
-	public void setRev_date(Date rev_date) {
+	public void setRev_date(String rev_date) {
 		this.rev_date = rev_date;
 	}
 	public String getRev_title() {

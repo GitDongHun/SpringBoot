@@ -47,10 +47,12 @@
 		where review.user_email = #{user_email}
     </select>
     
-    <!-- 식당의 모든리뷰 -->
+    <!-- 식당의 모든리뷰 & 날짜형식변경해서 가지고오기 -->
     <select id="getreviewByRst" resultType="RevDTO">
-    	SELECT review.*
-    	FROM review
-    	WHERE review.rst_id=#{rst_id}
+		SELECT TO_CHAR(rev_date, 'YYYY-MM-DD') rev_date, review.*
+		FROM review
+		WHERE review.rst_id = #{rst_id} 
+
+
     </select>
 </mapper>
