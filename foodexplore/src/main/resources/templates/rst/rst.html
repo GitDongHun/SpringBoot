@@ -32,6 +32,33 @@
 				float:left;
 				">음식점 검색</div>
 
+				<div class="menu_cate">
+					<input type="radio" id="select1" name="shop"><label for="select1">한식</label>
+
+					<input type="radio" id="select2" name="shop"><label for="select2">치킨</label>
+
+					<input type="radio" id="select3" name="shop"><label for="select3">양식</label>
+
+					<input type="radio" id="select4" name="shop"><label for="select4">분식</label>
+
+					<input type="radio" id="select5" name="shop"><label for="select5">중식</label>
+
+					<input type="radio" id="select6" name="shop"><label for="select6">일식</label>
+
+					<input type="radio" id="select7" name="shop"><label for="select7">카페</label>
+
+					<input type="radio" id="select8" name="shop"><label for="select8">간식</label>
+
+					<input type="radio" id="select9" name="shop"><label for="select9">아시아음식</label>
+
+					<input type="radio" id="select10" name="shop"><label for="select10">술</label>
+
+					<input type="radio" id="select11" name="shop"><label for="select11">뷔페</label>
+
+					<input type="radio" id="select12" name="shop"><label for="select12">퓨전요리</label>
+					
+					<input type="hidden" id="selectedCate" name="selectedCate">
+				</div>
 
 
 
@@ -109,6 +136,26 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		$(document).ready(function () {
+			// 라디오 버튼의 변경 이벤트를 감지하고 선택한 값을 hidden 요소에 설정
+			$("input[type='radio'][name='shop']").change(function () {
+				var selectedId = $("input[type='radio'][name='shop']:checked").attr("id");
+            // var selectedLabelFor = $("input[type='radio'][name='shop']:checked").next("label").attr("for");
+            
+            // 선택한 id 출력
+            console.log("선택한 id: " + selectedId);
+
+            // 선택한 label의 "for" 속성값 출력
+            // console.log("선택한 label for: " + selectedLabelFor);
+
+            // 선택한 값을 hidden 요소에 설정
+            $("#selectedCate").val(selectedId); 
+			searchPlaces();
+			});
+		});
+	</script>
 
 	<!-- </body> 위에 삽입되는 공통 부분 추가하는 코드 -->
 	<div th:insert="~{include/footer.html}"></div>

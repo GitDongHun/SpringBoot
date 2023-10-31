@@ -27,7 +27,7 @@
 				<h2 class="myLikes-title">나의 즐겨찾기</h2>
 
 				<!-- 나의 즐겨찾기 -->
-				<div class="rst-box" th:each="likes: ${LikesDTO}">
+				<div class="rst-box" th:each="likes: ${pageDTO.list}">
 					<div class="like-rst">
 						<img class="food-img" id="food-img">
 						<div class="text-info">
@@ -39,15 +39,34 @@
 								<p class="rstaddr" th:text="${likes.rst_addr1}" />
 							</div>
 							<div class="rst-info">
-								<p class="revscore">별점 <span th:if="${likes.rev_avg}" th:text="${likes.rev_avg+ '/5'}"></span></p>
-								<p class="like-count">즐겨찾기 <span th:text="${likes.likes_total}"></span></p>
+								<p class="revscore" th:if="${likes.rev_avg}">
+									별점 <span th:text="${likes.rev_avg+ '/5'}"></span>
+								</p>
+								<p class="like-count">
+									즐겨찾기 <span th:text="${likes.likes_total}"></span>
+								</p>
 							</div>
 						</div>
 						<form th:action="@{/mypage/delLikes}" class="star" method="post">
 							<input type="hidden" name="rst_id" th:value="${likes.rst_id}" />
-							<button type="submit" class="star" id="delstar">★</button>
+							<button class="star" id="delstar">
+								<img class="star" th:src="@{/images/star_full.png}"
+									alt="star_full">
+							</button>
 						</form>
 					</div>
+				</div>
+				<!-- 페이지 -->
+				<div class="likesPage">
+					<!-- 엉망진창 페이지... -->
+					<div th:each="i : ${#numbers.sequence(1, pageDTO.totalCount)}">
+						<span th:if="${i == pageDTO.curPage}"> <span th:text="${i}"></span>
+						</span> <span th:unless="${i == pageDTO.curPage}"> <a
+							th:href="@{/mypage/myLikes(curPage=${i})}" th:text="${i}"
+							class="page-link"></a>
+						</span>
+					</div>
+
 				</div>
 
 			</div>
@@ -56,65 +75,12 @@
 		</div>
 		<!-- end bodycontent -->
 
-		<script>
-		
-		/* $(document).ready(function() {
-		    $(".star").click(function() {
-		        // 버튼 텍스트를 ★에서 ☆로 변경
-		        var $button = $(this);
-		        if ($button.text() === '★') {
-		            $button.text('☆');
-		            
-		            // 삭제 요청을 서버로 전송
-		            var $form = $button.closest('.star-form');
-		            $.post($form.attr('action'), $form.serialize(), function(response) {
-		            });
-		        }
-		    });
-		}); */
-			
-		
-		/* $(document).ready(function() {
-		    $(".star").each(function() {
-		        var $button = $(this);
-		        var rstId = $button.siblings('input[name="rst_id"]').val();
-		        var isLiked = localStorage.getItem('liked_' + rstId) === 'true';
-
-		        // 초기 버튼 텍스트 설정
-		        if (isLiked) {
-		            $button.text('★');
-		        } else {
-		            $button.text('☆');
-		        }
-
-		        $button.click(function() {
-		            var isLiked = $button.text() === '★';
-
-		            // 즐겨찾기 상태를 토글하고 로컬 스토리지에 저장
-		            isLiked = !isLiked;
-		            localStorage.setItem('liked_' + rstId, isLiked);
-
-		            // 서버로 상태 업데이트 요청 보내기
-		            var $form = $button.closest('form');
-		            $.post($form.attr('action'), $form.serialize(), function(response) {
-		                // 서버 응답을 무시할 수 있음
-		            });
-
-		            // 버튼 텍스트 변경
-		            if (isLiked) {
-		                $button.text('★'); // 즐겨찾기 추가
-		            } else {
-		                $button.text('☆'); // 즐겨찾기 삭제
-		            }
-		        });
-		    });
-		}); */
-		
-		</script>
-
-
 	</div>
 	<!-- end contentbox -->
+	
+	<script>
+	
+	</script>
 
 	<!-- body 위에 삽입되는 공통 부분 추가하는 코드 -->
 	<div th:insert="~{include/footer.html}"></div>

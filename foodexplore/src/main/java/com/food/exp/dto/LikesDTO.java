@@ -10,12 +10,12 @@ public class LikesDTO {
 	String rst_addr1;
 	String rst_cate;
 	int likes_total;
-	int rev_avg;
+	double rev_avg;
 	
 	public LikesDTO() {}
 
 	public LikesDTO(String user_email, String rst_id, String rst_name, String rst_addr1, String rst_cate,
-			int likes_total, int rev_avg) {
+			int likes_total, double rev_avg) {
 		super();
 		this.user_email = user_email;
 		this.rst_id = rst_id;
@@ -74,11 +74,11 @@ public class LikesDTO {
 		this.likes_total = likes_total;
 	}
 
-	public int getRev_avg() {
+	public double getRev_avg() {
 		return rev_avg;
 	}
 
-	public void setRev_avg(int rev_avg) {
+	public void setRev_avg(double rev_avg) {
 		this.rev_avg = rev_avg;
 	}
 
@@ -87,6 +87,8 @@ public class LikesDTO {
 		return "LikesDTO [user_email=" + user_email + ", rst_id=" + rst_id + ", rst_name=" + rst_name + ", rst_addr1="
 				+ rst_addr1 + ", rst_cate=" + rst_cate + ", likes_total=" + likes_total + ", rev_avg=" + rev_avg + "]";
 	}
+
+	
 
 
 }

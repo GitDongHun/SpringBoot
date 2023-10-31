@@ -67,7 +67,6 @@ ul li {
 
 .like-count {
     color: black;
-    margin-left: 5px;
     margin-bottom: 5px;
 }
 
@@ -76,14 +75,28 @@ ul li {
     padding-right: 5px;
 	border-right: 1px solid #CACACA;
     margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 .star {
-	font-size: 30px;
+	width: 30px;
 	margin-left: auto;
 	margin-right: 30px;
-    color: #FFAF01;
     background-color: white;
     border: none;
 }
 
+.likesPage{
+    display: flex;
+    justify-content: center;
+}
+
+.likesPage > div {
+    margin-right: 40px;
+}
+
+.likesPage > div a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #EF6900;
+}

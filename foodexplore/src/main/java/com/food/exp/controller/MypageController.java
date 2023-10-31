@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.MemberDTO;
+import com.food.exp.dto.PageDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.service.MypageService;
 
@@ -25,14 +26,15 @@ public class MypageController {
 
 	// 메인 페이지
 	@GetMapping("/main")
-	public String mypage(HttpSession session, Model m) {
+	public String mypage(HttpSession session, Model m, PageDTO pageDTO) {
 		// 회원 정보
 		String user_email = (String) session.getAttribute("login");
 		MemberDTO memberDTO = service.getInfo(user_email);
 		m.addAttribute("MemberDTO", memberDTO);
 		// 즐겨찾기 정보
-		List<LikesDTO> likesDTO = service.getLikes(user_email);
-		m.addAttribute("LikesDTO", likesDTO);
+		int curPage = 0;
+	    pageDTO = service.getLikes(curPage, user_email);
+	    m.addAttribute("pageDTO", pageDTO);
 		// 리뷰 정보
 		List<RevDTO> revDTO = service.getRev(user_email);
 		m.addAttribute("RevDTO", revDTO);
@@ -40,16 +42,23 @@ public class MypageController {
 	}
 
 	// 나의 즐겨찾기 페이지
+	/*
+	 * @GetMapping("/myLikes") public String myLikes(HttpSession session, Model m,
+	 * LikesDTO dto) { // 즐겨찾기 정보 String user_email = (String)
+	 * session.getAttribute("login"); dto.setUser_email(user_email); List<LikesDTO>
+	 * likesDTO = service.getLikes(user_email); m.addAttribute("LikesDTO",
+	 * likesDTO); return "member/myLikes"; }
+	 */
 	@GetMapping("/myLikes")
-	public String myLikes(HttpSession session, Model m, LikesDTO dto) {
-		// 즐겨찾기 정보
-		String user_email = (String) session.getAttribute("login");
-		dto.setUser_email(user_email);
-		List<LikesDTO> likesDTO = service.getLikes(user_email);
-		m.addAttribute("LikesDTO", likesDTO);
-		System.out.println(likesDTO.toString());
-		return "member/myLikes";
-	}
+	public String myLikes(HttpSession session, Model m, PageDTO pageDTO) {
+	    // 즐겨찾기 정보
+	    String user_email = (String) session.getAttribute("login");
+
+	    int curPage = pageDTO.getCurPage(); // 현재 페이지
+	    pageDTO = service.getLikes(curPage, user_email);
+
+	    m.addAttribute("pageDTO", pageDTO);
+	    return "member/myLikes";}
 
 	// 즐겨찾기 삭제
 	@PostMapping("/delLikes")

@@ -88,7 +88,7 @@
 						</div>
 						<div class="mylike-list">
 							<ul class="list-uibox">
-								<li th:each="likes, limit: ${LikesDTO}" th:if="${limit.index < 3}">
+								<li th:each="likes, limit: ${pageDTO.list}" th:if="${limit.index < 3}">
 									<div class="like-rst">
 										<img class="likestar" th:src="@{/images/likestar.png}">
 										<div class="text-info">
