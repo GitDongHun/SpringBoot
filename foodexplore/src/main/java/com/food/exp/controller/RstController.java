@@ -122,6 +122,12 @@ public class RstController {
         }
         rev_star_avg=(double)(rev_star_hop/rev_count);
         
+        if (Double.isNaN(rev_star_avg)) {
+        	rev_star_avg = 0.0; // null 또는 NaN 값을 0으로 처리
+        }
+        
+        
+        
         //04. Controller에서 계산한 리뷰평균, 리뷰갯수를 html로 쏴주기
         model.addAttribute("rev_all_star_avg",rev_star_avg);
         model.addAttribute("rev_all_count",rev_count);
