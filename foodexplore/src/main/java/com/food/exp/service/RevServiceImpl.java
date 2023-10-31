@@ -44,4 +44,9 @@ public class RevServiceImpl implements RevService {
 		return dao.revByRst(rst_id);
 	}
 	
+	@Override
+	public List<RevDTO> getreviewByRst(String rst_id){
+		return dao.getreviewByRst(rst_id);
+	}
+	
 }
