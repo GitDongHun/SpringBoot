@@ -47,6 +47,10 @@ public class MemberServiceImpl implements MemberService{
 		return dao.updatePw(dto);
 	}
 
+	@Override
+	public String getNickByEmail(String user_email) {
+		return dao.getNickByEmail(user_email);
+	}
 
 
 }

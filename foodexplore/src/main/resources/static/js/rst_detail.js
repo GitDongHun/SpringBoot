@@ -9,11 +9,14 @@
 		// 	$(this).parent().children('span').removeClass('on');
 		// 	$(this).addClass('on').prevAll('span').addClass('on');
 		// })
+
+/*
 $(document).ready(function() {
 	let star = $(".rating_star").attr("data-star");
 	console.log(star);
 	$(".rating_star").css('width', star * 20 + '%');
 });
+*/
 
 $(document).ready(function() {
     $('.btnlikes').click(function() {

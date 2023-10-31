@@ -39,5 +39,12 @@ public class MemberDAO {
 	// 비밀번호 변경
 	public int updatePw(MemberDTO dto) {
 		return session.update("MemberMapper.updatePw",dto);
-	}	
+	}
+	
+	//이메일로 닉네임 가져오기
+	public String getNickByEmail(String user_email) {
+		return session.selectOne("MemberMapper.getNickByEmail",user_email);
+	}
+
+	
 }

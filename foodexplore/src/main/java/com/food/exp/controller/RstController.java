@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RevDTO;
+import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
 import com.food.exp.dto.RstTempDTO;
 import com.food.exp.service.RevService;
@@ -89,21 +89,50 @@ public class RstController {
 		return "/rst/rst";
 	}
 	
-	//00. rst_id를 GET방식으로 가지고옵니다.
+	//00. 식당정보(rst_id) > 세부정보(rst_id)를 GET방식으로 가지고옵니다.
 	@GetMapping("/rst/rst_detail")
-	public String rst_detail(@RequestParam("rst_id") String rst_id) {
+	public String rst_detail(@RequestParam("rst_id") String rst_id,Model model) {
 		
-		//01. 가지고온 rst_id를 RstDTO에 정의된 형태로 넣기위해, rstService를 사용합니다.
-		//rstService에 미리 정의해놓은 ID값으로 식당DB를 가지고오는 함수를 실행시킵니다.
-		RstDTO tableInfo=rstService.selectRestaurantById(rst_id);
+		//01. GET으로 받은 rst_id로 DB에서 가져오기
+		RstDTO rstDTO=rstService.selectRestaurantById(rst_id);
+//		List<RevDTO> revDTOList = revService.getreviewByRst(rst_id);
+		List<RevTempDTO> revTempDTOList = revService.getreviewByRst(rst_id);
 		
-		//01. DEBUG 테스트, RstDTO에서 잘 가지고 왔는지 값 확인
-		System.out.println(tableInfo.getAll());
 		
-		//02. 가지고온 rst_id를 RevDTO에 정의된 형태로 가지고 오기 위해, revService를 사용합니다.
-		//revService에 미리 정의해놓은 ID값으로 리뷰DB를 가지고오는 함수를 실행시킵니다.
-		//(여기서부터 구현중!!!!!!!)
-		
+		//02. DB에서 가져온 데이터 html로 쏴주기
+        model.addAttribute("rst_addr1", rstDTO.getRst_addr1());
+        model.addAttribute("rst_addr2", rstDTO.getRst_addr2());
+        model.addAttribute("rst_cate", rstDTO.getRst_cate());
+        model.addAttribute("rst_id", rstDTO.getRst_id());
+        model.addAttribute("rst_name", rstDTO.getRst_name());
+        model.addAttribute("rst_phone", rstDTO.getRst_phone());
+        model.addAttribute("revTempDTOList",revTempDTOList);
+        
+        
+        //03. 리뷰평균, 리뷰갯수를 count하기위한 작업
+        double rev_star_avg=0;
+        int rev_count=0;
+        double rev_star_hop=0;
+        
+        rev_count=revTempDTOList.size();
+        for(RevTempDTO tmp:revTempDTOList) {
+        	rev_star_hop += Double.valueOf(tmp.getRev_star());
+        }
+        rev_star_avg=(double)(rev_star_hop/rev_count);
+        
+        if (Double.isNaN(rev_star_avg)) {
+        	rev_star_avg = 0.0; // null 또는 NaN 값을 0으로 처리
+        }
+        
+        
+        
+        //04. Controller에서 계산한 리뷰평균, 리뷰갯수를 html로 쏴주기
+        model.addAttribute("rev_all_star_avg",rev_star_avg);
+        model.addAttribute("rev_all_count",rev_count);
+  
+        // 즐겨찾기 개수
+		List<LikesDTO> likesTotal = rstService.getLikesTotal(rst_id);
+		model.addAttribute("likesTotal", likesTotal);
 		
 		return "/rst/rst_detail";
 	}

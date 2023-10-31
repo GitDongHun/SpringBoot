@@ -46,4 +46,14 @@
 		inner join review on restaurant.rst_id = review.rst_id
 		where review.user_email = #{user_email}
     </select>
+    
+    <!-- 식당의 모든리뷰 & 날짜형식변경해서 가지고오기 -->
+    <select id="getreviewByRst" resultType="RevTempDTO">
+		SELECT review.*, member.nickname
+		FROM review
+		JOIN member ON review.user_email = member.user_email
+		WHERE review.rst_id = #{rst_id}
+
+    </select>
+
 </mapper>

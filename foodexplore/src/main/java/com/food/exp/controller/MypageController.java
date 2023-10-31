@@ -53,10 +53,13 @@ public class MypageController {
 	public String myLikes(HttpSession session, Model m, PageDTO pageDTO) {
 	    // 즐겨찾기 정보
 	    String user_email = (String) session.getAttribute("login");
-
 	    int curPage = pageDTO.getCurPage(); // 현재 페이지
 	    pageDTO = service.getLikes(curPage, user_email);
-
+	    int totalNum = pageDTO.getTotalCount() / pageDTO.getPerPage();
+	    if (pageDTO.getTotalCount() % pageDTO.getPerPage() != 0) {
+	        totalNum++; // 나머지가 있는 경우 1을 추가
+	    }
+	    pageDTO.setTotalNum(totalNum);
 	    m.addAttribute("pageDTO", pageDTO);
 	    return "member/myLikes";}
 
