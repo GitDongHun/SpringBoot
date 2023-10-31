@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RstDTO;
 import com.food.exp.dto.RstTempDTO;
@@ -118,7 +119,10 @@ public class RstController {
         model.addAttribute("rst_phone", rstDTO.getRst_phone());
 		
 		model.addAttribute("revDTOList",revDTOList);
-        
+		
+		List<LikesDTO> likesTotal = rstService.getLikesTotal(rst_id);
+		model.addAttribute("likesTotal", likesTotal);
+		
 		
 		
 		
