@@ -8,15 +8,17 @@ public class PageDTO {
 	int curPage;
 	int perPage = 5;
 	int totalCount;
+	int totalNum;
 	
 	public PageDTO() {}
 
-	public PageDTO(List<LikesDTO> list, int curPage, int perPage, int totalCount) {
+	public PageDTO(List<LikesDTO> list, int curPage, int perPage, int totalCount, int totalNum) {
 		super();
 		this.list = list;
 		this.curPage = curPage;
 		this.perPage = perPage;
 		this.totalCount = totalCount;
+		this.totalNum = totalNum;
 	}
 
 	public List<LikesDTO> getList() {
@@ -50,12 +52,20 @@ public class PageDTO {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
+	
+
+	public int getTotalNum() {
+		return totalNum;
+	}
+
+	public void setTotalNum(int totalNum) {
+		this.totalNum = totalNum;
+	}
 
 	@Override
 	public String toString() {
 		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
-				+ "]";
+				+ ", totalNum=" + totalNum + "]";
 	}
-	
-	
+
 }
