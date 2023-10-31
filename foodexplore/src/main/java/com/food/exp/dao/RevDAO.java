@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.food.exp.dto.RevDTO;
+import com.food.exp.dto.RevTempDTO;
 
 @Repository("RevDAO")
 public class RevDAO {
@@ -44,7 +45,7 @@ public class RevDAO {
         return session.selectList("RevMapper.revByRst", rst_id);
     }
 
-    public List<RevDTO> getreviewByRst(String rst_id){
+    public List<RevTempDTO> getreviewByRst(String rst_id){
     	return session.selectList("RevMapper.getreviewByRst",rst_id);
     }
 }

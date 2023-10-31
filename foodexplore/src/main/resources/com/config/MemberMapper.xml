@@ -56,5 +56,12 @@
     where user_email = #{user_email}
    </update>
    
+   <!-- 이메일로 닉네임 찾기(use: 리뷰페이지) -->
+   <select id="getNickByEmail" resultType="String">
+   SELECT nickname
+   FROM member
+   where member.user_email=#{user_email}
+   </select>
+   
    
 </mapper>

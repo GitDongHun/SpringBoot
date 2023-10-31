@@ -11,5 +11,5 @@ public interface MemberService {
 	public String findId(MemberDTO dto);
 	public String findPw(MemberDTO dto);
 	public int updatePw(MemberDTO dto);
-
+	public String getNickByEmail(String user_email);
 }

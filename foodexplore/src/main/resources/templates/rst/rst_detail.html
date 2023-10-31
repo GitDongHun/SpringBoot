@@ -84,35 +84,29 @@
 <!-- thymeleaf 테스트를 위한 반복문-->
 
 <h2>Review 목록:</h2>
-<table border="1">
+<table style="border:1px;margin:3px 3px;">
 	<tr>
 		<th>Review 번호</th>
 		<th>User 이메일</th>
+		<th>User 닉네임</th>
 		<th>Restaurant ID</th>
 		<th>별점</th>
 		<th>코멘트</th>
 		<th>날짜</th>
 		<th>제목</th>
 	</tr>
-	<tr th:each="revDTO : ${revDTOList}">
-		<td th:text="${revDTO.rev_no}"></td>
-		<td th:text="${revDTO.user_email}"></td>
-		<td th:text="${revDTO.rst_id}"></td>
-		<td th:text="${revDTO.rev_star}"></td>
-		<td th:text="${revDTO.rev_comment}"></td>
-		<td th:text="${revDTO.rev_date}"></td>
-		<td th:text="${revDTO.rev_title}"></td>
+	<tr th:each="revTempDTO : ${revTempDTOList}">
+		<td th:text="${revTempDTO.rev_no}"></td>
+		<td th:text="${revTempDTO.user_email}"></td>
+		<td th:text="${revTempDTO.nickname}"></td>
+		<td th:text="${revTempDTO.rst_id}"></td>
+		<td th:text="${revTempDTO.rev_star}"></td>
+		<td th:text="${revTempDTO.rev_comment}"></td>
+		<td th:text="${revTempDTO.rev_date}"></td>
+		<td th:text="${revTempDTO.rev_title}"></td>
+		
 	</tr>
 </table>
-
-
-
-
-
-
-
-
-
 
 						<div class="user_info">
 							<img th:src="@{/images/user.png}" alt="location" style="height: 70px;margin-right: 6px;">
@@ -121,7 +115,7 @@
 								<div class="stars">
 									<div class="rating">
 										★★★★★
-										<span class="rating_star" data-star="3">★★★★★</span>
+										<span class="rating_star" data-star="5">★★★★★</span>
 										<input type="range" value="1" step="1" min="0" max="10">
 									</div>								
 								</div>

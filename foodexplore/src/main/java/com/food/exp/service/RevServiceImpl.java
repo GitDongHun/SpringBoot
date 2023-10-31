@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.food.exp.dao.RevDAO;
 import com.food.exp.dto.RevDTO;
+import com.food.exp.dto.RevTempDTO;
 
 @Service
 public class RevServiceImpl implements RevService {
@@ -45,7 +46,7 @@ public class RevServiceImpl implements RevService {
 	}
 	
 	@Override
-	public List<RevDTO> getreviewByRst(String rst_id){
+	public List<RevTempDTO> getreviewByRst(String rst_id){
 		return dao.getreviewByRst(rst_id);
 	}
 	

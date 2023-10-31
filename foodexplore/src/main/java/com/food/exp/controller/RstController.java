@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.food.exp.dto.RevDTO;
+import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
 import com.food.exp.dto.RstTempDTO;
 import com.food.exp.service.RevService;
@@ -93,31 +94,26 @@ public class RstController {
 	@GetMapping("/rst/rst_detail")
 	public String rst_detail(@RequestParam("rst_id") String rst_id,Model model) {
 		
-		//01. 가지고온 rst_id를 RstDTO에 정의된 형태로 넣기위해, rstService를 사용합니다.
-		//rstService에 미리 정의해놓은 ID값으로 식당DB를 가지고오는 함수를 실행시킵니다.
+		//01. GET으로 받은 rst_id로 DB에서 가져오기
 		RstDTO rstDTO=rstService.selectRestaurantById(rst_id);
+//		List<RevDTO> revDTOList = revService.getreviewByRst(rst_id);
+		List<RevTempDTO> revTempDTOList = revService.getreviewByRst(rst_id);
 		
-		//01. DEBUG 테스트, rstDTO에 잘 가지고 왔는지 값 확인
-		System.out.println(rstDTO.getAll());
 		
-		//02. 가지고온 rst_id를 RevDTO에 정의된 형태로 가지고 오기 위해, revService를 사용합니다.
-		//revService에 미리 정의해놓은 ID값으로 리뷰DB를 가지고오는 함수를 실행시킵니다.
-		List<RevDTO> revDTOList = revService.getreviewByRst(rst_id);
-
-		//02. DEBUG 테스트, List형태의 revDTOList에 잘 가지고 왔는지 값 확인
-		for(RevDTO revDTO: revDTOList) {
-			System.out.println(revDTO.toString());
-		}
-
-		//03. rst_id를 이용하여 DB에서 가지고온 data들을 html에 넣어줍니다.
+		//02. DB에서 가져온 데이터 html로 쏴주기
         model.addAttribute("rst_addr1", rstDTO.getRst_addr1());
         model.addAttribute("rst_addr2", rstDTO.getRst_addr2());
         model.addAttribute("rst_cate", rstDTO.getRst_cate());
         model.addAttribute("rst_id", rstDTO.getRst_id());
         model.addAttribute("rst_name", rstDTO.getRst_name());
         model.addAttribute("rst_phone", rstDTO.getRst_phone());
-		
-		model.addAttribute("revDTOList",revDTOList);
+
+        model.addAttribute("revTempDTOList",revTempDTOList);
+        
+        
+        for(RevTempDTO tmp:revTempDTOList) {
+        	System.out.println(tmp.toString());
+        }
         
 		
 		
