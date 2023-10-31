@@ -89,20 +89,28 @@ public class RstController {
 		return "/rst/rst";
 	}
 	
-	//00. rst_id를 GET방식으로 가지고옵니다.
+	//00. 식당정보(rst_id) > 세부정보(rst_id)를 GET방식으로 가지고옵니다.
 	@GetMapping("/rst/rst_detail")
 	public String rst_detail(@RequestParam("rst_id") String rst_id) {
 		
 		//01. 가지고온 rst_id를 RstDTO에 정의된 형태로 넣기위해, rstService를 사용합니다.
 		//rstService에 미리 정의해놓은 ID값으로 식당DB를 가지고오는 함수를 실행시킵니다.
-		RstDTO tableInfo=rstService.selectRestaurantById(rst_id);
+		RstDTO rstDTO=rstService.selectRestaurantById(rst_id);
 		
-		//01. DEBUG 테스트, RstDTO에서 잘 가지고 왔는지 값 확인
-		System.out.println(tableInfo.getAll());
+		//01. DEBUG 테스트, rstDTO에 잘 가지고 왔는지 값 확인
+		System.out.println(rstDTO.getAll());
 		
 		//02. 가지고온 rst_id를 RevDTO에 정의된 형태로 가지고 오기 위해, revService를 사용합니다.
 		//revService에 미리 정의해놓은 ID값으로 리뷰DB를 가지고오는 함수를 실행시킵니다.
 		//(여기서부터 구현중!!!!!!!)
+		
+		List<RevDTO> revDTOList = revService.getreviewByRst(rst_id);
+		
+		
+		//02. DEBUG 테스트, List형태의 revDTOList에 잘 가지고 왔는지 값 확인
+		for(RevDTO revDTO: revDTOList) {
+			System.out.println(revDTO.toString());
+		}
 		
 		
 		return "/rst/rst_detail";

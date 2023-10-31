@@ -43,5 +43,8 @@ public class RevDAO {
     public List<RevDTO> revByRst(String rst_id) {
         return session.selectList("RevMapper.revByRst", rst_id);
     }
-    
+
+    public List<RevDTO> getreviewByRst(String rst_id){
+    	return session.selectList("RevMapper.getreviewByRst",rst_id);
+    }
 }
