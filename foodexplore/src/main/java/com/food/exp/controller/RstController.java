@@ -111,13 +111,21 @@ public class RstController {
         model.addAttribute("revTempDTOList",revTempDTOList);
         
         
-        for(RevTempDTO tmp:revTempDTOList) {
-        	System.out.println(tmp.toString());
-        }
+        //03. 리뷰평균, 리뷰갯수를 count하기위한 작업
+        double rev_star_avg=0;
+        int rev_count=0;
+        double rev_star_hop=0;
         
-		
-		
-		
+        rev_count=revTempDTOList.size();
+        for(RevTempDTO tmp:revTempDTOList) {
+        	rev_star_hop += Double.valueOf(tmp.getRev_star());
+        }
+        rev_star_avg=(double)(rev_star_hop/rev_count);
+        
+        //04. Controller에서 계산한 리뷰평균, 리뷰갯수를 html로 쏴주기
+        model.addAttribute("rev_all_star_avg",rev_star_avg);
+        model.addAttribute("rev_all_count",rev_count);
+  
 		return "/rst/rst_detail";
 	}
 
