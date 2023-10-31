@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
@@ -107,7 +106,6 @@ public class RstController {
         model.addAttribute("rst_id", rstDTO.getRst_id());
         model.addAttribute("rst_name", rstDTO.getRst_name());
         model.addAttribute("rst_phone", rstDTO.getRst_phone());
-
         model.addAttribute("revTempDTOList",revTempDTOList);
         
         
@@ -126,6 +124,10 @@ public class RstController {
         model.addAttribute("rev_all_star_avg",rev_star_avg);
         model.addAttribute("rev_all_count",rev_count);
   
+        // 즐겨찾기 개수
+		List<LikesDTO> likesTotal = rstService.getLikesTotal(rst_id);
+		model.addAttribute("likesTotal", likesTotal);
+		
 		return "/rst/rst_detail";
 	}
 
