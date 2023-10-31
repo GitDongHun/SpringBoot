@@ -56,31 +56,26 @@
 						</form>
 					</div>
 				</div>
+				
 				<!-- 페이지 -->
 				<div class="likesPage">
-					<!-- 엉망진창 페이지... -->
-					<div th:each="i : ${#numbers.sequence(1, pageDTO.totalCount)}">
-						<span th:if="${i == pageDTO.curPage}"> <span th:text="${i}"></span>
-						</span> <span th:unless="${i == pageDTO.curPage}"> <a
-							th:href="@{/mypage/myLikes(curPage=${i})}" th:text="${i}"
-							class="page-link"></a>
-						</span>
-					</div>
-
+    				<div th:each="i : ${#numbers.sequence(1, pageDTO.totalNum)}">
+        				<span th:if="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}"> 
+            				<span th:text="${i}" class="clikpage"></span>
+        				</span> 
+        				<span th:unless="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
+            				<a th:href="@{/mypage/myLikes(curPage=${i})}" th:text="${i}" class="page-link"></a>
+        				</span>
+    				</div>
 				</div>
+				
 
-			</div>
-			<!-- end content -->
-
-		</div>
-		<!-- end bodycontent -->
-
-	</div>
-	<!-- end contentbox -->
-	
-	<script>
-	
-	</script>
+				<!-- 페이지 -->
+				
+				
+			</div> <!-- end content -->
+		</div> <!-- end bodycontent -->
+	</div> <!-- end contentbox -->
 
 	<!-- body 위에 삽입되는 공통 부분 추가하는 코드 -->
 	<div th:insert="~{include/footer.html}"></div>
