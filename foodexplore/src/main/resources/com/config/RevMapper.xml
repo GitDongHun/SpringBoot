@@ -22,9 +22,10 @@
     
 	<!-- 리뷰 추가 -->
     <insert id="addReview" parameterType="RevDTO">
-        INSERT INTO review (REV_NO, USER_EMAIL, RST_ID, REV_STAR, REV_COMMENT, REV_DATE, REV_TITLE) 
-        VALUES (#{rev_no}, #{user_email,jdbcType=VARCHAR}, #{rst_id,jdbcType=VARCHAR}, #{rev_star}, #{rev_comment,jdbcType=VARCHAR}, #{rev_date}, #{rev_title,jdbcType=VARCHAR})
-    </insert>
+	    INSERT INTO review (REV_NO, USER_EMAIL, RST_ID, REV_STAR, REV_COMMENT, REV_DATE, REV_TITLE) 
+	    VALUES (rev_seq.nextval, #{user_email, jdbcType=VARCHAR}, #{rst_id, jdbcType=VARCHAR}, 
+	            #{rev_star}, #{rev_comment, jdbcType=VARCHAR}, sysdate, #{rev_title, jdbcType=VARCHAR})
+	</insert>
     
 	<!-- 리뷰 수정 -->
     <update id="updateReview" parameterType="RevDTO">

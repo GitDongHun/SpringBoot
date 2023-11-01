@@ -32,6 +32,7 @@ $(document).ready(function() {
         }
     });
     $('.write_rev').click(function(){
-        window.location.href = "/foodexp/rst/revwrite";
+        var rst_id = $('#rst_id').val();
+        window.location.href = "/foodexp/rst/revwrite?rst_id=" + rst_id;
     });
 });
