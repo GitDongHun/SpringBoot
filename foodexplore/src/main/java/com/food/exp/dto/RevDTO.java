@@ -1,7 +1,5 @@
 package com.food.exp.dto;
 
-import java.util.Date;
-
 import org.apache.ibatis.type.Alias;
 
 @Alias("RevDTO")

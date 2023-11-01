@@ -139,33 +139,21 @@ public class RstController {
 
 	// 리뷰 작성 페이지
 	@GetMapping("/rst/revwrite")
-	public String addReview(@ModelAttribute("review") RevDTO review) {
-//		service.addReview(review);
-//		System.out.println(review);
-//		return "redirect:/rst";
-		
-//		review.setRev_date(new Date());
-//	    service.addReview(review);
-	    
+	public String addReview(@RequestParam("rst_id") String rst_id, Model model) {
+		RstDTO rstDTO = rstService.selectRestaurantById(rst_id);
+		model.addAttribute("rst_id",rst_id);
+	    model.addAttribute("rst_name", rstDTO.getRst_name());
 		return "/rst/rev_write";
 	}
 	
-//	@PostMapping("/rst/revcreate")
-//	public String addReview(@RequestParam("rev_title") String Rev_title,
-//				            @RequestParam("rev_star") int Rev_star,
-//				            @RequestParam("rev_comment") String Rev_comment,
-//				            @RequestParam("rst_name") String Rst_name,
-//				            @RequestParam("rst_id") String Rst_id) {
-//		RevDTO revDTO = new RevDTO();
-//		revDTO.setRev_title(Rev_title);
-//		revDTO.setRev_star(Rev_star);
-//		revDTO.setRev_comment(Rev_comment);
-//		revDTO.setRst_name(Rst_name);
-//		revDTO.setRst_id(Rst_id);
-//
-//		// revDTO를 사용하여 DB에 리뷰를 추가하는 서비스 호출
-//		
-//		return "redirect:/rst"; // 리다이렉트할 경로를 지정합니다
-//	}
+	// 글쓰기
+	@RequestMapping(value = "/rst/write", method = RequestMethod.POST)
+	public String write(RevDTO revDTO, HttpSession session) {
+		String user_email = (String) session.getAttribute("login");
+	    revDTO.setUser_email(user_email);
+		revService.addReview(revDTO);
+		System.out.println(revDTO.toString());
+		return "redirect:/rst/rst_detail?rst_id=" + revDTO.getRst_id();
+	}
 	
 }
