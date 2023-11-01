@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,9 @@ import com.food.exp.service.RevService;
 import com.food.exp.service.RstService;
 
 @Controller
-public class RstController {
+public class RstController {    
+	@Value("${com.food.exp.mapapikey}")
+	private String mapApiKey;
 
 	@Autowired
 	ServletContext application;
@@ -41,7 +44,7 @@ public class RstController {
 		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분할 함수 만들어야함
 		
 		// api키 가지고오기
-		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
+		model.addAttribute("apiKey", mapApiKey);
 		model.addAttribute("searchinput", "");
 		System.out.println("RstController 실행-GET 현재위치, 다른위치 검색할 함수 만들어야함");
 		return "/rst/rst";
@@ -49,7 +52,7 @@ public class RstController {
 
 	@PostMapping("/rst")
 	public String rst_post(@RequestParam("query") String rst_query, Model model,HttpSession session) {
-		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
+		model.addAttribute("apiKey", mapApiKey);
 
 		if (rst_query != "") {
 			model.addAttribute("searchinput", rst_query);
