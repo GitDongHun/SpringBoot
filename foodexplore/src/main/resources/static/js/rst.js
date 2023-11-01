@@ -46,29 +46,11 @@ if (inputLoadSelector == "myLocation") {
 } else {
 	selectRadio = document.querySelector('input[name="searchType"][value="myMap"]');
 }
-selectRadio.ckecked = true;
+selectRadio.checked = true;
 
 
-
-// 서버에서 전송된 라디오버튼 설정을 마친 뒤에 이제 검색을 시작한다.
-
-
+//처음으로 페이지를 로드할떄 검색을 시작한다.
 searchPlaces();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //내위치에 마커를 생성합니다
 function myLocationMapView() {
@@ -130,6 +112,9 @@ function searchFunction() {
 	var keyword = "음식점 "+document.getElementById('searchinput').value;
 
 	var selectCate = $("input[type='radio'][name='shop']:checked").next("label").text();
+
+
+	var selectRegion = $("input'")
 
 	keyword = keyword +" "+ selectCate;
 	console.log(keyword);
