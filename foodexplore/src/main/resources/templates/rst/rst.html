@@ -29,6 +29,7 @@
 				<br>
 				<div style="
 				font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+				font-weight:700;
 				font-size: 24px;
 				float:left;
 				">음식점 검색</div>
@@ -67,7 +68,7 @@
 										value="nationwide" onclick="searchPlaces()"> 전국</label>
 								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
 										value="myMap" onclick="searchPlaces()"> 지도범위 검색</label>
-								<input type="text" id="inputLoadSelector" th:value="${inputLoadSelector}">
+										inputLoadSelector: <input type="text" id="inputLoadSelector" th:value="${inputLoadSelector}" readonly>
 							</form>
 
 						</div>
