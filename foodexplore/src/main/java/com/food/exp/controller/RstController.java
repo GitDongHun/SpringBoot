@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.food.exp.dto.LikesDTO;
-import com.food.exp.dto.RegDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
@@ -41,11 +40,17 @@ public class RstController {
 	@Autowired
 	RevService revService;
 
+	@GetMapping("/maintest")
+	public String maintest(){
+		
+		return "/maintest";
+	}
+	
 	@GetMapping("/rst")
 	public String rst_main(HttpSession session,Model model) {
 
-		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분할 함수 만들어야함
-		
+		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분
+		model.addAttribute("inputLoadSelector","myLocation");
 		// api키 가지고오기
 		model.addAttribute("apiKey", mapApiKey);
 		model.addAttribute("searchinput", "");
@@ -55,6 +60,9 @@ public class RstController {
 
 	@PostMapping("/rst")
 	public String rst_post(@RequestParam("query") String rst_query, Model model,HttpSession session) {
+		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분
+		model.addAttribute("inputLoadSelector","nationwide");
+		
 		model.addAttribute("apiKey", mapApiKey);
 
 		if (rst_query != "") {
@@ -69,12 +77,14 @@ public class RstController {
 	}
 	
 	@PostMapping("/reg_post")
-	public String reg_post(@RequestBody RegDTO reg_num,Model model) {
-		System.out.println(reg_num.toString());
+	public String reg_post(@RequestParam("h_area1")String h_area1,@RequestParam("h_area2")String h_area2,Model model) {
+		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분
+		model.addAttribute("inputLoadSelector","nationwide");
 		
-		model.addAttribute("s1",reg_num.getS1());
-		model.addAttribute("s2",reg_num.getS2());
-		System.out.println("reg_post로 잘 왔습니다!!");
+		model.addAttribute("apiKey", mapApiKey);
+		
+		model.addAttribute("h_area1",h_area1);
+		model.addAttribute("h_area2",h_area2);
 		
 		return "/rst/rst";
 	}
