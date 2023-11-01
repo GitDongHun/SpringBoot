@@ -15,16 +15,15 @@
 
 
 .search-bar {
-	white-space : nowrap;
-    text-align: center;
-    margin-top: 50px;
-    margin-right: 515px;
+	 display: flex;
+     align-items: center;
+     margin-bottom: 50px;
+     margin-top: 50px;
 }
 
 .search-bar input {
     padding: 10px;
     margin-right: 10px;
-    width: 200px;
 }
 
 .search-bar button {
@@ -37,7 +36,7 @@
 
 .data-table {
     width: 70%;
-    margin-top: 20px;
+    margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
@@ -54,7 +53,15 @@
 }
 
 .delete-button {
-    margin-right: -400px;
-    margin-top: -150px;
-    
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+.table-wrapper {
+    max-height: 500px;
+    overflow: auto;
+}
+
+.bodycontent {
+    padding-bottom: 200px; /* 원하는 만큼의 여백을 추가 */
 }

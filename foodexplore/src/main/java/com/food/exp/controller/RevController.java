@@ -5,11 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,5 +60,23 @@ public class RevController {
 	    return "redirect:/mypage/rev";
 	}
 	
-
+	// 선택 삭제 (구현 안됨)
+	@PostMapping("/DelSelect")
+    public ResponseEntity<String> DelSelect(@RequestBody List<Integer> revNos) {
+	    for (int revNo : revNos) {
+	        service.deleteReview(revNo);
+	    }
+	    return ResponseEntity.ok("리뷰 삭제 요청이 성공적으로 처리되었습니다.");
+    }
+	
+//	@GetMapping("/rev")
+//	public String rev(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
+//	    int pageSize = 10; // 페이지 당 표시할 항목 수
+//	    String user_email = (String) session.getAttribute("login");
+//	    Page<RevDTO> reviewsPage = service.getReviewById(user_email, PageRequest.of(page, pageSize, Sort.by("rev_date").descending()));
+//	    model.addAttribute("reviews", reviewsPage.getContent());
+//	    model.addAttribute("currentPage", page);
+//	    model.addAttribute("totalPages", reviewsPage.getTotalPages());
+//	    return "rev/rev";
+//	}
 }
