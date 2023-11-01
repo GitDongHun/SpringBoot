@@ -26,7 +26,8 @@
 		<div id="bodycontent" class="bodycontent">
 			<div class="_01_all">
 				<!-- kakao Map API UI -->
-				<br><div style="
+				<br>
+				<div style="
 				font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
 				font-size: 24px;
 				float:left;
@@ -34,82 +35,83 @@
 
 				<div class="menu_cate">
 					<input type="radio" id="select1" name="shop"><label for="select1">한식</label>
-
 					<input type="radio" id="select2" name="shop"><label for="select2">치킨</label>
-
 					<input type="radio" id="select3" name="shop"><label for="select3">양식</label>
-
 					<input type="radio" id="select4" name="shop"><label for="select4">분식</label>
-
 					<input type="radio" id="select5" name="shop"><label for="select5">중식</label>
-
 					<input type="radio" id="select6" name="shop"><label for="select6">일식</label>
-
 					<input type="radio" id="select7" name="shop"><label for="select7">카페</label>
-
 					<input type="radio" id="select8" name="shop"><label for="select8">간식</label>
-
 					<input type="radio" id="select9" name="shop"><label for="select9">아시아음식</label>
-
 					<input type="radio" id="select10" name="shop"><label for="select10">술</label>
-
 					<input type="radio" id="select11" name="shop"><label for="select11">뷔페</label>
-
 					<input type="radio" id="select12" name="shop"><label for="select12">퓨전요리</label>
-					
 					<input type="hidden" id="selectedCate" name="selectedCate">
 				</div>
+
+				[[${s1}]], [[${s2}]]
 
 
 
 
 
 				<div id="menu_wrap" class="bg_white">
-					
-					
-					
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
 								필터
 								|
-								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="myLocation" onclick="searchPlaces()" checked> 내위치</label>
-								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="nationwide" onclick="searchPlaces()"> 전국</label>
-								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType" value="myMap" onclick="searchPlaces()"> 지도</label>
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
+										value="myLocation" onclick="searchPlaces()" checked> 내위치</label>
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
+										value="nationwide" onclick="searchPlaces()"> 전국</label>
+								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
+										value="myMap" onclick="searchPlaces()"> 지도범위 검색</label>
 							</form>
-							
+
 						</div>
 					</div>
-					
-					<!--
-					<div class="option">
-						<div>
-							<form onsubmit="searchPlaces(); return false;">
-								키워드 : <input type="text" th:value="${keyword}" id="keyword" size="15">
-								<button type="button" onclick="searchPlaces()">전국검색</button>
-								<button type="button" onclick="searchPlaceMine()">내위치로검색</button>
-								<div><input type="checkbox" id="isCenter" /> <label>지도 중심위치로 검색 새로고침</label>
-								</div>
-							</form>
-						</div>
-					</div>
-					-->
 
 
 
+					<!-- 여기에 전국일경우 디자인 추가하기-->
+					<select id="h_area1" name="h_area1"
+						onchange="reg1_change(this.value, document.getElementsByName('h_area2')[0])">
+						<option value="">-광역시도-</option>
+						<option value="1">서울</option>
+						<option value="2">부산</option>
+						<option value="3">대구</option>
+						<option value="4">인천</option>
+						<option value="5">광주</option>
+						<option value="6">대전</option>
+						<option value="7">울산</option>
+						<option value="8">강원</option>
+						<option value="9">경기</option>
+						<option value="10">경남</option>
+						<option value="11">경부</option>
+						<option value="12">전남</option>
+						<option value="13">전북</option>
+						<option value="14">제주</option>
+						<option value="15">충남</option>
+						<option value="16">충북</option>
+					</select>
+					<select id="h_area2" name="h_area2">
+						<option value="">-시군구-</option>
+					</select>
+					<script th:src="@{/js/region.js}" type="text/javascript"></script>
 
-					<hr>
+
+					<!-- 전국 -->
 				</div>
-				<!-- 작성 -->
 
 
 
 
 
-				
-				
-				
-				
+
+
+
+
 
 
 
@@ -127,7 +129,7 @@
 						<div id="pagination"></div>
 
 					</div>
-					
+
 					<!-- 이곳에서 코드 작업 -->
 					<!-- kakao Map Script -->
 
@@ -142,17 +144,17 @@
 			// 라디오 버튼의 변경 이벤트를 감지하고 선택한 값을 hidden 요소에 설정
 			$("input[type='radio'][name='shop']").change(function () {
 				var selectedId = $("input[type='radio'][name='shop']:checked").attr("id");
-            // var selectedLabelFor = $("input[type='radio'][name='shop']:checked").next("label").attr("for");
-            
-            // 선택한 id 출력
-            console.log("선택한 id: " + selectedId);
+				// var selectedLabelFor = $("input[type='radio'][name='shop']:checked").next("label").attr("for");
 
-            // 선택한 label의 "for" 속성값 출력
-            // console.log("선택한 label for: " + selectedLabelFor);
+				// 선택한 id 출력
+				console.log("선택한 id: " + selectedId);
 
-            // 선택한 값을 hidden 요소에 설정
-            $("#selectedCate").val(selectedId); 
-			searchPlaces();
+				// 선택한 label의 "for" 속성값 출력
+				// console.log("선택한 label for: " + selectedLabelFor);
+
+				// 선택한 값을 hidden 요소에 설정
+				$("#selectedCate").val(selectedId);
+				searchPlaces();
 			});
 		});
 	</script>

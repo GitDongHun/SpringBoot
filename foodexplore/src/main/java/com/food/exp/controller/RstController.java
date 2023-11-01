@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.food.exp.dto.LikesDTO;
+import com.food.exp.dto.RegDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
@@ -62,6 +63,17 @@ public class RstController {
 			session.setAttribute("searchinput", "");
 		}
 		System.out.println("RstController 실행-POST 키워드로 검색, 키워드는"+rst_query);
+		return "/rst/rst";
+	}
+	
+	@PostMapping("/reg_post")
+	public String reg_post(@RequestBody RegDTO reg_num,Model model) {
+		System.out.println(reg_num.toString());
+		
+		model.addAttribute("s1",reg_num.getS1());
+		model.addAttribute("s2",reg_num.getS2());
+		System.out.println("reg_post로 잘 왔습니다!!");
+		
 		return "/rst/rst";
 	}
 
