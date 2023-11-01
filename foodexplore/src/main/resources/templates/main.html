@@ -26,6 +26,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
+<!--  kakao Map API & CSS -->
+<script th:src="'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + ${apiKey}+'&libraries=services,clusterer,drawing'"></script>
 <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 
@@ -47,32 +49,21 @@
 						<img class="icon" th:src="@{/images/different_location_icon.png}"><br>
 						<a href="javascript:void(0);" class="button search" th:onclick="openModal()">다른 위치로 찾기</a>
 						<!-- 모달 창 -->
-
-
-
-
 						<form th:action="@{/reg_post}" method="post"> 
-						<div id="myModal" class="modal">
-							<div class="modal-content">
-								<div class="region_header">
-									<span class="region_title">지역 선택</span>
-								</div>
-								<div th:insert="~{commons/region.html}"></div>
-								<span class="close" onclick="closeModal()" style="font-size: 24px;">&times;</span>
-								<div class="region_confirm" style="pointer-events: initial">
-									<button id="cancleBtn" class="region_button cancle"><span>취소</span></button>
-									<button id="submitBtn" class="region_button submit"><span>선택 완료</span></button>
-								</div>
-
-
-							</div> <!-- end modal-content -->
-						</div> <!-- end modal -->
+							<div id="myModal" class="modal">
+								<div class="modal-content">
+									<div class="region_header">
+										<span class="region_title">지역 선택</span>
+									</div>
+									<div th:insert="~{commons/region.html}"></div>
+									<span class="close" onclick="closeModal()" style="font-size: 24px;">&times;</span>
+									<div class="region_confirm" style="pointer-events: initial">
+										<button id="cancleBtn" class="region_button cancle"><span>취소</span></button>
+										<button id="submitBtn" class="region_button submit"><span>선택 완료</span></button>
+									</div>
+								</div> <!-- end modal-content -->
+							</div> <!-- end modal -->
 						</form>
-
-
-
-
-
 					</div> <!-- end different -->
 				</div> <!-- end button-container -->
 			</div> <!-- end image-container  -->
@@ -88,13 +79,15 @@
 			<div class="nationwide">전국 Top <span th:text="${index + 1}"></span></div>
 			<div class="rst-box">
 				<img alt="식당 사진" src="">
-				<h3>식당명</h3>
-				<div class="representative">
-					<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-				</div> <!-- end representative -->
-				<div class="rst-addr1">도로명 주소</div>
-				<div class="rst-addr2">지번 주소</div>
-				<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
+				<div class="info">
+					<h3>식당명</h3>
+					<div class="representative">
+						<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
+					</div> <!-- end representative -->
+					<div class="rst-addr1">도로명 주소</div>
+					<div class="rst-addr2">지번 주소</div>
+					<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
+				</div> <!-- end info -->
 			</div> <!-- end rst-box -->
 		</div> <!-- end best --> <br>
 	</div> <!-- end top-container -->
