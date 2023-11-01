@@ -25,7 +25,4 @@ public class MainController {
 			return "sample_template/template_thymeleaf";
 		}
 		
-
-		
-		
 }

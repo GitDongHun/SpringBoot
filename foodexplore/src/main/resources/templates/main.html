@@ -27,7 +27,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <link th:href="@{/css/main.css}" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -72,13 +71,7 @@
  
     
 	<!-- top 10 부분 -->
-	<!-- 지역명, 대표 음식을 api로 가져올 수 있다면 th:src 경로 추가. 아니면... 수작업 -->
-	<!-- 별 다섯 개 구현 어떻게 함 
-        	==> 일단은 if~else문으로
-        	==> average 구현 시 0.5 단위로 반올림도 적용해야 함
-	-->
 	<!-- Top 10에 대한 정보는 식당 데이터가 DB에 쌓인 다음에 할 수 있을 듯 -->
-	<!-- DB에 쌓인 데이터로 넣어야 하는 건가 api에서 가지고 와야 하는 건가 DB라고 생각 중 -->
 	<div class="top-container jump">
 		<div th:each="index : ${#numbers.sequence(0, 9)}" class="best">
 			<div class="nationwide">전국 Top <span th:text="${index + 1}"></span></div>
