@@ -1,0 +1,67 @@
+
+	<style>
+		@font-face {
+			font-family: 'ONE-Mobile-Title';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		}
+	
+		body {
+			
+			background-color: #EFEEEC;
+			margin: 0;
+			padding: 0;
+		}
+
+		select {
+			width: 200px;
+			padding: 10px;
+			margin: 10px;
+			border: 1px solid #EFEEEC;
+			border-radius: 5px;
+			font-size: 16px;
+		}
+
+		select:focus {
+			outline: none;
+			border-color: #EF6900;
+		}
+
+		option {
+			font-size: 16px;
+		}
+
+		select option[disabled] {
+			color: #888;
+		}
+
+		select option[selected] {
+			font-weight: bold;
+		}
+	</style>
+	
+	<select id="h_area1" name="h_area1" onchange="reg1_change(this.value, document.getElementsByName('h_area2')[0])">
+		<option value="">-광역시도-</option>
+		<option value="1">서울</option>
+		<option value="2">부산</option>
+		<option value="3">대구</option>
+		<option value="4">인천</option>
+		<option value="5">광주</option>
+		<option value="6">대전</option>
+		<option value="7">울산</option>
+		<option value="8">강원</option>
+		<option value="9">경기</option>
+		<option value="10">경남</option>
+		<option value="11">경부</option>
+		<option value="12">전남</option>
+		<option value="13">전북</option>
+		<option value="14">제주</option>
+		<option value="15">충남</option>
+		<option value="16">충북</option>
+	</select>
+	<select id="h_area2" name="h_area2">
+		<option value="">-시군구-</option>
+	</select>
+	<script th:src="@{/js/region.js}" type="text/javascript"></script>
+
