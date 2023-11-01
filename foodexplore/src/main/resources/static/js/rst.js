@@ -113,9 +113,6 @@ function searchFunction() {
 
 	var selectCate = $("input[type='radio'][name='shop']:checked").next("label").text();
 
-
-	var selectRegion = $("input'")
-
 	keyword = keyword +" "+ selectCate;
 	console.log(keyword);
 
