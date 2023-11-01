@@ -4,10 +4,12 @@
 
 <mapper namespace="MainMapper">
 
-	<select id="top10Rst" resultType="MainDTO">
-		select *
-		from restaurant
-		order by rev_star_avg DESC
-		limit 10;
+	<select id="top10Rst" resultType="mainDTO">
+		SELECT *
+		FROM (
+		    SELECT *
+		    FROM restaurant
+		    ORDER BY rev_star_avg DESC
+		) WHERE ROWNUM <![CDATA[<]]>= 10
 	</select>
 </mapper>
