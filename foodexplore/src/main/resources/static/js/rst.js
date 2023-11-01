@@ -37,6 +37,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // ******여기 위치에 post get 등등으로 내위치로검색, 전국검색을 나눠야할 기능이 실행되어야함
+var inputLoadSelector = document.getElementById("inputLoadSelector").value;
+var selectRadio
+if (inputLoadSelector == "myLocation") {
+	selectRadio = document.querySelector('input[name="searchType"][value="myLocation"]');
+} else if (inputLoadSelector == "nationwide") {
+	selectRadio = document.querySelector('input[name="searchType"][value="nationwide"]');
+} else {
+	selectRadio = document.querySelector('input[name="searchType"][value="myMap"]');
+}
+selectRadio.ckecked = true;
 
 
 
@@ -263,10 +273,7 @@ function displayPlaces(places) {
 				},
 				body: JSON.stringify(places)
 			})
-			.then(response=>response.json())
-			.then(data=>{
-				console.log(data); //서버에서 반환한 응답 데이터
-			})
+			.then(response=>{})
 			.catch(error=>{
 				console.error("Error:",error);
 			});
