@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.food.exp.dto.LikesDTO;
+import com.food.exp.dto.RegDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
@@ -26,7 +28,9 @@ import com.food.exp.service.RevService;
 import com.food.exp.service.RstService;
 
 @Controller
-public class RstController {
+public class RstController {    
+	@Value("${com.food.exp.mapapikey}")
+	private String mapApiKey;
 
 	@Autowired
 	ServletContext application;
@@ -43,7 +47,7 @@ public class RstController {
 		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분할 함수 만들어야함
 		
 		// api키 가지고오기
-		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
+		model.addAttribute("apiKey", mapApiKey);
 		model.addAttribute("searchinput", "");
 		System.out.println("RstController 실행-GET 현재위치, 다른위치 검색할 함수 만들어야함");
 		return "/rst/rst";
@@ -51,7 +55,7 @@ public class RstController {
 
 	@PostMapping("/rst")
 	public String rst_post(@RequestParam("query") String rst_query, Model model,HttpSession session) {
-		model.addAttribute("apiKey", "8b9300f39b51a93d7bd9c98a76473b1d");
+		model.addAttribute("apiKey", mapApiKey);
 
 		if (rst_query != "") {
 			model.addAttribute("searchinput", rst_query);
@@ -61,6 +65,17 @@ public class RstController {
 			session.setAttribute("searchinput", "");
 		}
 		System.out.println("RstController 실행-POST 키워드로 검색, 키워드는"+rst_query);
+		return "/rst/rst";
+	}
+	
+	@PostMapping("/reg_post")
+	public String reg_post(@RequestBody RegDTO reg_num,Model model) {
+		System.out.println(reg_num.toString());
+		
+		model.addAttribute("s1",reg_num.getS1());
+		model.addAttribute("s2",reg_num.getS2());
+		System.out.println("reg_post로 잘 왔습니다!!");
+		
 		return "/rst/rst";
 	}
 
@@ -120,7 +135,7 @@ public class RstController {
         for(RevTempDTO tmp:revTempDTOList) {
         	rev_star_hop += Double.valueOf(tmp.getRev_star());
         }
-        rev_star_avg=(double)(rev_star_hop/rev_count);
+        rev_star_avg=(double)(Math.round((rev_star_hop/rev_count) * 2) / 2.0);
         
         if (Double.isNaN(rev_star_avg)) {
         	rev_star_avg = 0.0; // null 또는 NaN 값을 0으로 처리
