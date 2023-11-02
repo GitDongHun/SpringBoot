@@ -34,29 +34,43 @@ $(document).ready(function() {
 		$btnlikes.css('border', '2px solid black');
 	}
 
-	// 즐겨찾기 버튼을 눌렀을때
+	// 즐겨찾기 버튼을 눌렀을 때
 	$('.btnlikes').click(function() {
-		if ($(this).hasClass('on')) {
-			// 즐겨찾기 해제
-			console.log("해제");
-			$(this).find('img').attr('src', '/foodexp/images/star_empty.png');
-			$(this).removeClass('on');
-			$(this).css('border', '2px solid black');
-			delLikes()
-		} else {
-			// 즐겨찾기 설정
-			$(this).find('img').attr('src', '/foodexp/images/star_full.png');
-			$(this).addClass('on');
-			$(this).css('border', '2px solid #ff8100');
-			addLikes()
-		}
+	    if ($(this).hasClass('on')) {
+	        // 즐겨찾기 해제
+	        console.log("해제");
+	        $(this).find('img').attr('src', '/foodexp/images/star_empty.png');
+	        $(this).removeClass('on');
+	        $(this).css('border', '2px solid black');
+	        delLikes();
+	    } else {
+	        // 즐겨찾기 설정
+	        if (loginCheck()) {
+	            $(this).find('img').attr('src', '/foodexp/images/star_full.png');
+	            $(this).addClass('on');
+	            $(this).css('border', '2px solid #ff8100');
+	            addLikes();
+	        } else {
+	            alert("로그인이 필요합니다.");
+	            window.location.href = '/foodexp/member/loginform';
+	        }
+	    }
 	});
-
+	
 	$('.write_rev').click(function() {
 		var rst_id = $('#rst_id').val();
 		window.location.href = "/foodexp/rst/revwrite?rst_id=" + rst_id;
 	});
 });
+
+function loginCheck() {
+    var user_email = document.getElementById('user_email').value;
+    if (user_email !== null && user_email !== "") {
+        return true; // 로그인 상태
+    } else {
+        return false; // 비로그인 상태
+    }
+}
 
 function delLikes() {
 	var rst_id = $('#rst_id').val();

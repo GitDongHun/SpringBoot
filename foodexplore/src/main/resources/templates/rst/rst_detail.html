@@ -21,6 +21,7 @@
 		<input type="hidden" th:value="${rst_id}" id="rst_id" >
 		<input type="hidden" id="isLiked" th:value="${isLiked}" >
 		<input type="hidden" id="likes_total" th:value="${likes_total}" >
+		<input type="hidden" id="user_email" th:value="${user_email}" >
 			<div class="maincontent">
 				<div class="photos"></div>
 				<h2 th:text="${rst_name}"></h2>
@@ -43,7 +44,6 @@
 								style="height: 22px; margin-bottom: 4px;">
 							<!-- <img th:src="@{/images/star_full.png}" alt="star_full" style="height: 22px; margin-bottom: 4px;">
                             -->
-                            <span  id="likes_total" th:text="${likes_total}" ></span>
 							즐겨찾기 (<span id="likes_total" th:if="${likesTotal.isEmpty()}"> 0</span>
 									<span th:each="likesTotal : ${likesTotal}" th:text="${likesTotal.likes_total}"></span>
 								   )

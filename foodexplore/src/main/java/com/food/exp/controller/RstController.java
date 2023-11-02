@@ -180,10 +180,13 @@ public class RstController {
 		
 		// 즐겨찾기 상태 가져오기
 		String user_email = (String) session.getAttribute("login");
-		dto.setUser_email(user_email);
-		int isLiked = mypageService.isLiked(dto);
-		model.addAttribute("rst_id",rst_id);
-		model.addAttribute("isLiked", isLiked);
+		model.addAttribute("user_email", user_email);
+		if (user_email != null) {
+			dto.setUser_email(user_email);
+			int isLiked = mypageService.isLiked(dto);
+			model.addAttribute("rst_id",rst_id);
+			model.addAttribute("isLiked", isLiked);
+		}
 		
 		return "/rst/rst_detail";
 	}
