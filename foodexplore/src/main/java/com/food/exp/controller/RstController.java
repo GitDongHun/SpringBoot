@@ -94,6 +94,9 @@ public class RstController {
 		List<RstDTO> rstDTOList = new ArrayList<>();
 			for (RstTempDTO rstTempDTO : rsttempList) {
 			// 01. rstDTO에 rsttempList값을 재전달
+				
+				
+			// 01-1. null값 에러처리를 위한 공백처리
 			RstDTO rstDTO = new RstDTO();
 			rstDTO.setRst_id((rstTempDTO.getId() != null) ? rstTempDTO.getId() : " ");
 			rstDTO.setRst_name((rstTempDTO.getPlace_name() != null) ? rstTempDTO.getPlace_name() : " ");
@@ -108,9 +111,14 @@ public class RstController {
 			// rstDTO.setDistance(rstTempDTO.getDistance());
 			// rstDTO.setCategoryGroupCode(rstTempDTO.getCategory_group_code());
 			// rstDTO.setCategoryGroupName(rstTempDTO.getCategory_group_name());
+			
+			
+			//01-2. rstDTOList에 rstDTO값 넣기 
 			rstDTOList.add(rstDTO);
 		}
 		for (RstDTO dto : rstDTOList) {
+			//02. rstService, rstServiceImpl, rstDAO, rstMapper
+			//    위치에 정의된 서비스 실행하여 데이터 삽입 or 수정 
 			rstService.insertOrUpdateRestaurant(dto);
 		}
 		return "/rst/rst";
@@ -157,6 +165,12 @@ public class RstController {
         model.addAttribute("rev_all_star_avg",rev_star_avg);
         model.addAttribute("rev_all_count",rev_count);
   
+        //05. 리뷰평균 DB로 Update하기
+        //필요한정보: rev_star_avg, rst_id를 담은 rstDTO
+        //넣는 위치: restaurant 테이블
+        rstDTO.setRev_star_avg(rev_star_avg);
+        rstService.updateAvgStar(rstDTO);
+        
         // 즐겨찾기 개수
 		List<LikesDTO> likesTotal = rstService.getLikesTotal(rst_id);
 		model.addAttribute("likesTotal", likesTotal);

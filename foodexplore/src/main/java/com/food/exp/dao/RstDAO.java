@@ -35,4 +35,9 @@ public class RstDAO {
 	public List<LikesDTO> getLikesTotal(String rst_id) {
 		return sqlSessionTemplate.selectList("RstMapper.getLikesTotal",rst_id);
 	}
+
+	public void updateAvgStar(RstDTO restaurant) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.update("RstMapper.updateAvgStar",restaurant);
+	}
 }
