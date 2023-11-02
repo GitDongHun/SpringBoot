@@ -26,83 +26,82 @@
 		<div id="bodycontent" class="bodycontent">
 			<div class="_01_all">
 				<!-- kakao Map API UI -->
-				<br>
+				<br />
 				<div style="
-				font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-				font-weight:700;
-				font-size: 24px;
-				float:left;
-				">음식점 검색</div>
-
-				<div class="menu_cate">
-					<input type="radio" id="select1" name="shop"><label for="select1">한식</label>
-					<input type="radio" id="select2" name="shop"><label for="select2">치킨</label>
-					<input type="radio" id="select3" name="shop"><label for="select3">양식</label>
-					<input type="radio" id="select4" name="shop"><label for="select4">분식</label>
-					<input type="radio" id="select5" name="shop"><label for="select5">중식</label>
-					<input type="radio" id="select6" name="shop"><label for="select6">일식</label>
-					<input type="radio" id="select7" name="shop"><label for="select7">카페</label>
-					<input type="radio" id="select8" name="shop"><label for="select8">간식</label>
-					<input type="radio" id="select9" name="shop"><label for="select9">아시아음식</label>
-					<input type="radio" id="select10" name="shop"><label for="select10">술</label>
-					<input type="radio" id="select11" name="shop"><label for="select11">뷔페</label>
-					<input type="radio" id="select12" name="shop"><label for="select12">퓨전요리</label>
-					<input type="hidden" id="selectedCate" name="selectedCate">
+              font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+              font-weight: 700;
+              font-size: 24px;
+              float: left;
+            ">
+					음식점 검색
 				</div>
 
-
-
-
-
-
+				<div class="menu_cate">
+					<input type="radio" id="select1" name="shop" /><label for="select1">한식</label>
+					<input type="radio" id="select2" name="shop" /><label for="select2">치킨</label>
+					<input type="radio" id="select3" name="shop" /><label for="select3">양식</label>
+					<input type="radio" id="select4" name="shop" /><label for="select4">분식</label>
+					<input type="radio" id="select5" name="shop" /><label for="select5">중식</label>
+					<input type="radio" id="select6" name="shop" /><label for="select6">일식</label>
+					<input type="radio" id="select7" name="shop" /><label for="select7">카페</label>
+					<input type="radio" id="select8" name="shop" /><label for="select8">간식</label>
+					<input type="radio" id="select9" name="shop" /><label for="select9">아시아음식</label>
+					<input type="radio" id="select10" name="shop" /><label for="select10">술</label>
+					<input type="radio" id="select11" name="shop" /><label for="select11">뷔페</label>
+					<input type="radio" id="select12" name="shop" /><label for="select12">퓨전요리</label>
+					<input type="hidden" id="selectedCate" name="selectedCate" />
+				</div>
 
 				<div id="menu_wrap" class="bg_white">
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
-								필터
-								|
+								필터 |
 								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
-										value="myLocation" onclick="searchPlaces()"> 내위치</label>
+										value="myLocation" onclick="searchPlaces()" />
+									내위치</label>
 								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
-										value="nationwide" onclick="searchPlaces()"> 전국</label>
+										value="nationwide" onclick="searchPlaces()" />
+									전국</label>
 								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
-										value="myMap" onclick="searchPlaces()"> 지도범위 검색</label>
-										<input type="hidden" id="inputLoadSelector" th:value="${inputLoadSelector}" readonly>
+										value="myMap" onclick="searchPlaces()" />
+									지도범위 검색</label>
+								<input type="hidden" id="inputLoadSelector" th:value="${inputLoadSelector}" readonly />
 							</form>
-
 						</div>
 					</div>
 
-
-
 					<!-- 여기에 전국일경우 디자인 추가하기-->
-					<select id="h_area1" name="h_area1"
-						onchange="reg1_change(this.value, document.getElementsByName('h_area2')[0]),searchPlaces();">
-						<option value="">-광역시도-</option>
-						<option value="1">서울</option>
-						<option value="2">부산</option>
-						<option value="3">대구</option>
-						<option value="4">인천</option>
-						<option value="5">광주</option>
-						<option value="6">대전</option>
-						<option value="7">울산</option>
-						<option value="8">강원</option>
-						<option value="9">경기</option>
-						<option value="10">경남</option>
-						<option value="11">경부</option>
-						<option value="12">전남</option>
-						<option value="13">전북</option>
-						<option value="14">제주</option>
-						<option value="15">충남</option>
-						<option value="16">충북</option>
-					</select>
-					<select id="h_area2" name="h_area2" onchange="searchPlaces();">
-						<option value="">-시군구-</option>
-					</select>
+					<div>
+						<select id="h_area1" name="h_area1"
+							onchange="reg1_change(this.value, document.getElementsByName('h_area2')[0]),searchPlaces();">
+							<option value="">-광역시도-</option>
+							<option value="1">서울</option>
+							<option value="2">부산</option>
+							<option value="3">대구</option>
+							<option value="4">인천</option>
+							<option value="5">광주</option>
+							<option value="6">대전</option>
+							<option value="7">울산</option>
+							<option value="8">강원</option>
+							<option value="9">경기</option>
+							<option value="10">경남</option>
+							<option value="11">경부</option>
+							<option value="12">전남</option>
+							<option value="13">전북</option>
+							<option value="14">제주</option>
+							<option value="15">충남</option>
+							<option value="16">충북</option>
+						</select>
+						<select id="h_area2" name="h_area2" onchange="searchPlaces();">
+							<option value="">-시군구-</option>
+						</select>
 
-					<input type="hidden" id="h_area1_1" th:value="${h_area1}" readonly>
-					<input type="hidden" id="h_area2_1" th:value="${h_area2}" readonly>
+						<input type="hidden" id="h_area1_1" th:value="${h_area1}" readonly />
+						<input type="hidden" id="h_area2_1" th:value="${h_area2}" readonly />
+					</div>
+
+
 					<script th:src="@{/js/region.js}" type="text/javascript"></script>
 
 					<script type="text/javascript">
@@ -110,7 +109,10 @@
 						var h_area1_value = document.getElementById("h_area1_1").value;
 
 						h_area1.options[h_area1_value].selected = true;
-						reg1_change(h_area1_value, document.getElementsByName('h_area2')[0]);
+						reg1_change(
+							h_area1_value,
+							document.getElementsByName("h_area2")[0]
+						);
 					</script>
 
 					<script type="text/javascript">
@@ -126,35 +128,22 @@
 								break; // 값을 찾으면 반복 종료
 							}
 						}
-
 					</script>
 					<!-- 전국 -->
 				</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				<div class="_01_01_main">
 					<div class="map_wrap">
-						<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+						<div id="map" style="
+                  width: 100%;
+                  height: 100%;
+                  position: relative;
+                  overflow: hidden;
+                "></div>
 					</div>
 					<div class="_01_01_01_sub">
 						<ul id="placesList"></ul>
 						<div id="pagination"></div>
-
 					</div>
 
 					<!-- 이곳에서 코드 작업 -->
@@ -170,7 +159,9 @@
 		$(document).ready(function () {
 			// 라디오 버튼의 변경 이벤트를 감지하고 선택한 값을 hidden 요소에 설정
 			$("input[type='radio'][name='shop']").change(function () {
-				var selectedId = $("input[type='radio'][name='shop']:checked").attr("id");
+				var selectedId = $("input[type='radio'][name='shop']:checked").attr(
+					"id"
+				);
 				// var selectedLabelFor = $("input[type='radio'][name='shop']:checked").next("label").attr("for");
 
 				// 선택한 id 출력
@@ -188,7 +179,6 @@
 
 	<!-- </body> 위에 삽입되는 공통 부분 추가하는 코드 -->
 	<div th:insert="~{include/footer.html}"></div>
-
 </body>
 
 </html>
