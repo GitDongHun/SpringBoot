@@ -2,11 +2,14 @@ package com.food.exp.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.food.exp.dto.PageDTO;
 import com.food.exp.dto.RevDTO;
+import com.food.exp.dto.RevPageDTO;
 import com.food.exp.dto.RevTempDTO;
 
 @Repository("RevDAO")
@@ -21,10 +24,24 @@ public class RevDAO {
     }
 
 	// id에 해당하는 리뷰 가져오기
-    public List<RevDTO> getReviewById(String user_email) {
-        return session.selectList("RevMapper.getReviewById", user_email);
+    public RevPageDTO getReviewById(int curPage, String user_email) {
+    	RevPageDTO revPageDTO = new RevPageDTO();
+	    int offset = (curPage - 1) * revPageDTO.getPerPage();
+	    int limit = revPageDTO.getPerPage();
+
+	    List<RevDTO> revlist = session.selectList("RevMapper.getReviewById", user_email, new RowBounds(offset, limit));
+
+	    revPageDTO.setRevlist(revlist);
+	    revPageDTO.setCurPage(curPage);
+	    
+        return revPageDTO;
     }
     
+    // 리뷰 페이지
+ 	public int totalCount(String user_email) {
+ 		return session.selectOne("RevMapper.totalCount", user_email);
+ 	}
+ 	
     // 리뷰 자세히 보기
     public RevDTO selectByRev_No(int no) {
 		return session.selectOne("RevMapper.selectByRev_No", no);
@@ -48,4 +65,8 @@ public class RevDAO {
     public List<RevTempDTO> getreviewByRst(String rst_id){
     	return session.selectList("RevMapper.getreviewByRst",rst_id);
     }
+
+	public void delSelect(int rev_no) {
+		session.delete("RevMapper.delSelect", rev_no);
+	}
 }

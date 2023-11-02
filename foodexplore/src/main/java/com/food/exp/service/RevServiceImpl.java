@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.food.exp.dao.RevDAO;
 import com.food.exp.dto.RevDTO;
+import com.food.exp.dto.RevPageDTO;
 import com.food.exp.dto.RevTempDTO;
 
 @Service
@@ -21,8 +22,12 @@ public class RevServiceImpl implements RevService {
 	}
 
 	@Override
-	public List<RevDTO> getReviewById(String user_email) {
-		 return dao.getReviewById(user_email);
+	public RevPageDTO getReviewById(int curPage, String user_email) {
+		 return dao.getReviewById(curPage, user_email);
+	}
+	@Override
+	public int totalCount(String user_email) {
+		return dao.totalCount(user_email);
 	}
 
 	@Override
@@ -48,6 +53,12 @@ public class RevServiceImpl implements RevService {
 	@Override
 	public List<RevTempDTO> getreviewByRst(String rst_id){
 		return dao.getreviewByRst(rst_id);
+	}
+
+	@Override
+	public void delSelect(int rev_no) {
+		dao.delSelect(rev_no);
+		
 	}
 	
 }
