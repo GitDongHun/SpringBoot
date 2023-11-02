@@ -23,6 +23,7 @@ import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
 import com.food.exp.dto.RstTempDTO;
+import com.food.exp.service.MypageService;
 import com.food.exp.service.RevService;
 import com.food.exp.service.RstService;
 import com.food.exp.service.UploadService;
@@ -40,6 +41,9 @@ public class RstController {
 	
 	@Autowired
 	RevService revService;
+	
+	@Autowired
+	MypageService mypageService;
 
 	@Autowired
 	UploadService uService;
@@ -98,6 +102,9 @@ public class RstController {
 		List<RstDTO> rstDTOList = new ArrayList<>();
 			for (RstTempDTO rstTempDTO : rsttempList) {
 			// 01. rstDTO에 rsttempList값을 재전달
+				
+				
+			// 01-1. null값 에러처리를 위한 공백처리
 			RstDTO rstDTO = new RstDTO();
 			rstDTO.setRst_id((rstTempDTO.getId() != null) ? rstTempDTO.getId() : " ");
 			rstDTO.setRst_name((rstTempDTO.getPlace_name() != null) ? rstTempDTO.getPlace_name() : " ");
@@ -112,9 +119,14 @@ public class RstController {
 			// rstDTO.setDistance(rstTempDTO.getDistance());
 			// rstDTO.setCategoryGroupCode(rstTempDTO.getCategory_group_code());
 			// rstDTO.setCategoryGroupName(rstTempDTO.getCategory_group_name());
+			
+			
+			//01-2. rstDTOList에 rstDTO값 넣기 
 			rstDTOList.add(rstDTO);
 		}
 		for (RstDTO dto : rstDTOList) {
+			//02. rstService, rstServiceImpl, rstDAO, rstMapper
+			//    위치에 정의된 서비스 실행하여 데이터 삽입 or 수정 
 			rstService.insertOrUpdateRestaurant(dto);
 		}
 		return "/rst/rst";
@@ -122,7 +134,7 @@ public class RstController {
 	
 	//00. 식당정보(rst_id) > 세부정보(rst_id)를 GET방식으로 가지고옵니다.
 	@GetMapping("/rst/rst_detail")
-	public String rst_detail(@RequestParam("rst_id") String rst_id,Model model) {
+	public String rst_detail(@RequestParam("rst_id") String rst_id,Model model, HttpSession session, LikesDTO dto) {
 		
 		//01. GET으로 받은 rst_id로 DB에서 가져오기
 		RstDTO rstDTO=rstService.selectRestaurantById(rst_id);
@@ -155,7 +167,8 @@ public class RstController {
         for(RevTempDTO tmp:revTempDTOList) {
         	rev_star_hop += Double.valueOf(tmp.getRev_star());
         }
-        rev_star_avg=(double)(Math.round((rev_star_hop/rev_count) * 2) / 2.0);
+        rev_star_avg = Math.floor(rev_star_hop / rev_count * 10) / 10.0;
+
         
         if (Double.isNaN(rev_star_avg)) {
         	rev_star_avg = 0.0; // null 또는 NaN 값을 0으로 처리
@@ -167,9 +180,25 @@ public class RstController {
         model.addAttribute("rev_all_star_avg",rev_star_avg);
         model.addAttribute("rev_all_count",rev_count);
   
+        //05. 리뷰평균 DB로 Update하기
+        //필요한정보: rev_star_avg, rst_id를 담은 rstDTO
+        //넣는 위치: restaurant 테이블
+        rstDTO.setRev_star_avg(rev_star_avg);
+        rstService.updateAvgStar(rstDTO);
+        
         // 즐겨찾기 개수
-		List<LikesDTO> likesTotal = rstService.getLikesTotal(rst_id);
+		List<LikesDTO> likesTotal = mypageService.getLikesTotal(rst_id);
 		model.addAttribute("likesTotal", likesTotal);
+		
+		// 즐겨찾기 상태 가져오기
+		String user_email = (String) session.getAttribute("login");
+		model.addAttribute("user_email", user_email);
+		if (user_email != null) {
+			dto.setUser_email(user_email);
+			int isLiked = mypageService.isLiked(dto);
+			model.addAttribute("rst_id",rst_id);
+			model.addAttribute("isLiked", isLiked);
+		}
 		
 		return "/rst/rst_detail";
 	}
@@ -190,6 +219,28 @@ public class RstController {
 	    revDTO.setUser_email(user_email);
 		revService.addReview(revDTO);
 		return "redirect:/rst/rst_detail?rst_id=" + revDTO.getRst_id();
+	}
+	
+	
+	// 즐겨찾기 삭제
+	@PostMapping("/rst/delLikes")
+	public String delLikes(HttpSession session, LikesDTO dto, Model model) {
+		String user_email = (String) session.getAttribute("login");
+		dto.setUser_email(user_email);
+		mypageService.delLikes(dto);
+		List<LikesDTO> updatedLikesTotal = mypageService.getLikesTotal(dto.getRst_id());
+	    model.addAttribute("likesTotal", updatedLikesTotal);
+        return "redirect:/rst/rst_detail?rst_id=" + dto.getRst_id();
+	}
+
+	// 즐겨찾기 추가
+	@PostMapping(value = "/rst/addLikes")
+	public String addLikes(HttpSession session, LikesDTO dto) {
+		String user_email = (String) session.getAttribute("login");
+		dto.setUser_email(user_email);
+		mypageService.addLikes(dto);
+		List<LikesDTO> likesTotal = mypageService.getLikesTotal(dto.getRst_id());
+		return "redirect:/rst/rst_detail?rst_id=" + dto.getRst_id();
 	}
 	
 }

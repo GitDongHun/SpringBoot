@@ -41,10 +41,10 @@ public class MypageServiceImpl implements MypageService{
 	public int delLikes(LikesDTO dto) {
 		return dao.delLikes(dto);
 	}
-
+	
 	@Override
-	public List<RevDTO> getRev(String user_email) {
-		return dao.getRev(user_email);
+	public int addLikes(LikesDTO dto) {
+		return dao.addLikes(dto);
 	}
 
 	@Override
@@ -57,5 +57,19 @@ public class MypageServiceImpl implements MypageService{
 		return dao.getLikes(curPage, user_email);
 	}
 
+	@Override
+	public int isLiked(LikesDTO dto) {
+		return dao.isLiked(dto);
+	}
+	
+	@Override
+	public List<LikesDTO> getLikesTotal(String rst_id) {
+		return dao.getLikesTotal(rst_id);
+	}
+
+	@Override
+	public List<RevDTO> getRev(String user_email) {
+		return dao.getRev(user_email);
+	}
 
 }

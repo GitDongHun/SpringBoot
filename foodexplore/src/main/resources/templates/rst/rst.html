@@ -68,7 +68,7 @@
 										value="nationwide" onclick="searchPlaces()"> 전국</label>
 								<label class="custom-radio"><input type="radio" class="custom-radio" name="searchType"
 										value="myMap" onclick="searchPlaces()"> 지도범위 검색</label>
-										inputLoadSelector: <input type="text" id="inputLoadSelector" th:value="${inputLoadSelector}" readonly>
+										<input type="hidden" id="inputLoadSelector" th:value="${inputLoadSelector}" readonly>
 							</form>
 
 						</div>
@@ -78,7 +78,7 @@
 
 					<!-- 여기에 전국일경우 디자인 추가하기-->
 					<select id="h_area1" name="h_area1"
-						onchange="reg1_change(this.value, document.getElementsByName('h_area2')[0])">
+						onchange="reg1_change(this.value, document.getElementsByName('h_area2')[0]),searchPlaces();">
 						<option value="">-광역시도-</option>
 						<option value="1">서울</option>
 						<option value="2">부산</option>
@@ -97,12 +97,12 @@
 						<option value="15">충남</option>
 						<option value="16">충북</option>
 					</select>
-					<select id="h_area2" name="h_area2">
+					<select id="h_area2" name="h_area2" onchange="searchPlaces();">
 						<option value="">-시군구-</option>
 					</select>
 
-					h_area1:<input type="text" id="h_area1_1" th:value="${h_area1}" readonly>
-					h_area2:<input type="text" id="h_area2_1" th:value="${h_area2}" readonly>
+					<input type="hidden" id="h_area1_1" th:value="${h_area1}" readonly>
+					<input type="hidden" id="h_area2_1" th:value="${h_area2}" readonly>
 					<script th:src="@{/js/region.js}" type="text/javascript"></script>
 
 					<script type="text/javascript">
