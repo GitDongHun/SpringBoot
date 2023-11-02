@@ -113,7 +113,48 @@ function searchFunction() {
 
 	var selectCate = $("input[type='radio'][name='shop']:checked").next("label").text();
 
-	keyword = keyword +" "+ selectCate;
+	var h_area1="",h_area2="";
+
+	var searchType = document.querySelector('input[name="searchType"]:checked').value;
+	if(searchType==="nationwide")
+	{
+		//여기일 경우 h_area1, h_area2의 보이지 않는 옵션을 풀고, 텍스트값을 h_area1, h_area2에 넣음
+		h_area1=document.getElementById('h_area1');
+		h_area2=document.getElementById('h_area2');
+
+		h_area1.hidden=false;
+		h_area2.hidden=false;
+
+		h_area1 = document.getElementById('h_area1').options[document.getElementById('h_area1').selectedIndex].text;
+		h_area2 = document.getElementById('h_area2').options[document.getElementById('h_area2').selectedIndex].text;
+
+		if(h_area1==="-광역시도-"){
+			h_area1="";
+		}
+		if(h_area2==="-시군구-"){
+			h_area2="";
+		}
+
+	}
+	else if(searchType==="myLocation"||searchType==="myMap")
+	{
+		//여기일 경우 h_area1, h_area2를 보이지 않게 옵션을 정하고, 그대로 둠
+		h_area1=document.getElementById('h_area1');
+		h_area2=document.getElementById('h_area2');
+
+		h_area1.hidden=true;
+		h_area2.hidden=true;
+
+		h_area1="";
+		h_area2="";
+	}
+	
+	//nationwide
+	//myLocation
+	//myMap
+	
+
+	keyword =h_area1+ " "+h_area2 +" "+ selectCate +" "+keyword;
 	console.log(keyword);
 
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {

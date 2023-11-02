@@ -156,7 +156,8 @@ public class RstController {
         for(RevTempDTO tmp:revTempDTOList) {
         	rev_star_hop += Double.valueOf(tmp.getRev_star());
         }
-        rev_star_avg=(double)(Math.round((rev_star_hop/rev_count) * 2) / 2.0);
+        rev_star_avg = Math.floor(rev_star_hop / rev_count * 10) / 10.0;
+
         
         if (Double.isNaN(rev_star_avg)) {
         	rev_star_avg = 0.0; // null 또는 NaN 값을 0으로 처리
