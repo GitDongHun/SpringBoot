@@ -22,13 +22,22 @@ MERGE INTO restaurant r
     VALUES ('${rst_id}', '${rst_name}', '${rst_addr1}', '${rst_addr2}', '${rst_phone}', '${rst_cate}')
 </insert>
 
-
-
-
 <select id="selectRestaurantById" resultType="com.food.exp.dto.RstDTO">
     SELECT * FROM restaurant
     WHERE rst_id = #{rst_id}
 </select>
+
+
+<update id="updateAvgStar">
+UPDATE restaurant
+SET rev_star_avg=#{rev_star_avg}
+WHERE rst_id=#{rst_id}
+
+</update>
+
+
+
+
 
 
 

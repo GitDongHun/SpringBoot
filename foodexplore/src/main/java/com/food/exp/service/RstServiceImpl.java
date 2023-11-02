@@ -28,6 +28,10 @@ public class RstServiceImpl implements RstService {
 		
 		return rstDAO.selectRestaurantById(rst_id);
 	}
+	@Override
+	public void updateAvgStar(RstDTO restaurant) {
+		rstDAO.updateAvgStar(restaurant);
+	}
 	
 
     // 다른 비즈니스 로직 메서드의 구현

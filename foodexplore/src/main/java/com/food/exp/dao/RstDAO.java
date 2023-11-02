@@ -32,4 +32,8 @@ public class RstDAO {
 		return sqlSessionTemplate.selectList("RstMapper.getAllRestaurants");
 	}
 	
+	public void updateAvgStar(RstDTO restaurant) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.update("RstMapper.updateAvgStar",restaurant);
+	}
 }
