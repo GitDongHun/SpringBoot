@@ -76,36 +76,6 @@
 				</div>
             </div>
            </div>
-
-		<!-- <script>
-			// 파일 선택이 변경되었을 때 AJAX 호출
-			$("#files").on("change", function () {
-				console.log("file changed");
-				var formData = new FormData();
-				var files = $(this).get(0).files;
-				for (var i = 0; i < files.length; i++) {
-					formData.append("files", files[i]);
-				}
-				console.log(formData);
-				$.ajax({
-					url: "/foodexp/upload",
-					type: "POST",
-					data: formData,
-					processData: false,
-					contentType: false,
-					success: function (data) {
-						var responseDiv = $("#response");
-						responseDiv.empty();
-
-						data.forEach(function (fileInfo) {
-							var fileElement = $("<div>");
-							fileElement.text("File Name: "+ fileInfo.uploadFileName+"file path:" + fileInfo.uploadFilePath);
-							responseDiv.append(fileElement);
-						});
-					}
-				});
-			});
-		</script> -->
 		   
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

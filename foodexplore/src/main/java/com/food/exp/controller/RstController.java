@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.food.exp.dto.FileDTO;
 import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
@@ -25,6 +26,7 @@ import com.food.exp.dto.RstTempDTO;
 import com.food.exp.service.MypageService;
 import com.food.exp.service.RevService;
 import com.food.exp.service.RstService;
+import com.food.exp.service.UploadService;
 
 @Controller
 public class RstController {    
@@ -42,6 +44,9 @@ public class RstController {
 	
 	@Autowired
 	MypageService mypageService;
+
+	@Autowired
+	UploadService uService;
 
 	@GetMapping("/maintest")
 	public String maintest(){
@@ -135,7 +140,18 @@ public class RstController {
 		RstDTO rstDTO=rstService.selectRestaurantById(rst_id);
 //		List<RevDTO> revDTOList = revService.getreviewByRst(rst_id);
 		List<RevTempDTO> revTempDTOList = revService.getreviewByRst(rst_id);
-		
+
+		//파일 넣어주기
+		for (RevTempDTO revTempDTO : revTempDTOList) {
+		    int rev_no = revTempDTO.getRev_no();
+		    System.out.println("rev_no는   "+rev_no);
+		    List<FileDTO> attachList = uService.getFiles(rev_no);
+		    System.out.println(attachList.toString());
+		    if(attachList != null && attachList.size()>0) {
+		    	System.out.println("사진 있는 리뷰");
+		    	revTempDTO.setAttachList(attachList);
+		    }
+		}
 		
 		//02. DB에서 가져온 데이터 html로 쏴주기
         model.addAttribute("rst_addr1", rstDTO.getRst_addr1());
@@ -207,7 +223,6 @@ public class RstController {
 		String user_email = (String) session.getAttribute("login");
 	    revDTO.setUser_email(user_email);
 		revService.addReview(revDTO);
-		System.out.println(revDTO.toString());
 		return "redirect:/rst/rst_detail?rst_id=" + revDTO.getRst_id();
 	}
 	

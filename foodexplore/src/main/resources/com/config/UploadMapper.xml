@@ -5,16 +5,34 @@
 <mapper namespace="UploadMapper">
 
 	<insert id="insert" parameterType="FileDTO">
-		insert into upload (originalFileName,uploadFilePath, rev_no)
-		values (#{originalFileName}, #{uploadFilePath}, #{rev_no})
+		insert into upload (uploadFileName,uploadFilePath, rev_no)
+		values (#{uploadFileName}, #{uploadFilePath}, #{rev_no})
 	</insert>
 	
 	<delete id="delete">
-		delete from upload where originalFileName = #{originalFileName}
+		delete from upload where uploadFileName = #{uploadFileName}
 	</delete>
 	
-	<select id="findByRno" resultType="FileDTO">
+	<select id="getFiles" resultType="FileDTO">
 		select * from upload where rev_no = #{rev_no} 
+	</select>
+	
+	<select id="currentRno" resultType="int">
+		select rev_seq.currval from dual
+	</select>
+	
+	<select id="thumbnail">
+		<![CDATA[
+			SELECT u.*
+				FROM (
+				    SELECT r.rev_no
+				    FROM review r
+				    WHERE r.rst_id = #{rst_id}
+				    ORDER BY r.rev_no DESC
+				) r
+				JOIN upload u ON r.rev_no = u.rev_no
+				WHERE ROWNUM <= 7
+		]]>	
 	</select>
    
 </mapper>

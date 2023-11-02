@@ -86,7 +86,7 @@
 						</button>
 					</div>
 					<div class="review">
-						<div th:each="revTempDTO : ${revTempDTOList}">
+						<div th:each="revTempDTO, rindex : ${revTempDTOList}">
 							<div class="user_info">
 								<img th:src="@{/images/user.png}" alt="location"
 									style="height: 70px; margin-right: 6px;">
@@ -108,7 +108,19 @@
 									리뷰 제목: <span id="rev_title" th:text="${revTempDTO.rev_title}"></span>
 								</div>
 								<div class="rev_comment" th:text="${revTempDTO.rev_comment}"></div>
-								<div class="rev_photo">(여기에 사진이 들어갈 위치입니다.)</div>
+								
+								<div class="rev_photo">
+									<ul th:if="${revTempDTO.attachList != null and revTempDTO.attachList.size() > 0}">
+										<li th:each="attach, index : ${revTempDTO.attachList}" 
+											th:name="'attachList_' + ${rindex.index} + '_' + ${index.index}"
+											th:id="'attachList_' + ${rindex.index} + '_' + ${index.index}">
+											<img th:src="${attach.uploadFilePath}" alt="리뷰사진" style="height: 150px;">
+										</li>
+									</ul>
+									
+								</div>
+
+
 								<br>
 								<!-- <button class="rev_like">공감</button> -->
 							</div>
