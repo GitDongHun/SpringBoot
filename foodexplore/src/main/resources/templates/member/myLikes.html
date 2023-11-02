@@ -32,7 +32,7 @@
 						<img class="food-img" id="food-img">
 						<div class="text-info">
 							<div class="rst-info">
-								<p class="rstname" th:text="${likes.rst_name}" />
+								<a th:href="@{'/rst/rst_detail?rst_id=' + ${likes.rst_id}}" class="rstname" th:text="${likes.rst_name}"></a>
 								<p class="rstcate" th:text="${likes.rst_cate}" />
 							</div>
 							<div class="rst-info">

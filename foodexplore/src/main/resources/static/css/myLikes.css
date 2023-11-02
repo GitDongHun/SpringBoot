@@ -45,6 +45,11 @@ ul li {
     font-size: 20px;
     color: black;
     margin: 0px;
+    text-decoration: none;
+}
+
+.rstname:hover { /* 마우스 호버 효과 */
+	color: #EF6900;
 }
 
 .rstcate{
