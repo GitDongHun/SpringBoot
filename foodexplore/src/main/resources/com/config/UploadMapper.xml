@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UploadMapper">
+
+	<insert id="insert" parameterType="FileDTO">
+		insert into upload (originalFileName,uploadFilePath, rev_no)
+		values (#{originalFileName}, #{uploadFilePath}, #{rev_no})
+	</insert>
+	
+	<delete id="delete">
+		delete from upload where originalFileName = #{originalFileName}
+	</delete>
+	
+	<select id="findByRno" resultType="FileDTO">
+		select * from upload where rev_no = #{rev_no} 
+	</select>
+   
+</mapper>
