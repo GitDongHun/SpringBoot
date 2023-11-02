@@ -5,11 +5,11 @@ import org.apache.ibatis.type.Alias;
 @Alias("FileDTO")
 public class FileDTO {
 
-    private String uploadFileName;  
-    private String uploadFilePath;  
-    private Long rev_no;
+     String uploadFileName;  
+     String uploadFilePath;  
+     int rev_no;
 
-    private FileDTO() {  }
+     FileDTO() {  }
 
     public String getuploadFileName() {
         return uploadFileName;
@@ -19,11 +19,11 @@ public class FileDTO {
         return uploadFilePath;
     }
 
-    public Long getRev_no() {
+    public int getRev_no() {
         return rev_no;
     }
 
-    private FileDTO(String uploadFileName, String uploadFilePath, Long rev_no) {
+    public FileDTO(String uploadFileName, String uploadFilePath, int rev_no) {
 		this.uploadFileName = uploadFileName;
 		this.uploadFilePath = uploadFilePath;
 		this.rev_no = rev_no;
@@ -37,7 +37,7 @@ public class FileDTO {
 		this.uploadFilePath = uploadFilePath;
 	}
 
-	public void setRev_no(Long rev_no) {
+	public void setRev_no(int rev_no) {
 		this.rev_no = rev_no;
 	}
 
@@ -53,7 +53,7 @@ public class FileDTO {
     public static class Builder {
         private String uploadFileName;
         private String uploadFilePath;
-        private Long rev_no;
+        private int rev_no;
 
         public Builder uploadFileName(String uploadFileName) {
             this.uploadFileName = uploadFileName;
@@ -65,7 +65,7 @@ public class FileDTO {
             return this;
         }
 
-        public Builder rev_no(Long rev_no) {
+        public Builder rev_no(int rev_no) {
             this.rev_no = rev_no;
             return this;
         }

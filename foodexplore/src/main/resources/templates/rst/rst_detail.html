@@ -105,7 +105,13 @@
 									리뷰 제목: <span id="rev_title" th:text="${revTempDTO.rev_title}"></span>
 								</div>
 								<div class="rev_comment" th:text="${revTempDTO.rev_comment}"></div>
-								<div class="rev_photo">(여기에 사진이 들어갈 위치입니다.)</div>
+								<div class="rev_photo">
+									<ul>
+										<li th:each="attachList, index : ${revTempDTOList.attachList}" name="attachList${attachList.index}">
+											<img th:src="${attachList.uploadFilePath}" alt="리뷰사진" style="height: 150px;">
+										</li>
+									</ul>
+								</div>
 								<br>
 								<!-- <button class="rev_like">공감</button> -->
 							</div>

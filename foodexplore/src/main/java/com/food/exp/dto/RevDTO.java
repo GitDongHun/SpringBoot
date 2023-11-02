@@ -16,7 +16,7 @@ public class RevDTO {
 	String rev_title;
 	String rst_name;
 	
-	private List<FileDTO> attachList;
+	List<FileDTO> attachList;
 	
 	public RevDTO() {}
 

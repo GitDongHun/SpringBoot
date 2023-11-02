@@ -8,8 +8,9 @@
     <!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
     <title>먹스플로어</title>
 
-    <link th:href="@{/css/rev.css}" rel="stylesheet" />
-    <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
+	<script type="text/javascript" th:src="@{/js/upload.js}"></script>	
+	<link th:href="@{/css/upload.css}" rel="stylesheet" />
+
 
     </head>
     
@@ -27,19 +28,7 @@
         <div class="contentbox" >
             <div id="backgroundbanner"></div>
             <div class="bodycontent">
-            <div class="sidebar">
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
-			</div>
-			<div class="content">
+			<div class="content" style="display: flex;justify-content: center;padding-top: 40px;">
 			<div style="text-align: left;">
                <h5>리뷰를 작성해주세요!</h5>
                <div>
@@ -56,11 +45,24 @@
 					    <div>
 					        <textarea rows="6" cols="50" name="rev_comment" placeholder="리뷰 내용"></textarea>
 					    </div>
-					    <div style="text-align: right; margin-right: 400px;">					    
+
+						<div class="forupload">
+				            <input type="file" name="files" id="files"  accept="image/*" multiple /> 
+							<div class="uploadResult">
+								<ul>
+
+								</ul>
+							</div>
+							<div id="response"></div>
+
+						</div>
+
+					    <div style="text-align: right;">					    
 					    	<button type="submit">작성</button>
 					    </div>
 			            <input type="hidden" name="rst_name" th:value="${rst_name}" />
     					<input type="hidden" name="rst_id" th:value="${rst_id}" />
+
 					</form>
 			</div>
               </div>

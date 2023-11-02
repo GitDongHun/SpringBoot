@@ -1,0 +1,28 @@
+.uploadResult ul{
+    display: flex;
+    flex-flow: row ;
+    justify-content: flex-start;
+    padding-left: 0px;
+}
+
+.uploadResult ul li{
+    list-style: none;
+    padding-right: 10px;
+    position: relative;
+}
+
+.uploadResult ul li img{
+    height: 150px;
+}
+.delbtn{
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+    float: right;
+    position: absolute;
+    top: 24px;
+}
+.delimg{
+    width: 30px;
+    height: 30px !important;
+}

@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.food.exp.dao.RevDAO;
+import com.food.exp.dao.UploadDAO;
+import com.food.exp.dto.FileDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 
@@ -14,10 +17,29 @@ public class RevServiceImpl implements RevService {
 	
 	@Autowired
 	RevDAO dao;
+	
+	@Autowired
+	UploadDAO udao;
 
+	@Transactional
 	@Override
 	public void addReview(RevDTO review) {
 		dao.addReview(review);
+		int rev_no = udao.currentRno();
+		if(review.getAttachList() == null || review.getAttachList().size()<=0) {
+			return;
+		}
+		
+		List<FileDTO> attachList = review.getAttachList();
+		System.out.println("revno is "+rev_no);
+
+		for (int i = 0; i < attachList.size(); i++) {
+			System.out.println("in!!!!");
+			FileDTO attach = attachList.get(i);
+		    attach.setRev_no(rev_no);
+		    udao.insert(attach);
+		}
+
 	}
 
 	@Override
