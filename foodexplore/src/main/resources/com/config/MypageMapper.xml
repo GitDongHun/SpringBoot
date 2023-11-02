@@ -54,6 +54,13 @@
 	order by l.likes_date DESC
    </select>
    
+   <!-- 즐겨찾기 페이지 -->
+   <select id="totalCount" resultType="int">
+     select count(*)
+     from likes
+     where user_email = #{user_email}
+   </select>
+   
    <!-- 즐겨찾기 삭제 -->
    <delete id="delLikes" parameterType="String" >
    	delete from likes
@@ -61,12 +68,27 @@
    		  and user_email = #{user_email}
    </delete>
    
-   <!-- 즐겨찾기 페이지 -->
-   <select id="totalCount" resultType="int">
-     select count(*)
+   <!-- 즐겨찾기 추가 -->
+   <insert id="addLikes" parameterType="LikesDTO">
+    insert into likes (user_email, rst_id, likes_date)
+    values ( #{user_email}, #{rst_id}, sysdate)
+   </insert>
+   
+   <!-- 즐겨찾기 상태 체크 -->
+   <select id="isLiked" parameterType="String" resultType="int">
+    select case when count(*) > 0 then 1 else 0 end as isLiked
+    from likes
+    where user_email = #{user_email}
+          and rst_id = #{rst_id}
+    </select>
+    
+    <!-- 즐겨찾기 총합 가져오기 -->
+	<select id="getLikesTotal" parameterType="String" resultType="LikesDTO">
+     select rst_id, count(*) as likes_total
      from likes
-     where user_email = #{user_email}
-   </select>
+     where rst_id = #{rst_id}
+     group by rst_id
+   	</select>
    
    <!-- 리뷰 정보 가져오기 -->
    <select id="getRev" parameterType="String" resultType="RevDTO">

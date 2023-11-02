@@ -31,9 +31,4 @@ public class RstServiceImpl implements RstService {
 	
 
     // 다른 비즈니스 로직 메서드의 구현
-	
-	@Override
-	public List<LikesDTO> getLikesTotal(String rst_id) {
-		return rstDAO.getLikesTotal(rst_id);
-	}
 }

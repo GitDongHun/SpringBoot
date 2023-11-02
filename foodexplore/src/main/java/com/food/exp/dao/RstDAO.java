@@ -32,7 +32,4 @@ public class RstDAO {
 		return sqlSessionTemplate.selectList("RstMapper.getAllRestaurants");
 	}
 	
-	public List<LikesDTO> getLikesTotal(String rst_id) {
-		return sqlSessionTemplate.selectList("RstMapper.getLikesTotal",rst_id);
-	}
 }

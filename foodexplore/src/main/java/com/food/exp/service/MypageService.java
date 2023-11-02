@@ -16,7 +16,10 @@ public interface MypageService {
 	public PageDTO getLikes(int curPage, String user_email);
 	/* public List<LikesDTO> getLikes(String user_email); */
 	public int delLikes(LikesDTO dto);
+	public int addLikes(LikesDTO dto);
 	public int totalCount(String user_email);
+	public int isLiked(LikesDTO dto);
+	public List<LikesDTO> getLikesTotal(String rst_id);
 	
 	public List<RevDTO> getRev(String user_email);
 }

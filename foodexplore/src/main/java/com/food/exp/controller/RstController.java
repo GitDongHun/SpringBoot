@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +22,7 @@ import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
 import com.food.exp.dto.RstTempDTO;
+import com.food.exp.service.MypageService;
 import com.food.exp.service.RevService;
 import com.food.exp.service.RstService;
 
@@ -39,6 +39,9 @@ public class RstController {
 	
 	@Autowired
 	RevService revService;
+	
+	@Autowired
+	MypageService mypageService;
 
 	@GetMapping("/maintest")
 	public String maintest(){
@@ -118,7 +121,7 @@ public class RstController {
 	
 	//00. 식당정보(rst_id) > 세부정보(rst_id)를 GET방식으로 가지고옵니다.
 	@GetMapping("/rst/rst_detail")
-	public String rst_detail(@RequestParam("rst_id") String rst_id,Model model) {
+	public String rst_detail(@RequestParam("rst_id") String rst_id,Model model, HttpSession session, LikesDTO dto) {
 		
 		//01. GET으로 받은 rst_id로 DB에서 가져오기
 		RstDTO rstDTO=rstService.selectRestaurantById(rst_id);
@@ -158,8 +161,15 @@ public class RstController {
         model.addAttribute("rev_all_count",rev_count);
   
         // 즐겨찾기 개수
-		List<LikesDTO> likesTotal = rstService.getLikesTotal(rst_id);
+		List<LikesDTO> likesTotal = mypageService.getLikesTotal(rst_id);
 		model.addAttribute("likesTotal", likesTotal);
+		
+		// 즐겨찾기 상태 가져오기
+		String user_email = (String) session.getAttribute("login");
+		dto.setUser_email(user_email);
+		int isLiked = mypageService.isLiked(dto);
+		model.addAttribute("rst_id",rst_id);
+		model.addAttribute("isLiked", isLiked);
 		
 		return "/rst/rst_detail";
 	}
@@ -181,6 +191,28 @@ public class RstController {
 		revService.addReview(revDTO);
 		System.out.println(revDTO.toString());
 		return "redirect:/rst/rst_detail?rst_id=" + revDTO.getRst_id();
+	}
+	
+	
+	// 즐겨찾기 삭제
+	@PostMapping("/rst/delLikes")
+	public String delLikes(HttpSession session, LikesDTO dto, Model model) {
+		String user_email = (String) session.getAttribute("login");
+		dto.setUser_email(user_email);
+		mypageService.delLikes(dto);
+		List<LikesDTO> updatedLikesTotal = mypageService.getLikesTotal(dto.getRst_id());
+	    model.addAttribute("likesTotal", updatedLikesTotal);
+        return "redirect:/rst/rst_detail?rst_id=" + dto.getRst_id();
+	}
+
+	// 즐겨찾기 추가
+	@PostMapping(value = "/rst/addLikes")
+	public String addLikes(HttpSession session, LikesDTO dto) {
+		String user_email = (String) session.getAttribute("login");
+		dto.setUser_email(user_email);
+		mypageService.addLikes(dto);
+		List<LikesDTO> likesTotal = mypageService.getLikesTotal(dto.getRst_id());
+		return "redirect:/rst/rst_detail?rst_id=" + dto.getRst_id();
 	}
 	
 }

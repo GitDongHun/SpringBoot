@@ -10,6 +10,4 @@ public interface RstService {
     void insertOrUpdateRestaurant(RstDTO restaurant);
     RstDTO selectRestaurantById(String rst_id);
     // 다른 비즈니스 로직 메서드
-    
-    public List<LikesDTO> getLikesTotal(String rst_id);
 }

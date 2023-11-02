@@ -30,12 +30,6 @@ MERGE INTO restaurant r
     WHERE rst_id = #{rst_id}
 </select>
 
-<!-- 즐겨찾기 총합 가져오기 -->
-<select id="getLikesTotal" parameterType="String" resultType="LikesDTO">
-    select rst_id, count(*) as likes_total
-    from likes
-    where rst_id = #{rst_id}
-    group by rst_id
-   </select>
+
 
 </mapper>

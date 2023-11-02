@@ -44,21 +44,28 @@ public class MypageDAO {
 	    PageDTO pageDTO = new PageDTO();
 	    int offset = (curPage - 1) * pageDTO.getPerPage();
 	    int limit = pageDTO.getPerPage();
-
 	    List<LikesDTO> list = session.selectList("MypageMapper.getLikes", user_email, new RowBounds(offset, limit));
-
 	    pageDTO.setList(list);
 	    pageDTO.setCurPage(curPage);
-
-	    // 전체 좋아요 수를 가져와서 설정합니다.
 	    int totalLikes = totalCount(user_email);
 	    pageDTO.setTotalCount(totalLikes);
-
 	    return pageDTO;
 	}
 	// 즐겨찾기 삭제
 	public int delLikes(LikesDTO dto) {
 		return session.delete("MypageMapper.delLikes", dto);
+	}
+	// 즐겨찾기 추가
+	public int addLikes(LikesDTO dto) {
+		return session.insert("MypageMapper.addLikes", dto);
+    }
+	// 즐겨찾기 상태 체크
+	public int isLiked(LikesDTO dto) {
+		return session.selectOne("MypageMapper.isLiked",dto);
+	}
+	// 즐겨찾기 총합 가져오기
+	public List<LikesDTO> getLikesTotal(String rst_id) {
+		return session.selectList("MypageMapper.getLikesTotal",rst_id);
 	}
 	
 	// 리뷰 정보 가져오기
