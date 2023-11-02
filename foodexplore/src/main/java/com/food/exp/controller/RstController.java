@@ -144,8 +144,13 @@ public class RstController {
 		//파일 넣어주기
 		for (RevTempDTO revTempDTO : revTempDTOList) {
 		    int rev_no = revTempDTO.getRev_no();
-		    List<FileDTO> attachList = uService.getFiles(rev_no);		    
-		    revTempDTO.setAttachList(attachList);
+		    System.out.println("rev_no는   "+rev_no);
+		    List<FileDTO> attachList = uService.getFiles(rev_no);
+		    System.out.println(attachList.toString());
+		    if(attachList != null && attachList.size()>0) {
+		    	System.out.println("사진 있는 리뷰");
+		    	revTempDTO.setAttachList(attachList);
+		    }
 		}
 		
 		//02. DB에서 가져온 데이터 html로 쏴주기

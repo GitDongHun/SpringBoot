@@ -1,5 +1,7 @@
 package com.food.exp.dto;
 
+import java.util.List;
+
 public class RstTempDTO {
     private String id;
     private String place_name;
@@ -13,8 +15,37 @@ public class RstTempDTO {
     private String y;
     private String place_url;
     private String distance;
+    
+    List<FileDTO> attachList;
 
-    // 생성자
+    public RstTempDTO(String id, String place_name, String category_name, String category_group_code,
+			String category_group_name, String phone, String address_name, String road_address_name, String x, String y,
+			String place_url, String distance, List<FileDTO> attachList) {
+		super();
+		this.id = id;
+		this.place_name = place_name;
+		this.category_name = category_name;
+		this.category_group_code = category_group_code;
+		this.category_group_name = category_group_name;
+		this.phone = phone;
+		this.address_name = address_name;
+		this.road_address_name = road_address_name;
+		this.x = x;
+		this.y = y;
+		this.place_url = place_url;
+		this.distance = distance;
+		this.attachList = attachList;
+	}
+
+	public List<FileDTO> getAttachList() {
+		return attachList;
+	}
+
+	public void setAttachList(List<FileDTO> attachList) {
+		this.attachList = attachList;
+	}
+
+	// 생성자
     public RstTempDTO() {
     }
 
@@ -127,7 +158,8 @@ public class RstTempDTO {
                "x: " + x + ", " +
                "y: " + y + ", " +
                "place_url: " + place_url + ", " +
-               "distance: " + distance;
+               "distance: " + distance + 
+               "attachList: " + attachList;
     }
-
+    
 }

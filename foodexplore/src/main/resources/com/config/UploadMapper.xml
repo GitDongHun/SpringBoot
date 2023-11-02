@@ -20,5 +20,19 @@
 	<select id="currentRno" resultType="int">
 		select rev_seq.currval from dual
 	</select>
+	
+	<select id="thumbnail">
+		<![CDATA[
+			SELECT u.*
+				FROM (
+				    SELECT r.rev_no
+				    FROM review r
+				    WHERE r.rst_id = #{rst_id}
+				    ORDER BY r.rev_no DESC
+				) r
+				JOIN upload u ON r.rev_no = u.rev_no
+				WHERE ROWNUM <= 7
+		]]>	
+	</select>
    
 </mapper>
