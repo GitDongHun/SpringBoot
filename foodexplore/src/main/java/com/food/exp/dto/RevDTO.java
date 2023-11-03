@@ -15,13 +15,15 @@ public class RevDTO {
 	Date rev_date;
 	String rev_title;
 	String rst_name;
+	Double rev_star_avg;
 	
 	List<FileDTO> attachList;
 	
 	public RevDTO() {}
 
 	public RevDTO(int rev_no, String user_email, String rst_id, int rev_star, String rev_comment, Date rev_date,
-			String rev_title, String rst_name, List<FileDTO> attachList) {
+			String rev_title, String rst_name, Double rev_star_avg, List<FileDTO> attachList) {
+		super();
 		this.rev_no = rev_no;
 		this.user_email = user_email;
 		this.rst_id = rst_id;
@@ -30,6 +32,7 @@ public class RevDTO {
 		this.rev_date = rev_date;
 		this.rev_title = rev_title;
 		this.rst_name = rst_name;
+		this.rev_star_avg = rev_star_avg;
 		this.attachList = attachList;
 	}
 
@@ -97,6 +100,14 @@ public class RevDTO {
 		this.rst_name = rst_name;
 	}
 
+	public Double getRev_star_avg() {
+		return rev_star_avg;
+	}
+
+	public void setRev_star_avg(Double rev_star_avg) {
+		this.rev_star_avg = rev_star_avg;
+	}
+
 	public List<FileDTO> getAttachList() {
 		return attachList;
 	}
@@ -109,8 +120,7 @@ public class RevDTO {
 	public String toString() {
 		return "RevDTO [rev_no=" + rev_no + ", user_email=" + user_email + ", rst_id=" + rst_id + ", rev_star="
 				+ rev_star + ", rev_comment=" + rev_comment + ", rev_date=" + rev_date + ", rev_title=" + rev_title
-				+ ", rst_name=" + rst_name + ", attachList=" + attachList + "]";
-	};	
-	
+				+ ", rst_name=" + rst_name + ", rev_star_avg=" + rev_star_avg + ", attachList=" + attachList + "]";
+	}
 
 }
