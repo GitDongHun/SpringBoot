@@ -50,7 +50,7 @@ selectRadio.checked = true;
 
 
 //처음으로 페이지를 로드할떄 검색을 시작한다.
-searchPlaces();
+searchPlaces()
 
 //내위치에 마커를 생성합니다
 function myLocationMapView() {
@@ -76,8 +76,18 @@ function myLocationMapView() {
 		map.setCenter(myLocation);
 		map.setLevel(6);
 
-		// 이제 위치 정보가 준비되었으므로 검색을 시작
+
+		//다시 자기위치로 지정
+		// 첫 번째 searchFunction 실행 후 이어지는 동작
+
 		searchFunction();
+
+		setTimeout(function () {
+			map.setCenter(myLocation);
+			map.setLevel(6);
+		}, 100);
+
+
 	};
 
 	var onError = function (error) {
@@ -109,56 +119,61 @@ var isWheel = false;
 // 키워드 검색을 요청하는 함수입니다
 function searchFunction() {
 
-	var keyword = "음식점 "+document.getElementById('searchinput').value;
+	var keyword = document.getElementById('searchinput').value + " 음식점";
 
 	var selectCate = $("input[type='radio'][name='shop']:checked").next("label").text();
 
-	var h_area1="",h_area2="";
+	var h_area1 = "", h_area2 = "";
 
 	var searchType = document.querySelector('input[name="searchType"]:checked').value;
-	if(searchType==="nationwide")
-	{
+	if (searchType === "nationwide") {
 		//여기일 경우 h_area1, h_area2의 보이지 않는 옵션을 풀고, 텍스트값을 h_area1, h_area2에 넣음
-		h_area1=document.getElementById('h_area1');
-		h_area2=document.getElementById('h_area2');
+		h_area1 = document.getElementById('h_area1');
+		h_area2 = document.getElementById('h_area2');
 
-		h_area1.hidden=false;
-		h_area2.hidden=false;
+		h_area1.hidden = false;
+		h_area2.hidden = false;
 
 		h_area1 = document.getElementById('h_area1').options[document.getElementById('h_area1').selectedIndex].text;
 		h_area2 = document.getElementById('h_area2').options[document.getElementById('h_area2').selectedIndex].text;
 
-		if(h_area1==="-광역시도-"){
-			h_area1="";
+		if (h_area1 === "-광역시도-") {
+			h_area1 = "";
 		}
-		if(h_area2==="-시군구-"){
-			h_area2="";
+		if (h_area2 === "-시군구-") {
+			h_area2 = "";
 		}
 
 	}
-	else if(searchType==="myLocation"||searchType==="myMap")
-	{
+	else if (searchType === "myLocation" || searchType === "myMap") {
 		//여기일 경우 h_area1, h_area2를 보이지 않게 옵션을 정하고, 그대로 둠
-		h_area1=document.getElementById('h_area1');
-		h_area2=document.getElementById('h_area2');
+		h_area1 = document.getElementById('h_area1');
+		h_area2 = document.getElementById('h_area2');
 
-		h_area1.hidden=true;
-		h_area2.hidden=true;
+		h_area1.hidden = true;
+		h_area2.hidden = true;
 
-		h_area1="";
-		h_area2="";
+		h_area1 = "";
+		h_area2 = "";
 	}
-	
+
 	//nationwide
 	//myLocation
 	//myMap
-	
 
-	keyword =h_area1+ " "+h_area2 +" "+ selectCate +" "+keyword;
+
+	if (selectCate === "전체") {
+		selectCate = "";
+	}
+
+
+
+
+	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + selectCate;
 	console.log(keyword);
 
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
-		ps.categorySearch('FD6',placesSearchCB,{ useMapBounds: true })
+		ps.categorySearch('FD6', placesSearchCB, { useMapBounds: true })
 	}
 
 	// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
@@ -170,23 +185,23 @@ function searchFunction() {
 
 // 라디오 버튼으로 검색 유형 선택
 function searchPlaces() {
-    var searchType = document.querySelector('input[name="searchType"]:checked').value;
+	var searchType = document.querySelector('input[name="searchType"]:checked').value;
 
-    isWheel = false;
-    ps = new kakao.maps.services.Places();
+	isWheel = false;
+	ps = new kakao.maps.services.Places();
 
-    if (searchType === "nationwide") {
-        searchFunction();
-    } else if (searchType === "myLocation") {
-        searchPlaceMine();
-    }else if (searchType === "myMap"){
+	if (searchType === "nationwide") {
+		searchFunction();
+	} else if (searchType === "myLocation") {
+		searchPlaceMine();
+	} else if (searchType === "myMap") {
 		searchPlacesWheel();
 	}
 }
 
 function searchPlacesWheel() {
 	var searchType = document.querySelector('input[name="searchType"]:checked').value;
-	if (searchType==="myMap") {
+	if (searchType === "myMap") {
 		isWheel = true;
 		ps = new kakao.maps.services.Places(map);
 		searchFunction();
@@ -235,15 +250,16 @@ function displayPlaces(places) {
 	for (var i = 0; i < places.length; i++) {
 
 		// 마커를 생성하고 지도에 표시합니다
-		var placePosition = new kakao.maps.LatLng(places[i].y,places[i].x),
-		marker = addMarker(placePosition, i),
-		itemEl = getListItem(i, places[i]); 
-		
+		var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+			marker = addMarker(placePosition, i),
+			itemEl = getListItem(i, places[i]);
+
 		// 검색 결과 항목 Element를 생성합니다
 
 
 		// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 		// LatLngBounds 객체에 좌표를 추가합니다
+
 		bounds.extend(placePosition);
 
 		// 마커와 검색결과 항목에 mouseover 했을때
@@ -278,35 +294,36 @@ function displayPlaces(places) {
 
 
 		//여기서 javascript - OracleDB로 전송을 위한 함수를 구현해야한다.
-		
-		
-		(function(){if(i==0){
-
-			//00. DEBUG // places to JSON 출력하기
-			//console.log(`places:${places[i]}`);
-			//console.log(`places: ${JSON.stringify(places[i])}`);
 
 
-			//01. fetch함수 사용하여 전송하기
-			fetch('/foodexp/htmltodb',{
-				method:'POST',
-				headers:{
-					'Content-Type':'application/json',
-					'charset':'UTF-8'
-				},
-				body: JSON.stringify(places)
-			})
-			.then(response=>{})
-			.catch(error=>{
-				console.error("Error:",error);
-			});
+		(function () {
+			if (i == 0) {
 
-		}
-	})();
+				//00. DEBUG // places to JSON 출력하기
+				//console.log(`places:${places[i]}`);
+				//console.log(`places: ${JSON.stringify(places[i])}`);
 
 
+				//01. fetch함수 사용하여 전송하기
+				fetch('/foodexp/htmltodb', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'charset': 'UTF-8'
+					},
+					body: JSON.stringify(places)
+				})
+					.then(response => { })
+					.catch(error => {
+						console.error("Error:", error);
+					});
 
-		
+			}
+		})();
+
+
+
+
 
 
 
