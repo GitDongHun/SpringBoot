@@ -52,7 +52,6 @@ public class PageDTO {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-	
 
 	public int getTotalNum() {
 		return totalNum;

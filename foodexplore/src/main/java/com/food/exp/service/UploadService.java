@@ -10,5 +10,6 @@ public interface UploadService {
 	public int delete(FileDTO dto);
 	public List<FileDTO> getFiles(int rev_no);
 	public int currentRno();
+	public List<FileDTO> getFilesRst(String rst_id);
 
 }
