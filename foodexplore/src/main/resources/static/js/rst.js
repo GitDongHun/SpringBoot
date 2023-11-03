@@ -119,7 +119,7 @@ var isWheel = false;
 // 키워드 검색을 요청하는 함수입니다
 function searchFunction() {
 
-	var keyword = "음식점 " + document.getElementById('searchinput').value;
+	var keyword = document.getElementById('searchinput').value + " 음식점";
 
 	var selectCate = $("input[type='radio'][name='shop']:checked").next("label").text();
 
@@ -162,7 +162,14 @@ function searchFunction() {
 	//myMap
 
 
-	keyword = h_area1 + " " + h_area2 + " " + selectCate + " " + keyword;
+	if (selectCate === "전체") {
+		selectCate = "";
+	}
+
+
+
+
+	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + selectCate;
 	console.log(keyword);
 
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
