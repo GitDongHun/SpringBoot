@@ -2,7 +2,6 @@ package com.food.exp.service;
 
 import java.util.List;
 
-import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RstDTO;
 
 public interface RstService {

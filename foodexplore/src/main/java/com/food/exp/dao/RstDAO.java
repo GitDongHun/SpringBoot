@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RstDTO;
 
 @Repository("RstDAO")

@@ -14,18 +14,13 @@
 <body>
 	<!-- Navigation-->
 	<nav th:insert="~{include/nav.html}"></nav>
-
-
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
 		<div class="bodycontent" style="display: flex;">
 
 			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
-
-
 			<div class="content">
-
 				<!-- 안녕하세요 -->
 				<div class="hello-box">
 					<img class="hello-boxlogo" th:src="@{/images/foodexplore_icon.png}">
@@ -39,40 +34,38 @@
 				<div class="memberInfo">
 					<div class="memberInfo-body">
 						<div class="row">
-							<label for="nick" class="memberInfo-title">닉네임</label> <input
-								type="text" required th:value="${MemberDTO.nickname}"
-								id="nickname" class="design shape" readonly>
+							<label for="nick" class="memberInfo-title">닉네임</label> 
+							<input type="text" required th:value="${MemberDTO.nickname}"
+								   id="nickname" class="design shape" readonly>
 						</div>
 						<div class="row">
-							<label for="user_email" class="memberInfo-title">아이디</label> <input
-								type="text" required th:value="${MemberDTO.user_email}"
-								id="user_email" class="design shape" readonly>
+							<label for="user_email" class="memberInfo-title">아이디</label> 
+							<input type="text" required th:value="${MemberDTO.user_email}"
+								   id="user_email" class="design shape" readonly>
 						</div>
 						<div class="row name">
-
-							<label for="user_name" class="memberInfo-title">이름</label> <input
-								type="text" required th:value="${MemberDTO.user_name}"
-								id="user_name" class="design shape" readonly>
+							<label for="user_name" class="memberInfo-title">이름</label> 
+							<input type="text" required th:value="${MemberDTO.user_name}"
+								   id="user_name" class="design shape" readonly>
 						</div>
 						<div class="row phone">
-							<label for="user_phone" class="memberInfo-title">휴대폰 번호</label> <input
-								type="text" required th:value="${MemberDTO.user_phone}"
-								id="user_phone" class="design shape" readonly>
+							<label for="user_phone" class="memberInfo-title">휴대폰 번호</label> 
+							<input type="text" required th:value="${MemberDTO.user_phone}"
+								   id="user_phone" class="design shape" readonly>
 						</div>
 						<div class="row post">
-							<label for="user_post" class="memberInfo-title">우편번호</label> <input
-								type="text" required th:value="${MemberDTO.user_post}"
-								id="user_post" class="design shape" readonly>
+							<label for="user_post" class="memberInfo-title">우편번호</label> 
+							<input type="text" required th:value="${MemberDTO.user_post}"
+								   id="user_post" class="design shape" readonly>
 						</div>
 						<div class="row address">
-							<label for="user_addr" class="memberInfo-title">주소</label> <input
-								type="text" required th:value="${MemberDTO.user_addr1}"
-								id="user_addr1" class="design shape" readonly> <input
-								type="text" required th:value="${MemberDTO.user_addr2}"
-								id="user_addr2" class="design shape" readonly>
+							<label for="user_addr" class="memberInfo-title">주소</label> 
+							<input type="text" required th:value="${MemberDTO.user_addr1}"
+								   id="user_addr1" class="design shape" readonly>
+							<input type="text" required th:value="${MemberDTO.user_addr2}"
+								   id="user_addr2" class="design shape" readonly>
 						</div>
-						<a class="changeInfo-btn" th:href="@{/mypage/changeInfo}">회원정보
-							수정</a>
+						<a class="changeInfo-btn" th:href="@{/mypage/changeInfo}">회원정보 수정</a>
 					</div>
 				</div>
 				<!-- 회원 정보 (memberInfo) // -->
@@ -83,13 +76,11 @@
 					<div class="mylist-box">
 						<div class="title-util">
 							<h2 class="title-name">나의 즐겨찾기</h2>
-							<a th:href="@{/mypage/myLikes}" class="more" title="더보기">더보기
-								></a>
+							<a th:href="@{/mypage/myLikes}" class="more" title="더보기">더보기 ></a>
 						</div>
 						<div class="mylike-list">
 							<ul class="list-uibox">
-								<li th:each="likes, limit: ${pageDTO.list}"
-									th:if="${limit.index < 3}">
+								<li th:each="likes, limit: ${pageDTO.list}" th:if="${limit.index < 3}">
 									<div class="like-rst">
 										<img class="likestar" th:src="@{/images/likestar.png}">
 										<div class="text-info">
@@ -124,8 +115,7 @@
 												<p class="revscore" th:if="${revs.rev_star_avg}">
 													별점 <span th:text="${revs.rev_star_avg+ '/5'}"></span>
 												</p>
-												<p class="revdate"
-													th:text="${#dates.format(revs.rev_date, 'yyyy-MM-dd')}" />
+												<p class="revdate" th:text="${#dates.format(revs.rev_date, 'yyyy-MM-dd')}" />
 											</div>
 											<p class="revcontent" th:text="${revs.rev_comment}" />
 										</div>
@@ -135,17 +125,9 @@
 						</div>
 					</div>
 				</div>
-
-			</div>
-			<!-- end content -->
-
-
-
-
-		</div>
-		<!-- end bodycontent -->
-	</div>
-	<!-- end contentbox -->
+			</div> <!-- end content -->
+		</div> <!-- end bodycontent -->
+	</div> <!-- end contentbox -->
 
 	<!-- body 위에 삽입되는 공통 부분 추가하는 코드 -->
 	<div th:insert="~{include/footer.html}"></div>

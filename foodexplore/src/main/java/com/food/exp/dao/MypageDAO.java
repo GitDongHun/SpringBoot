@@ -30,16 +30,11 @@ public class MypageDAO {
 	public int delMember(String user_email) {
 		return session.delete("MypageMapper.delMember", user_email);
 	}
-	
 	// 즐겨찾기 페이지
 	public int totalCount(String user_email) {
 		return session.selectOne("MypageMapper.totalCount", user_email);
 	}
 	// 즐겨찾기 가져오기
-	/*
-	 * public List<LikesDTO> getLikes(String user_email) { return
-	 * session.selectList("MypageMapper.getLikes", user_email); }
-	 */
 	public PageDTO getLikes(int curPage, String user_email) {
 	    PageDTO pageDTO = new PageDTO();
 	    int offset = (curPage - 1) * pageDTO.getPerPage();
@@ -67,7 +62,6 @@ public class MypageDAO {
 	public List<LikesDTO> getLikesTotal(String rst_id) {
 		return session.selectList("MypageMapper.getLikesTotal",rst_id);
 	}
-	
 	// 리뷰 정보 가져오기
 	public List<RevDTO> getRev(String user_email) {
 		return session.selectList("MypageMapper.getRev", user_email);
