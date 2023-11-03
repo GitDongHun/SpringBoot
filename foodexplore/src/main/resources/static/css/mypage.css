@@ -16,6 +16,10 @@ ul li {
 	align-items: center;
 }
 
+.hellonick{
+	margin-left: 10px;
+}
+
 .hello-boxtext {
     width: 300px;
     font-size: 35px;

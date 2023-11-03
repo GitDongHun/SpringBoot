@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MainMapper">
+
+	<select id="top10Rst" resultType="mainDTO">
+		SELECT *
+		FROM (
+		    SELECT *
+		    FROM restaurant
+		    ORDER BY rev_star_avg DESC
+		) WHERE ROWNUM <![CDATA[<]]>= 10
+	</select>
+</mapper>

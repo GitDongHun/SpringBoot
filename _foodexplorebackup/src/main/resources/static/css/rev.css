@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.sidebar a[href="/foodexp/mypage/rev"] {
+	color: #EF6900;
+}
+
+.sidebar {
+    float: left;
+    white-space : nowrap;
+    width: 200px;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+
+.search-bar {
+	 display: flex;
+     align-items: center;
+     margin-bottom: 50px;
+     margin-top: 50px;
+}
+
+.search-bar input {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #FFAF01;
+    color: white;
+    border: none;
+    white-space : nowrap;
+}
+
+.data-table {
+    width: 70%;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+}
+
+.delete-button {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+.table-wrapper {
+    max-height: 500px;
+    overflow: auto;
+}
+
+.bodycontent {
+    padding-bottom: 200px; /* 원하는 만큼의 여백을 추가 */
+}

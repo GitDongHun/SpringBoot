@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+ul li {
+    list-style: none;
+}
+
+/* 사이드바 */
+.sidebar a[href="/foodexp/mypage/myLikes"] {
+    color: #EF6900;
+}
+
+.myLikes-title{
+	text-align: left;
+	margin-bottom: 40px;
+}
+
+/* 음식점 박스 */
+.rst-box{
+	border-radius: 50px;
+	min-height: 140px;
+	padding:30px;
+	margin: 0px 20px 40px 20px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.like-rst {
+    display: flex;
+    align-items: center;
+}
+
+.food-img {
+    width: 100px;
+    height:100px;
+    background-color: gray;
+    margin-right: 15px;
+}
+
+.text-info {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.rstname {
+    font-size: 20px;
+    color: black;
+    margin: 0px;
+}
+
+.rstcate{
+	color: #808080;
+	font-size: 13px;
+	margin: 7px 0px 0px 7px;
+}
+
+.rst-info {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.rstaddr {
+    color: black;
+    margin-bottom: 5px;
+}
+
+.like-count {
+    color: black;
+    margin-bottom: 5px;
+}
+
+.revscore{
+	color: black;
+    padding-right: 5px;
+	border-right: 1px solid #CACACA;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.star {
+	width: 30px;
+	margin-left: auto;
+	margin-right: 30px;
+    background-color: white;
+    border: none;
+}
+
+.likesPage{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.likesPage > div a {
+    text-decoration: none;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+    box-sizing: border-box;
+	font-size: 20px;
+}
+
+.clikpage{
+	display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+    box-sizing: border-box;
+	font-size: 20px;
+    color: #EF6900;
+    border: 2px solid #EF6900;
+    border-radius: 10px;
+}

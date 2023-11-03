@@ -30,28 +30,21 @@
 
 	<!-- 즐겨찾기 정보 가져오기(총합까지) -->
 	<select id="getLikes" parameterType="String" resultType="LikesDTO">
-	select r.*, likes.likes_total, rev.rev_avg, l.likes_date
-	from restaurant r
-	left join ( 
-				select rst_id, count(*) as likes_total
-    			from likes
-    			group by rst_id
-			   ) likes on r.rst_id = likes.rst_id
-	left join ( 
-				select likes.rst_id, round(avg(review.rev_star), 1) as rev_avg
-    			from likes
-    			left join review on likes.rst_id = review.rst_id
-    			where likes.user_email = #{user_email}
-    			group by likes.rst_id
-				) rev on r.rst_id = rev.rst_id
-	left join (
-    			select rst_id, max(likes_date) as likes_date
-    			from likes
-    			where likes.user_email = #{user_email}
-    			group by rst_id
-			    ) l on r.rst_id = l.rst_id
-	where r.rst_id in (select rst_id from likes where user_email = #{user_email})
+	select rst.rst_id, rst.rst_name, rst.rst_addr1, rst.rst_cate, rst.rev_star_avg,
+		   l.likes_date, (select count(*) 
+       	    			  from likes 
+            			  where likes.rst_id = rst.rst_id) as likes_total
+	from restaurant rst
+	inner join likes l on rst.rst_id = l.rst_id
+	where l.user_email = #{user_email}
 	order by l.likes_date DESC
+   </select>
+   
+   <!-- 즐겨찾기 페이지 -->
+   <select id="totalCount" resultType="int">
+     select count(*)
+     from likes
+     where user_email = #{user_email}
    </select>
    
    <!-- 즐겨찾기 삭제 -->
@@ -61,21 +54,37 @@
    		  and user_email = #{user_email}
    </delete>
    
-   <!-- 즐겨찾기 페이지 -->
-   <select id="totalCount" resultType="int">
-     select count(*)
+   <!-- 즐겨찾기 추가 -->
+   <insert id="addLikes" parameterType="LikesDTO">
+    insert into likes (user_email, rst_id, likes_date)
+    values ( #{user_email}, #{rst_id}, sysdate)
+   </insert>
+   
+   <!-- 즐겨찾기 상태 체크 -->
+   <select id="isLiked" parameterType="String" resultType="int">
+    select case when count(*) > 0 then 1 else 0 end as isLiked
+    from likes
+    where user_email = #{user_email}
+          and rst_id = #{rst_id}
+    </select>
+    
+    <!-- 즐겨찾기 총합 가져오기 -->
+	<select id="getLikesTotal" parameterType="String" resultType="LikesDTO">
+     select rst_id, count(*) as likes_total
      from likes
-     where user_email = #{user_email}
-   </select>
+     where rst_id = #{rst_id}
+     group by rst_id
+   	</select>
    
    <!-- 리뷰 정보 가져오기 -->
    <select id="getRev" parameterType="String" resultType="RevDTO">
-    select *
-    from restaurant
-    inner join review
-    	  on restaurant.rst_id = review.rst_id
-    where user_email = #{user_email}
-    order by review.rev_no DESC
+    select rst.rst_id, rst.rst_name, rst.rev_star_avg, 
+    	   rev.rev_no, rev.user_email, rev.rev_date, rev.rev_comment
+	from restaurant rst
+	inner join review rev
+	on rst.rst_id = rev.rst_id
+	where rev.user_email = #{user_email}
+	order by rev.rev_no DESC
    </select>
    
 </mapper>

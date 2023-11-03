@@ -8,8 +8,11 @@
     <!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
     <title>먹스플로어</title>
 
-    <link th:href="@{/css/rev.css}" rel="stylesheet" />
-    <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
+	<link th:href="@{/css/sidebar.css}" rel="stylesheet" />
+    <!-- <link th:href="@{/css/rev_edit.css}" rel="stylesheet" /> -->
+
+	<script type="text/javascript" th:src="@{/js/upload.js}"></script>	
+
 
     </head>
     
@@ -23,8 +26,10 @@
         
         <div class="contentbox" >
             <div id="backgroundbanner"></div>
-            <div class="bodycontent">
-				<head th:insert="~{include/sidebar.html}"></head>
+            <div class="bodycontent" style="display: flex;">
+
+				<nav th:insert="~{include/sidebar.html}"></nav>
+
 				<div class="content">
                 <h2>리뷰 수정</h2>
 				<div style="text-align: left;">
@@ -45,8 +50,24 @@
 				            <input type="hidden" th:field="*{rev_no}" />
 				            <input type="hidden" th:field="*{rst_name}" />
 				            <input type="hidden" th:field="*{rst_id}" />
+				            
+				            <input type="file" name="files" id="files" multiple /> 
+							<div class="uploadResult">
+								<ul>
+
+								</ul>
+							</div>
+							<div id="response"></div>
+
+							
+
 				            <button type="submit" style="margin-left: 720px; margin-top: 10px" >수정</button>
 				        </form>
+	<!-- <form method="post" th:action="@{/upload}" enctype="multipart/form-data">  
+		<input type="file" name="files" multiple />  
+		<input type="submit" value="Submit" />  
+	</form>   -->
+						<br>
 				        <form th:action="@{/mypage/delete}" method="post">
 				            <input type="hidden" name="rev_no" th:value="${review.rev_no}" />
 				            <button type="submit" style="margin-left: 800px;">삭제</button>
@@ -55,6 +76,7 @@
 				</div>
             </div>
            </div>
+		   
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -63,5 +85,6 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+    </div>
+	</body>
 </html>

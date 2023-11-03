@@ -150,3 +150,15 @@ h2{
     text-underline-offset: 5px;
     margin-bottom: 6px;
 }
+.rev_photo ul{
+    display: flex;
+    flex-flow: row ;
+    justify-content: flex-start;
+    padding-left: 0px;
+	margin-top: 10px;
+}
+.rev_photo ul li{
+    list-style: none;
+    padding-right: 10px;
+    position: relative;
+}

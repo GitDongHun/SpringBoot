@@ -30,7 +30,7 @@
 				<div class="hello-box">
 					<img class="hello-boxlogo" th:src="@{/images/foodexplore_icon.png}">
 					<h2 class="hello-boxtext">
-						안녕하세요. <span th:text="${MemberDTO.nickname}"></span>님
+						안녕하세요! <span class="hellonick" th:text="${MemberDTO.nickname}"></span>님
 					</h2>
 				</div>
 				<!-- 안녕하세요 // -->
@@ -55,7 +55,7 @@
 								id="user_name" class="design shape" readonly>
 						</div>
 						<div class="row phone">
-							<label for="user_phone" class="memberInfo-title">핸드폰번호</label> <input
+							<label for="user_phone" class="memberInfo-title">휴대폰 번호</label> <input
 								type="text" required th:value="${MemberDTO.user_phone}"
 								id="user_phone" class="design shape" readonly>
 						</div>
@@ -71,8 +71,8 @@
 								type="text" required th:value="${MemberDTO.user_addr2}"
 								id="user_addr2" class="design shape" readonly>
 						</div>
-						<a class="changeInfo-btn" th:href="@{/mypage/changeInfo}">회원
-							정보 수정</a>
+						<a class="changeInfo-btn" th:href="@{/mypage/changeInfo}">회원정보
+							수정</a>
 					</div>
 				</div>
 				<!-- 회원 정보 (memberInfo) // -->
@@ -88,13 +88,16 @@
 						</div>
 						<div class="mylike-list">
 							<ul class="list-uibox">
-								<li th:each="likes, limit: ${pageDTO.list}" th:if="${limit.index < 3}">
+								<li th:each="likes, limit: ${pageDTO.list}"
+									th:if="${limit.index < 3}">
 									<div class="like-rst">
 										<img class="likestar" th:src="@{/images/likestar.png}">
 										<div class="text-info">
 											<p class="rstname" th:text="${likes.rst_name}" />
 											<div class="rst-info">
-												<p class="revscore">별점 4.5/5(100)</p>
+												<p class="revscore" th:if="${likes.rev_star_avg}">
+													별점 <span th:text="${likes.rev_star_avg+ '/5'}"></span>
+												</p>
 												<p class="rstaddr" th:text="${likes.rst_addr1}" />
 											</div>
 										</div>
@@ -118,7 +121,9 @@
 										<div class="text-info">
 											<p class="rstname" th:text="${revs.rst_name}" />
 											<div class="rst-info">
-												<p class="revscore">별점 4.5/5</p>
+												<p class="revscore" th:if="${revs.rev_star_avg}">
+													별점 <span th:text="${revs.rev_star_avg+ '/5'}"></span>
+												</p>
 												<p class="revdate"
 													th:text="${#dates.format(revs.rev_date, 'yyyy-MM-dd')}" />
 											</div>

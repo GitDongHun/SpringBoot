@@ -18,7 +18,10 @@
 		<div id="backgroundbanner"></div>
 		<div id="bodycontent" class="bodycontent">
 
-		<input type="hidden" th:value="${rst_id}" id="rst_id"/>
+		<input type="hidden" th:value="${rst_id}" id="rst_id" >
+		<input type="hidden" id="isLiked" th:value="${isLiked}" >
+		<input type="hidden" id="likes_total" th:value="${likes_total}" >
+		<input type="hidden" id="user_email" th:value="${user_email}" >
 			<div class="maincontent">
 				<div class="photos"></div>
 				<h2 th:text="${rst_name}"></h2>
@@ -41,9 +44,9 @@
 								style="height: 22px; margin-bottom: 4px;">
 							<!-- <img th:src="@{/images/star_full.png}" alt="star_full" style="height: 22px; margin-bottom: 4px;">
                             -->
-							즐겨찾기 (<span id="likes_count" th:each="likesTotal : ${likesTotal}">
-    							   		<span th:text="${likesTotal.likes_total}"></span>
-								    </span>)
+							즐겨찾기 (<span id="likes_total" th:if="${likesTotal.isEmpty()}"> 0</span>
+									<span th:each="likesTotal : ${likesTotal}" th:text="${likesTotal.likes_total}"></span>
+								   )
 						</button>
 						<button class="write_rev">
 							<img th:src="@{/images/writeicon.png}" alt="star_empty"
@@ -83,7 +86,7 @@
 						</button>
 					</div>
 					<div class="review">
-						<div th:each="revTempDTO : ${revTempDTOList}">
+						<div th:each="revTempDTO, rindex : ${revTempDTOList}">
 							<div class="user_info">
 								<img th:src="@{/images/user.png}" alt="location"
 									style="height: 70px; margin-right: 6px;">
@@ -105,7 +108,19 @@
 									리뷰 제목: <span id="rev_title" th:text="${revTempDTO.rev_title}"></span>
 								</div>
 								<div class="rev_comment" th:text="${revTempDTO.rev_comment}"></div>
-								<div class="rev_photo">(여기에 사진이 들어갈 위치입니다.)</div>
+								
+								<div class="rev_photo">
+									<ul th:if="${revTempDTO.attachList != null and revTempDTO.attachList.size() > 0}">
+										<li th:each="attach, index : ${revTempDTO.attachList}" 
+											th:name="'attachList_' + ${rindex.index} + '_' + ${index.index}"
+											th:id="'attachList_' + ${rindex.index} + '_' + ${index.index}">
+											<img th:src="${attach.uploadFilePath}" alt="리뷰사진" style="height: 150px;">
+										</li>
+									</ul>
+									
+								</div>
+
+
 								<br>
 								<!-- <button class="rev_like">공감</button> -->
 							</div>
