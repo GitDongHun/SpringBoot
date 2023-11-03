@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.food.exp.dto.FileDTO;
 import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.MemberDTO;
 import com.food.exp.dto.PageDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.service.MypageService;
+import com.food.exp.service.UploadService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -23,6 +25,9 @@ public class MypageController {
 
 	@Autowired
 	MypageService service;
+	
+	@Autowired
+	UploadService uploadService;
 
 	// 메인 페이지
 	@GetMapping("/main")
@@ -42,13 +47,6 @@ public class MypageController {
 	}
 
 	// 나의 즐겨찾기 페이지
-	/*
-	 * @GetMapping("/myLikes") public String myLikes(HttpSession session, Model m,
-	 * LikesDTO dto) { // 즐겨찾기 정보 String user_email = (String)
-	 * session.getAttribute("login"); dto.setUser_email(user_email); List<LikesDTO>
-	 * likesDTO = service.getLikes(user_email); m.addAttribute("LikesDTO",
-	 * likesDTO); return "member/myLikes"; }
-	 */
 	@GetMapping("/myLikes")
 	public String myLikes(HttpSession session, Model m, PageDTO pageDTO) {
 	    // 즐겨찾기 정보
@@ -61,7 +59,13 @@ public class MypageController {
 	    }
 	    pageDTO.setTotalNum(totalNum);
 	    m.addAttribute("pageDTO", pageDTO);
-	    return "member/myLikes";}
+	    // 이미지 가져오기
+	    String rst_id = (String) session.getAttribute("rst_id");
+	    List<FileDTO> attachList = uploadService.getFilesRst(rst_id);
+	    m.addAttribute("attachList", attachList);
+	        
+	    return "member/myLikes";
+	    }
 
 	// 즐겨찾기 삭제
 	@PostMapping("/delLikes")

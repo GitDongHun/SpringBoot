@@ -14,8 +14,6 @@
 <body>
 	<!-- Navigation-->
 	<nav th:insert="~{include/nav.html}"></nav>
-
-
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
 		<div class="bodycontent" style="display: flex;">
@@ -23,24 +21,26 @@
 			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
 			<div class="content">
-
 				<h2 class="myLikes-title">나의 즐겨찾기</h2>
-
+				
 				<!-- 나의 즐겨찾기 -->
 				<div class="rst-box" th:each="likes: ${pageDTO.list}">
 					<div class="like-rst">
-						<img class="food-img" id="food-img">
+						<input type="hidden" name="rst_id" th:value="${likes.rst_id}" />
+						<img class="food-img" th:each="attach : ${attachList}"
+							 th:src="${attach.uploadFilePath}" th:if="${attach.rst_id == likes.rst_id}">
 						<div class="text-info">
 							<div class="rst-info">
-								<a th:href="@{'/rst/rst_detail?rst_id=' + ${likes.rst_id}}" class="rstname" th:text="${likes.rst_name}"></a>
+								<a th:href="@{'/rst/rst_detail?rst_id=' + ${likes.rst_id}}"
+								   class="rstname" th:text="${likes.rst_name}"></a>
 								<p class="rstcate" th:text="${likes.rst_cate}" />
 							</div>
 							<div class="rst-info">
 								<p class="rstaddr" th:text="${likes.rst_addr1}" />
 							</div>
 							<div class="rst-info">
-								<p class="revscore" th:if="${likes.rev_avg}">
-									별점 <span th:text="${likes.rev_avg+ '/5'}"></span>
+								<p class="revscore" th:if="${likes.rev_star_avg}">
+									별점 <span th:text="${likes.rev_star_avg+ '/5'}"></span>
 								</p>
 								<p class="like-count">
 									즐겨찾기 <span th:text="${likes.likes_total}"></span>
@@ -50,29 +50,23 @@
 						<form th:action="@{/mypage/delLikes}" class="star" method="post">
 							<input type="hidden" name="rst_id" th:value="${likes.rst_id}" />
 							<button class="star" id="delstar">
-								<img class="star" th:src="@{/images/star_full.png}"
-									alt="star_full">
+								<img class="star" th:src="@{/images/star_full.png}" alt="star_full">
 							</button>
 						</form>
 					</div>
 				</div>
-				
-				<!-- 페이지 -->
-				<div class="likesPage">
-    				<div th:each="i : ${#numbers.sequence(1, pageDTO.totalNum)}">
-        				<span th:if="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}"> 
-            				<span th:text="${i}" class="clikpage"></span>
-        				</span> 
-        				<span th:unless="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
-            				<a th:href="@{/mypage/myLikes(curPage=${i})}" th:text="${i}" class="page-link"></a>
-        				</span>
-    				</div>
-				</div>
-				
 
 				<!-- 페이지 -->
-				
-				
+				<div class="likesPage">
+					<div th:each="i : ${#numbers.sequence(1, pageDTO.totalNum)}">
+						<span th:if="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
+							<span th:text="${i}" class="clikpage"></span>
+						</span>
+						<span th:unless="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
+							<a th:href="@{/mypage/myLikes(curPage=${i})}" th:text="${i}" class="page-link"></a>
+						</span>
+					</div>
+				</div>
 			</div> <!-- end content -->
 		</div> <!-- end bodycontent -->
 	</div> <!-- end contentbox -->

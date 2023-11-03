@@ -16,6 +16,7 @@ public class RevDTO {
 	String rev_title;
 	String rst_name;
 	String keyword;
+	Double rev_star_avg;
 	List<FileDTO> attachList;
 	
 	public RevDTO() {}
@@ -32,6 +33,7 @@ public class RevDTO {
 		this.rev_title = rev_title;
 		this.rst_name = rst_name;
 		this.keyword = keyword;
+		this.rev_star_avg = rev_star_avg;
 		this.attachList = attachList;
 	}
 
@@ -105,6 +107,14 @@ public class RevDTO {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+		
+	public Double getRev_star_avg() {
+		return rev_star_avg;
+	}
+
+	public void setRev_star_avg(Double rev_star_avg) {
+		this.rev_star_avg = rev_star_avg;
 	}
 
 	public List<FileDTO> getAttachList() {

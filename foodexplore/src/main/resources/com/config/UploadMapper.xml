@@ -34,5 +34,29 @@
 				WHERE ROWNUM <= 7
 		]]>	
 	</select>
+	
+	<!-- 식당테이블과 연결해 이미지 가져오기 -->
+	<select id="getFilesRst" resultType="FileDTO">
+	 WITH RankedReviews AS (
+    SELECT
+        r.rev_no,
+        r.rst_id,
+        u.uploadFilePath,
+        u.uploadfilename,
+        ROW_NUMBER() OVER (PARTITION BY r.rst_id ORDER BY r.rev_date ASC) AS row_num
+    FROM review r
+    INNER JOIN upload u ON r.rev_no = u.rev_no
+    WHERE EXISTS (
+        SELECT 1 FROM upload u2
+        WHERE u2.rev_no = r.rev_no
+    )
+)
+SELECT
+    rr.rst_id,
+    rr.uploadFilePath,
+    rr.uploadfilename
+FROM RankedReviews rr
+WHERE rr.row_num = 1
+	</select>
    
 </mapper>

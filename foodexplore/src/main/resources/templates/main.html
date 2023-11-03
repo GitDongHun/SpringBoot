@@ -75,20 +75,19 @@
  
     
 	<!-- top 10 부분 -->
-	<!-- Top 10에 대한 정보는 식당 데이터가 DB에 쌓인 다음에 할 수 있을 듯 -->
 	<div class="top-container jump">
-		<div th:each="index : ${#numbers.sequence(0, 9)}" class="best">
-			<div class="nationwide">전국 Top <span th:text="${index + 1}"></span></div>
+		<div th:each="restaurant, iterStatus : ${top10Rst}" class="best">
+			<div class="nationwide">전국 Top <span th:text="${iterStatus.index + 1}"></span></div>
 			<div class="rst-box">
 				<img alt="식당 사진" src="">
 				<div class="info">
-					<h3>식당명</h3>
+					<h3 th:text="${restaurant.rst_name}">식당명</h3>
 					<div class="representative">
-						<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
+						<span class="cate" th:text="${restaurant.rst_cate}">카테고리</span>
 					</div> <!-- end representative -->
-					<div class="rst-addr1">도로명 주소</div>
-					<div class="rst-addr2">지번 주소</div>
-					<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
+					<div class="rst-addr1" th:text="${restaurant.rst_addr1}">도로명 주소</div>
+					<div class="rst-addr2" th:text="${restaurant.rst_addr2}" style="color: #999999">지번 주소</div>
+					<span class="total-pepl">N</span>명의 평가<span class="average" th:text="${restaurant.rev_star_avg}">n.x</span>점
 				</div> <!-- end info -->
 			</div> <!-- end rst-box -->
 		</div> <!-- end best --> <br>

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.food.exp.dao.RstDAO;
 import com.food.exp.dao.UploadDAO;
 import com.food.exp.dto.FileDTO;
 
@@ -23,7 +22,6 @@ public class UploadServiceImpl implements UploadService{
 	@Override
 	public int delete(FileDTO dto) {
 		return dao.delete(dto);
-
 	}
 
 	@Override
@@ -34,5 +32,10 @@ public class UploadServiceImpl implements UploadService{
 	@Override
 	public int currentRno() {
 		return dao.currentRno();
+	}
+
+	@Override
+	public List<FileDTO> getFilesRst(String rst_id) {
+		return dao.getFilesRst(rst_id);
 	}
 }
