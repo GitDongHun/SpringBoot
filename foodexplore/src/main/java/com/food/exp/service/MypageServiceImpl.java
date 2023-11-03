@@ -32,11 +32,6 @@ public class MypageServiceImpl implements MypageService{
 		return dao.delMember(user_email);
 	}
 
-	/*
-	 * @Override public List<LikesDTO> getLikes(String user_email) { return
-	 * dao.getLikes(user_email); }
-	 */
-	
 	@Override
 	public int delLikes(LikesDTO dto) {
 		return dao.delLikes(dto);

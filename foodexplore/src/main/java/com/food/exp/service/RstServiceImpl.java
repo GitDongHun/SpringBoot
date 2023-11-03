@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.food.exp.dao.RstDAO;
-import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RstDTO;
 
 @Service
