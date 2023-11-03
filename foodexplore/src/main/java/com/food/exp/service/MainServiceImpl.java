@@ -19,6 +19,9 @@ public class MainServiceImpl implements MainService {
 		return dao.top10Rst();
 	}
 
-	
-
+//	@Override
+//	public String getRegionForRestaurant(String rst_id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

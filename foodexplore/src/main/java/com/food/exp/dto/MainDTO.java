@@ -13,7 +13,21 @@ public class MainDTO {
 	String rst_cate;
 	String rev_star_avg;
 	
+//	// 지역명만 가지고 오기
+//	private String rst_Region;
+//	
+//	public MainDTO(String rst_Region) {
+//		this.rst_Region = rst_Region;
+//	}
+//	public String getRst_Region() {
+//		return rst_Region;
+//	}
+//	public void setRst_Region(String rst_Region) {
+//		this.rst_Region = rst_Region;
+//	}
 	
+
+
 	public MainDTO() {}
 
 
