@@ -21,9 +21,8 @@ public class UploadServiceImpl implements UploadService{
 	}
 
 	@Override
-	public int delete(FileDTO dto) {
-		return dao.delete(dto);
-
+	public int delete(String delFile) {
+		return dao.delete(delFile);
 	}
 
 	@Override
@@ -34,5 +33,10 @@ public class UploadServiceImpl implements UploadService{
 	@Override
 	public int currentRno() {
 		return dao.currentRno();
+	}
+
+	@Override
+	public List<FileDTO> thumbnail(String rst_id) {
+		return dao.thumbnail(rst_id);
 	}
 }

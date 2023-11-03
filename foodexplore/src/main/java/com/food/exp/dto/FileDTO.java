@@ -11,11 +11,15 @@ public class FileDTO {
 
      FileDTO() {  }
 
-    public String getuploadFileName() {
-        return uploadFileName;
-    }
+    public String getUploadFileName() {
+		return uploadFileName;
+	}
 
-    public String getUploadFilePath() {
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getUploadFilePath() {
         return uploadFilePath;
     }
 
@@ -27,10 +31,6 @@ public class FileDTO {
 		this.uploadFileName = uploadFileName;
 		this.uploadFilePath = uploadFilePath;
 		this.rev_no = rev_no;
-	}
-
-	public void setuploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
 	}
 
 	public void setUploadFilePath(String uploadFilePath) {

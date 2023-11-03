@@ -21,7 +21,7 @@
 		select rev_seq.currval from dual
 	</select>
 	
-	<select id="thumbnail">
+	<select id="thumbnail" parameterType="String" resultType="FileDTO">
 		<![CDATA[
 			SELECT u.*
 				FROM (
@@ -31,7 +31,7 @@
 				    ORDER BY r.rev_no DESC
 				) r
 				JOIN upload u ON r.rev_no = u.rev_no
-				WHERE ROWNUM <= 7
+				WHERE ROWNUM <= 4
 		]]>	
 	</select>
    

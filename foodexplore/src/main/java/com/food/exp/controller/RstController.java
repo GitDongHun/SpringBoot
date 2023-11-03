@@ -1,6 +1,7 @@
 package com.food.exp.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.food.exp.dto.FileDTO;
 import com.food.exp.dto.LikesDTO;
@@ -23,6 +26,7 @@ import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevTempDTO;
 import com.food.exp.dto.RstDTO;
 import com.food.exp.dto.RstTempDTO;
+import com.food.exp.service.FileService;
 import com.food.exp.service.MypageService;
 import com.food.exp.service.RevService;
 import com.food.exp.service.RstService;
@@ -47,6 +51,9 @@ public class RstController {
 
 	@Autowired
 	UploadService uService;
+
+	@Autowired
+	FileService fService;
 
 	@GetMapping("/maintest")
 	public String maintest(){
@@ -141,16 +148,22 @@ public class RstController {
 //		List<RevDTO> revDTOList = revService.getreviewByRst(rst_id);
 		List<RevTempDTO> revTempDTOList = revService.getreviewByRst(rst_id);
 
-		//파일 넣어주기
+		//각 리뷰의 파일 불러오기
 		for (RevTempDTO revTempDTO : revTempDTOList) {
 		    int rev_no = revTempDTO.getRev_no();
-		    System.out.println("rev_no는   "+rev_no);
 		    List<FileDTO> attachList = uService.getFiles(rev_no);
-		    System.out.println(attachList.toString());
 		    if(attachList != null && attachList.size()>0) {
 		    	System.out.println("사진 있는 리뷰");
 		    	revTempDTO.setAttachList(attachList);
 		    }
+		}
+		System.out.println("-----"+rst_id);
+		
+		//식당 썸네일 사진 가져오기 (최대 7개)
+		List<FileDTO> thumbnails = uService.thumbnail(rst_id);
+		System.out.println("썸네일 "+thumbnails.toString());
+		if(thumbnails != null) {
+			model.addAttribute("thumbnails", thumbnails);
 		}
 		
 		//02. DB에서 가져온 데이터 html로 쏴주기
@@ -218,10 +231,16 @@ public class RstController {
 	}
 	
 	// 글쓰기
-	@RequestMapping(value = "/rst/write", method = RequestMethod.POST)
-	public String write(RevDTO revDTO, HttpSession session) {
+	@RequestMapping(value = "/rst/write", method = RequestMethod.POST, consumes = "multipart/form-data")
+	public String write(RevDTO revDTO, HttpSession session, @RequestPart(value = "files") MultipartFile[] multipartFiles) {
 		String user_email = (String) session.getAttribute("login");
 	    revDTO.setUser_email(user_email);
+	    
+	    //파일 스토리지에 업로드 후 리뷰 등록
+        List<FileDTO> uploadedFiles = fService.uploadFiles(Arrays.asList(multipartFiles));
+        System.out.println("fffff"+uploadedFiles.toString());
+        revDTO.setAttachList(uploadedFiles);
+        
 		revService.addReview(revDTO);
 		return "redirect:/rst/rst_detail?rst_id=" + revDTO.getRst_id();
 	}
