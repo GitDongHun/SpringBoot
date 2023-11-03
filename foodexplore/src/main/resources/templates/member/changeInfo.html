@@ -68,12 +68,12 @@
                         <tr>
                           <th>주소*</th>
                           <td class="addr">
-                            <input type="text" id="user_post" name="user_post" placeholder="우편번호" required
+                            <input type="text" id="user_post" name="user_post" placeholder="우편번호" required readonly
                             th:value="${MemberDTO.user_post}">
                             <input type="button" id="btn" onclick="posdtcode()" value="우편번호 찾기"><br>
-                            <input type="text" id="user_addr1" name="user_addr1"  placeholder="도로명주소" required
+                            <input type="text" id="user_addr1" name="user_addr1"  placeholder="기본 주소" required readonly
                             th:value="${MemberDTO.user_addr1}">
-                            <input type="text" id="user_addr2" name="user_addr2" placeholder="지번주소" style="margin-bottom: 0px;" required
+                            <input type="text" id="user_addr2" name="user_addr2" placeholder="나머지 주소" style="margin-bottom: 0px;"
                             th:value="${MemberDTO.user_addr2}">
                             <span id="guide" style="color:#999"></span>
                           </td>                  
@@ -139,7 +139,6 @@
                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
                         document.getElementById('user_post').value = data.zonecode; //5자리 새우편번호 사용
                         document.getElementById('user_addr1').value = fullRoadAddr;
-                        document.getElementById('user_addr2').value = data.jibunAddress;
         
                         // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
                         if(data.autoRoadAddress) {
