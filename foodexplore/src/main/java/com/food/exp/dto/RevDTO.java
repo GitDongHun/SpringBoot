@@ -22,7 +22,7 @@ public class RevDTO {
 	public RevDTO() {}
 
 	public RevDTO(int rev_no, String user_email, String rst_id, int rev_star, String rev_comment, Date rev_date,
-			String rev_title, String rst_name, String keyword, List<FileDTO> attachList) {
+			String rev_title, String rst_name, String keyword, List<FileDTO> attachList, Double rev_star_avg) {
 		super();
 		this.rev_no = rev_no;
 		this.user_email = user_email;
