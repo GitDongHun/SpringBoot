@@ -25,26 +25,31 @@
             });
         }); // 체크박스
         
-        // 검색
-        function searchRst() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("rst_name");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("reviewTable");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
+        function searchRev() {
+	     	// AJAX 요청
+	        $.ajax({
+	            type: 'GET',
+	            url: '/mypage/rev/searchRev',
+	            success: function (data) {
+	                // 테이블 내용 초기화
+	                $('#reviewTable > tbody').empty();
+	
+	                // 반환된 데이터를 이용하여 새로운 행 추가
+	                data.forEach(function(review) {
+	                    var newRow = '<tr>';
+	                    newRow += '<td><input type="checkbox" class="row-checkbox"></td>';
+	                    newRow += '<td>' + review.rst_name + '</td>';
+	                    newRow += '<td><a href="/mypage/revedit(rev_no=' + review.rev_no + ')">' + review.rev_title + '</a></td>';
+	                    newRow += '<td>' + review.rev_date + '</td>';
+	                    newRow += '</tr>';
+	                    $('#reviewTable tbody').append(newRow);
+	                });
+	            },
+	            error: function (error) {
+	                console.error('Error:', error);
+	            }
+	        });
+	    }
         
      	// 선택된 항목 삭제
         function DelSelect() {
@@ -92,7 +97,7 @@
                 <h2>리뷰 관리</h2>
                 <div class="search-bar">
 				    <input type="text" id="rst_name" placeholder="식당명 검색">
-				    <button type="button" onclick="searchRst()">검색</button>
+				    <button type="button" onclick="searchRev()">검색</button>
 				    <div class="delete-button">
 				        <button type="button" onclick="DelSelect()">선택 삭제</button>
 				    </div>

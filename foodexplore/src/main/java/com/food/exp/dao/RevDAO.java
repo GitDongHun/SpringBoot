@@ -65,8 +65,13 @@ public class RevDAO {
     public List<RevTempDTO> getreviewByRst(String rst_id){
     	return session.selectList("RevMapper.getreviewByRst",rst_id);
     }
-
+    
 	public void delSelect(int rev_no) {
 		session.delete("RevMapper.delSelect", rev_no);
+	}
+	
+	// 리뷰 검색
+	public List<RevDTO> searchRev(RevDTO revDTO) {
+	    return session.selectList("RevMapper.searchRev", revDTO);
 	}
 }

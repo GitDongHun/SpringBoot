@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevPageDTO;
@@ -71,6 +70,17 @@ public class RevController {
 	    service.deleteReview(rev_no);
 	    return "redirect:/mypage/rev";
 	}
+	
+	// 리뷰 검색
+	@GetMapping("/searchRev")
+    public String searchRev(@RequestParam("keyword") String keyword, Model model) {
+		RevDTO revDTO = new RevDTO();
+		revDTO.setKeyword(keyword);
+		System.out.println(keyword);
+		List<RevDTO> result = service.searchRev(revDTO);
+	    model.addAttribute("searchResult", result);
+	    return "/rev/rev"; // HTML 템플릿의 이름
+    }
 	
 //	// 선택된 리뷰 삭제
 //    @PostMapping("/delSelect")

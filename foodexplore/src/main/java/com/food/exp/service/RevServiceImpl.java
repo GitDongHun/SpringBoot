@@ -82,5 +82,10 @@ public class RevServiceImpl implements RevService {
 		dao.delSelect(rev_no);
 		
 	}
+
+	@Override
+	public List<RevDTO> searchRev(RevDTO revDTO) {
+		return dao.searchRev(revDTO);
+	}
 	
 }

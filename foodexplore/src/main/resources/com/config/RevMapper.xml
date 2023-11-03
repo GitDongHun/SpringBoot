@@ -14,11 +14,19 @@
     </select>
     
     <!-- 리뷰 카운트 -->
-   <select id="totalCount" resultType="int">
-     select count(*)
-     from review
-     where user_email = #{user_email}
-   </select>
+    <select id="totalCount" resultType="int">
+    	select count(*)
+   		from review
+    	where user_email = #{user_email}
+    </select>
+   
+	<!-- 리뷰 검색 -->
+    <select id="searchRev" parameterType="String" resultType="com.food.exp.dto.RevDTO">
+	    SELECT r.*, rt.rst_name 
+	    FROM review r
+	    INNER JOIN restaurant rt ON r.rst_id = rt.rst_id
+	    WHERE rt.rst_name LIKE ('%', #{keyword}, '%')
+	</select>
     
     <!-- 리뷰 자세히 보기 -->
     <select id="selectByRev_No" resultType="RevDTO" parameterType="int">
