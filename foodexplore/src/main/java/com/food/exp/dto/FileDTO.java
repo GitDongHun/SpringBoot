@@ -10,17 +10,15 @@ public class FileDTO {
     int rev_no;
     String rst_id;
 
-    FileDTO() {}
-    
 	public FileDTO(String uploadFileName, String uploadFilePath, int rev_no, String rst_id) {
-		super();
 		this.uploadFileName = uploadFileName;
 		this.uploadFilePath = uploadFilePath;
 		this.rev_no = rev_no;
-		this.rst_id = rst_id;
+		this.rst_id = rst_id;	
 	}
+    public FileDTO() {  }
 
-	public String getUploadFileName() {
+    public String getUploadFileName() {
 		return uploadFileName;
 	}
 
@@ -29,17 +27,15 @@ public class FileDTO {
 	}
 
 	public String getUploadFilePath() {
-		return uploadFilePath;
-	}
-
+        return uploadFilePath;
+    }
 	public void setUploadFilePath(String uploadFilePath) {
 		this.uploadFilePath = uploadFilePath;
 	}
 
-	public int getRev_no() {
-		return rev_no;
-	}
-
+    public int getRev_no() {
+        return rev_no;
+    }
 	public void setRev_no(int rev_no) {
 		this.rev_no = rev_no;
 	}

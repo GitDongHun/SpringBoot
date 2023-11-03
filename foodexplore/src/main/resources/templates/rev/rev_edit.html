@@ -9,6 +9,8 @@
     <title>먹스플로어</title>
 
 	<link th:href="@{/css/sidebar.css}" rel="stylesheet" />
+	<link th:href="@{/css/upload.css}" rel="stylesheet" />
+
     <!-- <link th:href="@{/css/rev_edit.css}" rel="stylesheet" /> -->
 
 	<script type="text/javascript" th:src="@{/js/upload.js}"></script>	
@@ -51,31 +53,63 @@
 				            <input type="hidden" th:field="*{rst_name}" />
 				            <input type="hidden" th:field="*{rst_id}" />
 				            
-				            <input type="file" name="files" id="files" multiple /> 
+				            <!-- <input type="file" name="files" id="files" multiple /> 
 							<div class="uploadResult">
 								<ul>
 
 								</ul>
 							</div>
-							<div id="response"></div>
-
+							<div id="response"></div> -->
+							<div class="uploadResult">
+								<ul th:if="${review.attachList != null and review.attachList.size() > 0}">
+									<li th:each="attach, index : ${review.attachList}" 
+										th:name="'attachList_' + ${index.index}"
+										th:id="'attachList_' + '_' + ${index.index}">
+										<button class="delbtn" type="button">
+											<img class="delimg" th:src="@{/images/xbtn.png}" alt="">
+										</button>
+										<img th:src="${attach.uploadFilePath}" alt="리뷰사진" style="height: 150px;">
+										<input type="hidden" class="uploadedFile" th:value="${attach.uploadFileName}" name="photo">
+									</li>
+								</ul>
+								
+							</div>
 							
 
 				            <button type="submit" style="margin-left: 720px; margin-top: 10px" >수정</button>
 				        </form>
-	<!-- <form method="post" th:action="@{/upload}" enctype="multipart/form-data">  
-		<input type="file" name="files" multiple />  
-		<input type="submit" value="Submit" />  
-	</form>   -->
+
 						<br>
-				        <form th:action="@{/mypage/delete}" method="post">
+				        <form th:action="@{/mypage/delete}" method="post" id="deleteForm">
 				            <input type="hidden" name="rev_no" th:value="${review.rev_no}" />
 				            <button type="submit" style="margin-left: 800px;">삭제</button>
+
+							<div th:if="${review.attachList != null and review.attachList.size() > 0}">								
+								<input th:each="attach : ${review.attachList}" type="hidden" class="uploadedFile" th:value="${attach.uploadFileName}" name="delfile">
+							</div>
 				        </form>
 				    </div>
 				</div>
             </div>
            </div>
+		<script>
+			$(document).ready(function() {
+				// delbtn을 클릭할 때
+				$(".delbtn").on("click", function() {
+					console.log("del");
+					// 현재 클릭한 li 요소 선택
+					var liElement = $(this).closest("li");
+					
+					// 리뷰 사진과 버튼 삭제
+					liElement.find("img").remove();
+					liElement.find(".delbtn").remove();		
+
+					liElement.find("input[name='photo']").attr("name", "delfile");
+
+				});
+			});	
+
+		</script>
 		   
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

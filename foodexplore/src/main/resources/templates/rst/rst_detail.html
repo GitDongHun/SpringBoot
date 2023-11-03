@@ -23,7 +23,17 @@
 		<input type="hidden" id="likes_total" th:value="${likes_total}" >
 		<input type="hidden" id="user_email" th:value="${user_email}" >
 			<div class="maincontent">
-				<div class="photos"></div>
+				
+				<div class="photos">
+					<ul th:if="${thumbnails != null and thumbnails.size() > 0}">
+						<li th:each="thumbnail, i : ${thumbnails}" 
+							th:name="'thumbnail' + ${i.index}"
+							th:id="'thumbnail' + ${i.index}">
+							<img th:src="${thumbnail.uploadFilePath}" alt="식당사진" style="height: 300px;">
+						</li>
+					</ul>
+				</div>
+
 				<h2 th:text="${rst_name}"></h2>
 				<div class="rst_cate" th:text="${rst_cate}"></div>
 				<div class="box">

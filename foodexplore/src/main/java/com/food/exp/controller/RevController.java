@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.food.exp.dto.FileDTO;
 import com.food.exp.dto.RevDTO;
 import com.food.exp.dto.RevPageDTO;
+import com.food.exp.service.FileService;
 import com.food.exp.service.RevService;
+import com.food.exp.service.UploadService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -25,6 +28,12 @@ public class RevController {
 
 	@Autowired
 	RevService service;
+
+	@Autowired
+	UploadService uService;
+
+	@Autowired
+	FileService fService;
 	
 	// 내 리뷰 목록
 	@GetMapping("/rev")
@@ -50,25 +59,57 @@ public class RevController {
 	@RequestMapping(value = "/revedit", method = RequestMethod.GET)
 	public String retrieve(@RequestParam("rev_no") int rev_no, Model model) {
 	    RevDTO revDTO = service.selectByRev_No(rev_no);
+	    
+	    //파일 불러오기
+	    List<FileDTO> attachList = uService.getFiles(rev_no);
+	    if(attachList != null && attachList.size()>0) {
+	    	System.out.println("사진 있는 리뷰");
+	    	revDTO.setAttachList(attachList);
+	    }
+	    System.out.println(attachList.toString());
+	    
 	    model.addAttribute("review", revDTO);
 	    return "/rev/rev_edit";
 	}
 	
 	// 리뷰 수정
 	@PostMapping("/update")
-	public String updateReview(@ModelAttribute("review") RevDTO revDTO, HttpSession session) {
+	public String updateReview(@ModelAttribute("review") RevDTO revDTO, HttpSession session,
+						@RequestParam(value = "delfile", required = false) String[] delFiles) {
 		String user_email = (String) session.getAttribute("login");
 		revDTO.setUser_email(user_email);
 		service.updateReview(revDTO);
 		System.out.println(revDTO.toString());
+		
+		//삭제한 파일 처리
+        if (delFiles != null) {
+        	System.out.println("delfile있다");
+            for (String delFile : delFiles) {
+            	System.out.println("del실행");
+                int num = uService.delete(delFile);
+                System.out.println("DB삭제끝"+num);
+                fService.deleteFile(delFile);
+            }
+        }
+		
 		return "redirect:/mypage/rev";
 	}
 	
 	// 리뷰 삭제
 	@PostMapping("/delete")
-	public String deleteReview(@RequestParam("rev_no") int rev_no) {
+	public String deleteReview(@RequestParam("rev_no") int rev_no,
+			@RequestParam(value = "delfile", required = false) String[] delFiles) {
 	    service.deleteReview(rev_no);
-	    return "redirect:/mypage/rev";
+	    
+		//삭제할 파일 처리
+        if (delFiles != null) {
+        	System.out.println("삭제 사진");
+            for (String delFile : delFiles) {
+                fService.deleteFile(delFile);
+                System.out.println("finish");
+            }
+        }	    
+        return "redirect:/mypage/rev";
 	}
 	
 	// 리뷰 검색

@@ -99,4 +99,23 @@ public class FileService {
         return s3files;  
 
 	}// end uploadFiles
+	
+	//파일 삭제
+	public void deleteFile(String objectName) {
+		final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
+				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
+				.build();
+
+		// delete object
+		try {
+		    s3.deleteObject(bucketName, objectName);
+		    System.out.format("Object %s has been deleted.\n", objectName);
+		} catch (AmazonS3Exception e) {
+		    e.printStackTrace();
+		} catch(SdkClientException e) {
+		    e.printStackTrace();
+		}
+	}
+	
 }

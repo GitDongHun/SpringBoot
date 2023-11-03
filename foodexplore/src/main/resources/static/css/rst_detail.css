@@ -2,11 +2,11 @@
 	padding: 35px;
 }
 
-.photos{
+/* .photos{
     width: 200px;
     height: 200px;
     background-color: gray;	
-}
+} */
 
 h2{
     text-align: left;
@@ -36,6 +36,7 @@ h2{
 
 #score {
 	display: inline-block;
+    padding: 8px;
 }
 #rev_star{
 	display: inline-block;
@@ -150,6 +151,7 @@ h2{
     text-underline-offset: 5px;
     margin-bottom: 6px;
 }
+
 .rev_photo ul{
     display: flex;
     flex-flow: row ;
@@ -158,6 +160,19 @@ h2{
 	margin-top: 10px;
 }
 .rev_photo ul li{
+    list-style: none;
+    padding-right: 10px;
+    position: relative;
+}
+
+.photos ul{
+    display: flex;
+    flex-flow: row ;
+    justify-content: flex-start;
+    padding-left: 0px;
+    overflow: hidden;
+}
+.photos ul li{
     list-style: none;
     padding-right: 10px;
     position: relative;

@@ -19,8 +19,8 @@ public class UploadDAO {
 		return session.insert("UploadMapper.insert", dto);
 	}
 	// 파일 삭제
-	public int delete(FileDTO dto) {
-		return session.insert("UploadMapper.delete", dto);
+	public int delete(String delFile) {
+		return session.insert("UploadMapper.delete", delFile);
 	}
 	// rev_no로 파일 불러오기
 	public List<FileDTO> getFiles(int rev_no) {
@@ -34,6 +34,10 @@ public class UploadDAO {
 	// 식당테이블과 연결해 이미지 가져오기
 	public List<FileDTO> getFilesRst(String rst_id) {
 		return session.selectList("UploadMapper.getFilesRst", rst_id);
+	}
+	//rst_id로 식당 사진에 쓰일 사진 불러오기
+	public List<FileDTO> thumbnail(String rst_id) {
+		return session.selectList("UploadMapper.thumbnail",rst_id);
 	}
 
 }
