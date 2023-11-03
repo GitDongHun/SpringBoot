@@ -82,14 +82,16 @@
 							<ul class="list-uibox">
 								<li th:each="likes, limit: ${pageDTO.list}" th:if="${limit.index < 3}">
 									<div class="like-rst">
-										<img class="likestar" th:src="@{/images/likestar.png}">
-										<div class="text-info">
-											<p class="rstname" th:text="${likes.rst_name}" />
+										<div class="rstrst">
+											<img class="likestar" th:src="@{/images/likestar.png}">
 											<div class="rst-info">
-												<p class="revscore" th:if="${likes.rev_star_avg}">
-													별점 <span th:text="${likes.rev_star_avg+ '/5'}"></span>
-												</p>
-												<p class="rstaddr" th:text="${likes.rst_addr1}" />
+												<p class="rstname" th:text="${likes.rst_name}" />
+												<div class="rst-rev">
+													<p class="revscore" th:if="${likes.rev_star_avg}">
+														별점 <span th:text="${likes.rev_star_avg+ '/5'}"></span>
+													</p>
+													<p class="rstaddr" th:text="${likes.rst_addr1}" />
+												</div>
 											</div>
 										</div>
 									</div>
@@ -108,17 +110,20 @@
 							<ul class="list-uibox">
 								<li th:each="revs, limit: ${RevDTO}" th:if="${limit.index < 3}">
 									<div class="rev-list">
-										<div id="circle"></div>
-										<div class="text-info">
+									<div class="rstrst">
+											<p class="revcircle"></p>
+										<div class="rst-info">
 											<p class="rstname" th:text="${revs.rst_name}" />
-											<div class="rst-info">
+											<div class="rst-rev">
 												<p class="revscore" th:if="${revs.rev_star_avg}">
 													별점 <span th:text="${revs.rev_star_avg+ '/5'}"></span>
 												</p>
-												<p class="revdate" th:text="${#dates.format(revs.rev_date, 'yyyy-MM-dd')}" />
+												<p class="revdate"
+													th:text="${#dates.format(revs.rev_date, 'yyyy-MM-dd')}" />
 											</div>
-											<p class="revcontent" th:text="${revs.rev_comment}" />
 										</div>
+										</div>
+										<p class="revcontent" th:text="${revs.rev_comment}" />
 									</div>
 								</li>
 							</ul>

@@ -161,57 +161,75 @@ ul li {
 }
 
 /* 나의 즐찾 상세 */
-.like-rst, .rev-list {
+.like-rst {
     display: flex;
     align-items: center;
-    
+}
+
+.rev-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.rstrst {
+    display: flex;
+    align-items: center;
 }
 
 .likestar {
     width: 45px;
-	margin-right: 15px;
-	margin-top: -5px;
+    height: 45px;
+    margin-right: 15px;
 }
 
-#circle {
-  width : 45px;
-  height : 45px;
-  margin-right: 15px;
-  border-radius: 50%;
-  background-color: #EF6900;
-  margin-top: -35px;
-
-}
-
-.text-info {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
-
-.rstname {
-    font-size: 18px;
-    color: black;
+.revcircle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #EF6900;
     margin: 0px;
-    margin-top: 10px;
+    margin-right: 15px;
 }
 
 .rst-info {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+
+.rstname {
+	text-align: left;
+    font-size: 18px;
+    color: black;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.rst-rev {
+    display: flex;
+    flex-direction: row;
     font-size: 14px;
+    color: black;
+    text-align: left;
 }
 
 .rstaddr, .revdate {
     color: black;
     margin-left: 5px;
+    margin-bottom: 13px;
 }
-.revscore{
-	color: black;
-    padding-right: 5px;
-	border-right: 1px solid #CACACA;
-}
-.revcontent{
-	font-size: 14px;
+
+.revscore {
     color: black;
+    padding-right: 5px;
+    border-right: 1px solid #CACACA;
+    margin-bottom: 13px;
+}
+
+.revcontent {
+    font-size: 14px;
+    color: black;
+    text-align: left;
+    margin-left: 60px;
+    margin-bottom: 10px;
 }
