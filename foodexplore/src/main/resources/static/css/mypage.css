@@ -21,7 +21,6 @@ ul li {
 }
 
 .hello-boxtext {
-    width: 300px;
     font-size: 35px;
     padding-left: 15px;
     text-align: left;
@@ -232,4 +231,12 @@ ul li {
     text-align: left;
     margin-left: 60px;
     margin-bottom: 10px;
+}
+
+.revicon{
+    width: 30px;
+    height: 30px;
+    /* background-color: white; */
+	margin-top: 7px;
+    margin-left: 2px;
 }

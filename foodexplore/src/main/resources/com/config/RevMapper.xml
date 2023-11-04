@@ -80,7 +80,7 @@
 			rev_star_avg = (select avg(rev_star)
 			                from review 
 			                where rst_id = #{rst_id})
-			where rst_id = rst_id
+			where rst_id =  #{rst_id}
     </update>
 
 </mapper>
