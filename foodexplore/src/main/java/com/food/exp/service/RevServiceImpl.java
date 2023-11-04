@@ -82,5 +82,10 @@ public class RevServiceImpl implements RevService {
 		dao.delSelect(rev_no);
 		
 	}
+
+	@Override
+	public int updateAvgStar(String rst_id) {
+		return dao.updateAvgStar(rst_id);
+	}
 	
 }

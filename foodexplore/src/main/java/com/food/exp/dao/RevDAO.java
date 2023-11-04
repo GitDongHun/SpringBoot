@@ -69,4 +69,9 @@ public class RevDAO {
 	public void delSelect(int rev_no) {
 		session.delete("RevMapper.delSelect", rev_no);
 	}
+	
+	//리뷰 등록, 수정, 삭제 시 식당 평균 별점 업데이트
+	public int updateAvgStar(String rst_id) {
+		return session.update("RevMapper.updateAvgStar",rst_id);
+	}
 }
