@@ -111,7 +111,9 @@
 								<li th:each="revs, limit: ${RevDTO}" th:if="${limit.index < 3}">
 									<div class="rev-list">
 									<div class="rstrst">
-											<p class="revcircle"></p>
+											<p class="revcircle">
+												<img class="revicon" th:src="@{/images/revlist.png}">
+											</p>
 										<div class="rst-info">
 											<p class="rstname" th:text="${revs.rst_name}" />
 											<div class="rst-rev">
