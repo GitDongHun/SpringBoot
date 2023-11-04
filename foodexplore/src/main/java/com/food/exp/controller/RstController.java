@@ -242,6 +242,11 @@ public class RstController {
         revDTO.setAttachList(uploadedFiles);
         
 		revService.addReview(revDTO);
+		
+		//리뷰 별점 업데이트 하기
+		String rst_id = revDTO.getRst_id();
+		int num = revService.updateAvgStar(rst_id);
+		
 		return "redirect:/rst/rst_detail?rst_id=" + revDTO.getRst_id();
 	}
 	

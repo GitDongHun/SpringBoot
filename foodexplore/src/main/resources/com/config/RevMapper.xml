@@ -72,5 +72,15 @@
 		WHERE review.rst_id = #{rst_id}
 		ORDER BY review.rev_date DESC
     </select>
+    
+    <!-- 리뷰 등록, 수정, 삭제 시 식당 평균 별점 업데이트 -->
+    <update id="updateAvgStar">
+    	update restaurant
+			set 
+			rev_star_avg = (select avg(rev_star)
+			                from review 
+			                where rst_id = #{rst_id})
+			where rst_id = rst_id
+    </update>
 
 </mapper>

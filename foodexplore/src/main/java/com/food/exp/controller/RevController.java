@@ -91,13 +91,16 @@ public class RevController {
                 fService.deleteFile(delFile);
             }
         }
+		//리뷰 별점 업데이트 하기
+		String rst_id = revDTO.getRst_id();
+		int num = service.updateAvgStar(rst_id);
 		
 		return "redirect:/mypage/rev";
 	}
 	
 	// 리뷰 삭제
 	@PostMapping("/delete")
-	public String deleteReview(@RequestParam("rev_no") int rev_no,
+	public String deleteReview(@RequestParam("rev_no") int rev_no,@RequestParam("rst_id") String rst_id,
 			@RequestParam(value = "delfile", required = false) String[] delFiles) {
 	    service.deleteReview(rev_no);
 	    
@@ -108,7 +111,12 @@ public class RevController {
                 fService.deleteFile(delFile);
                 System.out.println("finish");
             }
-        }	    
+        }
+        
+		//리뷰 별점 업데이트 하기
+        System.out.println(rst_id);
+		int num = service.updateAvgStar(rst_id);
+        
         return "redirect:/mypage/rev";
 	}
 	
