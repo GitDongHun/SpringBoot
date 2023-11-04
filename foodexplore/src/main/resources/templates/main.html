@@ -81,13 +81,13 @@
 			<div class="rst-box">
 				<img alt="식당 사진" src="">
 				<div class="info">
-					<h3 th:text="${restaurant.rst_name}">식당명</h3>
-					<div class="representative">
-						<span class="cate" th:text="${restaurant.rst_cate}">카테고리</span>
-					</div> <!-- end representative -->
+					<h3 class="rst-name" th:text="${restaurant.rst_name}">식당명</h3>
+					<span class="cate" th:text="${restaurant.rst_cate}">카테고리</span> <br>
+					<hr style="border: solid 1px black;">
+					<span class="total-pepl">N</span>명의 평가 <span class="average" th:text="${restaurant.rev_star_avg}">n.x</span>점
 					<div class="rst-addr1" th:text="${restaurant.rst_addr1}">도로명 주소</div>
 					<div class="rst-addr2" th:text="${restaurant.rst_addr2}" style="color: #999999">지번 주소</div>
-					<span class="total-pepl">N</span>명의 평가<span class="average" th:text="${restaurant.rev_star_avg}">n.x</span>점
+					<div class="rst-phone" th:text="${restaurant.rst_phone}">전화 번호</div>
 				</div> <!-- end info -->
 			</div> <!-- end rst-box -->
 		</div> <!-- end best --> <br>
