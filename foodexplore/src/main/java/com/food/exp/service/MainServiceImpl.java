@@ -1,6 +1,6 @@
 package com.food.exp.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +12,15 @@ import com.food.exp.dto.MainDTO;
 public class MainServiceImpl implements MainService {
 
 	@Autowired
-	MainDAO dao;
+	private MainDAO dao;
 
-	@Override
 	public List<MainDTO> top10Rst() {
-		return dao.top10Rst();
+        List<MainDTO> top10Rst = dao.top10Rst();
+        
+        for (MainDTO restaurant : top10Rst) {
+            int rev_count = dao.getRevCountByRestaurantId(restaurant.getRst_id());
+            restaurant.setRev_count(rev_count);
+        }
+		return top10Rst;
 	}
-
-//	@Override
-//	public String getRegionForRestaurant(String rst_id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }
