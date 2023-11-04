@@ -237,6 +237,7 @@ ul li {
 .revicon{
     width: 30px;
     height: 30px;
-    background-color: white;
-    
+    /* background-color: white; */
+	margin-top: 7px;
+    margin-left: 2px;
 }
