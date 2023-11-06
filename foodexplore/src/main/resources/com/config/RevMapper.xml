@@ -21,11 +21,12 @@
     </select>
    
 	<!-- 리뷰 검색 -->
-    <select id="searchRev" parameterType="String" resultType="com.food.exp.dto.RevDTO">
-	    SELECT r.*, rt.rst_name 
+    <select id="searchRev" resultType="RevDTO">
+	    SELECT r.*, rt.rst_name as rst_name
 	    FROM review r
 	    INNER JOIN restaurant rt ON r.rst_id = rt.rst_id
-	    WHERE rt.rst_name LIKE ('%', #{keyword}, '%')
+	    WHERE rt.rst_name LIKE '%' || '${keyword}' || '%' and r.user_email = '${user_email}'
+	    ORDER BY r.rev_date DESC
 	</select>
     
     <!-- 리뷰 자세히 보기 -->

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -113,14 +114,16 @@ public class RevController {
 	}
 	
 	// 리뷰 검색
-	@GetMapping("/searchRev")
-    public String searchRev(@RequestParam("keyword") String keyword, Model model) {
-		RevDTO revDTO = new RevDTO();
-		revDTO.setKeyword(keyword);
+	@PostMapping("/searchRev")  
+    public ResponseEntity<Object> searchRev(@RequestParam("keyword") String keyword, Model model, HttpSession session) {
 		System.out.println(keyword);
+		RevDTO revDTO = new RevDTO();
+		String user_email = (String) session.getAttribute("login");
+		revDTO.setUser_email(user_email);
+		revDTO.setKeyword(keyword);
+		System.out.println(revDTO.toString());
 		List<RevDTO> result = service.searchRev(revDTO);
-	    model.addAttribute("searchResult", result);
-	    return "/rev/rev"; // HTML 템플릿의 이름
+            return ResponseEntity.ok(result);
     }
 	
 //	// 선택된 리뷰 삭제
