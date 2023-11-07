@@ -117,8 +117,8 @@
 										<div class="rst-info">
 											<p class="rstname" th:text="${revs.rst_name}" />
 											<div class="rst-rev">
-												<p class="revscore" th:if="${revs.rev_star_avg}">
-													별점 <span th:text="${revs.rev_star_avg+ '/5'}"></span>
+												<p class="revscore">
+													별점 <span th:text="${revs.rev_star+ '/5'}"></span>
 												</p>
 												<p class="revdate"
 													th:text="${#dates.format(revs.rev_date, 'yyyy-MM-dd')}" />
