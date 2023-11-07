@@ -82,6 +82,8 @@
 						<br>
 				        <form th:action="@{/mypage/delete}" method="post" id="deleteForm">
 				            <input type="hidden" name="rev_no" th:value="${review.rev_no}" />
+							<input type="hidden" name="rst_id" th:value="${review.rst_id}" />
+
 				            <button type="submit" style="margin-left: 800px;">삭제</button>
 
 							<div th:if="${review.attachList != null and review.attachList.size() > 0}">								

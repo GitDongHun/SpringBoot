@@ -232,16 +232,24 @@ public class RstController {
 	
 	// 글쓰기
 	@RequestMapping(value = "/rst/write", method = RequestMethod.POST, consumes = "multipart/form-data")
-	public String write(RevDTO revDTO, HttpSession session, @RequestPart(value = "files") MultipartFile[] multipartFiles) {
+	public String write(RevDTO revDTO, HttpSession session) {
 		String user_email = (String) session.getAttribute("login");
 	    revDTO.setUser_email(user_email);
-	    
+	    System.out.println("리뷰 dto는  "+revDTO.toString());
 	    //파일 스토리지에 업로드 후 리뷰 등록
-        List<FileDTO> uploadedFiles = fService.uploadFiles(Arrays.asList(multipartFiles));
-        System.out.println("fffff"+uploadedFiles.toString());
-        revDTO.setAttachList(uploadedFiles);
+//	    if(multipartFiles!= null) {
+//	    	System.out.println("파일 있어요");
+//	        List<FileDTO> uploadedFiles = fService.uploadFiles(Arrays.asList(multipartFiles));
+//	        System.out.println("fffff"+uploadedFiles.toString());
+//	        revDTO.setAttachList(uploadedFiles);
+//	    }
         
 		revService.addReview(revDTO);
+		
+		//리뷰 별점 업데이트 하기
+		String rst_id = revDTO.getRst_id();
+		int num = revService.updateAvgStar(rst_id);
+		
 		return "redirect:/rst/rst_detail?rst_id=" + revDTO.getRst_id();
 	}
 	

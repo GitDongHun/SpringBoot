@@ -88,4 +88,8 @@ public class RevServiceImpl implements RevService {
 		return dao.searchRev(revDTO);
 	}
 	
+	public int updateAvgStar(String rst_id) {
+		return dao.updateAvgStar(rst_id);
+	}
+	
 }

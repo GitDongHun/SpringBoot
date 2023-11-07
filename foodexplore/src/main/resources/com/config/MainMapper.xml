@@ -3,12 +3,25 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MainMapper">
-	<select id="top10Rst" resultType="mainDTO">
-		SELECT *
+
+    <select id="top10Rst" resultType="MainDTO">
+		SELECT rst.rst_id, rst.rst_name, rst.rst_addr1, rst.rst_cate, rst.rev_star_avg
 		FROM (
-		    SELECT *
-		    FROM restaurant
-		    ORDER BY rev_star_avg DESC
-		) WHERE ROWNUM <![CDATA[<]]>= 10
+		    SELECT rev.rst_id
+		    FROM review rev
+		    GROUP BY rev.rst_id
+		    HAVING COUNT(*) >= 3
+		) rids
+		JOIN restaurant rst ON rids.rst_id = rst.rst_id
+		WHERE ROWNUM <![CDATA[<]]>= 10
+		ORDER BY rst.rev_star_avg DESC
+    </select>
+<!-- 		having count(*) <![CDATA[>]]>= 500 -->
+
+	<select id="getRevCountByRestaurantId" resultType="int">
+	    SELECT COUNT(*) AS revCount
+	    FROM review
+	    WHERE rst_id = #{rst_id}
 	</select>
+
 </mapper>

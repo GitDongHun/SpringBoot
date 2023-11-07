@@ -74,4 +74,9 @@ public class RevDAO {
 	public List<RevDTO> searchRev(RevDTO revDTO) {
 	    return session.selectList("RevMapper.searchRev", revDTO);
 	}
+
+	    //리뷰 등록, 수정, 삭제 시 식당 평균 별점 업데이트
+	public int updateAvgStar(String rst_id) {
+		return session.update("RevMapper.updateAvgStar",rst_id);
+	}
 }

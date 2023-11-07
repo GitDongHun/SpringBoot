@@ -190,8 +190,12 @@
 		 text-align: left !important;
 	}
 	
-
-	.representative {
-		display: flex;
-		justify-content: flex-start;
+	.rst-name, .cate {
+    display: inline;
 	}
+
+ 	.cate {
+		color: #999999;
+		margin-left: 10px;
+	}
+	
