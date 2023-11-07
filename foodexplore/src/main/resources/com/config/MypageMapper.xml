@@ -78,8 +78,8 @@
    
    <!-- 리뷰 정보 가져오기 -->
    <select id="getRev" parameterType="String" resultType="RevDTO">
-    select rst.rst_id, rst.rst_name, rst.rev_star_avg, 
-    	   rev.rev_no, rev.user_email, rev.rev_date, rev.rev_comment
+    select rst.rst_id, rst.rst_name, rev.rev_star, rev.rev_no,
+    	   rev.user_email, rev.rev_date, rev.rev_comment
 	from restaurant rst
 	inner join review rev
 	on rst.rst_id = rev.rst_id
