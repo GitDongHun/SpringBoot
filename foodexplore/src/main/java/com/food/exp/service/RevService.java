@@ -15,7 +15,7 @@ public interface RevService {
 	public List<RevDTO> revByRst(String rst_id);
 	public List<RevTempDTO> getreviewByRst(String rst_id);
 	public int totalCount(String user_email);
-	public void delSelect(int rev_no);
+	public void delSelect(List<String> rev_no);
 	public List<RevDTO> searchRev(RevDTO revDTO);
 	public int updateAvgStar(String rst_id);
 }

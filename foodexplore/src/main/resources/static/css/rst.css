@@ -207,7 +207,7 @@
 .bodycontent {
   position: relative;
   width: 80% !important;
-  height: 60vh !important;
+  height: auto;
 }
 
 /* 변경전(01)
@@ -334,10 +334,12 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked) {
 
 /* 메뉴 카테고리 스타일 */
 .menu_cate {
+  margin: 0 0 0 45px;
   padding: 15px 0;
+  flex-wrap:wrap;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .menu_cate input[type="radio"] {
@@ -354,7 +356,8 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked) {
   text-align: center;
   font-size: 12px;
   border-radius: 15px;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   background-color: #fff;
   color: #000;
   transition: all 0.3s;

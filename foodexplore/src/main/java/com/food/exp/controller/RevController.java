@@ -1,8 +1,10 @@
 package com.food.exp.controller;
 
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,5 +143,14 @@ public class RevController {
 //            service.delSelect(rev_no);
 //        return "redirect:/mypage/rev";
 //    }
+	
+	//게시물 선택삭제
+	@PostMapping("/delSelect")  
+	public String delSelect(HttpServletRequest request) {            
+	    String[] rev_no = request.getParameterValues("valueArr");
+	    List<String> rev_no_list = Arrays.asList(rev_no);
+	    service.delSelect(rev_no_list);
+	    return "redirect:/mypage/rev";
+	}
 
 }

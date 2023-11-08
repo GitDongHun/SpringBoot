@@ -232,23 +232,29 @@
                   }
                 }
 
-                $("#memberJoinForm").submit(function (e) {
+                $("#joinbtn").on("click", function(e){                
                     e.preventDefault(); // 폼 제출을 막음
                   console.log("회원가입");
-                    // // 회원가입 버튼을 누를 때 확인 메시지를 표시
-                    if (nicknameAvailable === false) {
-                        alert("닉네임 중복 여부를 확인해주세요");
-                        console.log("닉넴");
-                        return false;
-                    } else if (pwdMatch === false) {
-                        alert("비밀번호 일치 여부를 확인해주세요");
-                        console.log("비번");
-                        return false;
-                    } else if (nicknameAvailable && pwdMatch) {
-                        // 모든 조건을 만족하는 경우에만 폼을 서브밋
-                        this.submit(); // 폼을 서브밋
-                    }
 
+                  let nickname = $("#nickname").val();
+                  //원래 닉네임인 경우 닉네임 중복확인 스킵
+                  if(originalnickname = nickname){
+                    nicknameAvailable = true;
+                  }
+
+                      // 회원가입 버튼을 누를 때 확인 메시지를 표시
+                      if (nicknameAvailable === false) {
+                          alert("닉네임 중복 여부를 확인해주세요");
+                          console.log("닉넴");
+                          return false;
+                      } else if (pwdMatch === false) {
+                          alert("비밀번호 일치 여부를 확인해주세요");
+                          console.log("비번");
+                          return false;
+                      } else if (nicknameAvailable && pwdMatch) {
+                          // 모든 조건을 만족하는 경우에만 폼을 서브밋
+                          $("#memberJoinForm").submit(); // 폼을 서브밋
+                      }
                     
                 });//end 회원가입 버튼
 
@@ -267,9 +273,10 @@
 
                 if (result) {
                   // 사용자가 "Yes"를 선택한 경우
-                  window.location.href = "/foodexp/mypage/delMember";
-                  var formObj = $("form");
-                  formObj.attr("action","delMember");
+                 // window.location.href = "/foodexp/mypage/delMember";
+                  var formObj = $("#memberJoinForm");
+                  formObj.attr("action","/foodexp/mypage/delMember");
+                  console.log($("#memberJoinForm").attr("action")+"---------");
                   formObj.submit();
 
                 } //사용자가 아니오를 선택한 경우 원래 상태로 돌아감
