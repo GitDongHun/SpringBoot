@@ -2,6 +2,7 @@ package com.food.exp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,8 +91,10 @@ public class MypageController {
 
 	// 회원정보 수정
 	@PostMapping("/updateInfo")
-	public String updateInfo(MemberDTO dto) {
+	public String updateInfo(MemberDTO dto, HttpSession session) {
 		int num = service.changeInfo(dto);
+		String nickname = dto.getNickname();
+		session.setAttribute("nickname", nickname);
 		return "redirect:main";
 	}
 

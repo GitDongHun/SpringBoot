@@ -46,6 +46,7 @@
 					    <div>
 					        <textarea rows="6" cols="50" name="rev_comment" placeholder="리뷰 내용" required></textarea>
 					    </div>
+						<div>사진은 최대 4개까지 업로드 가능합니다.</div>
 
 						<div class="forupload">
 				            <!-- <input type="file" name="files" id="files" onchange="setThumbnail(event);" accept="image/*" multiple />  -->
@@ -79,8 +80,34 @@
 
 		<script>
 			$(document).ready(function() {
+
 			  $("input[type='file']").on("change", function() {
+
+				//파일 최대 사이즈 제한
+				var maxFileSize = 10 * 1024 * 1024; // 10MB (허용하는 최대 파일 크기)
+
+				// 선택한 파일 목록을 가져옴
 				var files = this.files;
+
+				if (files.length > 4) {
+					alert("파일은 최대 4개까지 선택할 수 있습니다.");
+					// 파일 입력(input) 초기화
+					$(this).val("");
+					return;
+				}
+				
+				// 파일 크기를 확인하고 초과하는 파일이 있는지 검사
+				for (var i = 0; i < files.length; i++) {
+					console.log("-------"+files[i].size);
+
+					if (files[i].size > maxFileSize) {
+						alert("파일의 크기가 허용한 최대 크기(10MB)를 초과했습니다.");
+						// 파일 입력(input) 초기화
+						$(this).val("");
+						return;
+					}
+				}
+
 				var uploadUL = $(".uploadResult ul");
                 uploadUL.empty();
 		  
@@ -104,7 +131,9 @@
 				  console.log(files[i]);
 				  reader.readAsDataURL(files[i]);
 				}
-			  });
+			  });//end change
+
+			  
 
 			  
 			});
