@@ -4,6 +4,13 @@
 		font-weight: normal;
 		font-style: normal;
 	}
+	
+	@font-face {
+	    font-family: 'ONE-Mobile-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
 
 	/* 주황 부분 */
 	.background {
@@ -13,7 +20,7 @@
 	}
 
 	.background-inner-banner {
-		background-color: #FFAF01;
+		background-color: #FFE8AA;
 		display: flex;
 		width: 100%;
 		flex-direction: column;
@@ -37,7 +44,7 @@
 	}
 
 	.search {
-		background-color: #fff7cc;
+		background-color: #FFAF01;
 		color: #000;
 		cursor: pointer;
 		font-size: 20px;
@@ -137,7 +144,7 @@
 	
 	
 	/* top10 부분  */
-	.top-container {
+/* 	.top-container {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -203,5 +210,125 @@
  	.cate {
 		color: #999999;
 		margin-left: 10px;
-	}
+	} */
 	
+	
+	
+.top-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    float: left;
+    background-color: #EFEEEC;
+    justify-content: center;
+}
+
+.best{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 5px;
+    margin-top: 50px;
+}
+
+.set {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nationwide {
+    background-color: #F4F6E3;
+    border: 4px solid #4D997D;
+    border-radius: 20px;
+    font-family: 'ONE-Mobile-Title';
+    color: black;
+    font-size: 30px;
+    font-weight: 550;
+    padding: 10px 15px;
+    display: inline;
+    text-decoration: none;
+    margin: 0;
+    width: 500px;
+}
+
+.nationwide span {
+    white-space: nowrap;
+}
+
+.rst-box {
+    border: 4px solid #4D997D;
+    border-radius: 20px;
+    padding: 15px;
+	margin: 10px;
+    background-color: #fff;
+    box-sizing: border-box;
+    width: 500px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+/* 음식 사진 추가 */
+.food-img {
+    width: 300px;
+    height:300px;
+    background-color: gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-self: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+}
+
+.info {
+	flex: 1;
+    text-align: left !important;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+}
+
+.styled-hr {
+	width: 90%;
+	margin: 5px;
+	border: solid 1px black;
+}
+
+/* 식당명 꾸미기 식.꾸 */
+.link-style {
+    color: black;
+    text-decoration: none;
+    font-family: 'ONE-Mobile-Title';
+    color: black;
+    font-size: 40px;
+    font-weight: 550;
+}
+
+.rst-name, .cate {
+	display: block; /* block 요소로 설정하여 세로 정렬됩니다. */
+	text-align: left; /* 왼쪽 정렬 */
+}
+
+.cate {
+    color: #999999;
+    font-family: 'ONE-Mobile-Regular';
+    font-size: 15px;
+}
+
+.rst-addr1, .average {
+	font-family: 'ONE-Mobile-Regular';
+	font-size: 15px;
+}
