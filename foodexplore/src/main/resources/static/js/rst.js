@@ -181,19 +181,22 @@ function searchFunction() {
 		selectCate = "";
 	}
 
+	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + selectCate;
+	console.log(`1번: ${keyword}`);
 
-
-
-	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + selectCate + " 음식점";
-	console.log(keyword);
+	// 공백을 압축
+	keyword = keyword.replace(/\s+/g, ' ');
+	console.log(`2번: ${keyword}`);
 
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
-		ps.categorySearch('FD6', placesSearchCB, { useMapBounds: true })
+		ps.categorySearch('FD6', placesSearchCB, { useMapBounds: true });
+		console.log(`3-1번: ${keyword}`);
+	} else {
+		keyword = keyword + " 음식점";
+		// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+		ps.keywordSearch(keyword, placesSearchCB, { useMapBounds: true });
+		console.log(`3-2번: ${keyword}`);
 	}
-
-	// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-	ps.keywordSearch(keyword, placesSearchCB, { useMapBounds: true });
-
 }
 
 
