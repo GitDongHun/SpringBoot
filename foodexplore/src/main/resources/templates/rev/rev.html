@@ -66,39 +66,39 @@
             });
         });
     
-	    function delSelect() {
-	        var url = "/foodexp/mypage/delSelect";
-	        var valueArr = new Array();
-	        var list = $("input.RowCheck");
-	        for (var i = 0; i < list.length; i++) {
-	            if (list[i].checked) {
-	                valueArr.push(list[i].value);
-		        	console.log(list[i].value);
-	            }
-	        }
-	        if (valueArr.length === 0) {
-	            alert("선택된 글이 없습니다.");
-	        } else {
-	            var chk = confirm("정말 삭제하시겠습니까?");		 
-				$.ajax({
-				    url : url,
-				    type : 'POST',                // POST 방식
-				    traditional : true,
-				    data : {
-				    	valueArr : valueArr        // 보내고자 하는 data 변수 설정
-				    },
-	                success: function(jdata){
-	                    if(jdata = 1) {
-	                        alert("삭제 성공");
-	                        location.replace("/foodexp/mypage/rev") //list 로 페이지 새로고침
-	                    }
-	                    else{
-	                        alert("삭제 실패");
-	                    }
-	                }
-				});
-			}
-		}
+        function delSelect() {
+            var url = "/foodexp/mypage/delSelect";
+            var valueArr = new Array();
+            var list = $("input.RowCheck");
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].checked) {
+                    valueArr.push(list[i].value);
+                    console.log(list[i].value);
+                }
+            }
+            if (valueArr.length === 0) {
+                alert("선택된 글이 없습니다.");
+            } else {
+                var chk = confirm("삭제하시겠습니까?");
+                if (chk) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST', // POST 방식
+                        traditional: true,
+                        data: {
+                            valueArr: valueArr // 보내고자 하는 data 변수 설정
+                        },
+                        success: function (jdata) {
+                            if (jdata = 1) {
+                                location.replace("/foodexp/mypage/rev") //list 로 페이지 새로고침
+                            } else {
+                                alert("삭제 실패");
+                            }
+                        }
+                    });
+                }
+            }
+        }
      	
     </script>
 
