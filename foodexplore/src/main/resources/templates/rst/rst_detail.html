@@ -24,6 +24,27 @@
 		<input type="hidden" id="user_email" th:value="${user_email}" >
 			<div class="maincontent">
 				
+				<div class="historyback">
+					뒤로가기버튼이 있을예정
+					<table>
+						<th>
+							<td>
+								<a href="javascript:window.history.back()">history.back()</a>
+								나와라
+								<input type="submit" id="btnSubmit" style="display:none;" />
+								<label for="btnSubmit"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="m 12 2 c 0 -0.265625 -0.105469 -0.519531 -0.292969 -0.707031 c -0.390625 -0.390625 -1.023437 -0.390625 -1.414062 0 l -6 6 c -0.1875 0.1875 -0.292969 0.441406 -0.292969 0.707031 s 0.105469 0.519531 0.292969 0.707031 l 6 6 c 0.390625 0.390625 1.023437 0.390625 1.414062 0 c 0.1875 -0.1875 0.292969 -0.441406 0.292969 -0.707031 s -0.105469 -0.519531 -0.292969 -0.707031 l -5.292969 -5.292969 l 5.292969 -5.292969 c 0.1875 -0.1875 0.292969 -0.441406 0.292969 -0.707031 z m 0 0" fill="#2e3436"></path> </g></svg></label>
+								얍
+							</td>
+							<td>
+								<a href="javascript:window.history.go(-1)">history.go(-1)</a>
+							</td>
+						</th>
+					</table>
+					
+					
+				</div>
+
+
 				<div class="photos">
 					<ul th:if="${thumbnails != null and thumbnails.size() > 0}">
 						<li th:each="thumbnail, i : ${thumbnails}" 
