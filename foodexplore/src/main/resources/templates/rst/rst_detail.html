@@ -24,6 +24,19 @@
 		<input type="hidden" id="user_email" th:value="${user_email}" >
 			<div class="maincontent">
 				
+				<div class="historyback">
+					<table>
+						<th>
+							<td>
+								<a href="/foodexp/rst"><img th:src="@{/images/previous.svg}" alt="이미지"></a>
+							</td>
+						</th>
+					</table>
+					
+					
+				</div>
+
+
 				<div class="photos">
 					<ul th:if="${thumbnails != null and thumbnails.size() > 0}">
 						<li th:each="thumbnail, i : ${thumbnails}" 
