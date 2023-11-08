@@ -178,13 +178,13 @@ function searchFunction() {
 
 
 	if (selectCate === "전체") {
-		selectCate = "음식점";
+		selectCate = "";
 	}
 
 
 
 
-	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + selectCate;
+	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + selectCate + " 음식점";
 	console.log(keyword);
 
 	if (!keyword.replace(/^\s+|\s+$/g, '')) {
