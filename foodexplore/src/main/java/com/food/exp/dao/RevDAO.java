@@ -66,7 +66,7 @@ public class RevDAO {
     	return session.selectList("RevMapper.getreviewByRst",rst_id);
     }
     
-	public void delSelect(int rev_no) {
+	public void delSelect(List<String> rev_no) {
 		session.delete("RevMapper.delSelect", rev_no);
 	}
 	

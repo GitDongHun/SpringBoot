@@ -15,17 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <script>
-    
-        document.addEventListener("DOMContentLoaded", function() {
-            const selectAllCheckbox = document.getElementById("select-all-checkbox");
-            const checkboxes = document.querySelectorAll("input[type='checkbox']");
-    
-            selectAllCheckbox.addEventListener("change", function() {
-                checkboxes.forEach(function(checkbox) {
-                    checkbox.checked = selectAllCheckbox.checked;
-                });
-            });
-        }); // 체크박스
+
         
         function searchRev() {
             var keyword = $('#keyword').val(); // 입력된 키워드 가져오기
@@ -59,37 +49,56 @@
 	        });
 	    }
         
-     	// 선택된 항목 삭제
-        function DelSelect() {
-            const checkboxes = document.querySelectorAll(".row-checkbox");
-            const selectedRows = [];
+        $(function() {
+            var chkObj = $("input.RowCheck");
+            var rowCnt = chkObj.length;
 
-            checkboxes.forEach(function (checkbox) {
-                if (checkbox.checked) {
-                    selectedRows.push(checkbox.parentNode.parentNode);
+            $("input#allCheck").click(function() {
+                $("input.RowCheck").prop('checked', this.checked);
+            });
+
+            $("input.RowCheck").click(function() {
+                if ($("input.RowCheck:checked").length === rowCnt) {
+                    $("input#allCheck").prop('checked', true);
+                } else {
+                    $("input#allCheck").prop('checked', false);
                 }
             });
-
-            const rev_no = selectedRows.map(function (row) {
-                return row.getAttribute("rev_no");
-            });
-
-            // AJAX 요청
-            fetch('/delSelect', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ rev_no: rev_no }),
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log(data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
+        });
+    
+	    function delSelect() {
+	        var url = "/foodexp/mypage/delSelect";
+	        var valueArr = new Array();
+	        var list = $("input.RowCheck");
+	        for (var i = 0; i < list.length; i++) {
+	            if (list[i].checked) {
+	                valueArr.push(list[i].value);
+		        	console.log(list[i].value);
+	            }
+	        }
+	        if (valueArr.length === 0) {
+	            alert("선택된 글이 없습니다.");
+	        } else {
+	            var chk = confirm("정말 삭제하시겠습니까?");		 
+				$.ajax({
+				    url : url,
+				    type : 'POST',                // POST 방식
+				    traditional : true,
+				    data : {
+				    	valueArr : valueArr        // 보내고자 하는 data 변수 설정
+				    },
+	                success: function(jdata){
+	                    if(jdata = 1) {
+	                        alert("삭제 성공");
+	                        location.replace("/foodexp/mypage/rev") //list 로 페이지 새로고침
+	                    }
+	                    else{
+	                        alert("삭제 실패");
+	                    }
+	                }
+				});
+			}
+		}
      	
     </script>
 
@@ -107,14 +116,14 @@
 				    <input type="text" id="keyword" name="keyword" placeholder="식당명 검색">
 				    <button type="button" onclick="searchRev()">검색</button>
 				    <div class="delete-button">
-				        <button type="button" onclick="DelSelect()">선택 삭제</button>
+				        <button type="button" id="delBtn" onclick="delSelect()">선택 삭제</button>
 				    </div>
 				</div>
                 <div class="table-wrapper" id="reviewTableWrapper">
                 <table class="data-table" id="reviewTable">
 		            <thead>
 		                <tr>
-		                    <th><input type="checkbox" id="select-all-checkbox"></th>
+		                    <th><input type="checkbox" id="allCheck" name="allCheck"></th>
 		                    <th>식당명</th>
 		                    <th>제목</th>
 		                    <th>작성일</th>
@@ -122,7 +131,7 @@
 		            </thead>
 		            <tbody>
 		                <tr th:each="review : ${revPageDTO.revlist}">
-						    <td><input type="checkbox" class="row-checkbox"></td>
+						    <td><input type="checkbox" class="RowCheck" name="checkbox" th:value="${review.rev_no}"></td>
 						    <td th:text="${review.rst_name}"></td>
 						    <td>
 						    <a th:href="@{/mypage/revedit(rev_no=${review.rev_no})}" th:text="${review.rev_title}"></a>

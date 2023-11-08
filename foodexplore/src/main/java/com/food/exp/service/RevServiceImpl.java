@@ -78,9 +78,8 @@ public class RevServiceImpl implements RevService {
 	}
 
 	@Override
-	public void delSelect(int rev_no) {
-		dao.delSelect(rev_no);
-		
+	public void delSelect(List<String> rev_no_list) {
+		dao.delSelect(rev_no_list);
 	}
 
 	@Override
