@@ -207,7 +207,7 @@
 .bodycontent {
   position: relative;
   width: 80% !important;
-  height: 60vh !important;
+  height: auto;
 }
 
 /* 변경전(01)
