@@ -10,7 +10,7 @@
 		    SELECT rev.rst_id
 		    FROM review rev
 		    GROUP BY rev.rst_id
-		    HAVING COUNT(*) >= 3
+		    HAVING COUNT(*) >= 2
 		) rids
 		JOIN restaurant rst ON rids.rst_id = rst.rst_id
 		WHERE ROWNUM <![CDATA[<]]>= 10
@@ -23,5 +23,4 @@
 	    FROM review
 	    WHERE rst_id = #{rst_id}
 	</select>
-
 </mapper>

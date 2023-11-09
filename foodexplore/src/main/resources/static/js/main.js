@@ -1,6 +1,3 @@
-
-
-
 function openModal() {
 	var modal = document.getElementById("myModal");
 	modal.style.display = "flex";
@@ -49,3 +46,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 });
+
+
+
