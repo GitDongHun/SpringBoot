@@ -137,6 +137,18 @@
             <script type="text/javascript"> 
               let idAvailable = false; // 아이디 중복 여부
               let nicknameAvailable = false; // 닉네임 중복 여부
+              let duplicationid = ""; //아이디 변경 여부
+              let duplicationNick = ""; //닉네임 변경 여부 
+
+              let dupclick = false;
+              // let idchange = false;
+
+              $("#user_email").on("change", function() {
+                dupclick = false;
+                console.log("아이디 바뀜");
+              });
+
+
               let pwdMatch = false; // 비밀번호 일치 여부
             
                  //아이디 중복 체크
@@ -144,7 +156,9 @@
                   e.preventDefault(); // 폼 서브밋 방지
                   
                   let user_email = $("#user_email").val();
-                  console.log(user_email);
+                  dupclick = true;
+                  console.log(user_email+"---"+dupclick);
+
                   if(user_email !== ""){
 
                     $.ajax({
@@ -161,7 +175,9 @@
                         }else if(data == '1'){
                           $("#idsamemesg").text('사용 가능한 아이디입니다.');
                           $("#idsamemesg").css("color", "black");
+                          duplicationid = user_email;
                           idAvailable = true;
+                          console.log("아이디 중복 확인 성공");
                         }
                         //checkSubmit();
 
@@ -196,6 +212,7 @@
                       }else if(data == '1'){
                         $("#namesamemesg").text('사용 가능한 닉네임입니다.');
                         $("#namesamemesg").css("color", "black");
+                        duplicationNick = nickname;
                         nicknameAvailable = true;
                       }
                       //checkSubmit();
@@ -236,8 +253,25 @@
 
                 //회원가입 버튼 동작
                 $("#memberJoinForm").submit(function (e) {
+                  let nickname = $("#nickname").val();
+                  let user_email = $("#user_email").val();
                     e.preventDefault(); // 폼 제출을 막음
-                  console.log("회원가입");
+                  console.log("회원가입  "+ dupclick);
+                  if(dupclick == false && duplicationid !=user_email){
+                    alert("아이디 중복 확인해주세요");
+                          console.log("아이디 바꿈");
+                          idAvailable = false;
+
+                          return false;
+                  }
+                  if(duplicationNick != nickname){
+                    alert("닉네임 중복 여부를 다시 확인해주세요");
+                          console.log("닉넴 바꿈");
+                          nicknameAvailable = false;
+
+                          return false;
+                  }
+
                     // // 회원가입 버튼을 누를 때 확인 메시지를 표시
                     if (idAvailable === false) {
                         alert("아이디 중복 여부를 확인해주세요");

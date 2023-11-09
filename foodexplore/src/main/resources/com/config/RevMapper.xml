@@ -86,7 +86,7 @@
     <update id="updateAvgStar">
     	update restaurant
 			set 
-			rev_star_avg = (select avg(rev_star)
+			rev_star_avg = (select NVL( avg(rev_star),0)
 			                from review 
 			                where rst_id = #{rst_id})
 			where rst_id =  #{rst_id}
