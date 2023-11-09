@@ -129,7 +129,7 @@ function myLocationMapView() {
 var isWheel = false;
 
 // 지도 선택시 실시간으로 새로고침할지 설정
-//kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
+kakao.maps.event.addListener(map, 'idle', searchPlacesWheel);
 
 // 키워드 검색을 요청하는 함수입니다
 function searchFunction() {
