@@ -18,5 +18,6 @@ public interface MypageService {
 	public int totalCount(String user_email);
 	public int isLiked(LikesDTO dto);
 	public List<LikesDTO> getLikesTotal(String rst_id);
+	public List<LikesDTO> getLikesMap(String user_email);
 	public List<RevDTO> getRev(String user_email);
 }

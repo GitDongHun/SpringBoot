@@ -62,6 +62,10 @@ public class MypageDAO {
 	public List<LikesDTO> getLikesTotal(String rst_id) {
 		return session.selectList("MypageMapper.getLikesTotal",rst_id);
 	}
+	// 지도에 즐겨찾기 가져오기
+	public List<LikesDTO> getLikesMap(String user_email) {
+		return session.selectList("MypageMapper.getLikesMap",user_email);
+	}
 	// 리뷰 정보 가져오기
 	public List<RevDTO> getRev(String user_email) {
 		return session.selectList("MypageMapper.getRev", user_email);
