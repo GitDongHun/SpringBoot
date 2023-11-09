@@ -15,8 +15,8 @@
 	position: absolute;
 	left: 0;
 	bottom: 45px;
-	width: 275px;
-	height: 122px;
+	width: 245px;
+	height: 112px;
 	margin-left: -144px;
 	text-align: left;
 	overflow: hidden;
@@ -25,13 +25,25 @@
 }
 
 .info {
-	width: 273px;
-	height: 110px;
+	width: 243px;
+	height: 100px;
 	border-radius: 5px;
 	border-bottom: 2px solid #ccc;
 	border-right: 1px solid #ccc;
 	overflow: hidden;
 	background: #fff;
+}
+
+.info:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 62%;
+	bottom: 0px;
+	width: 22px;
+	height: 12px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
 }
 
 .wrap .info:nth-child(1) {
@@ -82,7 +94,7 @@ hr {
 .rstbody {
 	position: relative;
 	overflow: hidden;
-	padding: 0px 10px;
+	padding: 5px 10px;
 }
 
 .rstrev {
@@ -135,16 +147,5 @@ hr {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	padding: 3px 10px;
-}
-
-.info:after {
-	content: '';
-	position: absolute;
-	margin-left: -12px;
-	left: 50%;
-	bottom: 0;
-	width: 22px;
-	height: 12px;
-	background:
-		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+	font-size: 12.5px;
 }
