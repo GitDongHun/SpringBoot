@@ -41,6 +41,7 @@
 							<div class="rst-info">
 								<p class="revscore" th:if="${likes.rev_star_avg}">
 									별점 <span th:text="${likes.rev_star_avg+ '/5'}"></span>
+									(<span th:text="${likes.rev_count+ '건)'}"></span>
 								</p>
 								<p class="like-count">
 									즐겨찾기 <span th:text="${likes.likes_total}"></span>

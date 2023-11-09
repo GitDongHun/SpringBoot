@@ -223,7 +223,6 @@ ul li {
 
 .rstaddr, .revdate {
     color: black;
-    margin-left: 5px;
     margin-bottom: 13px;
 }
 
@@ -232,6 +231,7 @@ ul li {
     padding-right: 5px;
     border-right: 1px solid #CACACA;
     margin-bottom: 13px;
+    margin-right: 5px;
 }
 
 .revcontent {
