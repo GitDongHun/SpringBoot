@@ -1,58 +1,46 @@
-@charset "UTF-8";
-
-.sidebar a[href="/index/revedit"] {
+.sidebar a[href="/foodexp/mypage/rev"] {
 	color: #EF6900;
 }
 
-.sidebar {
-    float: left;
-    white-space : nowrap;
-    width: 200px;
-    height: 100%;
-    background-color: white;
-    padding: 20px;
+.star-rating {
+	display: flex;
+	justify-content: left;
+	flex-direction: row-reverse;
+	font-size: 2em;
+	cursor: pointer;
 }
 
-.search-bar {
-	white-space : nowrap;
-    text-align: center;
-    margin-top: 50px;
-    margin-right: 790px;
+.star {
+	color: lightgray;
 }
 
-.search-bar input {
-    padding: 10px;
-    margin-right: 10px;
-    width: 200px;
+.star.active {
+	color: #FFAF01;
 }
 
-.search-bar button {
-    padding: 10px 20px;
-    background-color: #FFAF01;
-    color: white;
-    border: none;
-    white-space : nowrap;
+.submit-button {
+	margin-top: 50px;
 }
 
-.data-table {
-    width: 70%;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
+.button-container {
+    display: flex;
+    align-items: center;
 }
 
-.data-table th, .data-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+#delBtn{
+  height: 35px;
+  width: 85px;
+  border: none;
+  color: white;
+  background-color: #979797;
+  border-radius: 5px;
 }
 
-.data-table th {
-    background-color: #f2f2f2;
-}
-
-.delete-button {
-    margin-right: -400px;
-    margin-top: -150px;
+#editBtn{
+  height: 35px;
+  width: 85px;
+  border: none;
+  color: white;
+  background-color: #EF6900;
+  border-radius: 5px;
 }

@@ -8,6 +8,7 @@
     <!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
     <title>먹스플로어</title>
 
+    <link th:href="@{/css/rev_edit.css}" rel="stylesheet" />
     <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
     <link th:href="@{/css/upload.css}" rel="stylesheet" />
 
@@ -18,11 +19,6 @@
 </head>
 
 <script>
-    function confirmDelete() {
-        if (confirm("삭제하시겠습니까?")) {
-            $("#deleteForm").submit();
-        }
-    }
 
     $(document).ready(function () {
         // delbtn을 클릭할 때
@@ -38,13 +34,38 @@
             liElement.find("input[name='photo']").attr("name", "delfile");
 
         });
-
-        // 삭제 버튼을 누를 때 확인 메시지 출력
-        $("button[type='submit']").click(function (event) {
-            event.preventDefault();
-            confirmDelete();
-        });
     });
+    
+    function updateStarValue() {
+        var stars = document.querySelectorAll('.star');
+        var ratingInput = document.getElementById('starInput');
+
+        stars.forEach(star => {
+          star.addEventListener('click', function() {
+            var value = this.getAttribute('data-value');
+            stars.forEach((star, index) => {
+              if (5 - index <= value) {
+                stars[index].classList.add('active');
+              } else {
+                stars[index].classList.remove('active');
+              }
+            });
+            ratingInput.value = value;
+          });
+        });
+    }
+
+    window.onload = function() {
+        updateStarValue();
+
+        var initialRating = document.getElementById('starInput').value;
+        var stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+          if (5 - index <= initialRating) {
+            stars[index].classList.add('active');
+          }
+        });
+    };
 
 </script>
 
@@ -64,14 +85,21 @@
                     <div>
                         <h1 th:text="${review.rst_name}"></h1>
                         <br>
-                        <form th:object="${review}" th:action="@{/mypage/update}" method="post">
+                        <form th:object="${review}" th:action="@{/mypage/update}" method="post" onsubmit="return confirm('수정하시겠습니까?');">
                             <div>
                                 <input type="text" th:field="*{rev_title}" />
                             </div>
-                            <div>
-                                별점: <input type="number" th:field="*{rev_star}" min="1" max="5" />
-                                &nbsp;&nbsp;<span th:text="${#dates.format(review.rev_date, 'yyyy-MM-dd')}"></span>
-                            </div>
+                            <div class="star-rating">
+							    <span class="star" data-value="5">&#9733;</span>
+							    <span class="star" data-value="4">&#9733;</span>
+							    <span class="star" data-value="3">&#9733;</span>
+							    <span class="star" data-value="2">&#9733;</span>
+							    <span class="star" data-value="1">&#9733;</span>
+							</div>
+							<div>
+								<span th:text="${#dates.format(review.rev_date, 'yyyy-MM-dd')}"></span>
+							</div>
+							<input type="hidden" th:field="*{rev_star}" name="rev_star" id="starInput" />
                             <div>
                                 <textarea rows="6" cols="50" th:field="*{rev_comment}"></textarea>
                             </div>
@@ -92,22 +120,22 @@
                                 </ul>
 
                             </div>
-
-
-                            <button type="submit">수정</button>
+                            <div class="button-container">
+                            <button type="submit" id="editBtn">수정</button>
                         </form>
 
                         <br>
-                        <form th:action="@{/mypage/delete}" method="post" id="deleteForm">
+                        <form th:action="@{/mypage/delete}" method="post" id="deleteForm" onsubmit="return confirm('삭제하시겠습니까?');">
                             <input type="hidden" name="rev_no" th:value="${review.rev_no}" />
                             <input type="hidden" name="rst_id" th:value="${review.rst_id}" />
 
-                            <button type="submit" style="margin-left: 80px;">삭제</button>
+                            <button type="submit" style="margin-left: 20px;" id="delBtn">삭제</button>
 
                             <div th:if="${review.attachList != null and review.attachList.size() > 0}">
                                 <input th:each="attach : ${review.attachList}" type="hidden" class="uploadedFile" th:value="${attach.uploadFileName}" name="delfile">
                             </div>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
