@@ -139,7 +139,7 @@
 		        </table>
 		        </div>
 		       
-                <div class="revPage">
+                <div class="revPage" th:if="${revPageDTO.totalNum > 0}">
     				<div th:each="i : ${#numbers.sequence(1, revPageDTO.totalNum)}">
         				<span th:if="${i == (revPageDTO.curPage == null or revPageDTO.curPage == 0 ? 1 : revPageDTO.curPage)}"> 
             				<span th:text="${i}" class="clickpage"></span>
