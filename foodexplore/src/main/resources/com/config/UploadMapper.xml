@@ -35,17 +35,34 @@
 		]]>	
 	</select>
 	
-	<!-- 식당테이블과 연결해 이미지 가져오기 -->
+	<!-- 식당테이블과 연결해 이미지 가져오기(1개, MyLikes) -->
 	<select id="getFilesRst" resultType="FileDTO">
 	 with sortedRev as (select r.rev_no, r.rst_id, u.uploadfilepath, u.uploadfilename,
-                    row_number() over (partition by r.rst_id order by r.rev_date ASC) as row_num
-                    from review r
-                    inner join upload u on r.rev_no = u.rev_no
-                    where exists (select 1 from upload u2
-                                  where u2.rev_no = r.rev_no))
+                    	row_number() over (partition by r.rst_id order by r.rev_date ASC) as row_num
+                    	from review r
+                    	inner join upload u on r.rev_no = u.rev_no
+                    	where exists (select 1 
+                    				  from upload u2
+                                  	  where u2.rev_no = r.rev_no))
  	 select sr.rst_id, sr.uploadfilepath, sr.uploadfilename
  	 from sortedRev sr
  	 where sr.row_num = 1
+	</select>
+	
+	<!-- 식당테이블과 연결해 이미지 가져오기(3개, main) -->
+	<select id="getImgRst" resultType="FileDTO">
+	 <![CDATA[
+	 with sortedRev as (select r.rev_no, r.rst_id, u.uploadfilepath, u.uploadfilename,
+                        row_number() over (partition by r.rst_id order by r.rev_date ASC) as row_num
+                        from review r
+                        inner join upload u on r.rev_no = u.rev_no
+                        where exists (select 1 
+                        		      from upload u2
+                                      where u2.rev_no = r.rev_no))
+ 	  select sr.rst_id, sr.uploadfilepath, sr.uploadfilename
+ 	  from sortedRev sr
+ 	  where sr.row_num <= 3
+ 	 ]]>	
 	</select>
    
 </mapper>

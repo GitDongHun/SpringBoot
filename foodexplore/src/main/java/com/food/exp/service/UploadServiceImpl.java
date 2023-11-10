@@ -38,8 +38,14 @@ public class UploadServiceImpl implements UploadService{
 	public List<FileDTO> getFilesRst(String rst_id) {
 		return dao.getFilesRst(rst_id);
 	}
+	
 	@Override
 	public List<FileDTO> thumbnail(String rst_id) {
 		return dao.thumbnail(rst_id);
+	}
+
+	@Override
+	public List<FileDTO> getImgRst(String rst_id) {
+		return dao.getImgRst(rst_id);
 	}
 }

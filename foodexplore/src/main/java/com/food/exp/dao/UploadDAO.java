@@ -30,7 +30,6 @@ public class UploadDAO {
 	public int currentRno() {
 		return session.selectOne("UploadMapper.currentRno");
 	}
-	
 	// 식당테이블과 연결해 이미지 가져오기
 	public List<FileDTO> getFilesRst(String rst_id) {
 		return session.selectList("UploadMapper.getFilesRst", rst_id);
@@ -39,5 +38,9 @@ public class UploadDAO {
 	public List<FileDTO> thumbnail(String rst_id) {
 		return session.selectList("UploadMapper.thumbnail",rst_id);
 	}
+	// 식당테이블과 연결해 이미지 가져오기
+		public List<FileDTO> getImgRst(String rst_id) {
+			return session.selectList("UploadMapper.getImgRst", rst_id);
+		}
 
 }
