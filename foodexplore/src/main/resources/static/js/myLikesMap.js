@@ -22,7 +22,7 @@ var imageSrc = "/foodexp/images/foodexplore_map.png";
 var imageSize = new kakao.maps.Size(60, 62);
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-var overlays = []; // 오버레이를 저장할 배열 생성
+var overlays = [];
 
 for (var i = 0; i < likeData.length; i++) {
 	var marker = new kakao.maps.Marker({
@@ -56,7 +56,9 @@ for (var i = 0; i < likeData.length; i++) {
         '                </div>' +
         '				 <div class="revcount">('+revCount+'건)</div>' +
         '            </div>' +
-        '            <div class="rstaddr">' + rstAddr + '</div>' +
+        '			 <div class="rstaddr">' +
+        '			 <img class="locImg" src="/foodexp/images/location.png">' + rstAddr	
+        '            </div>' +
         '        </div>' +
         '    </div>' +
         '</div>';
@@ -67,14 +69,12 @@ for (var i = 0; i < likeData.length; i++) {
 			position : marker.getPosition()
 		});
 
-		overlays.push(overlay); // 오버레이를 배열에 추가
+		overlays.push(overlay);
 
-		// 클릭 시에 오버레이 표시 대신 초기에 숨겨놓습니다.
 		overlay.setMap(null);
 
-		// 마커를 클릭했을 때 오버레이를 표시하도록 변경합니다.
 		kakao.maps.event.addListener(marker, 'click', function() {
-			closeAllOverlays(); // 현재 클릭한 오버레이 외에 다른 모든 오버레이를 닫습니다
+			closeAllOverlays();
 			overlay.setMap(map);
 		});
 	})(i);

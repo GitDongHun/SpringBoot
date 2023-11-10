@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- 공통적으로 들어가는 부분 가져오는 코드 -->
 <head th:insert="~{include/head.html}"></head>
-
-<!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
 <title>먹스플로어</title>
-
 <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
 <link th:href="@{/css/myLikes.css}" rel="stylesheet" />
-
 </head>
 <body>
-	<!-- Navigation-->
 	<nav th:insert="~{include/nav.html}"></nav>
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
 		<div class="bodycontent" style="display: flex;">
-
-			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
 			<div class="content">
 				<h2 class="myLikes-title">나의 즐겨찾기</h2>
-				
-				<!-- 나의 즐겨찾기 -->
+
 				<div class="rst-box" th:each="likes: ${pageDTO.list}">
 					<div class="like-rst">
 						<input type="hidden" name="rst_id" th:value="${likes.rst_id}" />
@@ -57,7 +48,6 @@
 					</div>
 				</div>
 
-				<!-- 페이지 -->
 				<div class="likesPage" th:if="${pageDTO.totalNum > 0}">
     				<div th:each="i : ${#numbers.sequence(1, pageDTO.totalNum)}">
         				<span th:if="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
@@ -72,7 +62,6 @@
 		</div> <!-- end bodycontent -->
 	</div> <!-- end contentbox -->
 
-	<!-- body 위에 삽입되는 공통 부분 추가하는 코드 -->
 	<div th:insert="~{include/footer.html}"></div>
 </body>
 </html>

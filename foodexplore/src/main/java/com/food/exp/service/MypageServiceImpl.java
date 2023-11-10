@@ -72,5 +72,4 @@ public class MypageServiceImpl implements MypageService{
 		return dao.getRev(user_email);
 	}
 
-
 }

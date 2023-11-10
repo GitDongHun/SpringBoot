@@ -2,7 +2,6 @@ package com.food.exp.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,6 @@ public class MypageController {
 		// 리뷰 정보
 		List<RevDTO> revDTO = service.getRev(user_email);
 		m.addAttribute("RevDTO", revDTO);
-		System.out.println(revDTO.toString());
 		return "mypage/mypage";
 	}
 
@@ -56,11 +54,11 @@ public class MypageController {
 	public String myLikes(HttpSession session, Model m, PageDTO pageDTO) {
 		// 즐겨찾기 정보
 		String user_email = (String) session.getAttribute("login");
-		int curPage = pageDTO.getCurPage(); // 현재 페이지
+		int curPage = pageDTO.getCurPage();
 		pageDTO = service.getLikes(curPage, user_email);
 		int totalNum = pageDTO.getTotalCount() / pageDTO.getPerPage();
 		if (pageDTO.getTotalCount() % pageDTO.getPerPage() != 0) {
-			totalNum++; // 나머지가 있는 경우 1을 추가
+			totalNum++;
 		}
 		pageDTO.setTotalNum(totalNum);
 		m.addAttribute("pageDTO", pageDTO);
@@ -68,7 +66,6 @@ public class MypageController {
 		String rst_id = (String) session.getAttribute("rst_id");
 		List<FileDTO> attachList = uploadService.getFilesRst(rst_id);
 		m.addAttribute("attachList", attachList);
-
 		return "mypage/myLikes";
 	}
 
@@ -88,21 +85,15 @@ public class MypageController {
 		String user_email = (String) session.getAttribute("login");
 		List<LikesDTO> likesDTO = service.getLikesMap(user_email);
 		m.addAttribute("likesDTO", likesDTO);
-		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분
-		m.addAttribute("inputLoadSelector", "myLocation");
 		// api키 가지고오기
 		m.addAttribute("apiKey", mapApiKey);
-		m.addAttribute("searchinput", "");
 		return "/mypage/myLikesMap";
 	}
 
 	// 회원정보 수정 페이지로 이동
 	@GetMapping("/changeInfo")
 	public String changeInfo(HttpSession session, Model m) {
-
 		String user_email = (String) session.getAttribute("login");
-		System.out.println(user_email);
-
 		MemberDTO dto = service.getInfo(user_email);
 		m.addAttribute("MemberDTO", dto);
 		return "member/changeInfo";
@@ -121,7 +112,6 @@ public class MypageController {
 	@PostMapping("/delMember")
 	public String delMember(HttpSession session) {
 		String user_email = (String) session.getAttribute("login");
-
 		int num = service.delMember(user_email);
 		session.invalidate();
 		return "redirect:/main";

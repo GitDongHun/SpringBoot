@@ -5,7 +5,7 @@ import java.util.List;
 public class RevPageDTO {
 
 	int curPage;
-	int perPage = 5;
+	int perPage = 10;
 	int totalNum;
 	int totalCount;
 	List<RevDTO> revlist;

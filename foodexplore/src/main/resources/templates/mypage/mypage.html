@@ -1,36 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<!-- 공통적으로 들어가는 부분 가져오는 코드 -->
 <head th:insert="~{include/head.html}"></head>
-
-<!-- 타이틀 수정 및 자기 html의 head에 추가한 것 추가하기 -->
 <title>먹스플로어</title>
-
 <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
 <link th:href="@{/css/mypage.css}" rel="stylesheet" />
-
 </head>
 <body>
-	<!-- Navigation-->
 	<nav th:insert="~{include/nav.html}"></nav>
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
 		<div class="bodycontent" style="display: flex;">
-
-			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
 			<div class="content">
-				<!-- 안녕하세요 -->
+			
 				<div class="hello-box">
 					<img class="hello-boxlogo" th:src="@{/images/foodexplore_icon.png}">
 					<h2 class="hello-boxtext">
 						안녕하세요! <span class="hellonick" th:text="${MemberDTO.nickname}"></span>님
 					</h2>
 				</div>
-				<!-- 안녕하세요 // -->
-
-				<!-- 회원 정보 (memberInfo) -->
+				
 				<div class="memberInfo">
 					<div class="memberInfo-body">
 						<div class="row">
@@ -68,11 +58,9 @@
 						<a class="changeInfo-btn" th:href="@{/mypage/changeInfo}">회원정보 수정</a>
 					</div>
 				</div>
-				<!-- 회원 정보 (memberInfo) // -->
 
-				<!-- 나의 즐겨찾기&리뷰관리 -->
 				<div class="like-review">
-					<!-- 나의 즐겨찾기 -->
+				
 					<div class="mylist-box">
 						<div class="title-util">
 							<h2 class="title-name">나의 즐겨찾기</h2>
@@ -97,11 +85,13 @@
 										</div>
 									</div>
 								</li>
+								<li th:if="${pageDTO.list.isEmpty()}">
+            						<p class="nolikes">즐겨찾기가 없습니다.</p>
+        						</li>
 							</ul>
 						</div>
 					</div>
 
-					<!-- 리뷰 관리 -->
 					<div class="mylist-box">
 						<div class="title-util">
 							<h2 class="title-name">리뷰 관리</h2>
@@ -129,15 +119,17 @@
 										<p class="revcontent" th:text="${revs.rev_comment}" />
 									</div>
 								</li>
+								<li th:if="${RevDTO.isEmpty()}">
+            						<p class="norev">작성한 리뷰가 없습니다.</p>
+        						</li>
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> <!-- end like-review -->
 			</div> <!-- end content -->
 		</div> <!-- end bodycontent -->
 	</div> <!-- end contentbox -->
 
-	<!-- body 위에 삽입되는 공통 부분 추가하는 코드 -->
 	<div th:insert="~{include/footer.html}"></div>
 </body>
 </html>

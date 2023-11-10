@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* 사이드바 */
+
 .sidebar a[href="/foodexp/mypage/myLikesMap"] {
 	color: #EF6900;
 }
@@ -140,6 +140,12 @@ hr {
 	right: 0;
 	overflow: hidden;
 	pointer-events: none;
+}
+
+.locImg{
+	height: 15px;
+	margin-right: 3px;
+	margin-bottom: 2px;
 }
 
 .rstaddr {
