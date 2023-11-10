@@ -85,6 +85,10 @@
 		reg2_num[16] = [249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260];
 		reg2_name[16] = ['제천시', '청주시 상당구', '청주시 흥덕구', '충주시', '괴산군',
 				'단양군', '보은군', '영동군', '옥천군', '음성군', '진천군', '청원군'];
+		
+		reg3_num[17] = [261, ];
+		reg3_name[17] = [];
+		
 
 		function reg1_change(selectedValue, h_area2) {
 			var reg1Index = parseInt(selectedValue, 10);
@@ -94,7 +98,7 @@
 
 			// 기본 옵션 추가
 			var defaultOption = document.createElement('option');
-			defaultOption.text = '-시군구-';
+			defaultOption.text = '-시/군/구-';
 			defaultOption.value = '';
 			defaultOption.setAttribute('disabled', 'true');
 			defaultOption.setAttribute('selected', 'true');
@@ -109,4 +113,29 @@
 					h_area2.appendChild(option);
 				}
 			}
+		}
+		
+		function reg2_change(selectedValue, h_area3) {
+		    var reg2Index = parseInt(selectedValue, 10);
+		    var reg3Numbers = reg3_num[reg2Index];
+		    var reg3Names = reg3_name[reg2Index];
+		    var h_area3Options = h_area3.options;
+
+		    // 기본 옵션 추가
+		    var defaultOption = document.createElement('option');
+		    defaultOption.text = '-읍/동/리-';
+		    defaultOption.value = '';
+		    defaultOption.setAttribute('disabled', 'true');
+		    defaultOption.setAttribute('selected', 'true');
+		    h_area3.innerHTML = ''; // 이전 옵션들을 지우기
+		    h_area3.appendChild(defaultOption);
+
+		    if (reg3Numbers.length > 0) {
+		        for (var i = 0; i < reg3Numbers.length; i++) {
+		            var option = document.createElement('option');
+		            option.value = reg3Numbers[i]; // 지역 번호를 값으로 설정
+		            option.text = reg3Names[i]; // 지역 이름을 텍스트로 설정
+		            h_area3.appendChild(option);
+		        }
+		    }
 		}
