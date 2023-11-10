@@ -116,9 +116,8 @@
 	        <div class="set">
 	            <div class="nationwide">전국 Top <span th:text="${iterStatus.index + 1}"></span></div>
 	            <div class="rst-box">
-	                <div class="food-container" th:each="photo : ${restaurant.photos}">
-						<img class="food-img" th:src="${photo.uploadFilePath}" alt="Food Image">
-					</div>
+	                <img class="food-img" th:each="attach : ${attachList}"
+							 th:src="${attach.uploadFilePath}" th:if="${attach.rst_id == restaurant.rst_id}">
 	                <div class="info">
 	                    <a class="rst-name link-style" th:href="@{'/rst/rst_detail?rst_id=' + ${restaurant.rst_id}}" th:text="${restaurant.rst_name}">식당명</a>
 	                    <span class="cate" th:text="${restaurant.rst_cate}">카테고리</span>

@@ -25,6 +25,9 @@ public class MainController {
 	@Autowired
 	private MainService service;
 	
+	@Autowired
+	UploadService UploadService;
+	
 	@GetMapping("/main")
 	public String main(Model model, HttpSession session) {
 		System.out.println("MainController 실행");
@@ -36,7 +39,6 @@ public class MainController {
 		String rst_id = (String) session.getAttribute("rst_id");
 		List<FileDTO> attachList = UploadService.getImgRst(rst_id);
 		model.addAttribute("attachList", attachList);
-		
 		return "main";
 	}
 
