@@ -31,12 +31,13 @@
 	<!-- 즐겨찾기 정보 가져오기(총합까지) -->
 	<select id="getLikes" parameterType="String" resultType="LikesDTO">
 	select rst.rst_id, rst.rst_name, rst.rst_addr1, rst.rst_cate, rst.rev_star_avg,
-		   rst.rst_x, rst.rst_y, l.likes_date, (select count(*) 
-       	    			  						from likes 
-            			  						where likes.rst_id = rst.rst_id) as likes_total,
-            			  						(select count(*) 
-        	 				   					 from review 
-        	 				   					 where rst_id = rst.rst_id) as rev_count
+		   rst.rst_x, rst.rst_y, l.likes_date,
+		   (select count(*) 
+       	    from likes 
+            where likes.rst_id = rst.rst_id) as likes_total,
+           (select count(*) 
+        	from review 
+        	where rst_id = rst.rst_id) as rev_count
 	from restaurant rst
 	inner join likes l on rst.rst_id = l.rst_id
 	where l.user_email = #{user_email}

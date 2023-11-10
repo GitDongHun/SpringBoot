@@ -13,6 +13,9 @@
     padding: 20px;
 }
 
+h2{
+	margin-left: 20px;
+}
 
 .search-bar {
 	 display: flex;

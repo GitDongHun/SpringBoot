@@ -4,17 +4,16 @@ ul li {
     list-style: none;
 }
 
-/* 사이드바 */
 .sidebar a[href="/foodexp/mypage/myLikes"] {
     color: #EF6900;
 }
 
 .myLikes-title{
 	text-align: left;
+	margin-left: 20px;
 	margin-bottom: 40px;
 }
 
-/* 음식점 박스 */
 .rst-box{
 	border-radius: 50px;
 	min-height: 140px;
@@ -48,7 +47,7 @@ ul li {
     text-decoration: none;
 }
 
-.rstname:hover { /* 마우스 호버 효과 */
+.rstname:hover {
 	color: #EF6900;
 }
 

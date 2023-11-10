@@ -13,6 +13,7 @@
 		<div class="bodycontent" style="display: flex;">
 			<nav th:insert="~{include/sidebar.html}"></nav>
 			<div class="content">
+			
 				<div th:each="likes : ${likesDTO}">
 					<input type="hidden" class="rstid" th:value="${likes.rst_id}" />
 					<input type="hidden" class="rstname" th:value="${likes.rst_name}" />
@@ -23,7 +24,6 @@
 					<input type="hidden" class="rsty" th:value="${likes.rst_y}" />
 				</div>
 
-				<!-- 지도를 표시할 div 입니다 -->
 				<div id="map" class="likesmap"></div>
 				<script th:src="'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + ${apiKey}+'&libraries=services,clusterer,drawing'"></script>
 				<script th:src="@{/js/myLikesMap.js}" type="text/javascript"></script>
