@@ -27,7 +27,7 @@
 		justify-content: center;
 		align-items: center;
 		text-align: center;
-		padding: 70px;
+		/* padding: 70px; */
 
 	}
 
@@ -41,6 +41,7 @@
 		font-weight: 550;
 		padding: 14px 29px;
 		text-decoration: none;
+		box-shadow: 0 0 10px #080606;
 	}
 
 	.search {
@@ -48,6 +49,9 @@
 		color: #000;
 		cursor: pointer;
 		font-size: 20px;
+	}
+	.button-container a:hover{
+		color: white !important;
 	}
 
 	.image-container {
@@ -64,8 +68,8 @@
 	}
 
 	.icon {
-		width: 100px;
-		height: 100px;
+		width: 110px;
+		height: 110px;
 		margin-top: 40px;
 		margin-bottom: 30px;
 	}
@@ -219,7 +223,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 10px;
     float: left;
     background-color: #EFEEEC;
@@ -234,7 +238,7 @@
     align-items: center;
     text-align: center;
     margin: 5px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .set {
@@ -272,11 +276,11 @@
     background-color: #fff;
     box-sizing: border-box;
     width: 500px;
-    height: 600px;
+    /* height: 600px; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    position: relative;
+    /* position: relative; */
 }
 
 /* 음식 사진 추가 */
@@ -288,14 +292,14 @@
     margin-bottom: 10px;
     align-self: center;
     align-items: center;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
 }
 
 .info {
 	flex: 1;
     text-align: left !important;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
     height: 40%;
@@ -331,4 +335,42 @@
 .rst-addr1, .average {
 	font-family: 'ONE-Mobile-Regular';
 	font-size: 15px;
+}
+
+#slider{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 450px;
+	box-sizing: border-box;
+}
+.image-box{
+	width: 200%;
+	height: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	animation: bannermove 80s linear infinite;
+	background-color: black;
+}
+.image-box > div{
+	background-color: black;
+	opacity: 0.5;
+}
+.image-box > div > img{
+	height: 450px;
+}
+@keyframes bannermove {
+	0%{
+		transform: translate(0,0);
+	}
+	100%{
+		transform: translate(-50%,0);
+	}
+}
+.buttonbox {
+    position: absolute; /* 절대 위치 설정 */
+    top: 69px; /* slider div의 상단에 배치 */
+    left: 0; /* slider div의 왼쪽에 배치 (기본 값) */
+    width: 100%; /* slider div와 동일한 너비 */
+    z-index: 1; /* 다른 요소 위에 표시되도록 설정 */
 }

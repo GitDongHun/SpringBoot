@@ -38,6 +38,37 @@
 	<!-- 주황 부분 -->
 	<div class="background">
 		<div class="background-inner-banner">
+			<div id="slider">
+				<div class="image-box">
+					<div><img th:src="@{/images/chicken.jpg}" alt=""></div>
+
+					<div><img th:src="@{/images/sushi.jpg}" alt=""></div>
+					<div><img th:src="@{/images/bibimbap.jpg}" alt=""></div>
+					<div><img th:src="@{/images/pastawhite.jpg}" alt=""></div>
+					<div><img th:src="@{/images/중식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/분식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/쌀국수.jpg}" alt=""></div>
+					<div><img th:src="@{/images/cafe.jpg}" alt=""></div>
+					<div><img th:src="@{/images/chicken.jpg}" alt=""></div>
+
+					<div><img th:src="@{/images/sushi.jpg}" alt=""></div>
+					<div><img th:src="@{/images/bibimbap.jpg}" alt=""></div>
+					<div><img th:src="@{/images/pastawhite.jpg}" alt=""></div>
+					<div><img th:src="@{/images/중식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/분식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/쌀국수.jpg}" alt=""></div>
+					<div><img th:src="@{/images/cafe.jpg}" alt=""></div>
+					<div><img th:src="@{/images/chicken.jpg}" alt=""></div>
+
+					<div><img th:src="@{/images/sushi.jpg}" alt=""></div>
+					<div><img th:src="@{/images/bibimbap.jpg}" alt=""></div>
+					<div><img th:src="@{/images/pastawhite.jpg}" alt=""></div>
+					
+				</div>
+
+			</div>
+
+			<div class="buttonbox">
 			<div class="location button">위치에 따른 식당 검색</div>
 			<div class="image-container">
 				<div class="button-container">
@@ -69,6 +100,8 @@
 					</div> <!-- end different -->
 				</div> <!-- end button-container -->
 			</div> <!-- end image-container  -->
+		</div>
+
 		</div> <!-- end background-inner-banner -->
 	</div> <!-- end background -->
     
@@ -91,7 +124,10 @@
 	        </div> end rst-box
 	    </div> end best <br>
 	</div> end top-container -->
-	
+	<div style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
+		※먹스플로어의 TOP10은 리뷰 개수와 별점을 고려하여 산정했습니다.
+	</div>
+
 	<div class="top-container">
 	    <div th:each="restaurant, iterStatus : ${top10Rst}" class="best">
 	        <div class="set">
