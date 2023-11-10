@@ -10,16 +10,37 @@
 
 	<!-- <script type="text/javascript" th:src="@{/js/upload.js}"></script>	 -->
 	<link th:href="@{/css/upload.css}" rel="stylesheet" />
+	<link th:href="@{/css/rev_write.css}" rel="stylesheet" />
 
 	<script type="text/javascript" th:src="@{/js/writeupload.js}"></script>	
 
     </head>
     
     <script>
-    function starInput() {
-        var starInput = document.getElementById("starInput");
-        var selectedValue = starInput.value;
+
+    function updateStarValue() {
+        var stars = document.querySelectorAll('.star');
+        var ratingInput = document.getElementById('starInput');
+
+        stars.forEach(star => {
+          star.addEventListener('click', function() {
+            var value = this.getAttribute('data-value');
+            stars.forEach((star, index) => {
+              if (5 - index <= value) {
+                stars[index].classList.add('active');
+              } else {
+                stars[index].classList.remove('active');
+              }
+            });
+            ratingInput.value = value;
+          });
+        });
     }
+
+    window.onload = function() {
+        updateStarValue();
+    };
+    
     </script>
 
     <body>
@@ -41,8 +62,16 @@
 					        <input type="text" name="rev_title" placeholder="리뷰 제목" required/>
 					    </div>
 					    <div>
-					        별점: <input type="number" min="1" max="5" th:value="${rev_star}" name="rev_star" id="starInput" onchange="updateStarValue()" required/>
-					    </div>
+						    <div class="star-rating" >
+						        <span class="star" data-value="5">&#9733;</span>
+						        <span class="star" data-value="4">&#9733;</span>
+						        <span class="star" data-value="3">&#9733;</span>
+						        <span class="star" data-value="2">&#9733;</span>
+						        <span class="star" data-value="1">&#9733;</span>
+						    </div>
+					    	<input type="hidden" th:value="${rev_star}" name="rev_star" id="starInput" />
+						</div>
+
 					    <div>
 					        <textarea rows="6" cols="50" name="rev_comment" placeholder="리뷰 내용" required></textarea>
 					    </div>
@@ -76,7 +105,6 @@
            </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
 
 		<script>
 			$(document).ready(function() {

@@ -31,9 +31,12 @@
 	<!-- 즐겨찾기 정보 가져오기(총합까지) -->
 	<select id="getLikes" parameterType="String" resultType="LikesDTO">
 	select rst.rst_id, rst.rst_name, rst.rst_addr1, rst.rst_cate, rst.rev_star_avg,
-		   l.likes_date, (select count(*) 
-       	    			  from likes 
-            			  where likes.rst_id = rst.rst_id) as likes_total
+		   rst.rst_x, rst.rst_y, l.likes_date, (select count(*) 
+       	    			  						from likes 
+            			  						where likes.rst_id = rst.rst_id) as likes_total,
+            			  						(select count(*) 
+        	 				   					 from review 
+        	 				   					 where rst_id = rst.rst_id) as rev_count
 	from restaurant rst
 	inner join likes l on rst.rst_id = l.rst_id
 	where l.user_email = #{user_email}
@@ -74,6 +77,17 @@
      from likes
      where rst_id = #{rst_id}
      group by rst_id
+   	</select>
+   	
+   	<!-- 즐겨찾기 정보 지도에 가져오기 -->
+   	<select id="getLikesMap" parameterType="String" resultType="LikesDTO">
+     select rst.rst_id, rst.rst_name, rst.rst_addr1, rst.rst_x, rst.rst_y,
+        	rst.rev_star_avg, (select count(*) 
+        	 				   from review 
+        	 				   where rst_id = rst.rst_id) as rev_count
+     from likes l
+     inner join restaurant rst on rst.rst_id = l.rst_id
+     where user_email = #{user_email}
    	</select>
    
    <!-- 리뷰 정보 가져오기 -->

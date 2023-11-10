@@ -15,22 +15,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <script>
-
-        
+ 
         function searchRev() {
-            var keyword = $('#keyword').val(); // 입력된 키워드 가져오기
+            var keyword = $('#keyword').val();
 
-            // AJAX 요청
             $.ajax({
                 type: 'POST',
                 url: '/foodexp/mypage/searchRev?keyword=' + keyword,
 	            success: function (data) {
-	                // 테이블 내용 초기화
 	                $('#reviewTable > tbody').empty();
 	                $('.revPage').empty();
 	                console.log(data);
 	
-	                // 반환된 데이터를 이용하여 새로운 행 추가
 	                data.forEach(function (review) {
 	                    var date = new Date(review.rev_date);
 	                    var formattedDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
@@ -66,39 +62,39 @@
             });
         });
     
-	    function delSelect() {
-	        var url = "/foodexp/mypage/delSelect";
-	        var valueArr = new Array();
-	        var list = $("input.RowCheck");
-	        for (var i = 0; i < list.length; i++) {
-	            if (list[i].checked) {
-	                valueArr.push(list[i].value);
-		        	console.log(list[i].value);
-	            }
-	        }
-	        if (valueArr.length === 0) {
-	            alert("선택된 글이 없습니다.");
-	        } else {
-	            var chk = confirm("정말 삭제하시겠습니까?");		 
-				$.ajax({
-				    url : url,
-				    type : 'POST',                // POST 방식
-				    traditional : true,
-				    data : {
-				    	valueArr : valueArr        // 보내고자 하는 data 변수 설정
-				    },
-	                success: function(jdata){
-	                    if(jdata = 1) {
-	                        alert("삭제 성공");
-	                        location.replace("/foodexp/mypage/rev") //list 로 페이지 새로고침
-	                    }
-	                    else{
-	                        alert("삭제 실패");
-	                    }
-	                }
-				});
-			}
-		}
+        function delSelect() {
+            var url = "/foodexp/mypage/delSelect";
+            var valueArr = new Array();
+            var list = $("input.RowCheck");
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].checked) {
+                    valueArr.push(list[i].value);
+                    console.log(list[i].value);
+                }
+            }
+            if (valueArr.length === 0) {
+                alert("선택된 글이 없습니다.");
+            } else {
+                var chk = confirm("삭제하시겠습니까?");
+                if (chk) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        traditional: true,
+                        data: {
+                            valueArr: valueArr
+                        },
+                        success: function (jdata) {
+                            if (jdata = 1) {
+                                location.replace("/foodexp/mypage/rev")
+                            } else {
+                                alert("삭제 실패");
+                            }
+                        }
+                    });
+                }
+            }
+        }
      	
     </script>
 
@@ -106,13 +102,13 @@
         <!-- Navigation-->
         <nav th:insert="~{include/nav.html}"></nav>
         
-        <div class="contentbox" >
+        <div class="contentbox">
             <div id="backgroundbanner"></div>
             <div class="bodycontent" style="display: flex;">
 
 			<nav th:insert="~{include/sidebar.html}"></nav>
 				<div class="content">
-                <h2>리뷰 관리</h2>
+                <h2 style="text-align: left;">리뷰 관리</h2>
                 <div class="search-bar">
 				    <input type="text" id="keyword" name="keyword" placeholder="식당명 검색">
 				    <button type="button" onclick="searchRev()">검색</button>
@@ -143,7 +139,7 @@
 		        </table>
 		        </div>
 		       
-                <div class="revPage">
+                <div class="revPage" th:if="${revPageDTO.totalNum > 0}">
     				<div th:each="i : ${#numbers.sequence(1, revPageDTO.totalNum)}">
         				<span th:if="${i == (revPageDTO.curPage == null or revPageDTO.curPage == 0 ? 1 : revPageDTO.curPage)}"> 
             				<span th:text="${i}" class="clickpage"></span>

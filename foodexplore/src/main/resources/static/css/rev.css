@@ -19,7 +19,7 @@
      align-items: center;
      margin-bottom: 30px;
      margin-top: 50px;
-     margin-left: 250px;
+     margin-left: 145px;
 }
 
 .search-bar input {
@@ -32,7 +32,6 @@
     background-color: #FFAF01;
     color: white;
     border: none;
-    white-space : nowrap;
 }
 
 .data-table {

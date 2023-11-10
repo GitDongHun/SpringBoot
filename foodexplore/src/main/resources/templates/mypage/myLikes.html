@@ -41,6 +41,7 @@
 							<div class="rst-info">
 								<p class="revscore" th:if="${likes.rev_star_avg}">
 									별점 <span th:text="${likes.rev_star_avg+ '/5'}"></span>
+									(<span th:text="${likes.rev_count+ '건)'}"></span>
 								</p>
 								<p class="like-count">
 									즐겨찾기 <span th:text="${likes.likes_total}"></span>
@@ -57,15 +58,15 @@
 				</div>
 
 				<!-- 페이지 -->
-				<div class="likesPage">
-					<div th:each="i : ${#numbers.sequence(1, pageDTO.totalNum)}">
-						<span th:if="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
-							<span th:text="${i}" class="clikpage"></span>
-						</span>
-						<span th:unless="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
-							<a th:href="@{/mypage/myLikes(curPage=${i})}" th:text="${i}" class="page-link"></a>
-						</span>
-					</div>
+				<div class="likesPage" th:if="${pageDTO.totalNum > 0}">
+    				<div th:each="i : ${#numbers.sequence(1, pageDTO.totalNum)}">
+        				<span th:if="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
+            				<span th:text="${i}" class="clikpage"></span>
+        				</span>
+        				<span th:unless="${i == (pageDTO.curPage == null or pageDTO.curPage == 0 ? 1 : pageDTO.curPage)}">
+            				<a th:href="@{/mypage/myLikes(curPage=${i})}" th:text="${i}" class="page-link"></a>
+        				</span>
+    				</div>
 				</div>
 			</div> <!-- end content -->
 		</div> <!-- end bodycontent -->

@@ -119,9 +119,8 @@ public class RstController {
 			rstDTO.setRst_phone((rstTempDTO.getPhone() != null) ? rstTempDTO.getPhone() : " ");
 			rstDTO.setRst_addr1((rstTempDTO.getRoad_address_name() != null) ? rstTempDTO.getRoad_address_name() : " ");
 			rstDTO.setRst_addr2((rstTempDTO.getAddress_name() != null) ? rstTempDTO.getAddress_name() : " ");
-
-			// rstDTO.setX(rstTempDTO.getX());
-			// rstDTO.setY(rstTempDTO.getY());
+			rstDTO.setRst_x((rstTempDTO.getX() != null) ? rstTempDTO.getX() : " ");
+			rstDTO.setRst_y((rstTempDTO.getY() != null) ? rstTempDTO.getY() : " ");
 			// rstDTO.setPlaceUrl(rstTempDTO.getPlace_url());
 			// rstDTO.setDistance(rstTempDTO.getDistance());
 			// rstDTO.setCategoryGroupCode(rstTempDTO.getCategory_group_code());

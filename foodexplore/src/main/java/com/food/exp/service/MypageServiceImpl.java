@@ -63,8 +63,14 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
+	public List<LikesDTO> getLikesMap(String user_email) {
+		return dao.getLikesMap(user_email);
+	}
+	
+	@Override
 	public List<RevDTO> getRev(String user_email) {
 		return dao.getRev(user_email);
 	}
+
 
 }
