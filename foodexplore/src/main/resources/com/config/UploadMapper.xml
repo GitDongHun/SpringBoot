@@ -31,7 +31,7 @@
 				    ORDER BY r.rev_no DESC
 				) r
 				JOIN upload u ON r.rev_no = u.rev_no
-				WHERE ROWNUM <= 4
+				WHERE ROWNUM <= 3
 		]]>	
 	</select>
 	
