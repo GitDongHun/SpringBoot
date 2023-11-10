@@ -20,7 +20,7 @@ public class MainDAO {
 	}
 	
     public int getRevCountByRestaurantId(String rst_id) {
-    	String sql = "SELECT COUNT(*) AS revCount FROM review WHERE rst_id = #{rst_id}";
+    	String sql = "SELECT COUNT(*) AS rev_count FROM review WHERE rst_id = #{rst_id}";
         return session.selectOne("MainMapper.getRevCountByRestaurantId", Collections.singletonMap("rst_id", rst_id));
     }
 }

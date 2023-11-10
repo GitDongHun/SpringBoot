@@ -108,33 +108,17 @@
  
     
 	<!-- top 10 부분 -->
-<!-- 	<div class="top-container jump">
-	    <div th:each="restaurant, iterStatus : ${top10Rst}" class="best">
-	        <div class="nationwide">전국 Top <span th:text="${iterStatus.index + 1}"></span></div>
-	        <div class="rst-box">
-				<img alt="식당 사진" src="">
-				<div class="info">
-					<h3 class="rst-name" th:text="${restaurant.rst_name}">식당명</h3>
-					<span class="cate" th:text="${restaurant.rst_cate}">카테고리</span> <br>
-					<hr style="border: solid 1px black;">
-					<span th:text="${restaurant.rev_count}" />명의 평가
-					<span class="average" th:text="${restaurant.rev_star_avg}" />점
-					<div class="rst-addr1" th:text="${restaurant.rst_addr1}">도로명 주소</div>
-				</div> end info
-	        </div> end rst-box
-	    </div> end best <br>
-	</div> end top-container -->
 	<div style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
 		※먹스플로어의 TOP10은 리뷰 개수와 별점을 고려하여 산정했습니다.
 	</div>
-
 	<div class="top-container">
 	    <div th:each="restaurant, iterStatus : ${top10Rst}" class="best">
 	        <div class="set">
 	            <div class="nationwide">전국 Top <span th:text="${iterStatus.index + 1}"></span></div>
 	            <div class="rst-box">
-	                <img class="food-img" th:each="attach : ${attachList}"
-							 th:src="${attach.uploadFilePath}" th:if="${attach.rst_id == restaurant.rst_id}">
+	                <div class="food-container" th:each="photo : ${restaurant.photos}">
+						<img class="food-img" th:src="${photo.uploadFilePath}" alt="Food Image">
+					</div>
 	                <div class="info">
 	                    <a class="rst-name link-style" th:href="@{'/rst/rst_detail?rst_id=' + ${restaurant.rst_id}}" th:text="${restaurant.rst_name}">식당명</a>
 	                    <span class="cate" th:text="${restaurant.rst_cate}">카테고리</span>
@@ -148,12 +132,6 @@
 	    </div> <!-- end best --> <br>
 	</div> <!-- end top-container -->
 
-
-
-
-	
-
-	
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
 </html>
