@@ -32,7 +32,7 @@
             liElement.find(".delbtn").remove();
 
             liElement.find("input[name='photo']").attr("name", "delfile");
-
+			
         });
     });
     
@@ -66,6 +66,22 @@
           }
         });
     };
+    
+    function confirmEdit() {
+	    if(confirm('수정하시겠습니까?')) {
+	        alert('수정되었습니다.');
+	        return true;
+	    }
+	    return false;
+	}
+	
+	function confirmDelete() {
+        if(confirm('삭제하시겠습니까?')) {
+            alert('삭제되었습니다.');
+            return true;
+        }
+        return false;
+    }
 
 </script>
 
@@ -85,7 +101,7 @@
                     <div>
                         <h1 th:text="${review.rst_name}"></h1>
                         <br>
-                        <form th:object="${review}" th:action="@{/mypage/update}" method="post" onsubmit="return confirm('수정하시겠습니까?');">
+                        <form th:object="${review}" th:action="@{/mypage/update}" method="post" onsubmit="return confirmEdit();">
                             <div>
                                 <input type="text" th:field="*{rev_title}" />
                             </div>
@@ -125,7 +141,7 @@
                         </form>
 
                         <br>
-                        <form th:action="@{/mypage/delete}" method="post" id="deleteForm" onsubmit="return confirm('삭제하시겠습니까?');">
+                        <form th:action="@{/mypage/delete}" method="post" id="deleteForm" onsubmit="return confirmDelete();">
                             <input type="hidden" name="rev_no" th:value="${review.rev_no}" />
                             <input type="hidden" name="rst_id" th:value="${review.rst_id}" />
 
