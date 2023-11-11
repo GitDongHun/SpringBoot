@@ -9,11 +9,16 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.food.exp.dto.FileDTO;
 import com.food.exp.dto.MainDTO;
@@ -50,17 +55,6 @@ public class MainController {
 	    List<FileDTO> attachList = UploadService.getFilesRst(rst_id);
 	    model.addAttribute("attachList", attachList);
 		
-        // JSON 파일 읽기
-        try {
-            Resource resource = resourceLoader.getResource("classpath:region.json");
-            InputStream inputStream = resource.getInputStream();
-            String jsonString = convertInputStreamToString(inputStream);
-
-            // jsonString을 모델에 추가
-            model.addAttribute("jsonData", jsonString);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 		return "main";
 	}
 	

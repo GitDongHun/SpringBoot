@@ -78,7 +78,7 @@
 					</div>
 					<div class="different">
 						<img class="icon" th:src="@{/images/different_location_icon.png}"><br>
-						<a href="javascript:void(0);" class="button search" th:onclick="openModal()">다른 위치로 찾기</a>
+						<a class="button search open-modal">다른 위치로 찾기</a>
 						
 						<!-- 모달 창 -->
 						<form th:action="@{/reg_post}" method="post"> 
@@ -87,7 +87,17 @@
 									<div class="region_header">
 										<span class="region_title">지역 선택</span>
 									</div>
-									<div th:insert="~{commons/region.html}"></div>
+									<div>
+			                            <select id="h_area1" name="h_area1">
+			                                <option value="">-광역시도-</option>
+			                            </select>
+			                            <select id="h_area2" name="h_area2">
+			                                <option value="">-시군구-</option>
+			                            </select>
+			                            <select id="h_area3" name="h_area3">
+			                                <option value="">-읍면동-</option>
+			                            </select>
+			                        </div>
 									<span class="close" onclick="closeModal()" style="font-size: 24px;">&times;</span>
 									<div class="region_confirm" style="pointer-events: initial">
 										<button id="cancleBtn" class="region_button cancle"><span>취소</span></button>
