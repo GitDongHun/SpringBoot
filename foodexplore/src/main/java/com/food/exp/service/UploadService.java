@@ -12,5 +12,4 @@ public interface UploadService {
 	public int currentRno();
 	public List<FileDTO> getFilesRst(String rst_id);
 	public List<FileDTO> thumbnail(String rst_id);
-	public List<FileDTO> getImgRst(String rst_id);
 }

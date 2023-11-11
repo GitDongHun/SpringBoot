@@ -46,8 +46,7 @@
     
 	<!-- 리뷰 수정 -->
     <update id="updateReview" parameterType="RevDTO">
-        UPDATE review SET REV_STAR = #{rev_star}, REV_COMMENT = #{rev_comment, jdbcType=VARCHAR}, REV_TITLE = #{rev_title, jdbcType=VARCHAR},
-        rev_date = sysdate
+        UPDATE review SET REV_STAR = #{rev_star}, REV_COMMENT = #{rev_comment, jdbcType=VARCHAR}, REV_TITLE = #{rev_title, jdbcType=VARCHAR}
         WHERE REV_NO = #{rev_no}
         and  USER_EMAIL = #{user_email,jdbcType=VARCHAR}
     </update>

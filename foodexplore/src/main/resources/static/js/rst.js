@@ -149,14 +149,22 @@ function searchFunction() {
 		h_area1.hidden = false;
 		h_area2.hidden = false;
 
-		h_area1 = document.getElementById('h_area1').options[document.getElementById('h_area1').selectedIndex].text;
-		h_area2 = document.getElementById('h_area2').options[document.getElementById('h_area2').selectedIndex].text;
+		h_area1 = document.getElementById('h_area1').selectedIndex;
+		h_area2 = document.getElementById('h_area2').selectedIndex;
 
-		if (h_area1 === "-광역시도-") {
+		console.log(`h_area1: ${h_area1}`);
+		console.log(`h_area2: ${h_area2}`);
+		if (h_area1 == 0) {
 			h_area1 = "";
 		}
-		if (h_area2 === "-시군구-") {
+		else {
+			h_area1 = document.getElementById('h_area1').options[document.getElementById('h_area1').selectedIndex].text;
+		}
+		if (h_area2 == 0) {
 			h_area2 = "";
+		}
+		else {
+			h_area2 = document.getElementById('h_area2').options[document.getElementById('h_area2').selectedIndex].text;
 		}
 
 	}
