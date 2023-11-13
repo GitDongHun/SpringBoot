@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+    var openModalBtn = document.getElementById("openModal");
+    var closeModalBtn = document.getElementById("closeModal");
     var modal = document.getElementById("myModal");
     
     // 모달 창 열기
@@ -11,9 +13,13 @@ document.addEventListener("DOMContentLoaded", function() {
         modal.style.display = "none";
     }
     
-    // 모달 열기 버튼에 이벤트 리스너 추가
-    document.getElementById("openModal").addEventListener("click", function() {
-        modal.style.display = "flex";
+    // 모달 열기 버튼에 클릭 이벤트 리스너 추가
+    openModalBtn.addEventListener("click", function() {
+        openModal();
+    });
+    
+    closeModalBtn.addEventListener("click", function() {
+    	closeModal();
     });
 
 
@@ -54,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function() {
             searchButton.click();
         }
     }
-    });
 
     // 모달 외부를 클릭하여 모달 닫기
     window.onclick = function(event) {
@@ -71,7 +76,14 @@ document.addEventListener("DOMContentLoaded", function() {
             populateOptions(regionData); // 모달에 데이터 채우기
         })
         .catch(error => console.error('Error:', error));
+    
+    fetch('region.json')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error fetching region.json:', error));
+    
 });
+
 
 function populateOptions(data) {
     const hArea1 = document.getElementById("h_area1");
