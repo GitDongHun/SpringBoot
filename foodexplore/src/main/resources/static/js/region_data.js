@@ -1,5 +1,4 @@
 // json 형식으로 변수생성
-console.log("region_data 실행완료");
 var region_data = [{
     "h_area1": "강원도",
     "h_area2": "강릉시",

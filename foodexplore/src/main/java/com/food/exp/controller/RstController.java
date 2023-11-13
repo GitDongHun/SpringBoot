@@ -1,5 +1,9 @@
 package com.food.exp.controller;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.food.exp.dto.FileDTO;
@@ -60,6 +65,21 @@ public class RstController {
 		
 		return "/maintest";
 	}
+	
+	@GetMapping("/region_data")
+	@ResponseBody
+	public String getRegion_data(){
+		 try {
+	            // region_data.js 파일을 읽어와서 반환합니다.
+	            Path path = Paths.get("src/main/resources/static/js/region_data.js");
+	            byte[] bytes = Files.readAllBytes(path);
+	            return new String(bytes);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return "console.error('Error loading dynamic JavaScript.');";
+	        }
+	}
+
 	
 	@GetMapping("/rst")
 	public String rst_main(HttpSession session,Model model) {
