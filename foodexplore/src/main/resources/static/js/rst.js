@@ -138,22 +138,26 @@ function searchFunction() {
 
 	var selectCate = $("input[type='radio'][name='shop']:checked").next("label").text();
 
-	var h_area1 = "", h_area2 = "";
+	var h_area1 = "", h_area2 = "", h_area3 = "";
 
 	var searchType = document.querySelector('input[name="searchType"]:checked').value;
 	if (searchType === "nationwide") {
 		//여기일 경우 h_area1, h_area2의 보이지 않는 옵션을 풀고, 텍스트값을 h_area1, h_area2에 넣음
 		h_area1 = document.getElementById('h_area1');
 		h_area2 = document.getElementById('h_area2');
+		h_area3 = document.getElementById('h_area3');
 
 		h_area1.hidden = false;
 		h_area2.hidden = false;
+		h_area3.hidden = false;
 
 		h_area1 = document.getElementById('h_area1').selectedIndex;
 		h_area2 = document.getElementById('h_area2').selectedIndex;
+		h_area3 = document.getElementById('h_area3').selectedIndex;
 
 		console.log(`h_area1: ${h_area1}`);
 		console.log(`h_area2: ${h_area2}`);
+		console.log(`h_area3: ${h_area3}`);
 		if (h_area1 == 0) {
 			h_area1 = "";
 		}
@@ -166,18 +170,27 @@ function searchFunction() {
 		else {
 			h_area2 = document.getElementById('h_area2').options[document.getElementById('h_area2').selectedIndex].text;
 		}
+		if (h_area3 == 0) {
+			h_area3 = "";
+		}
+		else {
+			h_area3 = document.getElementById('h_area3').options[document.getElementById('h_area3').selectedIndex].text;
+		}
 
 	}
 	else if (searchType === "myLocation" || searchType === "myMap") {
 		//여기일 경우 h_area1, h_area2를 보이지 않게 옵션을 정하고, 그대로 둠
 		h_area1 = document.getElementById('h_area1');
 		h_area2 = document.getElementById('h_area2');
+		h_area3 = document.getElementById('h_area3');
 
 		h_area1.hidden = true;
 		h_area2.hidden = true;
+		h_area3.hidden = true;
 
 		h_area1 = "";
 		h_area2 = "";
+		h_area3 = "";
 	}
 
 	//nationwide
@@ -189,7 +202,7 @@ function searchFunction() {
 		selectCate = "";
 	}
 
-	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + selectCate;
+	keyword = keyword + " " + h_area1 + " " + h_area2 + " " + h_area3 + " " + selectCate;
 	console.log(`1번: ${keyword}`);
 
 	// 공백을 압축

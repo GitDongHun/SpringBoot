@@ -74,32 +74,21 @@
 
 					<!-- 여기에 전국일경우 디자인 추가하기-->
 					<div>
-						<select id="h_area1" name="h_area1"
-							onchange="reg1_change(this.value, document.getElementsByName('h_area2')[0]),searchPlaces();">
+						<select id="h_area1" name="h_area1" onchange="searchPlaces();">
 							<option value="">-광역시도-</option>
-							<option value="1">서울</option>
-							<option value="2">부산</option>
-							<option value="3">대구</option>
-							<option value="4">인천</option>
-							<option value="5">광주</option>
-							<option value="6">대전</option>
-							<option value="7">울산</option>
-							<option value="8">강원</option>
-							<option value="9">경기</option>
-							<option value="10">경남</option>
-							<option value="11">경부</option>
-							<option value="12">전남</option>
-							<option value="13">전북</option>
-							<option value="14">제주</option>
-							<option value="15">충남</option>
-							<option value="16">충북</option>
 						</select>
 						<select id="h_area2" name="h_area2" onchange="searchPlaces();">
 							<option value="">-시군구-</option>
 						</select>
+						<select id="h_area3" name="h_area3" onchange="searchPlaces();">
+							<option value="">-읍면동-</option>
+						</select>
+
+					</select>
 
 						<input type="hidden" id="h_area1_1" th:value="${h_area1}" readonly />
 						<input type="hidden" id="h_area2_1" th:value="${h_area2}" readonly />
+						<input type="hidden" id="h_area3_1" th:value="${h_area3}" readonly />
 					</div>
 
 
@@ -127,6 +116,20 @@
 							if (options[i].value === h_area2_value) {
 								options[i].selected = true;
 								break; // 값을 찾으면 반복 종료
+							}
+						}
+					</script>
+					<script>
+						console.log("3번찾아서 선택함");
+						var h_area3=document.getElementById("h_area3");
+						var h_area3_value = document.getElementById("h_area3_1").value;
+
+						// h_area3의 옵션 요소들을 반복하면서 원하는 값을 선택
+						var option = h_area3.options;
+						for(var i=0;i<option.length;i++){
+							if(options[i].value === h_area3_value){
+								options[i].selected=true;
+								break;
 							}
 						}
 					</script>

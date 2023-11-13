@@ -1,8 +1,63 @@
-document.addEventListener("DOMContentLoaded", function() {
+//var region_data = require("/region_data.js");
+console.log("main.js 실행완료");
+
+var region_data = [{
+    "h_area1": "강원도",
+    "h_area2": "강릉시",
+    "h_area3": [
+        "강남동",
+        "강동면",
+        "경포동",
+        "교1동",
+        "교2동",
+        "구정면",
+        "내곡동",
+        "사천면",
+        "성덕동",
+        "성산면",
+        "송정동",
+        "연곡면",
+        "옥계면",
+        "옥천동",
+        "왕산면",
+        "주문진읍",
+        "중앙동",
+        "초당동",
+        "포남1동",
+        "포남2동",
+        "홍제동"
+    ]
+}];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
     var openModalBtn = document.getElementById("openModal");
     var closeModalBtn = document.getElementById("closeModal");
     var modal = document.getElementById("myModal");
-    
+
     // 모달 창 열기
     function openModal() {
         modal.style.display = "flex";
@@ -12,19 +67,19 @@ document.addEventListener("DOMContentLoaded", function() {
     function closeModal() {
         modal.style.display = "none";
     }
-    
+
     // 모달 열기 버튼에 클릭 이벤트 리스너 추가
-    openModalBtn.addEventListener("click", function() {
+    openModalBtn.addEventListener("click", function () {
         openModal();
     });
-    
-    closeModalBtn.addEventListener("click", function() {
-    	closeModal();
+
+    closeModalBtn.addEventListener("click", function () {
+        closeModal();
     });
 
 
     // 모달 닫기 (취소 버튼)
-    document.getElementById("cancleBtn").addEventListener("click", function(event) {
+    document.getElementById("cancleBtn").addEventListener("click", function (event) {
         event.preventDefault(); // 기본 동작 중지
         closeModal();
     });
@@ -62,13 +117,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // 모달 외부를 클릭하여 모달 닫기
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             closeModal();
         }
     };
 
     // 데이터를 가져와서 옵션들을 채움 (region.js 파일 사용)
+    /*
     fetch('http://localhost:8090/foodexp/main')
         .then(response => response.json())
         .then(regionData => {
@@ -81,7 +137,8 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error fetching region.json:', error));
-    
+    */
+
 });
 
 
