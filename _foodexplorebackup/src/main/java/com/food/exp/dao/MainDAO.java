@@ -1,5 +1,6 @@
 package com.food.exp.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,4 +19,8 @@ public class MainDAO {
 		return session.selectList("MainMapper.top10Rst");
 	}
 	
+    public int getRevCountByRestaurantId(String rst_id) {
+    	String sql = "SELECT COUNT(*) AS rev_count FROM review WHERE rst_id = #{rst_id}";
+        return session.selectOne("MainMapper.getRevCountByRestaurantId", Collections.singletonMap("rst_id", rst_id));
+    }
 }

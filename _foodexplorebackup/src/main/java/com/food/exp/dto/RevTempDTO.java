@@ -1,6 +1,7 @@
 package com.food.exp.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
@@ -16,11 +17,12 @@ public class RevTempDTO {
 	String rst_name;
 	String nickname;
 	
+	List<FileDTO> attachList;
 	
 	public RevTempDTO() {}
 
 	public RevTempDTO(int rev_no, String user_email, String rst_id, int rev_star, String rev_comment, Date rev_date,
-			String rev_title, String rst_name, String nickname) {
+			String rev_title, String rst_name, String nickname, List<FileDTO> attachList) {
 		super();
 		this.rev_no = rev_no;
 		this.user_email = user_email;
@@ -105,13 +107,22 @@ public class RevTempDTO {
 		this.nickname = nickname;
 	}
 
+	public List<FileDTO> getAttachList() {
+		return attachList;
+	}
+
+	public void setAttachList(List<FileDTO> attachList) {
+		this.attachList = attachList;
+	}
+
 	@Override
 	public String toString() {
 		return "RevTempDTO [rev_no=" + rev_no + ", user_email=" + user_email + ", rst_id=" + rst_id + ", rev_star="
 				+ rev_star + ", rev_comment=" + rev_comment + ", rev_date=" + rev_date + ", rev_title=" + rev_title
-				+ ", rst_name=" + rst_name + ", nickname=" + nickname + "]";
+				+ ", rst_name=" + rst_name + ", nickname=" + nickname + ", attachList=" + attachList + "]";
 	}
 
+	
 	
 	
 	

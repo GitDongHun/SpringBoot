@@ -1,0 +1,24 @@
+.star-rating {
+	display: flex;
+	justify-content: left;
+	flex-direction: row-reverse;
+	font-size: 2em;
+	cursor: pointer;
+}
+
+.star {
+	color: lightgray;
+}
+
+.star.active {
+	color: #FFAF01;
+}
+
+#writeBtn{
+  height: 35px;
+  width: 85px;
+  border: none;
+  color: white;
+  background-color: #EF6900;
+  border-radius: 5px;
+}

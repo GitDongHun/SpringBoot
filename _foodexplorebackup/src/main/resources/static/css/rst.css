@@ -1,20 +1,19 @@
-		.map_wrap,
-		.map_wrap * {
-			margin: 0;
-			padding: 0;
-			font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-			font-size: 12px;
-		}
+.map_wrap,
+.map_wrap * {
+  margin: 0;
+  padding: 0;
+  font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+  font-size: 12px;
+}
 
-		.map_wrap a,
-		.map_wrap a:hover,
-		.map_wrap a:active {
-			color: #000;
-			text-decoration: none;
-		}
+.map_wrap a,
+.map_wrap a:hover,
+.map_wrap a:active {
+  color: #000;
+  text-decoration: none;
+}
 
-
-
+/* 변경전(02)
 		#menu_wrap {
 			position: relative;
 			top: 0;
@@ -29,252 +28,275 @@
 			font-size: 12px;
 			border-radius: 10px;
 		}
+*/
 
-		.bg_white {
-			background: #fff;
-		}
+/*변경후(02)*/
+/* 검색 메뉴 스타일 */
+#menu_wrap {
+  position: flex;
+  flex-direction: column; /* 세로로 배치 */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: auto;
+  height: 100px; /* 높이를 조정하세요. */
+  margin: 10px 0 20px 0; /* 마진을 조정하세요. */
+  padding: 10px 30px;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  font-size: 14px; /* 글꼴 크기를 조정하세요. */
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  align-items: flex-start; /* 왼쪽 정렬 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과를 추가했습니다. */
+}
 
-		#menu_wrap hr {
-			display: block;
-			height: 1px;
-			border: 0;
-			border-top: 2px solid #5F5F5F;
-			margin: 3px 0;
-		}
+.bg_white {
+  background: #fff;
+}
 
-		#menu_wrap .option {
-			text-align: center;
-		}
+#menu_wrap hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #5f5f5f;
+  margin: 3px 0;
+}
 
-		#menu_wrap .option p {
-			margin: 10px 0;
-		}
+#menu_wrap .option {
+  text-align: center;
+}
 
-		#menu_wrap .option button {
-			margin-left: 5px;
-		}
+#menu_wrap .option p {
+  margin: 10px 0;
+}
 
-		#placesList li {
-			list-style: none;
-		}
+#menu_wrap .option button {
+  margin-left: 5px;
+}
 
-		#placesList .item {
-			position: relative;
-			border-bottom: 1px solid #888;
-			overflow: hidden;
-			cursor: pointer;
-			min-height: 65px;
-		}
+#placesList li {
+  list-style: none;
+}
 
-		#placesList .item span {
-			display: block;
-			margin-top: 4px;
-		}
+#placesList .item {
+  position: relative;
+  border-bottom: 1px solid #888;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 65px;
+}
 
-		#placesList .item h5,
-		#placesList .item .info {
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-		}
+#placesList .item span {
+  display: block;
+  margin-top: 4px;
+}
 
-		#placesList .item .info {
-			padding: 10px 0 10px 55px;
-		}
+#placesList .item h5,
+#placesList .item .info {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-		#placesList .info .gray {
-			color: #8a8a8a;
-		}
+#placesList .item .info {
+  padding: 10px 0 10px 55px;
+}
 
-		#placesList .info .jibun {
-			padding-left: 26px;
-			background:
-				url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
-		}
+#placesList .info .gray {
+  color: #8a8a8a;
+}
 
-		#placesList .info .tel {
-			color: #009900;
-		}
+#placesList .info .jibun {
+  padding-left: 26px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+    no-repeat;
+}
 
-		#placesList .item .markerbg {
-			float: left;
-			position: absolute;
-			width: 36px;
-			height: 37px;
-			margin: 10px 0 0 10px;
-			background:
-				url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
-		}
+#placesList .info .tel {
+  color: #009900;
+}
 
-		#placesList .item .marker_1 {
-			background-position: 0 -10px;
-		}
+#placesList .item .markerbg {
+  float: left;
+  position: absolute;
+  width: 36px;
+  height: 37px;
+  margin: 10px 0 0 10px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+    no-repeat;
+}
 
-		#placesList .item .marker_2 {
-			background-position: 0 -56px;
-		}
+#placesList .item .marker_1 {
+  background-position: 0 -10px;
+}
 
-		#placesList .item .marker_3 {
-			background-position: 0 -102px
-		}
+#placesList .item .marker_2 {
+  background-position: 0 -56px;
+}
 
-		#placesList .item .marker_4 {
-			background-position: 0 -148px;
-		}
+#placesList .item .marker_3 {
+  background-position: 0 -102px;
+}
 
-		#placesList .item .marker_5 {
-			background-position: 0 -194px;
-		}
+#placesList .item .marker_4 {
+  background-position: 0 -148px;
+}
 
-		#placesList .item .marker_6 {
-			background-position: 0 -240px;
-		}
+#placesList .item .marker_5 {
+  background-position: 0 -194px;
+}
 
-		#placesList .item .marker_7 {
-			background-position: 0 -286px;
-		}
+#placesList .item .marker_6 {
+  background-position: 0 -240px;
+}
 
-		#placesList .item .marker_8 {
-			background-position: 0 -332px;
-		}
+#placesList .item .marker_7 {
+  background-position: 0 -286px;
+}
 
-		#placesList .item .marker_9 {
-			background-position: 0 -378px;
-		}
+#placesList .item .marker_8 {
+  background-position: 0 -332px;
+}
 
-		#placesList .item .marker_10 {
-			background-position: 0 -423px;
-		}
+#placesList .item .marker_9 {
+  background-position: 0 -378px;
+}
 
-		#placesList .item .marker_11 {
-			background-position: 0 -470px;
-		}
+#placesList .item .marker_10 {
+  background-position: 0 -423px;
+}
 
-		#placesList .item .marker_12 {
-			background-position: 0 -516px;
-		}
+#placesList .item .marker_11 {
+  background-position: 0 -470px;
+}
 
-		#placesList .item .marker_13 {
-			background-position: 0 -562px;
-		}
+#placesList .item .marker_12 {
+  background-position: 0 -516px;
+}
 
-		#placesList .item .marker_14 {
-			background-position: 0 -608px;
-		}
+#placesList .item .marker_13 {
+  background-position: 0 -562px;
+}
 
-		#placesList .item .marker_15 {
-			background-position: 0 -654px;
-		}
+#placesList .item .marker_14 {
+  background-position: 0 -608px;
+}
 
-		#pagination {
-			margin: 10px auto;
-			text-align: center;
-		}
+#placesList .item .marker_15 {
+  background-position: 0 -654px;
+}
 
-		#pagination a {
-			display: inline-block;
-			margin-right: 10px;
-		}
+#pagination {
+  margin: 10px auto;
+  text-align: center;
+}
 
-		#pagination .on {
-			font-weight: bold;
-			cursor: default;
-			color: #777;
-		}
+#pagination a {
+  display: inline-block;
+  margin-right: 10px;
+}
 
+#pagination .on {
+  font-weight: bold;
+  cursor: default;
+  color: #777;
+}
 
+.bodycontent {
+  position: relative;
+  width: 80% !important;
+  height: auto;
+}
 
-
-		.bodycontent {
-			position:relative;
-			width: 80% !important;
-			height:60vh !important;
-		}
-
-		
-
+/* 변경전(01)
 		.map_wrap {
 			position: relative;
 			width: 100%;
 			height: 30vh;
 
 		}
+*/
+/* 변경후(01)*/
+/* 음식점 검색 스타일 */
+.map_wrap {
+  position: relative;
+  width: 100%;
+  height: 40vh; /* 높이를 조정하세요. */
+}
 
-		._01_all{
-			display:flex;
-			flex-direction: column;
-			height:100%;
-		}
+._01_all {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
+._01_01_01_sub {
+  z-index: 1;
+  background-color: white;
 
-
-		._01_01_01_sub {
-			z-index: 1;
-			background-color:white;
-			
-			border-color:black;
-			
-		}
-
-
-
+  border-color: black;
+}
 
 /* 체크되지 않은 라디오 버튼 스타일 */
 input.custom-radio[type="radio"] {
-    display: none; /* 체크 버튼 감추기 */
+  display: none; /* 체크 버튼 감추기 */
 }
 
 /* 라디오 버튼 레이블 스타일 */
 label.custom-radio {
-    display: inline-block;
-    line-height: 32px;
-    padding: 2px 18px 0;
-    border: 1px solid black;
-    border-radius: 20px;
-    margin-right: 10px;
-    cursor: pointer;
+  display: inline-block;
+  line-height: 32px;
+  padding: 2px 18px 0;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
-label.custom-radio:hover{
-	
+label.custom-radio:hover {
 }
 
 /* 체크된 라디오 버튼 스타일 */
-label.custom-radio:has(input.custom-radio[type="radio"]:checked){
-    border: 2px solid orange; /* 체크된 경우 테두리 색상 변경 */
-	color:orange;
-    font-weight: bold; /* 체크된 경우 글꼴을 굵게 표시 */
+label.custom-radio:has(input.custom-radio[type="radio"]:checked) {
+  border: 2px solid orange; /* 체크된 경우 테두리 색상 변경 */
+  color: orange;
+  font-weight: bold; /* 체크된 경우 글꼴을 굵게 표시 */
 }
 
+@media (min-width: 1300px) {
+  .map_wrap {
+    height: 60vh;
+  }
+
+  ._01_01_main {
+    display: flex;
+
+    height: 100%;
+  }
+  ._01_01_01_sub {
+    overflow: auto;
+    display: block;
+    position: absolute;
+    height: 45vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    flex: 1;
+  }
+
+  #menu_wrap select#h_area1,
+  #menu_wrap select#h_area2 {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 
 
 
 
+}
 
-
-
-
-		@media (min-width:1300px){
-			.map_wrap{
-				height:60vh;
-			}
-
-			._01_01_main{
-				display:flex;
-
-
-				height:100%;
-			}
-			._01_01_01_sub{
-				overflow:auto;
-				display:block;
-				position:absolute;
-				height:45vh;
-				background-color:rgba(255,255,255,0.8);
-				flex:1;
-			}
-		}
-		
+/*변경전(03)
 		.menu_cate {
 			padding: 15px 10px;
 			display: flex;
@@ -293,7 +315,7 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked){
 			border: 1px solid #ff8100;
 			line-height: 24px;
 			text-align: center;
-			/* font-weight:bold; */
+			font-weight:bold; 
 			font-size:15px;
 			border-radius: 15px;
 			margin-bottom: 8px;
@@ -306,3 +328,52 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked){
 			background-color: #ff8100;
 			color: #fff;
 		}
+		*/
+
+/*변경후(03)*/
+
+/* 메뉴 카테고리 스타일 */
+.menu_cate {
+  padding: 15px 0;
+  flex-wrap:wrap;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.menu_cate input[type="radio"] {
+  display: none;
+}
+
+.menu_cate input[type="radio"] + label {
+  display: inline-block;
+  cursor: pointer;
+  height: 30px;
+  width: 80px;
+  border: 1px solid #ff8100;
+  line-height: 28px;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.3s;
+}
+
+.menu_cate input[type="radio"]:checked + label {
+  background-color: #ff8100;
+  color: #fff;
+  border: 1px solid #ff8100;
+}
+
+
+
+#menu_wrap select#h_area1,
+#menu_wrap select#h_area2 {
+  display: inline-block;
+  margin-bottom: 10px; /* 아래쪽 여백 추가 */
+  margin-top:10px;
+}
+

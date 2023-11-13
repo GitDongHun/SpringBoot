@@ -26,18 +26,54 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<!--  kakao Map API & CSS -->
-<script th:src="'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + ${apiKey}+'&libraries=services,clusterer,drawing'"></script>
 <link th:href="@{/css/main.css}" rel="stylesheet" />
+<script th:if="${delMessage}" th:inline="javascript">
+    /*<![CDATA[*/
+    alert([[${delMessage}]]);
+    /*]]>*/
+</script>
 </head>
 
 <body>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	
 	<!-- Navigation -->
 	<nav th:insert="~{include/nav.html}"></nav>
 
 	<!-- 주황 부분 -->
 	<div class="background">
 		<div class="background-inner-banner">
+			<div id="slider">
+				<div class="image-box">
+					<div><img th:src="@{/images/chicken.jpg}" alt=""></div>
+
+					<div><img th:src="@{/images/sushi.jpg}" alt=""></div>
+					<div><img th:src="@{/images/bibimbap.jpg}" alt=""></div>
+					<div><img th:src="@{/images/pastawhite.jpg}" alt=""></div>
+					<div><img th:src="@{/images/중식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/분식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/쌀국수.jpg}" alt=""></div>
+					<div><img th:src="@{/images/cafe.jpg}" alt=""></div>
+					<div><img th:src="@{/images/chicken.jpg}" alt=""></div>
+
+					<div><img th:src="@{/images/sushi.jpg}" alt=""></div>
+					<div><img th:src="@{/images/bibimbap.jpg}" alt=""></div>
+					<div><img th:src="@{/images/pastawhite.jpg}" alt=""></div>
+					<div><img th:src="@{/images/중식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/분식.jpg}" alt=""></div>
+					<div><img th:src="@{/images/쌀국수.jpg}" alt=""></div>
+					<div><img th:src="@{/images/cafe.jpg}" alt=""></div>
+					<div><img th:src="@{/images/chicken.jpg}" alt=""></div>
+
+					<div><img th:src="@{/images/sushi.jpg}" alt=""></div>
+					<div><img th:src="@{/images/bibimbap.jpg}" alt=""></div>
+					<div><img th:src="@{/images/pastawhite.jpg}" alt=""></div>
+					
+				</div>
+
+			</div>
+
+			<div class="buttonbox">
 			<div class="location button">위치에 따른 식당 검색</div>
 			<div class="image-container">
 				<div class="button-container">
@@ -47,53 +83,70 @@
 					</div>
 					<div class="different">
 						<img class="icon" th:src="@{/images/different_location_icon.png}"><br>
-						<a href="javascript:void(0);" class="button search" th:onclick="openModal()">다른 위치로 찾기</a>
+						<a class="button search" id="openModal">다른 위치로 찾기</a>
 						
 						<!-- 모달 창 -->
-						<form th:action="@{/reg_post}" method="post"> 
-							<div id="myModal" class="modal">
-								<div class="modal-content">
-									<div class="region_header">
-										<span class="region_title">지역 선택</span>
-									</div>
-									<div th:insert="~{commons/region.html}"></div>
-									<span class="close" onclick="closeModal()" style="font-size: 24px;">&times;</span>
-									<div class="region_confirm" style="pointer-events: initial">
-										<button id="cancleBtn" class="region_button cancle"><span>취소</span></button>
-										<button id="submitBtn" class="region_button submit"><span>선택 완료</span></button>
-									</div>
-								</div> <!-- end modal-content -->
-							</div> <!-- end modal -->
-						</form>
+					<form th:action="@{/reg_post}" method="POST">
+						<div id="myModal" class="modal">
+							<div class="modal-content">
+								<div class="region_header">
+									<span class="region_title">지역 선택</span>
+								</div>
+								<div>
+									<select id="h_area1" name="h_area1">
+										<option value="">-광역시도-</option>
+									</select>
+									<select id="h_area2" name="h_area2">
+										<option value="">-시군구-</option>
+									</select>
+									<select id="h_area3" name="h_area3">
+										<option value="">-읍면동-</option>
+									</select>
+								</div>
+								<span id="closeModal" class="close" style="font-size: 24px;">&times;</span>
+								<div class="region_confirm" style="pointer-events: initial">
+									<button id="cancleBtn" class="region_button cancle" onclick=""><span>취소</span></button>
+									<button id="submitBtn" class="region_button submit"><span>선택 완료</span></button>
+								</div>
+							</div> <!-- end modal-content -->
+						</div> <!-- end modal -->
+						<script type="text/javascript" th:src="@{/js/region.js}"></script>
+					</form>
+						
+					
 						
 					</div> <!-- end different -->
+					
 				</div> <!-- end button-container -->
 			</div> <!-- end image-container  -->
+		</div> <!-- end buttonbox -->
 		</div> <!-- end background-inner-banner -->
 	</div> <!-- end background -->
     
  
     
 	<!-- top 10 부분 -->
-	<!-- Top 10에 대한 정보는 식당 데이터가 DB에 쌓인 다음에 할 수 있을 듯 -->
-	<div class="top-container jump">
-		<div th:each="index : ${#numbers.sequence(0, 9)}" class="best">
-			<div class="nationwide">전국 Top <span th:text="${index + 1}"></span></div>
-			<div class="rst-box">
-				<img alt="식당 사진" src="">
-				<div class="info">
-					<h3>식당명</h3>
-					<div class="representative">
-						<span class="region">지역명</span>|<span class="food1">대표 음식 1</span>, <span class="food2">대표 음식 2</span>
-					</div> <!-- end representative -->
-					<div class="rst-addr1">도로명 주소</div>
-					<div class="rst-addr2">지번 주소</div>
-					<span class="total-pepl">N</span>명의 평가<span class="average">n.x</span>점
-				</div> <!-- end info -->
-			</div> <!-- end rst-box -->
-		</div> <!-- end best --> <br>
+	<div style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
+		※먹스플로어의 TOP10은 리뷰 개수와 별점을 고려하여 산정되었습니다.
+	</div>
+	<div class="top-container">
+	    <div th:each="restaurant, iterStatus : ${top10Rst}" class="best">
+	        <div class="set">
+	            <div class="nationwide">전국 Top <span th:text="${iterStatus.index + 1}"></span></div>
+	            <div class="rst-box">
+	                <img class="food-img" th:each="attach : ${attachList}"
+							 th:src="${attach.uploadFilePath}" th:if="${attach.rst_id == restaurant.rst_id}">
+	                <div class="info">
+	                    <a class="rst-name link-style" th:href="@{'/rst/rst_detail?rst_id=' + ${restaurant.rst_id}}" th:text="${restaurant.rst_name}">식당명</a>
+	                    <span class="cate" th:text="${restaurant.rst_cate}">카테고리</span>
+	                    <hr class="styled-hr">
+	                    <span th:text="${restaurant.rev_count}" />개의 평가
+	                    <span class="average" th:text="${restaurant.rev_star_avg}" />점
+	                    <div class="rst-addr1" th:text="${restaurant.rst_addr1}">도로명 주소</div>
+	                </div> <!-- end info -->
+	            </div> <!-- end rst-box -->
+	        </div> <!-- end set -->
+	    </div> <!-- end best --> <br>
 	</div> <!-- end top-container -->
-	
-	<script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
 </html>

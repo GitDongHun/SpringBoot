@@ -13,12 +13,16 @@
     padding: 20px;
 }
 
+h2{
+	margin-left: 20px;
+}
 
 .search-bar {
 	 display: flex;
      align-items: center;
-     margin-bottom: 50px;
+     margin-bottom: 30px;
      margin-top: 50px;
+     margin-left: 145px;
 }
 
 .search-bar input {
@@ -28,10 +32,9 @@
 
 .search-bar button {
     padding: 10px 20px;
-    background-color: #FFAF01;
+    background-color: #ff8201;
     color: white;
     border: none;
-    white-space : nowrap;
 }
 
 .data-table {
@@ -40,6 +43,7 @@
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
+    
 }
 
 .data-table th, .data-table td {
@@ -49,7 +53,7 @@
 }
 
 .data-table th {
-    background-color: #f2f2f2;
+    background-color: #fff1d7;
 }
 
 .delete-button {
@@ -60,8 +64,37 @@
 .table-wrapper {
     max-height: 500px;
     overflow: auto;
+    margin-bottom: 32px;
 }
 
 .bodycontent {
-    padding-bottom: 200px; /* 원하는 만큼의 여백을 추가 */
+    /* padding-bottom: 200px; */
+}
+
+.revPage{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.revPage > div a {
+    text-decoration: none;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+    box-sizing: border-box;
+	font-size: 20px;
+}
+
+.clickpage{
+	display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+    box-sizing: border-box;
+	font-size: 20px;
+    color: #EF6900;
+    border: 2px solid #EF6900;
+    border-radius: 10px;
 }

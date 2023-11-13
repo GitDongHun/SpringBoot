@@ -2,11 +2,11 @@
 	padding: 35px;
 }
 
-.photos{
+/* .photos{
     width: 200px;
     height: 200px;
     background-color: gray;	
-}
+} */
 
 h2{
     text-align: left;
@@ -36,6 +36,7 @@ h2{
 
 #score {
 	display: inline-block;
+    padding: 8px;
 }
 #rev_star{
 	display: inline-block;
@@ -150,3 +151,42 @@ h2{
     text-underline-offset: 5px;
     margin-bottom: 6px;
 }
+
+.rev_photo ul{
+    display: flex;
+    flex-flow: row ;
+    justify-content: flex-start;
+    padding-left: 0px;
+	margin-top: 10px;
+}
+.rev_photo ul li{
+    list-style: none;
+    padding-right: 10px;
+    position: relative;
+}
+
+.photos ul{
+    display: flex;
+    flex-flow: row ;
+    justify-content: flex-start;
+    padding-left: 0px;
+    overflow: hidden;
+}
+.photos ul li{
+    list-style: none;
+    padding-right: 10px;
+    position: relative;
+}
+
+
+.historyback {
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+    position: absolute;
+    left: -80px;
+    top: 20px;
+    background-color: white;
+    padding: 10px 10px 10px 3px;
+    border-radius: 20px;
+    box-shadow: 0 0px 0px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }

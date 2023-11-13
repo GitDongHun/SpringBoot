@@ -4,6 +4,13 @@
 		font-weight: normal;
 		font-style: normal;
 	}
+	
+	@font-face {
+	    font-family: 'ONE-Mobile-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
 
 	/* 주황 부분 */
 	.background {
@@ -13,14 +20,14 @@
 	}
 
 	.background-inner-banner {
-		background-color: #FFAF01;
+		background-color: #FFE8AA;
 		display: flex;
 		width: 100%;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		text-align: center;
-		padding: 70px;
+		/* padding: 70px; */
 
 	}
 
@@ -34,13 +41,17 @@
 		font-weight: 550;
 		padding: 14px 29px;
 		text-decoration: none;
+		box-shadow: 0 0 10px #080606;
 	}
 
 	.search {
-		background-color: #fff7cc;
+		background-color: #FFAF01;
 		color: #000;
 		cursor: pointer;
 		font-size: 20px;
+	}
+	.button-container a:hover{
+		color: white !important;
 	}
 
 	.image-container {
@@ -57,8 +68,8 @@
 	}
 
 	.icon {
-		width: 100px;
-		height: 100px;
+		width: 110px;
+		height: 110px;
 		margin-top: 40px;
 		margin-bottom: 30px;
 	}
@@ -83,7 +94,7 @@
 	.modal-content {
 		background-color: #fff;
 		padding: 20px;
-		width: 600px;
+		width: 800px;
 		height: auto;
 	}
 
@@ -135,63 +146,208 @@
 		background-color: #F8F9FA;
 	}
 	
-	
-	/* top10 부분  */
-	.top-container {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		margin-top: 50px;
-		margin-bottom: 10px;
-		float: left;
-		background-color: #EFEEEC;
-	}
-	
-	.best {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		text-align: center;
-	}	
+		body {
+			background-color: #EFEEEC;
+			margin: 0;
+			padding: 0;
+		}
 
-	.nationwide {
-		background-color: #fff;
-		border: 2px solid #EF6900;
-		border-radius: 20px;
-		font-family: 'ONE-Mobile-Title';
-		color: black;
-		font-size: 25px;
-		font-weight: 550;
-		padding: 10px 15px;
-		display: inline-flex;
-		flex-direction: column;
-		align-items: center;
-		text-decoration: none;
-	}
-	
-	.nationwide span {
-		white-space: nowrap;
-	}
+		select {
+			width: 200px;
+			padding: 10px;
+			margin: 10px;
+			border: 1px solid #EFEEEC;
+			border-radius: 5px;
+			font-size: 16px;
+		}
 
-	.rst-box {
-		border: 2px solid #EF6900;
-		border-radius: 20px;
-		padding: 15px;
-		margin: 10px;
-		background-color: #fff;
-		box-sizing: border-box;
-		width: 600px;
-		height: 100%;
-	}
-	
-	.info {
-		 text-align: left !important;
-	}
-	
+		select:focus {
+			outline: none;
+			border-color: #EF6900;
+		}
 
-	.representative {
-		display: flex;
-		justify-content: center;
+		option {
+			font-size: 16px;
+		}
+
+		select option[disabled] {
+			color: #888;
+		}
+
+		select option[selected] {
+			font-weight: bold;
+		}
+		
+/* Top10 부분 */
+.top-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /* margin-top: 50px; */
+    margin-bottom: 10px;
+    float: left;
+    background-color: #EFEEEC;
+    justify-content: center;
+}
+
+.best{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 5px;
+    /* margin-top: 50px; */
+}
+
+.set {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nationwide {
+    background-color: #ff8100;
+    border: 2px solid #ff8100;
+    border-radius: 20px;
+    font-family: 'ONE-Mobile-Title';
+    color: white;
+    font-size: 28px;
+    font-weight: 550;
+    padding: 5px 15px;
+    display: inline;
+    text-decoration: none;
+    margin: 0;
+    width: 355px;
+	border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    box-shadow: 5px 5px 5px #bbbbbb;
+}
+
+.nationwide span {
+    white-space: nowrap;
+}
+
+.rst-box {
+    border: 2px solid #ff8100;
+    border-radius: 20px;
+    padding: 15px;
+	margin: 10px;
+	margin-top: 0px;
+    background-color: #fff;
+    box-sizing: border-box;
+    width: 355px;
+    /* height: 600px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* position: relative; */
+	border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    box-shadow: 5px 5px 5px #bbbbbb;
+}
+
+/* 음식 사진 추가 */
+.food-img {
+    width: 300px;
+    height:300px;
+    background-color: gray;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    align-self: center;
+    align-items: center;
+	border-radius: 10px;
+    /* position: absolute; */
+    top: 0;
+}
+
+.info {
+	flex: 1;
+    text-align: left !important;
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+	margin-left: 5px;
+}
+
+.styled-hr {
+	width: 96%;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	border: solid 1px black;
+}
+
+/* 식당명 꾸미기 식.꾸 */
+.link-style {
+    color: black;
+    text-decoration: none;
+    font-family: 'ONE-Mobile-Title';
+    color: black;
+    font-size: 28px;
+    font-weight: 550;
+	
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 306px;
+}
+
+.rst-name, .cate {
+	display: block;
+	text-align: left;
+}
+
+.cate {
+    color: #999999;
+    font-family: 'ONE-Mobile-Regular';
+    font-size: 15px;
+}
+
+.rst-addr1, .average {
+	font-family: 'ONE-Mobile-Regular';
+	font-size: 15px;
+}
+
+#slider{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 450px;
+	box-sizing: border-box;
+}
+.image-box{
+	width: 200%;
+	height: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	animation: bannermove 80s linear infinite;
+	background-color: black;
+}
+.image-box > div{
+	background-color: black;
+	opacity: 0.5;
+}
+.image-box > div > img{
+	height: 450px;
+}
+@keyframes bannermove {
+	0%{
+		transform: translate(0,0);
 	}
+	100%{
+		transform: translate(-50%,0);
+	}
+}
+.buttonbox {
+    position: absolute; /* 절대 위치 설정 */
+    top: 69px; /* slider div의 상단에 배치 */
+    left: 0; /* slider div의 왼쪽에 배치 (기본 값) */
+    width: 100%; /* slider div와 동일한 너비 */
+    z-index: 1; /* 다른 요소 위에 표시되도록 설정 */
+}

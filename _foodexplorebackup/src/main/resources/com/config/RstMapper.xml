@@ -16,26 +16,31 @@ MERGE INTO restaurant r
     rst_addr1 = '${rst_addr1}',
     rst_addr2 = '${rst_addr2}',
     rst_phone = '${rst_phone}',
-    rst_cate = '${rst_cate}'
+    rst_cate = '${rst_cate}',
+    rst_x = '${rst_x}',
+    rst_y = '${rst_y}'
   WHEN NOT MATCHED THEN
-    INSERT (rst_id, rst_name, rst_addr1, rst_addr2, rst_phone, rst_cate)
-    VALUES ('${rst_id}', '${rst_name}', '${rst_addr1}', '${rst_addr2}', '${rst_phone}', '${rst_cate}')
+    INSERT (rst_id, rst_name, rst_addr1, rst_addr2, rst_phone, rst_cate, rst_x, rst_y)
+    VALUES ('${rst_id}', '${rst_name}', '${rst_addr1}', '${rst_addr2}', '${rst_phone}', '${rst_cate}', '${rst_x}', '${rst_y}')
 </insert>
-
-
-
 
 <select id="selectRestaurantById" resultType="com.food.exp.dto.RstDTO">
     SELECT * FROM restaurant
     WHERE rst_id = #{rst_id}
 </select>
 
-<!-- 즐겨찾기 총합 가져오기 -->
-<select id="getLikesTotal" parameterType="String" resultType="LikesDTO">
-    select rst_id, count(*) as likes_total
-    from likes
-    where rst_id = #{rst_id}
-    group by rst_id
-   </select>
+
+<update id="updateAvgStar">
+UPDATE restaurant
+SET rev_star_avg=#{rev_star_avg}
+WHERE rst_id=#{rst_id}
+
+</update>
+
+
+
+
+
+
 
 </mapper>

@@ -15,7 +15,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 
 	    String uri = req.getRequestURI();
 	    String query = req.getQueryString();
-	    uri = uri.replaceFirst("/index", "");
+	    uri = uri.replaceFirst("/foodexp", "");
 	    
 	    // 기존 URI에 parameter가 있을 경우, 이를 포함
 	    if(query == null || query.equals("null")) {
@@ -41,8 +41,9 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 	        saveDest(request);
 			
 			//context 바꿀 시 변경 필요
-			response.sendRedirect("/index/member/loginform");
-			
+			//response.sendRedirect("/foodexp/member/loginform");
+	        response.sendRedirect("/foodexp/member/loginform?showAlert=true");
+
 			return false;
 		}
 		return true;

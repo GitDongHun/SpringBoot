@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RstDTO;
 
 @Repository("RstDAO")
@@ -32,7 +31,8 @@ public class RstDAO {
 		return sqlSessionTemplate.selectList("RstMapper.getAllRestaurants");
 	}
 	
-	public List<LikesDTO> getLikesTotal(String rst_id) {
-		return sqlSessionTemplate.selectList("RstMapper.getLikesTotal",rst_id);
+	public void updateAvgStar(RstDTO restaurant) {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.update("RstMapper.updateAvgStar",restaurant);
 	}
 }

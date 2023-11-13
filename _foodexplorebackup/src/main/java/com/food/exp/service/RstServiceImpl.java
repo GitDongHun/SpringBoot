@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.food.exp.dao.RstDAO;
-import com.food.exp.dto.LikesDTO;
 import com.food.exp.dto.RstDTO;
 
 @Service
@@ -28,12 +27,11 @@ public class RstServiceImpl implements RstService {
 		
 		return rstDAO.selectRestaurantById(rst_id);
 	}
+	@Override
+	public void updateAvgStar(RstDTO restaurant) {
+		rstDAO.updateAvgStar(restaurant);
+	}
 	
 
     // 다른 비즈니스 로직 메서드의 구현
-	
-	@Override
-	public List<LikesDTO> getLikesTotal(String rst_id) {
-		return rstDAO.getLikesTotal(rst_id);
-	}
 }

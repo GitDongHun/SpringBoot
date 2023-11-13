@@ -18,14 +18,14 @@
 
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
-		<div class="bodycontent" style="display: flex;;">
+		<div class="bodycontent" style="display: flex;">
 
 			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
 			<div class="content">
 
                 <div style="width: 890px; margin: auto;">
-                    <h2 class="titletext" >회원 가입</h2>
+                    <h2 class="titletext" >회원정보 수정</h2>
                     <form id="memberJoinForm" th:action="@{/mypage/updateInfo}" method="POST">
                       <table>
                         <tr>
@@ -54,7 +54,7 @@
                           <td style="display: flex; flex-wrap: wrap;">
                             <input type="text" id="nickname" name="nickname" placeholder="닉네임" required
                             th:value="${MemberDTO.nickname}">
-                            <button id="namesamebtn">중복확인</button><br>
+                            <button id="namesamebtn">중복 확인</button><br>
                             <span id="namesamemesg"></span>
                           </td>                  
                         </tr>
@@ -68,12 +68,12 @@
                         <tr>
                           <th>주소*</th>
                           <td class="addr">
-                            <input type="text" id="user_post" name="user_post" placeholder="우편번호" required
+                            <input type="text" id="user_post" name="user_post" placeholder="우편번호" required readonly
                             th:value="${MemberDTO.user_post}">
                             <input type="button" id="btn" onclick="posdtcode()" value="우편번호 찾기"><br>
-                            <input type="text" id="user_addr1" name="user_addr1"  placeholder="도로명주소" required
+                            <input type="text" id="user_addr1" name="user_addr1"  placeholder="기본 주소" required readonly
                             th:value="${MemberDTO.user_addr1}">
-                            <input type="text" id="user_addr2" name="user_addr2" placeholder="지번주소" style="margin-bottom: 0px;" required
+                            <input type="text" id="user_addr2" name="user_addr2" placeholder="나머지 주소" style="margin-bottom: 0px;"
                             th:value="${MemberDTO.user_addr2}">
                             <span id="guide" style="color:#999"></span>
                           </td>                  
@@ -139,7 +139,6 @@
                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
                         document.getElementById('user_post').value = data.zonecode; //5자리 새우편번호 사용
                         document.getElementById('user_addr1').value = fullRoadAddr;
-                        document.getElementById('user_addr2').value = data.jibunAddress;
         
                         // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
                         if(data.autoRoadAddress) {
@@ -162,8 +161,11 @@
             <script type="text/javascript"> 
             $(document).ready(function() {
               let nicknameAvailable = false; // 닉네임 중복 여부
+              let duplication = false; //중복확인 여부
+              let duplicationNick = "";
               let pwdMatch = true; // 비밀번호 일치 여부
               let originalnickname = $("#nickname").val();
+
                 
                 //닉네임 중복 체크
                  $("#namesamebtn").on("click", function(e){     
@@ -190,9 +192,10 @@
                       }else if(data == '1'){
                         $("#namesamemesg").text('사용 가능한 닉네임입니다.');
                         $("#namesamemesg").css("color", "black");
+                        duplicationNick = nickname;
                         nicknameAvailable = true;
                       }
-                      checkSubmit();
+                      //checkSubmit();
                     },
                     error:function(xhr, status, error){
                       
@@ -220,7 +223,7 @@
                       $("#pwsamechk").css("color", "red");
                       pwdMatch = false;
                   }
-                  checkSubmit();
+                  //checkSubmit();
                 });
 
                 function checkSubmit() {
@@ -232,6 +235,41 @@
                     $("input[type=submit]").prop("disabled", true);
                   }
                 }
+
+                $("#joinbtn").on("click", function(e){                
+                    e.preventDefault(); // 폼 제출을 막음
+                    let nickname = $("#nickname").val();
+                    console.log("회원가입"+originalnickname+"----"+nickname+"---"+duplicationNick);
+                                
+                  //원래 닉네임인 경우 닉네임 중복확인 스킵
+                  if(originalnickname == nickname){
+                    console.log("현재 닉네임");
+                    nicknameAvailable = true;
+                  }else if(duplicationNick != nickname){
+                    alert("닉네임 중복 여부를 다시 확인해주세요");
+                          console.log("닉넴 바꿈");
+                          nicknameAvailable = false;
+
+                          return false;
+                  }
+
+                      // 회원가입 버튼을 누를 때 확인 메시지를 표시
+                      if (nicknameAvailable === false) {
+                          alert("닉네임 중복 여부를 확인해주세요");
+                          console.log("닉넴");
+                          return false;
+                      } else if (pwdMatch === false) {
+                          alert("비밀번호 일치 여부를 확인해주세요");
+                          console.log("비번");
+                          return false;
+                      } else if (nicknameAvailable === true && pwdMatch ===true) {
+                          // 모든 조건을 만족하는 경우에만 폼을 서브밋
+                          console.log("성공---");
+                          $("#memberJoinForm").submit(); // 폼을 서브밋
+                      }
+
+                    
+                });//end 회원가입 버튼
 
               });
             </script>
@@ -248,9 +286,10 @@
 
                 if (result) {
                   // 사용자가 "Yes"를 선택한 경우
-                  window.location.href = "/foodexp/mypage/delMember";
-                  var formObj = $("form");
-                  formObj.attr("action","delMember");
+                 // window.location.href = "/foodexp/mypage/delMember";
+                  var formObj = $("#memberJoinForm");
+                  formObj.attr("action","/foodexp/mypage/delMember");
+                  console.log($("#memberJoinForm").attr("action")+"---------");
                   formObj.submit();
 
                 } //사용자가 아니오를 선택한 경우 원래 상태로 돌아감

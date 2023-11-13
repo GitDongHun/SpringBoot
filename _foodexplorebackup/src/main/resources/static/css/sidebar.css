@@ -8,19 +8,19 @@
 }
 
 .content {
-	flex: 1; /* 남은 공간을 채우도록 설정 */
+	flex: 1;
 	border-left: 1px solid #EFEEEC;
 	padding: 30px;
 }
 
-.sidebar ul { /* 사이드바 스타일 */
+.sidebar ul {
 	list-style: none;
 	padding: 0;
 }
 
 .sidebar li {
 	display: flex;
-	align-items: center; /* 수직 가운데 정렬 */
+	align-items: center;
 	justify-content: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -35,7 +35,7 @@
 	text-decoration: none;
 }
 
-.sidebar a:hover { /* 마우스 호버 효과 */
+.sidebar a:hover {
 	color: #EF6900;
 }
 
@@ -45,6 +45,6 @@
 	height: 50px;
 	border-radius: 50px;
 	text-align: center;
-	background-color: #EF6900;
+	background-color: #ff7000;
 	color: white;
 }
