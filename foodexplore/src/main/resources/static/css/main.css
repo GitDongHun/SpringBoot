@@ -291,6 +291,11 @@
     color: black;
     font-size: 28px;
     font-weight: 550;
+	
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 306px;
 }
 
 .rst-name, .cate {
