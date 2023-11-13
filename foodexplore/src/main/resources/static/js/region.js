@@ -2,12 +2,10 @@
 fetch('/foodexp/region_data')
     .then(response => response.text())
     .then(scriptText => {
-        // scriptText 변수에는 로드한 JavaScript 파일의 내용이 들어 있습니다.
-        // 여기에서 scriptText를 실행하거나 다른 작업을 수행할 수 있습니다.
-        // scriptText를 이 js내용에 포함시키고싶어 <<<<<<<<<<<
         eval(scriptText);
         populateOptions(region_data);
         onLoad_Select(region_data);
+        searchPlaces();
     })
     .catch(error => console.error('Script loading errrrrrrrror:', error));
 
@@ -50,6 +48,8 @@ function populateOptions(region_data) {
             option.text = city;
             hArea2.appendChild(option);
         });
+
+        searchPlaces();
     });
 
     // 시/군/구가 선택되면 해당 읍면동 목록을 가져오도록 이벤트 리스너를 등록합니다.
@@ -71,6 +71,11 @@ function populateOptions(region_data) {
             option.text = district;
             hArea3.appendChild(option);
         });
+        searchPlaces();
+    });
+
+    hArea3.addEventListener("change", function () {
+        searchPlaces();
     });
 }
 
@@ -93,6 +98,7 @@ function onLoad_Select(region_data) {
     // 초기 선택 값을 설정합니다.
     hArea1.value = initialHArea1;
 
+
     const selectedProvince = hArea1.value;
 
     // 시/군/구 및 읍면동 목록을 초기화합니다.
@@ -111,12 +117,7 @@ function onLoad_Select(region_data) {
         hArea2.appendChild(option);
     });
 
-
-
-
     hArea2.value = initialHArea2;
-
-
     const selectedCity = hArea2.value;
 
     // 읍면동 목록을 초기화합니다.
@@ -137,5 +138,9 @@ function onLoad_Select(region_data) {
 
     hArea3.value = initialHArea3;
 
+    console.log("됐냐?");
+    console.log(hArea1.selectedIndex);
+    console.log(hArea2.selectedIndex);
+    console.log(hArea3.selectedIndex);
 }
 
