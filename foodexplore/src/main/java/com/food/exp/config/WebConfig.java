@@ -18,7 +18,8 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor)
-		        .addPathPatterns("/mypage/**","/rst/revwrite");
+		        .addPathPatterns("/mypage/**");
+//		.addPathPatterns("/mypage/**","/rst/revwrite");
 		
 //		registry.addInterceptor(loginIC)
 //		.addPathPatterns("/member/login");

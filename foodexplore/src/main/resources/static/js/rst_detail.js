@@ -58,9 +58,53 @@ $(document).ready(function() {
 	});
 	
 	$('.write_rev').click(function() {
+		
 		var rst_id = $('#rst_id').val();
-		window.location.href = "/foodexp/rst/revwrite?rst_id=" + rst_id;
+		if(loginCheck()){
+			window.location.href = "/foodexp/rst/revwrite?rst_id=" + rst_id;
+		}else{
+			alert("로그인이 필요합니다.");
+	        window.location.href = '/foodexp/member/loginform';
+		}
+		
 	});
+
+	// 초기 width 합 계산
+	var totalWidth = 0;
+
+	// 각 이미지의 width 합 계산
+	$('.photos ul li').each(function() {
+		totalWidth += $(this).width();
+	});
+
+	// width 합이 1130px을 넘으면 가장 마지막 li 삭제
+	while (totalWidth > 1130) {
+		var lastLi = $('ul li:last-child');
+		totalWidth -= lastLi.width();
+		lastLi.remove();
+	}
+
+	 // 이미지 클릭 시 원본 크기로 보여주기
+	 $('.rev_photo ul li img').on('click', function() {
+		console.log("click");
+		var originalSrc = $(this).attr('src');
+
+		$.fancybox.open({
+			src: originalSrc,
+			type: 'image'
+		});
+	});
+
+	$('.photos ul li img').on('click', function() {
+		console.log("click");
+		var originalSrc = $(this).attr('src');
+
+		$.fancybox.open({
+			src: originalSrc,
+			type: 'image'
+		});
+	});
+
 });
 
 function loginCheck() {
@@ -93,3 +137,4 @@ function addLikes() {
 		}
 	});
 }
+

@@ -5,7 +5,13 @@
 <title>먹스플로어</title>
 <link th:href="@{/css/sidebar.css}" rel="stylesheet" />
 <link th:href="@{/css/mypage.css}" rel="stylesheet" />
+<script th:if="${updateMessage}" th:inline="javascript">
+    /*<![CDATA[*/
+    alert([[${updateMessage}]]);
+    /*]]>*/
+</script>
 </head>
+
 <body>
 	<nav th:insert="~{include/nav.html}"></nav>
 	<div class="contentbox">

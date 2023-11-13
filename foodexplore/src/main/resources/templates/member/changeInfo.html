@@ -18,7 +18,7 @@
 
 	<div class="contentbox">
 		<div id="backgroundbanner"></div>
-		<div class="bodycontent" style="display: flex;;">
+		<div class="bodycontent" style="display: flex;">
 
 			<!-- 사이드바 -->
 			<nav th:insert="~{include/sidebar.html}"></nav>
@@ -246,7 +246,7 @@
                     console.log("현재 닉네임");
                     nicknameAvailable = true;
                   }else if(duplicationNick != nickname){
-                    alert("중복 확인 후 닉네임이 다시 변경되었습니다. 닉네임 중복 여부를 다시 확인해주세요");
+                    alert("닉네임 중복 여부를 다시 확인해주세요");
                           console.log("닉넴 바꿈");
                           nicknameAvailable = false;
 
@@ -264,7 +264,7 @@
                           return false;
                       } else if (nicknameAvailable === true && pwdMatch ===true) {
                           // 모든 조건을 만족하는 경우에만 폼을 서브밋
-                          console.log("성공");
+                          console.log("성공---");
                           $("#memberJoinForm").submit(); // 폼을 서브밋
                       }
 

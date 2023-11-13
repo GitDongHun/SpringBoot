@@ -27,6 +27,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <link th:href="@{/css/main.css}" rel="stylesheet" />
+<script th:if="${delMessage}" th:inline="javascript">
+    /*<![CDATA[*/
+    alert([[${delMessage}]]);
+    /*]]>*/
+</script>
 </head>
 
 <body>

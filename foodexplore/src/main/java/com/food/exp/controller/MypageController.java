@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.food.exp.dto.FileDTO;
 import com.food.exp.dto.LikesDTO;
@@ -46,6 +47,13 @@ public class MypageController {
 		// 리뷰 정보
 		List<RevDTO> revDTO = service.getRev(user_email);
 		m.addAttribute("RevDTO", revDTO);
+		
+		// 성공적인 업데이트를 나타내는 플래시 속성을 확인합니다.
+        if (m.containsAttribute("updateSuccess")) {
+            // 알림에 표시할 메시지를 추가합니다.
+            m.addAttribute("updateMessage", "회원정보 수정이 완료되었습니다.");
+        }
+
 		return "mypage/mypage";
 	}
 
@@ -101,19 +109,25 @@ public class MypageController {
 
 	// 회원정보 수정
 	@PostMapping("/updateInfo")
-	public String updateInfo(MemberDTO dto, HttpSession session) {
+	public String updateInfo(MemberDTO dto, HttpSession session, RedirectAttributes redirectAttributes) {
 		int num = service.changeInfo(dto);
 		String nickname = dto.getNickname();
 		session.setAttribute("nickname", nickname);
+		
+		System.out.println("수정");
+		
+	    redirectAttributes.addFlashAttribute("updateSuccess", true);
+
 		return "redirect:main";
 	}
 
 	// 회원 탈퇴
 	@PostMapping("/delMember")
-	public String delMember(HttpSession session) {
+	public String delMember(HttpSession session, RedirectAttributes redirectAttributes) {
 		String user_email = (String) session.getAttribute("login");
 		int num = service.delMember(user_email);
 		session.invalidate();
+	    redirectAttributes.addFlashAttribute("delSuccess", true);
 		return "redirect:/main";
 	}
 }
