@@ -38,30 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("submitBtn").addEventListener("click", handleSubmitClick);
 
     function handleSubmitClick(event) {
-        event.preventDefault(); // 기본 동작 중지
-
         var h_area1Select = document.getElementById("h_area1");
         var h_area2Select = document.getElementById("h_area2");
         var h_area3Select = document.getElementById("h_area3");
 
         if (h_area1Select.value === "" || h_area2Select.value === "" || h_area3Select.value === "") {
+            event.preventDefault(); // 기본 동작 중지
             alert("지역을 선택하세요!");
             return; // 선택되지 않은 경우, 이후의 코드 실행을 막음
         }
 
-        var h_area1Text = h_area1Select.options[h_area1Select.selectedIndex].text;
-        var h_area2Text = h_area2Select.options[h_area2Select.selectedIndex].text;
-        var h_area3Text = h_area3Select.options[h_area3Select.selectedIndex].text;
-
-        document.getElementById("searchinput").value = h_area1Text + " " + h_area2Text + " " + h_area3Text;
-
         closeModal();
-
-/*        // 검색 실행 (선택한 값으로 자동 검색)
-        var searchButton = document.getElementById("searchbtn");
-        if (searchButton) {
-            searchButton.click();
-        }*/
     }
 
     // 모달 외부를 클릭하여 모달 닫기

@@ -87,7 +87,7 @@
 							<option value="">-읍면동-</option>
 						</select>
 
-					</select>
+
 
 						<input type="hidden" id="h_area1_1" th:value="${h_area1}" readonly />
 						<input type="hidden" id="h_area2_1" th:value="${h_area2}" readonly />
@@ -97,45 +97,7 @@
 
 					<script th:src="@{/js/region.js}" type="text/javascript"></script>
 
-					<script type="text/javascript">
-						var h_area1 = document.getElementById("h_area1");
-						var h_area1_value = document.getElementById("h_area1_1").value;
 
-						h_area1.options[h_area1_value].selected = true;
-						reg1_change(
-							h_area1_value,
-							document.getElementsByName("h_area2")[0]
-						);
-					</script>
-
-					<script type="text/javascript">
-						console.log("2번찾아서 선택함");
-						var h_area2 = document.getElementById("h_area2");
-						var h_area2_value = document.getElementById("h_area2_1").value;
-
-						// h_area2의 옵션 요소들을 반복하면서 원하는 값을 선택
-						var options = h_area2.options;
-						for (var i = 0; i < options.length; i++) {
-							if (options[i].value === h_area2_value) {
-								options[i].selected = true;
-								break; // 값을 찾으면 반복 종료
-							}
-						}
-					</script>
-					<script>
-						console.log("3번찾아서 선택함");
-						var h_area3=document.getElementById("h_area3");
-						var h_area3_value = document.getElementById("h_area3_1").value;
-
-						// h_area3의 옵션 요소들을 반복하면서 원하는 값을 선택
-						var option = h_area3.options;
-						for(var i=0;i<option.length;i++){
-							if(options[i].value === h_area3_value){
-								options[i].selected=true;
-								break;
-							}
-						}
-					</script>
 					<!-- 전국 -->
 				</div>
 

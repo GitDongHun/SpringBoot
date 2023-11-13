@@ -86,7 +86,7 @@
 						<a class="button search" id="openModal">다른 위치로 찾기</a>
 						
 						<!-- 모달 창 -->
-					<form th:action="@{/reg_post}" method="post">
+					<form th:action="@{/reg_post}" method="POST">
 						<div id="myModal" class="modal">
 							<div class="modal-content">
 								<div class="region_header">
@@ -105,13 +105,15 @@
 								</div>
 								<span id="closeModal" class="close" style="font-size: 24px;">&times;</span>
 								<div class="region_confirm" style="pointer-events: initial">
-									<button id="cancleBtn" class="region_button cancle"><span>취소</span></button>
+									<button id="cancleBtn" class="region_button cancle" onclick=""><span>취소</span></button>
 									<button id="submitBtn" class="region_button submit"><span>선택 완료</span></button>
 								</div>
 							</div> <!-- end modal-content -->
 						</div> <!-- end modal -->
 						<script type="text/javascript" th:src="@{/js/region.js}"></script>
 					</form>
+						
+					
 						
 					</div> <!-- end different -->
 					

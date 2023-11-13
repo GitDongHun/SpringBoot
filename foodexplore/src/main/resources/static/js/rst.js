@@ -401,7 +401,6 @@ function getListItem(index, places) {
 		+ '"></span>'
 		+ '<div class="info">'
 		+ '   <a href="/foodexp/rst/rst_detail?rst_id=' + places.id + '"><h5>' + places.place_name + '</h5></a>'
-		+ '   <h5>' + places.id + '</h5>'
 		;
 
 	if (places.road_address_name) {

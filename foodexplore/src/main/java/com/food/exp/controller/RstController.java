@@ -117,8 +117,7 @@ public class RstController {
 		model.addAttribute("inputLoadSelector","nationwide");
 		
 		model.addAttribute("apiKey", mapApiKey);
-		System.out.println("reg_post 작동 완료");
-		
+
 		model.addAttribute("h_area1",h_area1);
 		model.addAttribute("h_area2",h_area2);
 		model.addAttribute("h_area3",h_area3);
