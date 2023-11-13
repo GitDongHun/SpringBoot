@@ -29,6 +29,11 @@
 <!--  kakao Map API & CSS -->
 <script th:src="'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + ${apiKey}+'&libraries=services,clusterer,drawing'"></script>
 <link th:href="@{/css/main.css}" rel="stylesheet" />
+<script th:if="${delMessage}" th:inline="javascript">
+    /*<![CDATA[*/
+    alert([[${delMessage}]]);
+    /*]]>*/
+</script>
 </head>
 
 <body>

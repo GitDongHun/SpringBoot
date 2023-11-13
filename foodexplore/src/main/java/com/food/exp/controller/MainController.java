@@ -39,6 +39,13 @@ public class MainController {
 		String rst_id = (String) session.getAttribute("rst_id");
 		List<FileDTO> attachList = UploadService.getImgRst(rst_id);
 		model.addAttribute("attachList", attachList);
+		
+		// 성공적인 업데이트를 나타내는 플래시 속성을 확인합니다.
+        if (model.containsAttribute("delSuccess")) {
+            // 알림에 표시할 메시지를 추가합니다.
+        	System.out.println("삭제");
+            model.addAttribute("delMessage", "회원탈퇴가 완료되었습니다.");
+        }
 		return "main";
 	}
 

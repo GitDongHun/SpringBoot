@@ -38,7 +38,24 @@ public class MemberController {
 	@PostMapping(value = "/join")
 	public String join(MemberDTO dto) {
 		int num = service.join(dto);
-		return "redirect:loginform";
+		if(num == 1 ) {
+			return "redirect:joinSuccess";
+		}else {
+			return "redirect:joinFail";
+		}
+	}
+
+	// 회원가입 성공
+	@GetMapping("/joinSuccess")
+	public String joinSuccess() {
+		System.out.println("joinSuccess");
+		return "member/joinSuccess";
+	}
+	// 회원가입 실패
+	@GetMapping("/joinFail")
+	public String joinFail() {
+		System.out.println("joinFail");
+		return "member/joinFail";
 	}
 
 	// 아이디 중복 체크

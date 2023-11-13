@@ -31,7 +31,7 @@
 				    ORDER BY r.rev_no DESC
 				) r
 				JOIN upload u ON r.rev_no = u.rev_no
-				WHERE ROWNUM <= 3
+				WHERE ROWNUM <= 4
 		]]>	
 	</select>
 	
@@ -61,7 +61,7 @@
                                       where u2.rev_no = r.rev_no))
  	  select sr.rst_id, sr.uploadfilepath, sr.uploadfilename
  	  from sortedRev sr
- 	  where sr.row_num <= 3
+ 	  where sr.row_num <= 1
  	 ]]>	
 	</select>
    

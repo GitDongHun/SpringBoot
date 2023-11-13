@@ -41,7 +41,7 @@
   width: auto;
   height: 100px; /* 높이를 조정하세요. */
   margin: 10px 0 20px 0; /* 마진을 조정하세요. */
-  padding: 10px;
+  padding: 10px 30px;
   background: rgba(255, 255, 255, 0.9);
   z-index: 1;
   font-size: 14px; /* 글꼴 크기를 조정하세요. */
@@ -334,11 +334,10 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked) {
 
 /* 메뉴 카테고리 스타일 */
 .menu_cate {
-  margin: 0 0 0 45px;
   padding: 15px 0;
   flex-wrap:wrap;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
 }
 
@@ -354,7 +353,7 @@ label.custom-radio:has(input.custom-radio[type="radio"]:checked) {
   border: 1px solid #ff8100;
   line-height: 28px;
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
   border-radius: 15px;
   margin-right: 5px;
   margin-bottom: 5px;

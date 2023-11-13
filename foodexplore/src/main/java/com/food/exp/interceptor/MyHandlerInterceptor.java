@@ -41,8 +41,9 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 	        saveDest(request);
 			
 			//context 바꿀 시 변경 필요
-			response.sendRedirect("/foodexp/member/loginform");
-			
+			//response.sendRedirect("/foodexp/member/loginform");
+	        response.sendRedirect("/foodexp/member/loginform?showAlert=true");
+
 			return false;
 		}
 		return true;
