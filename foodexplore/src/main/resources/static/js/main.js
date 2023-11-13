@@ -1,9 +1,6 @@
 //var region_data = require("/region_data.js");
 console.log("main.js 실행완료");
 
-import {h_area1, h_area2, h_area3} from './region_data.js';
-
-
 document.addEventListener("DOMContentLoaded", function () {
     var openModalBtn = document.getElementById("openModal");
     var closeModalBtn = document.getElementById("closeModal");
@@ -22,16 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // 모달 열기 버튼에 클릭 이벤트 리스너 추가
     openModalBtn.addEventListener("click", function () {
         openModal();
-        
-        const modalContent = document.getElementById('myModal');
-        modalContent.innerHTML = `
-            <p>${h_area1}</p>
-            <p>${h_area2}</p>
-            <p>${h_area3.join(', ')}</p>
-        `;
-        console.log(h_area1); // '강원도'
-        console.log(h_area2); // '강릉시'
-        console.log(h_area3); // ["강남동", "강동면", ...]
     });
 
     closeModalBtn.addEventListener("click", function () {
@@ -70,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         closeModal();
 
-        // 검색 실행 (선택한 값으로 자동 검색)
+/*        // 검색 실행 (선택한 값으로 자동 검색)
         var searchButton = document.getElementById("searchbtn");
         if (searchButton) {
             searchButton.click();
-        }
+        }*/
     }
 
     // 모달 외부를 클릭하여 모달 닫기
@@ -84,26 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // 데이터를 가져와서 옵션들을 채움 (region.js 파일 사용)
-    /*
-    fetch('http://localhost:8090/foodexp/main')
-        .then(response => response.json())
-        .then(regionData => {
-            localStorage.setItem('regionData', JSON.stringify(regionData));
-            populateOptions(regionData); // 모달에 데이터 채우기
-        })
-        .catch(error => console.error('Error:', error));
-    
-    fetch('region.json')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error fetching region.json:', error));
-    */
-
 });
 
 
-function populateOptions(data) {
+/*function populateOptions(data) {
     const hArea1 = document.getElementById("h_area1");
     const hArea2 = document.getElementById("h_area2");
     const hArea3 = document.getElementById("h_area3");
@@ -149,4 +120,4 @@ function populateOptions(data) {
             });
         }
     });
-}
+}*/

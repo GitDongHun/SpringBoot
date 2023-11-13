@@ -1,5 +1,5 @@
 // json 형식으로 변수생성
-console.log("region_data 실행완료");
+console.log("region_data.js 실행완료");
 
 var region_data = 
 	[

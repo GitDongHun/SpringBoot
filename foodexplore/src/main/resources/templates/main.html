@@ -35,7 +35,7 @@
 </head>
 
 <body>
-	<script type="module" th:src="@{/js/main.js}"></script>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
 	
 	<!-- Navigation -->
 	<nav th:insert="~{include/nav.html}"></nav>
@@ -86,6 +86,7 @@
 						<a class="button search" id="openModal">다른 위치로 찾기</a>
 						
 						<!-- 모달 창 -->
+					<form th:action="@{/reg_post}" method="post">
 						<div id="myModal" class="modal">
 							<div class="modal-content">
 								<div class="region_header">
@@ -109,6 +110,8 @@
 								</div>
 							</div> <!-- end modal-content -->
 						</div> <!-- end modal -->
+						<script type="text/javascript" th:src="@{/js/region.js}"></script>
+					</form>
 						
 					</div> <!-- end different -->
 					

@@ -1,3 +1,4 @@
+console.log("region.js 실행완료");
 //region_data.js 파일 불러오기
 fetch('/foodexp/region_data')
     .then(response => response.text())

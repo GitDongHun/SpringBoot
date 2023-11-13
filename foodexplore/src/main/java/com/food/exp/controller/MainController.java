@@ -3,7 +3,6 @@ package com.food.exp.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -38,11 +37,6 @@ public class MainController {
 	@Autowired
 	UploadService UploadService;
 	
-    private final ResourceLoader resourceLoader;
-
-    public MainController(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
-    }
 	
 	@GetMapping("/main")
 	public String main(Model model, HttpSession session) {
@@ -65,12 +59,6 @@ public class MainController {
         }
 		return "main";
 	}
-	
-    private String convertInputStreamToString(InputStream inputStream) {
-        try (Scanner scanner = new Scanner(inputStream).useDelimiter("\\A")) {
-            return scanner.hasNext() ? scanner.next() : "";
-        }
-    }
 
 	@GetMapping("/template")
 	public String template_thymeleaf(){

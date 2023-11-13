@@ -112,14 +112,16 @@ public class RstController {
 	}
 	
 	@PostMapping("/reg_post")
-	public String reg_post(@RequestParam("h_area1")String h_area1,@RequestParam("h_area2")String h_area2,Model model) {
+	public String reg_post(@RequestParam("h_area1")String h_area1,@RequestParam("h_area2")String h_area2,@RequestParam("h_area3")String h_area3,Model model) {
 		// 이 위치에서 현재위치로 검색할지, 다른위치로 검색할지 구분
 		model.addAttribute("inputLoadSelector","nationwide");
 		
 		model.addAttribute("apiKey", mapApiKey);
+		System.out.println("reg_post 작동 완료");
 		
 		model.addAttribute("h_area1",h_area1);
 		model.addAttribute("h_area2",h_area2);
+		model.addAttribute("h_area3",h_area3);
 		
 		return "/rst/rst";
 	}
